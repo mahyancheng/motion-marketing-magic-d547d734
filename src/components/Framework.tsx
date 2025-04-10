@@ -1,5 +1,5 @@
 
-import { Zap } from 'lucide-react';
+import { Zap, ArrowRight } from 'lucide-react';
 import ScrollReveal from './ui/ScrollReveal';
 
 const Framework = () => {
