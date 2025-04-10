@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,19 +36,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -94,8 +88,58 @@
   * {
     @apply border-border;
   }
-
+  
   body {
-    @apply bg-background text-foreground;
+    @apply bg-black text-white min-h-screen;
   }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-16 md:py-24 px-4 md:px-8;
+  }
+  
+  .service-card {
+    @apply bg-zinc-900 rounded-2xl p-6 transition-all duration-300 hover:bg-zinc-800;
+  }
+  
+  .yellow-gradient {
+    @apply bg-gradient-to-r from-leadzap-yellow to-amber-400;
+  }
+  
+  .card-highlight {
+    @apply bg-zinc-900 rounded-3xl p-6 border border-zinc-800 transition-all duration-300 hover:border-leadzap-yellow;
+  }
+  
+  .lightning-icon {
+    @apply text-leadzap-yellow animate-lightning-flash;
+  }
+  
+  .heading-xl {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
+  }
+  
+  .heading-lg {
+    @apply text-3xl md:text-4xl font-bold tracking-tight;
+  }
+}
+
+.text-highlight {
+  @apply text-leadzap-yellow;
+}
+
+.btn-primary {
+  @apply bg-leadzap-yellow text-black font-semibold py-3 px-6 rounded-lg hover:bg-opacity-90 transition-all;
+}
+
+.btn-outline {
+  @apply border-2 border-leadzap-yellow text-leadzap-yellow font-semibold py-3 px-6 rounded-lg hover:bg-leadzap-yellow hover:bg-opacity-10 transition-all;
+}
+
+.reveal-element {
+  opacity: 0;
 }
