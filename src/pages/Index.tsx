@@ -126,11 +126,10 @@ const Framework = () => {
         
         <div className="mt-16 grid md:grid-cols-2 gap-8">
           <motion.div 
-            className="bg-black p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+            className="bg-black p-6 md:p-8 rounded-xl"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            whileHover={{ scale: 1.03 }}
             viewport={{ once: true }}
           >
             <h3 className="text-2xl font-bold mb-4 text-yellow-400">PUSH Strategy</h3>
@@ -154,11 +153,10 @@ const Framework = () => {
           </motion.div>
           
           <motion.div 
-            className="bg-black p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+            className="bg-black p-6 md:p-8 rounded-xl"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            whileHover={{ scale: 1.03 }}
             viewport={{ once: true }}
           >
             <h3 className="text-2xl font-bold mb-4 text-yellow-400">PULL Strategy</h3>
@@ -221,18 +219,15 @@ const Services = () => {
           {services.map((service, index) => (
             <motion.div
               key={index}
-              className="bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+              className="bg-gray-900 rounded-xl overflow-hidden"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
               viewport={{ once: true }}
             >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
+              <div>
                 <img src={service.image} alt={service.title} className="w-full h-auto" />
-              </motion.div>
+              </div>
               <div className="p-6">
                 <h3 className="text-2xl font-bold mb-3 text-yellow-400">{service.title}</h3>
                 <p className="text-gray-300">{service.description}</p>
@@ -291,7 +286,7 @@ const Testimonials = () => {
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
-              className="bg-black p-6 md:p-8 rounded-xl shadow-lg"
+              className="bg-black p-6 md:p-8 rounded-xl"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
