@@ -8,16 +8,11 @@ const Hero = () => {
       <div className="container mx-auto px-4 md:px-6 text-center">
         <div className="flex flex-col items-center space-y-8 py-16 md:py-20">
           <ScrollReveal animation="animate-fade-in">
-            <div className="bg-leadzap-yellow rounded-full p-5 mb-6 inline-block">
-              <Zap size={48} className="text-black animate-pulse-scale" />
-            </div>
-          </ScrollReveal>
-          
-          <ScrollReveal animation="animate-fade-in" delay={300}>
-            <h1 className="heading-xl mb-2">
-              <span className="text-leadzap-yellow">LEADZAP</span>
-            </h1>
-            <h2 className="heading-lg mb-6">MARKETING</h2>
+            <img 
+              src="/lovable-uploads/d44b1b33-4444-456e-a2d5-dd14ad85c5be.png" 
+              alt="LeadZap Marketing" 
+              className="max-w-xs md:max-w-sm mb-6"
+            />
           </ScrollReveal>
           
           <ScrollReveal animation="animate-fade-in-up" delay={600}>
