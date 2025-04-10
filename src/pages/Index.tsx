@@ -9,6 +9,7 @@ const Index = () => {
       <Hero />
       <Framework />
       <Services />
+      <Testimonials />
       <Contact />
     </div>
   );
@@ -37,6 +38,7 @@ const Navbar = () => {
           <a href="#" className="hover:text-yellow-400 transition-colors">Home</a>
           <a href="#framework" className="hover:text-yellow-400 transition-colors">Our Framework</a>
           <a href="#services" className="hover:text-yellow-400 transition-colors">Services</a>
+          <a href="#testimonials" className="hover:text-yellow-400 transition-colors">Testimonials</a>
           <a href="#contact" className="hover:text-yellow-400 transition-colors">Contact</a>
         </div>
         <button className="bg-yellow-400 text-black px-4 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors">
@@ -232,6 +234,76 @@ const Services = () => {
                 <button className="mt-6 bg-transparent hover:bg-yellow-400 text-yellow-400 hover:text-black border border-yellow-400 px-4 py-2 rounded-md transition-colors">
                   Learn More
                 </button>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Testimonials component
+const Testimonials = () => {
+  const testimonials = [
+    {
+      name: "Sarah Johnson",
+      position: "CEO, TechStart Inc.",
+      content: "LeadZap transformed our digital strategy. Their Push-Pull approach helped us increase our qualified leads by 230% in just three months. We couldn't be happier with the results!",
+      image: "https://randomuser.me/api/portraits/women/12.jpg"
+    },
+    {
+      name: "Michael Chen",
+      position: "Marketing Director, GrowFast",
+      content: "Working with LeadZap has been a game-changer for our business. Their data-driven approach to marketing delivers real results that we can measure and scale.",
+      image: "https://randomuser.me/api/portraits/men/32.jpg"
+    },
+    {
+      name: "Emma Rodriguez",
+      position: "Founder, BrightIdea Solutions",
+      content: "After struggling with inconsistent lead generation, LeadZap's framework completely revolutionized how we approach our marketing. Our conversion rates are up 45% and still climbing!",
+      image: "https://randomuser.me/api/portraits/women/65.jpg"
+    }
+  ];
+
+  return (
+    <div id="testimonials" className="py-16 lg:py-24 bg-gray-900">
+      <div className="container mx-auto px-4 md:px-6">
+        <motion.div 
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Client Testimonials</h2>
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+            Don't just take our word for it. Here's what our clients have to say.
+          </p>
+        </motion.div>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+          {testimonials.map((testimonial, index) => (
+            <motion.div
+              key={index}
+              className="bg-black p-6 md:p-8 rounded-xl"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex items-center mb-6">
+                <div className="w-14 h-14 rounded-full overflow-hidden mr-4">
+                  <img src={testimonial.image} alt={testimonial.name} className="w-full h-full object-cover" />
+                </div>
+                <div>
+                  <h4 className="text-xl font-semibold">{testimonial.name}</h4>
+                  <p className="text-yellow-400">{testimonial.position}</p>
+                </div>
+              </div>
+              <p className="text-gray-300 italic">{testimonial.content}</p>
+              <div className="mt-4 flex">
+                <span className="text-yellow-400">★★★★★</span>
               </div>
             </motion.div>
           ))}
