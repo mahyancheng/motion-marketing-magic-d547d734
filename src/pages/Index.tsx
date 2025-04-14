@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   return (
@@ -16,7 +17,7 @@ const Index = () => {
 };
 
 // Navbar component
-const Navbar = () => {
+export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -32,18 +33,21 @@ const Navbar = () => {
     <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-black/90 py-2' : 'py-4'}`}>
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
         <div className="flex items-center">
-          <img src="/lovable-uploads/cdaaf38a-f7c3-452d-b62b-d48316225e45.png" alt="LeadZap Marketing" className="h-8 md:h-10" />
+          <Link to="/">
+            <img src="/lovable-uploads/cdaaf38a-f7c3-452d-b62b-d48316225e45.png" alt="LeadZap Marketing" className="h-8 md:h-10" />
+          </Link>
         </div>
         <div className="hidden md:flex items-center space-x-8">
-          <a href="#" className="hover:text-yellow-400 transition-colors">Home</a>
-          <a href="#framework" className="hover:text-yellow-400 transition-colors">Our Framework</a>
-          <a href="#services" className="hover:text-yellow-400 transition-colors">Services</a>
-          <a href="#testimonials" className="hover:text-yellow-400 transition-colors">Testimonials</a>
-          <a href="#contact" className="hover:text-yellow-400 transition-colors">Contact</a>
+          <Link to="/seo" className="hover:text-yellow-400 transition-colors">SEO</Link>
+          <Link to="/social-media-ads" className="hover:text-yellow-400 transition-colors">Social Media Paid Ads</Link>
+          <Link to="/order-management" className="hover:text-yellow-400 transition-colors">Order Management System</Link>
+          <Link to="/contact" className="hover:text-yellow-400 transition-colors">Contact Us</Link>
         </div>
-        <button className="bg-yellow-400 text-black px-4 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors">
-          Get Started
-        </button>
+        <Link to="/contact">
+          <button className="bg-yellow-400 text-black px-4 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors">
+            Get Started
+          </button>
+        </Link>
       </div>
     </nav>
   );
