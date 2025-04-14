@@ -1,9 +1,8 @@
-
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-const Index = () => {
+export const Index = () => {
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       <Navbar />
@@ -38,6 +37,7 @@ export const Navbar = () => {
           </Link>
         </div>
         <div className="hidden md:flex items-center space-x-8">
+          <Link to="/" className="hover:text-yellow-400 transition-colors">Home</Link>
           <Link to="/seo" className="hover:text-yellow-400 transition-colors">SEO</Link>
           <Link to="/social-media-ads" className="hover:text-yellow-400 transition-colors">Social Media Paid Ads</Link>
           <Link to="/order-management" className="hover:text-yellow-400 transition-colors">Order Management System</Link>
