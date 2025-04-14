@@ -1,8 +1,4 @@
 
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -39,18 +35,3 @@ export const Navbar = () => {
     </nav>
   );
 };
-
-// Add a default export for the Index component
-const Index = () => {
-  return (
-    <div className="min-h-screen bg-black text-white">
-      <Navbar />
-      <div className="container mx-auto px-4 pt-24">
-        <h1 className="text-4xl font-bold">Welcome to LeadZap Marketing</h1>
-        <p className="mt-4 text-xl">We help businesses grow through strategic digital marketing.</p>
-      </div>
-    </div>
-  );
-};
-
-export default Index;
