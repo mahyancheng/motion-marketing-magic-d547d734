@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Navbar } from "./Index";
@@ -181,22 +182,51 @@ const Integration = () => {
   );
 };
 
-// Updated Pricing component with only Enterprise plan
+// Pricing component
 const Pricing = () => {
-  const plan = {
-    name: "Enterprise",
-    price: "Custom",
-    description: "Tailored solutions for high-volume businesses with complex needs.",
-    features: [
-      "Unlimited orders",
-      "Unlimited users",
-      "Dedicated account manager",
-      "Custom reporting",
-      "Custom integrations",
-      "White-label options",
-      "On-premise deployment"
-    ]
-  };
+  const plans = [
+    {
+      name: "Starter",
+      price: "$99",
+      description: "Perfect for small businesses just getting started with e-commerce.",
+      features: [
+        "Up to 500 orders/month",
+        "2 user accounts",
+        "Email & chat support",
+        "Basic reporting",
+        "Standard integrations"
+      ]
+    },
+    {
+      name: "Professional",
+      price: "$249",
+      description: "Ideal for growing businesses with multiple sales channels.",
+      featured: true,
+      features: [
+        "Up to 2,500 orders/month",
+        "5 user accounts",
+        "Priority support",
+        "Advanced reporting",
+        "All integrations",
+        "API access",
+        "Custom workflows"
+      ]
+    },
+    {
+      name: "Enterprise",
+      price: "Custom",
+      description: "Tailored solutions for high-volume businesses with complex needs.",
+      features: [
+        "Unlimited orders",
+        "Unlimited users",
+        "Dedicated account manager",
+        "Custom reporting",
+        "Custom integrations",
+        "White-label options",
+        "On-premise deployment"
+      ]
+    }
+  ];
 
   return (
     <div className="py-16 lg:py-24 bg-gray-900">
@@ -208,36 +238,44 @@ const Pricing = () => {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Enterprise Solution</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Pricing Plans</h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-            A comprehensive solution tailored to your business needs.
+            Flexible pricing options to fit the needs of your growing business.
           </p>
         </motion.div>
         
-        <div className="max-w-lg mx-auto">
-          <motion.div
-            className="bg-black p-8 rounded-xl shadow-lg border border-gray-800 relative"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            whileHover={{ scale: 1.03 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-            <div className="text-3xl font-bold mb-2">{plan.price}<span className="text-sm text-gray-400 font-normal"> /custom</span></div>
-            <p className="text-gray-300 mb-6">{plan.description}</p>
-            <ul className="space-y-3 mb-8">
-              {plan.features.map((feature, featureIndex) => (
-                <li key={featureIndex} className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-yellow-400 mr-2 shrink-0 mt-0.5" />
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
-            <button className="w-full py-3 rounded-md font-medium border border-white hover:bg-white hover:text-black transition-colors">
-              Contact Sales
-            </button>
-          </motion.div>
+        <div className="grid md:grid-cols-3 gap-8 mt-12">
+          {plans.map((plan, index) => (
+            <motion.div
+              key={index}
+              className={`bg-black p-8 rounded-xl shadow-lg border ${plan.featured ? 'border-yellow-400' : 'border-gray-800'} relative`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              whileHover={{ scale: 1.03 }}
+              viewport={{ once: true }}
+            >
+              {plan.featured && (
+                <div className="absolute top-0 right-8 transform -translate-y-1/2 bg-yellow-400 text-black px-4 py-1 rounded-full text-sm font-medium">
+                  Most Popular
+                </div>
+              )}
+              <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
+              <div className="text-3xl font-bold mb-2">{plan.price}<span className="text-sm text-gray-400 font-normal"> /month</span></div>
+              <p className="text-gray-300 mb-6">{plan.description}</p>
+              <ul className="space-y-3 mb-8">
+                {plan.features.map((feature, featureIndex) => (
+                  <li key={featureIndex} className="flex items-start">
+                    <CheckCircle className="h-5 w-5 text-yellow-400 mr-2 shrink-0 mt-0.5" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <button className={`w-full py-3 rounded-md font-medium transition-colors ${plan.featured ? 'bg-yellow-400 text-black hover:bg-yellow-300' : 'border border-white hover:bg-white hover:text-black'}`}>
+                {plan.price === "Custom" ? "Contact Sales" : "Get Started"}
+              </button>
+            </motion.div>
+          ))}
         </div>
       </div>
     </div>
