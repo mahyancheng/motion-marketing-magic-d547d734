@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Navbar } from "./Index";
@@ -11,7 +10,6 @@ const SocialMediaAds = () => {
       <Hero />
       <Platforms />
       <Process />
-      <CaseStudies />
     </div>
   );
 };
@@ -69,8 +67,8 @@ const Platforms = () => {
     },
     {
       icon: <Youtube className="h-10 w-10" />,
-      name: "YouTube Ads",
-      description: "Reach potential customers with engaging video content across the world's largest video platform."
+      name: "RedNote (Xiaohongshu) & TikTok Ads",
+      description: "Reach potential customers through China's leading lifestyle platform and short-form video content."
     },
     {
       icon: <Target className="h-10 w-10" />,
@@ -187,71 +185,6 @@ const Process = () => {
             </motion.div>
           ))}
         </motion.div>
-      </div>
-    </div>
-  );
-};
-
-// Case Studies component
-const CaseStudies = () => {
-  const cases = [
-    {
-      client: "E-Commerce Retailer",
-      platform: "Facebook & Instagram",
-      result: "368% ROAS",
-      description: "Generated $92,000 in sales from a $25,000 ad spend through targeted carousel ads."
-    },
-    {
-      client: "SaaS Company",
-      platform: "LinkedIn & Facebook",
-      result: "215 Qualified Leads",
-      description: "Drove high-quality B2B leads with a cost per acquisition 40% lower than previous campaigns."
-    },
-    {
-      client: "Local Service Business",
-      platform: "Facebook & Instagram",
-      result: "127 Appointments",
-      description: "Generated local service appointments with a 24% conversion rate from landing page visits."
-    }
-  ];
-
-  return (
-    <div className="py-16 lg:py-24 bg-gray-900">
-      <div className="container mx-auto px-4 md:px-6">
-        <motion.div 
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Case Studies</h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-            Real results for real businesses using our social media advertising strategies.
-          </p>
-        </motion.div>
-        
-        <div className="grid md:grid-cols-3 gap-8 mt-12">
-          {cases.map((caseStudy, index) => (
-            <motion.div
-              key={index}
-              className="bg-black p-6 rounded-xl shadow-lg border border-gray-800"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              whileHover={{ scale: 1.03 }}
-              viewport={{ once: true }}
-            >
-              <span className="text-yellow-400 font-medium">{caseStudy.platform}</span>
-              <h3 className="text-2xl font-bold my-3">{caseStudy.client}</h3>
-              <div className="text-3xl text-yellow-400 font-bold mb-3">{caseStudy.result}</div>
-              <p className="text-gray-300">{caseStudy.description}</p>
-              <button className="mt-6 border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black px-4 py-2 rounded-md transition-colors font-medium">
-                View Full Case Study
-              </button>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </div>
   );

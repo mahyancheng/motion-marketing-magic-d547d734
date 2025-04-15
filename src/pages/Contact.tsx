@@ -1,8 +1,8 @@
-
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Navbar } from "./Index";
 import { Phone, Mail, MapPin, Clock, MessageSquare, CheckCircle } from "lucide-react";
+import PhoneInput from '../components/PhoneInput';
 
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -105,6 +105,8 @@ const ContactForm = ({ submitted, onSubmit }: { submitted: boolean; onSubmit: (e
                     />
                   </div>
                 </div>
+                
+                <PhoneInput id="phone" required className="w-full" />
                 
                 <div>
                   <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-1">Company Name</label>

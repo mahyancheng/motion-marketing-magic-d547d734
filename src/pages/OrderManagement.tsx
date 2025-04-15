@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Navbar } from "./Index";
@@ -186,33 +185,6 @@ const Integration = () => {
 const Pricing = () => {
   const plans = [
     {
-      name: "Starter",
-      price: "$99",
-      description: "Perfect for small businesses just getting started with e-commerce.",
-      features: [
-        "Up to 500 orders/month",
-        "2 user accounts",
-        "Email & chat support",
-        "Basic reporting",
-        "Standard integrations"
-      ]
-    },
-    {
-      name: "Professional",
-      price: "$249",
-      description: "Ideal for growing businesses with multiple sales channels.",
-      featured: true,
-      features: [
-        "Up to 2,500 orders/month",
-        "5 user accounts",
-        "Priority support",
-        "Advanced reporting",
-        "All integrations",
-        "API access",
-        "Custom workflows"
-      ]
-    },
-    {
       name: "Enterprise",
       price: "Custom",
       description: "Tailored solutions for high-volume businesses with complex needs.",
@@ -238,28 +210,23 @@ const Pricing = () => {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Pricing Plans</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Enterprise Solution</h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-            Flexible pricing options to fit the needs of your growing business.
+            A comprehensive solution tailored to your business needs.
           </p>
         </motion.div>
         
-        <div className="grid md:grid-cols-3 gap-8 mt-12">
+        <div className="grid md:grid-cols-1 gap-8 mt-12 max-w-2xl mx-auto">
           {plans.map((plan, index) => (
             <motion.div
               key={index}
-              className={`bg-black p-8 rounded-xl shadow-lg border ${plan.featured ? 'border-yellow-400' : 'border-gray-800'} relative`}
+              className="bg-black p-8 rounded-xl shadow-lg border border-gray-800 relative"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
+              transition={{ duration: 0.5 }}
               whileHover={{ scale: 1.03 }}
               viewport={{ once: true }}
             >
-              {plan.featured && (
-                <div className="absolute top-0 right-8 transform -translate-y-1/2 bg-yellow-400 text-black px-4 py-1 rounded-full text-sm font-medium">
-                  Most Popular
-                </div>
-              )}
               <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
               <div className="text-3xl font-bold mb-2">{plan.price}<span className="text-sm text-gray-400 font-normal"> /month</span></div>
               <p className="text-gray-300 mb-6">{plan.description}</p>
@@ -271,8 +238,8 @@ const Pricing = () => {
                   </li>
                 ))}
               </ul>
-              <button className={`w-full py-3 rounded-md font-medium transition-colors ${plan.featured ? 'bg-yellow-400 text-black hover:bg-yellow-300' : 'border border-white hover:bg-white hover:text-black'}`}>
-                {plan.price === "Custom" ? "Contact Sales" : "Get Started"}
+              <button className="w-full bg-yellow-400 text-black px-6 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors">
+                Contact Sales
               </button>
             </motion.div>
           ))}
