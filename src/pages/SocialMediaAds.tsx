@@ -1,7 +1,9 @@
+
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Navbar } from "./Index";
-import { BarChart2, Target, TrendingUp, Users, Instagram, Facebook, Youtube, Megaphone, TikTok, Globe } from "lucide-react";
+import { BarChart2, Target, TrendingUp, Users, Instagram, Facebook, Youtube, Megaphone, Globe } from "lucide-react";
+import TikTokIcon from "../components/icons/TikTokIcon";
 
 const SocialMediaAds = () => {
   return (
@@ -61,7 +63,7 @@ const Hero = () => {
 const Platforms = () => {
   const platforms = [
     {
-      icon: <TikTok className="h-10 w-10" />,
+      icon: <TikTokIcon className="h-10 w-10" />,
       name: "TikTok Ads",
       description: "Reach a younger, highly engaged audience with creative short-form video content."
     },
