@@ -1,7 +1,7 @@
-
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Navbar } from "./Index";
+import { Input } from "@/components/ui/input";
 import { BarChart2, Search, ArrowUpRight, Globe, TrendingUp, LineChart } from "lucide-react";
 
 const SEO = () => {
@@ -16,7 +16,6 @@ const SEO = () => {
   );
 };
 
-// Hero component for SEO page
 const Hero = () => {
   return (
     <div className="pt-24 lg:pt-32 pb-16 lg:pb-24">
@@ -59,7 +58,6 @@ const Hero = () => {
   );
 };
 
-// Features component
 const Features = () => {
   const features = [
     {
@@ -122,26 +120,21 @@ const Features = () => {
   );
 };
 
-// Process component
 const Process = () => {
   const steps = [
     {
-      number: "01",
       title: "SEO Audit & Analysis",
       description: "We conduct a comprehensive analysis of your current SEO performance, identifying opportunities and gaps."
     },
     {
-      number: "02",
       title: "Strategy Development",
       description: "Based on our findings, we create a customized SEO strategy tailored to your business goals."
     },
     {
-      number: "03",
       title: "Implementation",
       description: "Our team executes the strategy, implementing on-page, off-page, and technical SEO optimizations."
     },
     {
-      number: "04",
       title: "Monitoring & Refinement",
       description: "We continuously monitor your SEO performance and refine our approach to maximize results."
     }
@@ -163,41 +156,26 @@ const Process = () => {
           </p>
         </motion.div>
         
-        <div className="mt-12 relative">
-          {/* Connecting line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gray-700 transform -translate-x-1/2 hidden md:block"></div>
-          
-          {/* Process steps */}
-          <div className="space-y-12 md:space-y-0">
-            {steps.map((step, index) => (
-              <motion.div
-                key={index}
-                className={`flex flex-col md:flex-row ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center md:gap-8`}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                viewport={{ once: true }}
-              >
-                <div className={`md:w-1/2 mb-8 md:mb-0 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
-                  <span className="block text-5xl font-bold text-yellow-400 mb-2">{step.number}</span>
-                  <h3 className="text-2xl font-bold mb-3">{step.title}</h3>
-                  <p className="text-gray-300">{step.description}</p>
-                </div>
-                <div className="md:w-1/2 flex justify-center relative">
-                  <div className="bg-yellow-400 text-black w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl relative z-10">
-                    {parseInt(step.number)}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        <div className="grid gap-8 mt-12">
+          {steps.map((step, index) => (
+            <motion.div
+              key={index}
+              className="bg-gray-900 p-8 rounded-xl"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-2xl font-bold mb-3">{step.title}</h3>
+              <p className="text-gray-300">{step.description}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </div>
   );
 };
 
-// Call to Action component
 const CallToAction = () => {
   return (
     <div className="py-16 lg:py-24 bg-gray-900">
@@ -213,9 +191,16 @@ const CallToAction = () => {
           <p className="text-lg text-gray-300 mb-8">
             Get started with a free SEO audit and discover how our data-driven strategies can help you outrank your competitors.
           </p>
-          <button className="bg-yellow-400 text-black px-8 py-4 rounded-md font-medium hover:bg-yellow-300 transition-colors text-lg">
-            Get Your Free SEO Audit
-          </button>
+          <div className="space-y-4">
+            <Input
+              type="tel"
+              placeholder="Enter your phone number"
+              className="max-w-md mx-auto bg-white text-black"
+            />
+            <button className="bg-yellow-400 text-black px-8 py-4 rounded-md font-medium hover:bg-yellow-300 transition-colors text-lg w-full max-w-md mx-auto">
+              Get Your Free SEO Audit
+            </button>
+          </div>
         </motion.div>
       </div>
     </div>
