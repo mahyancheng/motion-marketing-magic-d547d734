@@ -184,9 +184,6 @@ const Process = () => {
                   <p className="text-gray-300">{step.description}</p>
                 </div>
                 <div className="md:w-1/2 flex justify-center relative">
-                  <div className="bg-yellow-400 text-black w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl relative z-10">
-                    {parseInt(step.number)}
-                  </div>
                 </div>
               </motion.div>
             ))}
