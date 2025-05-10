@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Navbar } from "./Index";
 import { Package, ShoppingCart, ClipboardList, BarChart2, Clock, Settings, CheckCircle, User } from "lucide-react";
+import Footer from "./Footer";
 
 const OrderManagement = () => {
   return (
@@ -11,6 +12,7 @@ const OrderManagement = () => {
       <Features />
       <Integration />
       <Pricing />
+      <Footer />
     </div>
   );
 };

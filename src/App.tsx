@@ -10,6 +10,7 @@ import SEO from "./pages/SEO";
 import SocialMediaAds from "./pages/SocialMediaAds";
 import OrderManagement from "./pages/OrderManagement";
 import Contact from "./pages/Contact";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -19,13 +20,13 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+      <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/seo" element={<SEO />} />
           <Route path="/social-media-ads" element={<SocialMediaAds />} />
           <Route path="/order-management" element={<OrderManagement />} />
           <Route path="/contact" element={<Contact />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { Navbar } from "./Index";
 import { Phone, Mail, MapPin, Clock, MessageSquare, CheckCircle } from "lucide-react";
 import PhoneInput from '../components/PhoneInput';
+import Footer from './Footer'; // adjust path if needed
+
 
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -28,7 +30,10 @@ const Contact = () => {
       <Hero />
       <ContactForm submitted={submitted} onSubmit={handleSubmit} />
       <ContactInfo />
+      <Footer />
+
     </div>
+    
   );
 };
 
@@ -61,7 +66,7 @@ const ContactForm = ({ submitted, onSubmit }: { submitted: boolean; onSubmit: (e
     <div className="py-8">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div 
-          className="max-w-3xl mx-auto bg-gray-900 rounded-2xl overflow-hidden shadow-xl"
+          className="max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-xl"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}

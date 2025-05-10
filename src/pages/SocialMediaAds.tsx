@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Navbar } from "./Index";
 import { BarChart2, Target, TrendingUp, Users, Instagram, Facebook, Youtube, Megaphone } from "lucide-react";
+import Footer from "./Footer";
 
 const SocialMediaAds = () => {
   return (
@@ -10,6 +11,7 @@ const SocialMediaAds = () => {
       <Hero />
       <Platforms />
       <Process />
+      <Footer />
     </div>
   );
 };

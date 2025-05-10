@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import Footer from './Footer'; // adjust path if needed
 
 export const Index = () => {
   return (
@@ -11,6 +12,7 @@ export const Index = () => {
       <Services />
       <Testimonials />
       <Contact />
+      <Footer />
     </div>
   );
 };
@@ -396,7 +398,10 @@ const Contact = () => {
         </motion.div>
       </div>
     </div>
+    
   );
+  
 };
+
 
 export default Index;
