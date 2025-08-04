@@ -42,7 +42,7 @@ export const Navbar = () => {
           <Link to="/" className="hover:text-yellow-400 transition-colors">Home</Link>
           <Link to="/seo" className="hover:text-yellow-400 transition-colors">SEO</Link>
           <Link to="/social-media-ads" className="hover:text-yellow-400 transition-colors">Social Media Paid Ads</Link>
-          <Link to="/order-management" className="hover:text-yellow-400 transition-colors">Order Management System</Link>
+          <Link to="/customer-software-demo" className="hover:text-yellow-400 transition-colors">Customer Software Solution</Link>
           <Link to="/contact" className="hover:text-yellow-400 transition-colors">Contact Us</Link>
         </div>
         <Link to="/contact">

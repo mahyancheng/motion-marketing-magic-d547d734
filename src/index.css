@@ -99,3 +99,126 @@
     @apply bg-background text-foreground;
   }
 }
+
+.section-container {
+  scroll-margin-top: 80px;
+}
+
+.split-view {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+  max-height: 700px;
+  overflow-y: auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.panel {
+  @apply bg-white border rounded-lg shadow-sm p-4 text-black;
+  height: 100%;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.active-panel {
+  @apply ring-2 ring-black ring-offset-2;
+}
+
+.scroll-prompt {
+  @apply flex flex-col items-center justify-center mt-8 mb-4 cursor-pointer;
+}
+
+.scroll-arrow {
+  @apply text-yellow-400 animate-bounce-down;
+}
+
+
+.section-title {
+  @apply text-4xl md:text-5xl lg:text-3xl font-bold leading-tight mb-6;
+}
+
+.section-description {
+  @apply text-base md:text-xl text-gray-300 mb-8 max-w-5xl;
+}
+
+.notification-badge {
+  @apply bg-red-500 text-white text-xs rounded-full px-2 py-0.5 ml-2;
+}
+
+.status-badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.status-pending {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.status-confirmed {
+  @apply bg-blue-100 text-blue-800;
+}
+
+.status-processing {
+  @apply bg-purple-100 text-purple-800;
+}
+
+.status-shipped {
+  @apply bg-green-100 text-green-800;
+}
+
+.transition-highlight {
+  animation: highlight 2s ease-in-out;
+}
+
+@keyframes highlight {
+  0% {
+    background-color: transparent;
+  }
+
+  30% {
+    background-color: rgba(139, 92, 246, 0.2);
+  }
+
+  100% {
+    background-color: transparent;
+  }
+}
+
+/* Add a custom scrollbar for split view containers */
+.split-view::-webkit-scrollbar {
+  width: 6px;
+}
+
+.split-view::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.split-view::-webkit-scrollbar-thumb {
+  background: #c1afff;
+  border-radius: 10px;
+}
+
+.split-view::-webkit-scrollbar-thumb:hover {
+  background: #a387fd;
+}
+
+.panel::-webkit-scrollbar {
+  width: 4px;
+}
+
+.panel::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.panel::-webkit-scrollbar-thumb {
+  background: #ffff00;
+  border-radius: 10px;
+}
+
+.panel::-webkit-scrollbar-thumb:hover {
+  background: #e6e600;
+}
+
+.guided-action {
+  @apply bg-brand-100 border-l-4 border-brand-500 p-3 mb-4 text-gray-800;
+}

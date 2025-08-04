@@ -65,7 +65,18 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				brand: {
+					100: '#fbf85c99',
+					200: '#ffe852ab',
+					300: '#c1afff',
+					400: '#a387fd',
+					500: '#fcd200ff', // Primary brand color
+					600: '#d7f142ff',
+					700: '#cbe030ff',
+					800: '#000000ff',
+					900: '#8d9325ff',
+				},
 			},
 			boxShadow: {
 				'lg': '0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1)',
@@ -92,11 +103,17 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+				"bounce-down": {
+					"0%, 100%": { transform: "translateY(0)" },
+					"50%": { transform: "translateY(10px)" }
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				"bounce-down": "bounce-down 1.5s infinite"
+
 			}
 		}
 	},
