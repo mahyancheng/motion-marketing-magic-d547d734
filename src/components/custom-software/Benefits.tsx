@@ -9,7 +9,7 @@ const benefits = [
 
 const BenefitsSection = () => {
   return (
-    <section className="py-16">
+    <section className="py-16 lg:py-24 bg-white/5">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           className="text-center mb-12"
@@ -28,13 +28,13 @@ const BenefitsSection = () => {
           {benefits.map((b, i) => (
             <motion.div
               key={b.title}
-              className="bg-gray-900 p-6 rounded-xl"
+              className="bg-white/5 p-6 rounded-xl border border-white/10 hover:bg-white/10 transition-all"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: i * 0.05 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-xl font-semibold mb-2">{b.title}</h3>
+              <h3 className="text-xl font-semibold mb-2 text-yellow-400">{b.title}</h3>
               <p className="text-gray-300">{b.desc}</p>
             </motion.div>
           ))}

@@ -9,7 +9,7 @@ const steps = [
 
 const ProcessSection = () => {
   return (
-    <section className="py-16 lg:py-24 bg-gray-900">
+    <section className="py-16 lg:py-24">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           className="text-center mb-12"
@@ -28,14 +28,14 @@ const ProcessSection = () => {
           {steps.map((s, i) => (
             <motion.div
               key={s.n}
-              className="bg-black p-6 rounded-xl border border-gray-800"
+              className="bg-white/5 p-6 rounded-xl border border-white/10 hover:bg-white/10 transition-all"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: i * 0.05 }}
               viewport={{ once: true }}
             >
               <span className="block text-4xl font-bold text-yellow-400 mb-2">{s.n}</span>
-              <h3 className="text-xl font-semibold mb-2">{s.title}</h3>
+              <h3 className="text-xl font-semibold mb-2 text-yellow-400">{s.title}</h3>
               <p className="text-gray-300">{s.desc}</p>
             </motion.div>
           ))}
