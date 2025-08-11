@@ -1,0 +1,47 @@
+import { motion } from "framer-motion";
+
+const benefits = [
+  { title: "Efficiency & Cost Optimization", desc: "Reduce operational costs with efficient software tailored to your workflows." },
+  { title: "Scalable Architecture", desc: "Future-proof systems that grow with your business." },
+  { title: "Seamless Integrations", desc: "Connect CRMs, ERPs, and third-party platforms for a unified ecosystem." },
+  { title: "Local Expertise", desc: "Work with a Malaysia-based software provider who understands your market." },
+];
+
+const BenefitsSection = () => {
+  return (
+    <section className="py-16">
+      <div className="container mx-auto px-4 md:px-6">
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Build Custom Software?</h2>
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+            Unlock speed, visibility, and automation with custom software development solutions built for your business.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {benefits.map((b, i) => (
+            <motion.div
+              key={b.title}
+              className="bg-gray-900 p-6 rounded-xl"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: i * 0.05 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-xl font-semibold mb-2">{b.title}</h3>
+              <p className="text-gray-300">{b.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default BenefitsSection;

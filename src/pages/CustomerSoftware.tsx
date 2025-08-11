@@ -1,46 +1,150 @@
 
 import { OrderProvider } from '@/contexts/OrderContext';
-import Header from '@/components/Header';
-import DemoHeader from '@/components/DemoHeader';
-import OrderProcessingSection from '@/components/OrderProcessingSection';
-import InventorySection from '@/components/InventorySection';
-import FulfillmentSection from '@/components/FulfillmentSection';
-import CustomerSection from '@/components/CustomerSection';
-import AnalyticsSection from '@/components/AnalyticsSection';
-import CustomizationSection from '@/components/CustomizationSection';
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Navbar } from "./Index";
-import { Package, ShoppingCart, ClipboardList, BarChart2, Clock, Settings, CheckCircle, User } from "lucide-react";
-import Footer from "../pages/Footer";
+import { Navbar } from './Index';
+import Footer from './Footer';
+import { useEffect, useState, lazy, Suspense } from 'react';
+import CustomSoftwareHero from '@/components/custom-software/Hero';
+import ServicesSection from '@/components/custom-software/Services';
+import BenefitsSection from '@/components/custom-software/Benefits';
+import ProcessSection from '@/components/custom-software/Process';
+import FAQSection from '@/components/custom-software/FAQ';
+import CTASection from '@/components/custom-software/CTA';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+
+const DemoShowcase = lazy(() => import('@/components/custom-software/DemoShowcase'));
 
 const CustomerSoftware = () => {
+  const [open, setOpen] = useState(false);
+
+  // Basic SEO setup for this page
+  useEffect(() => {
+    const prevTitle = document.title;
+    document.title = 'Custom Software Development Solutions Malaysia';
+
+    const ensureMeta = (name: string, content: string) => {
+      let el = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
+      if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute('name', name);
+        document.head.appendChild(el);
+      }
+      el.setAttribute('content', content);
+      return el;
+    };
+
+    const descTag = ensureMeta(
+      'description',
+      'Software development company in Malaysia offering custom software development services, custom business systems, and automation tools for cost optimization.'
+    );
+
+    // Canonical
+    let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    if (!link) {
+      link = document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      document.head.appendChild(link);
+    }
+    link.setAttribute('href', `${window.location.origin}/customer-software-demo`);
+
+    // FAQ JSON-LD
+    const faqJson = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'What are custom software development solutions?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text:
+              'Custom software development solutions are tailored applications built to your exact business needs—ensuring better fit, efficiency, and ROI.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Are you a software development company in Malaysia?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text:
+              'Yes, we are a software company in Malaysia providing full-cycle custom software development services for local and international clients.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'How do custom business systems improve efficiency?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text:
+              'By aligning to your workflows, custom business systems reduce manual work through business automation software and software automation tools.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Can you integrate with existing platforms?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text:
+              'As a software provider we integrate CRMs, ERPs, and other platforms to create efficient software ecosystems.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'How do you approach cost optimization?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text:
+              'We design for maintainability, automate where it matters, and prioritize high-impact features to optimize total cost of ownership.'
+          }
+        }
+      ]
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(faqJson);
+    document.head.appendChild(script);
+
+    return () => {
+      document.title = prevTitle;
+      script.remove();
+      // leave meta and canonical in place
+    };
+  }, []);
+
   return (
     <OrderProvider>
       <div className="min-h-screen bg-black text-white overflow-x-hidden">
         <Navbar />
         <main>
-          <DemoHeader />
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <OrderProcessingSection />
-              <InventorySection />
-              <FulfillmentSection />
-              <CustomerSection />
-              <AnalyticsSection />
-              <CustomizationSection />
+          <CustomSoftwareHero subtitle="Custom software, automation tools, and systems engineered for efficiency and cost optimization." />
+          <ServicesSection />
+          <BenefitsSection />
+          <ProcessSection />
+          <CTASection />
+
+          <section id="demo" className="py-12">
+            <div className="container mx-auto px-4 md:px-6">
+              <Collapsible open={open} onOpenChange={setOpen}>
+                <div className="flex justify-center">
+                  <CollapsibleTrigger className="bg-yellow-400 text-black px-6 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors">
+                    {open ? 'Hide Demo' : 'Try Our Demo'}
+                  </CollapsibleTrigger>
+                </div>
+                <CollapsibleContent className="mt-8">
+                  <Suspense fallback={<div className="text-center py-10">Loading demo…</div>}>
+                    <DemoShowcase />
+                  </Suspense>
+                </CollapsibleContent>
+              </Collapsible>
             </div>
-          </div>
+          </section>
+
+          <FAQSection />
           <Footer />
         </main>
-
       </div>
     </OrderProvider>
   );
 };
-
-
-
-
 
 export default CustomerSoftware;
