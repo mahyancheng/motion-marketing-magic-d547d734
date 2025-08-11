@@ -40,17 +40,17 @@ export const Navbar = () => {
       content: (
         <div className="flex flex-col items-center p-4">
           <Link to="/seo" className="w-full">
-            <div className="mx-auto flex w-[95%] items-center justify-between gap-3 rounded-2xl py-2 px-3 transition duration-300 hover:w-[95%] hover:bg-white/10">
+            <div className="mx-auto w-[95%] rounded-2xl py-3 px-3 transition duration-300 hover:bg-white/10">
               <div className="flex items-center gap-3">
                 <Search className="size-6 text-yellow-400" />
-                <span className="font-bold">Search Engine Optimization</span>
+                <span className="font-bold text-white">Search Engine Optimization</span>
               </div>
-              <span className="text-sm opacity-80">Learn more</span>
+              <div className="mt-1 text-sm text-yellow-400">Information</div>
             </div>
           </Link>
         </div>
       ),
-      dimensions: { width: 500, height: 80 },
+      dimensions: { width: 500, height: 100 },
     },
     {
       id: "ads",
@@ -59,17 +59,17 @@ export const Navbar = () => {
       content: (
         <div className="flex flex-col items-center p-4">
           <Link to="/social-media-ads" className="w-full">
-            <div className="mx-auto flex w-[95%] items-center justify-between gap-3 rounded-2xl py-2 px-3 transition duration-300 hover:w-[95%] hover:bg-white/10">
+            <div className="mx-auto w-[95%] rounded-2xl py-3 px-3 transition duration-300 hover:bg-white/10">
               <div className="flex items-center gap-3">
                 <Megaphone className="size-6 text-yellow-400" />
-                <span className="font-bold">Social Media Paid Ads</span>
+                <span className="font-bold text-white">Social Media Paid Ads</span>
               </div>
-              <span className="text-sm opacity-80">Learn more</span>
+              <div className="mt-1 text-sm text-yellow-400">Information</div>
             </div>
           </Link>
         </div>
       ),
-      dimensions: { width: 500, height: 80 },
+      dimensions: { width: 500, height: 100 },
     },
     {
       id: "software",
@@ -78,17 +78,17 @@ export const Navbar = () => {
       content: (
         <div className="flex flex-col items-center p-4">
           <Link to="/customer-software-demo" className="w-full">
-            <div className="mx-auto flex w-[95%] items-center justify-between gap-3 rounded-2xl py-2 px-3 transition duration-300 hover:w-[95%] hover:bg-white/10">
+            <div className="mx-auto w-[95%] rounded-2xl py-3 px-3 transition duration-300 hover:bg-white/10">
               <div className="flex items-center gap-3">
                 <CodeXml className="size-6 text-yellow-400" />
-                <span className="font-bold">Custom Software Solution</span>
+                <span className="font-bold text-white">Custom Software Solution</span>
               </div>
-              <span className="text-sm opacity-80">Try demo</span>
+              <div className="mt-1 text-sm text-yellow-400">Information</div>
             </div>
           </Link>
         </div>
       ),
-      dimensions: { width: 500, height: 80 },
+      dimensions: { width: 500, height: 100 },
     },
   ];
 

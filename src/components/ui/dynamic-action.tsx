@@ -78,9 +78,9 @@ const DynamicActionBar = React.forwardRef<
               <button
                 key={action.id}
                 onMouseEnter={() => setActiveIndex(index)}
-                className="flex items-center justify-center gap-2 rounded-2xl py-3 px-4 text-zinc-800 transition-colors duration-300 hover:bg-zinc-950 hover:text-white"
+                className="flex items-center justify-center gap-2 rounded-2xl py-3 px-4 text-white transition-colors duration-300 hover:bg-white/10 hover:text-yellow-400"
               >
-                <Icon className="size-6" />
+                <Icon className="size-6 text-yellow-400" />
                 <span className="font-bold">{action.label}</span>
               </button>
             );
