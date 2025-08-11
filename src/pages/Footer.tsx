@@ -8,22 +8,18 @@ const Footer: React.FC = () => {
                 <div className="grid md:grid-cols-3 gap-8">
                     {/* Column 1: Logo & About */}
                     <div>
-                        <img
-                            src="https://agkaizen.com/wp-content/uploads/2024/02/Untitled-design-18.png"
-                            alt="AGKaizen Logo"
-                            className="w-40 mb-4"
-                        />
+                        <h2 className="text-2xl font-bold mb-4">LeadZap Marketing</h2>
                         <p className="mb-4">
-                            AGKaizen is the leading fertilizer supplier in Malaysia. We are the sole distributor of Japan Vietnam Fertilizer (JVF)
+                            LeadZap Marketing helps businesses grow with SEO, social media paid ads, and custom software solutions.
                         </p>
                         <div className="flex space-x-4">
-                            <a href="https://www.facebook.com/p/JVF-Malaysia-AGKaizen-61558413844567/" target="_blank" rel="noopener noreferrer">
+                            <a href="#" aria-label="LeadZap Marketing on Facebook" target="_blank" rel="noopener noreferrer">
                                 <FaFacebookF className="w-5 h-5 hover:text-yellow-300" />
                             </a>
-                            <a href="https://www.google.com/maps/dir/2.9934689,101.5350582/agkaizen+sdn+bhd/" target="_blank" rel="noopener noreferrer">
+                            <a href="#" aria-label="LeadZap Marketing on Google" target="_blank" rel="noopener noreferrer">
                                 <FaGoogle className="w-5 h-5 hover:text-yellow-300" />
                             </a>
-                            <a href="https://www.instagram.com/jvfmalaysia/" target="_blank" rel="noopener noreferrer">
+                            <a href="#" aria-label="LeadZap Marketing on Instagram" target="_blank" rel="noopener noreferrer">
                                 <FaInstagram className="w-5 h-5 hover:text-yellow-300" />
                             </a>
                         </div>
