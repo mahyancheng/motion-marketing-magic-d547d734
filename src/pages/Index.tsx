@@ -46,7 +46,7 @@ export const Navbar = () => {
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="bg-transparent text-white hover:text-yellow-400">Services</NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-black">
-                  <div className="grid gap-1 p-2 w-56">
+                  <div className="grid gap-1 p-2 w-56 text-white">
                     <Link to="/seo" className="block px-3 py-2 rounded hover:bg-white/10">SEO</Link>
                     <Link to="/social-media-ads" className="block px-3 py-2 rounded hover:bg-white/10">Social Media Paid Ads</Link>
                     <Link to="/customer-software-demo" className="block px-3 py-2 rounded hover:bg-white/10">Custom Software solution</Link>
