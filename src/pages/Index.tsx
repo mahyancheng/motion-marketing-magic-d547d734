@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Footer from './Footer'; // adjust path if needed
+import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent } from "@/components/ui/navigation-menu";
 
 export const Index = () => {
   return (
@@ -40,9 +41,20 @@ export const Navbar = () => {
         </div>
         <div className="hidden md:flex items-center space-x-8">
           <Link to="/" className="hover:text-yellow-400 transition-colors">Home</Link>
-          <Link to="/seo" className="hover:text-yellow-400 transition-colors">SEO</Link>
-          <Link to="/social-media-ads" className="hover:text-yellow-400 transition-colors">Social Media Paid Ads</Link>
-          <Link to="/customer-software-demo" className="hover:text-yellow-400 transition-colors">Customer Software Solution</Link>
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="bg-transparent text-white hover:text-yellow-400">Services</NavigationMenuTrigger>
+                <NavigationMenuContent className="bg-black">
+                  <div className="grid gap-1 p-2 w-56">
+                    <Link to="/seo" className="block px-3 py-2 rounded hover:bg-white/10">SEO</Link>
+                    <Link to="/social-media-ads" className="block px-3 py-2 rounded hover:bg-white/10">Social Media Paid Ads</Link>
+                    <Link to="/customer-software-demo" className="block px-3 py-2 rounded hover:bg-white/10">Custom Software solution</Link>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
           <Link to="/contact" className="hover:text-yellow-400 transition-colors">Contact Us</Link>
         </div>
         <Link to="/contact">
