@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
                 <div className="grid md:grid-cols-3 gap-8">
                     {/* Column 1: Logo & About */}
                     <div>
-                        <h2 className="text-2xl font-bold mb-4">LeadZap Marketing</h2>
+                        <img src="/lovable-uploads/cdaaf38a-f7c3-452d-b62b-d48316225e45.png" alt="LeadZap Marketing logo" className="h-10 md:h-12 mb-4" />
                         <p className="mb-4">
                             LeadZap Marketing helps businesses grow with SEO, social media paid ads, and custom software solutions.
                         </p>
@@ -30,10 +30,11 @@ const Footer: React.FC = () => {
                         <h3 className="text-lg font-semibold mb-4">Company</h3>
                         <ul className="space-y-2">
                             <li><a href="/" className="hover:underline">Home</a></li>
-                            <li><a href="/seo" className="hover:underline">SEO</a></li>
-                            <li><a href="/social-media-ads" className="hover:underline">Social Media Paid Ads</a></li>
-                            <li><a href="/order-management" className="hover:underline">Order Management System</a></li>
-                            <li><a href="/contact" className="hover:underline">Contact</a></li>
+                            <li className="font-medium">Services</li>
+                            <li className="ml-4"><a href="/seo" className="hover:underline">SEO</a></li>
+                            <li className="ml-4"><a href="/social-media-ads" className="hover:underline">Social Media Paid Ads</a></li>
+                            <li className="ml-4"><a href="/customer-software-demo" className="hover:underline">Custom Software solution</a></li>
+                            <li><a href="/contact" className="hover:underline">Contact Us</a></li>
                         </ul>
                     </div>
 
