@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Footer from './Footer'; // adjust path if needed
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent } from "@/components/ui/navigation-menu";
-
+import DynamicActionBar, { type ActionItem } from "@/components/ui/dynamic-action";
+import { Search, Megaphone, CodeXml } from "lucide-react";
 export const Index = () => {
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
@@ -31,6 +32,66 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const actions: ActionItem[] = [
+    {
+      id: "seo",
+      label: "SEO",
+      icon: Search,
+      content: (
+        <div className="flex flex-col items-center p-4">
+          <Link to="/seo" className="w-full">
+            <div className="mx-auto flex w-[95%] items-center justify-between gap-3 rounded-2xl py-2 px-3 transition duration-300 hover:w-[95%] hover:bg-white/10">
+              <div className="flex items-center gap-3">
+                <Search className="size-6 text-yellow-400" />
+                <span className="font-bold">Search Engine Optimization</span>
+              </div>
+              <span className="text-sm opacity-80">Learn more</span>
+            </div>
+          </Link>
+        </div>
+      ),
+      dimensions: { width: 500, height: 80 },
+    },
+    {
+      id: "ads",
+      label: "Social Ads",
+      icon: Megaphone,
+      content: (
+        <div className="flex flex-col items-center p-4">
+          <Link to="/social-media-ads" className="w-full">
+            <div className="mx-auto flex w-[95%] items-center justify-between gap-3 rounded-2xl py-2 px-3 transition duration-300 hover:w-[95%] hover:bg-white/10">
+              <div className="flex items-center gap-3">
+                <Megaphone className="size-6 text-yellow-400" />
+                <span className="font-bold">Social Media Paid Ads</span>
+              </div>
+              <span className="text-sm opacity-80">Learn more</span>
+            </div>
+          </Link>
+        </div>
+      ),
+      dimensions: { width: 500, height: 80 },
+    },
+    {
+      id: "software",
+      label: "Custom Software",
+      icon: CodeXml,
+      content: (
+        <div className="flex flex-col items-center p-4">
+          <Link to="/customer-software-demo" className="w-full">
+            <div className="mx-auto flex w-[95%] items-center justify-between gap-3 rounded-2xl py-2 px-3 transition duration-300 hover:w-[95%] hover:bg-white/10">
+              <div className="flex items-center gap-3">
+                <CodeXml className="size-6 text-yellow-400" />
+                <span className="font-bold">Custom Software Solution</span>
+              </div>
+              <span className="text-sm opacity-80">Try demo</span>
+            </div>
+          </Link>
+        </div>
+      ),
+      dimensions: { width: 500, height: 80 },
+    },
+  ];
+
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-black/90 py-2' : 'py-4'}`}>
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
@@ -45,11 +106,9 @@ export const Navbar = () => {
             <NavigationMenuList>
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="bg-transparent text-white hover:text-yellow-400">Services</NavigationMenuTrigger>
-                <NavigationMenuContent className="bg-black">
-                  <div className="grid gap-1 p-2 w-56 text-white">
-                    <Link to="/seo" className="block px-3 py-2 rounded hover:bg-white/10">SEO</Link>
-                    <Link to="/social-media-ads" className="block px-3 py-2 rounded hover:bg-white/10">Social Media Paid Ads</Link>
-                    <Link to="/customer-software-demo" className="block px-3 py-2 rounded hover:bg-white/10">Custom Software solution</Link>
+                <NavigationMenuContent className="bg-black z-50">
+                  <div className="p-4">
+                    <DynamicActionBar actions={actions} />
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
