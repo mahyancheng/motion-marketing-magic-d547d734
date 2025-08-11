@@ -11,7 +11,7 @@ import FAQSection from '@/components/custom-software/FAQ';
 import CTASection from '@/components/custom-software/CTA';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
-const DynamicIslandDemo = lazy(() => import('@/demos/dynamic-island-demo'));
+const DemoShowcase = lazy(() => import('@/components/custom-software/DemoShowcase'));
 
 const CustomerSoftware = () => {
   const [open, setOpen] = useState(false);
@@ -132,7 +132,7 @@ const CustomerSoftware = () => {
                 </div>
                 <CollapsibleContent className="mt-8">
                   <Suspense fallback={<div className="text-center py-10">Loading demo…</div>}>
-                    <DynamicIslandDemo />
+                    <DemoShowcase />
                   </Suspense>
                 </CollapsibleContent>
               </Collapsible>
