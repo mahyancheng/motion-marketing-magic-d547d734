@@ -1,8 +1,10 @@
 import * as React from "react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link, To } from "react-router-dom";
 
 export interface ActionItem {
+  to: To;
   id: string;
   label: string;
   icon: React.ElementType;
@@ -53,24 +55,25 @@ const DynamicActionBar = React.forwardRef<
         initial={{ width: 410, height: BUTTON_BAR_HEIGHT }}
       >
 
-        <div
-          className="flex flex-shrink-0 items-center justify-center gap-2 px-2"
-          style={{ height: `${BUTTON_BAR_HEIGHT}px` }}
-        >
-          {actions.map((action, index) => {
-            const Icon = action.icon;
-            return (
-              <button
-                key={action.id}
-                onMouseEnter={() => setActiveIndex(index)}
-                className="flex items-center justify-center gap-2 rounded-2xl py-3 px-4 text-white transition-colors duration-300 hover:bg-white/10 hover:text-yellow-400"
-              >
-                <Icon className="size-6 text-yellow-400" />
-                <span className="font-bold w-full">{action.label}</span>
-              </button>
-            );
-          })}
-        </div>
+       <div
+  className="flex flex-shrink-0 items-center justify-center gap-2 px-2"
+  style={{ height: `${BUTTON_BAR_HEIGHT}px` }}
+>
+  {actions.map((action, index) => {
+    const Icon = action.icon;
+    return (
+      <Link
+        key={action.id}
+        to={action.to}                        // ← 点击跳转
+        onMouseEnter={() => setActiveIndex(index)}
+        className="flex items-center justify-center gap-2 rounded-2xl py-3 px-4 text-white transition-colors duration-300 hover:bg-white/10 hover:text-yellow-400"
+      >
+        <Icon className="size-6 text-yellow-400" />
+        <span className="font-bold w-full">{action.label}</span>
+      </Link>
+    );
+  })}
+</div>
         <div className="flex-grow overflow-hidden">
           <AnimatePresence>
             {activeAction && (

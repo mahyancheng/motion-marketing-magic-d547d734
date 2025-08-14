@@ -35,6 +35,7 @@ export const Navbar = () => {
   const actions: ActionItem[] = [
     {
       id: "seo",
+      to: "/seo",
       label: "SEO",
       icon: Search,
       content: (
@@ -57,6 +58,7 @@ export const Navbar = () => {
     },
     {
       id: "ads",
+      to: "/social-media-ads",
       label: "Social Ads",
       icon: Megaphone,
       content: (
@@ -76,6 +78,7 @@ export const Navbar = () => {
     },
     {
       id: "software",
+      to: "/customer-software-demo",
       label: "Custom Software",
       icon: CodeXml,
       content: (
