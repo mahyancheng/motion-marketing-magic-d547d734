@@ -27,7 +27,7 @@ export const Navbar = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -38,16 +38,19 @@ export const Navbar = () => {
       label: "SEO",
       icon: Search,
       content: (
-        <div className="flex flex-col items-center p-4">
-          <Link to="/seo" className="w-full">
+        <div className="flex flex-col items-center">
+          <div className="w-full">
             <div className="mx-auto w-[95%] rounded-2xl py-3 px-3 transition duration-300 hover:bg-white/10">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1">
                 <Search className="size-6 text-yellow-400" />
-                <span className="font-bold text-white">Search Engine Optimization</span>
+                {/* Label is the actual link */}
+                <Link to="/seo" className="font-bold text-white hover:underline">
+                  Search Engine Optimization
+                </Link>
               </div>
               <div className="mt-1 text-sm text-yellow-400">Information</div>
             </div>
-          </Link>
+          </div>
         </div>
       ),
       dimensions: { width: 500, height: 100 },
@@ -57,10 +60,10 @@ export const Navbar = () => {
       label: "Social Ads",
       icon: Megaphone,
       content: (
-        <div className="flex flex-col items-center p-4">
+        <div className="flex flex-col items-center">
           <Link to="/social-media-ads" className="w-full">
             <div className="mx-auto w-[95%] rounded-2xl py-3 px-3 transition duration-300 hover:bg-white/10">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1">
                 <Megaphone className="size-6 text-yellow-400" />
                 <span className="font-bold text-white">Social Media Paid Ads</span>
               </div>
@@ -76,10 +79,10 @@ export const Navbar = () => {
       label: "Custom Software",
       icon: CodeXml,
       content: (
-        <div className="flex flex-col items-center p-4">
+        <div className="flex flex-col items-center">
           <Link to="/customer-software-demo" className="w-full">
             <div className="mx-auto w-[95%] rounded-2xl py-3 px-3 transition duration-300 hover:bg-white/10">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1">
                 <CodeXml className="size-6 text-yellow-400" />
                 <span className="font-bold text-white">Custom Software Solution</span>
               </div>
@@ -131,7 +134,7 @@ const Hero = () => {
   return (
     <div className="pt-24 lg:pt-32 pb-16 lg:pb-24">
       <div className="container mx-auto px-4 md:px-6 flex flex-col lg:flex-row items-center">
-        <motion.div 
+        <motion.div
           className="lg:w-1/2 mb-8 lg:mb-0"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -152,15 +155,15 @@ const Hero = () => {
             </button>
           </div>
         </motion.div>
-        <motion.div 
+        <motion.div
           className="lg:w-1/2"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <img 
-            src="/lovable-uploads/cdaaf38a-f7c3-452d-b62b-d48316225e45.png" 
-            alt="LeadZap Marketing Logo" 
+          <img
+            src="/lovable-uploads/cdaaf38a-f7c3-452d-b62b-d48316225e45.png"
+            alt="LeadZap Marketing Logo"
             className="w-full max-w-lg mx-auto"
           />
         </motion.div>
@@ -174,7 +177,7 @@ const Framework = () => {
   return (
     <div id="framework" className="py-16 lg:py-24 bg-gray-900">
       <div className="container mx-auto px-4 md:px-6">
-        <motion.div 
+        <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -186,23 +189,23 @@ const Framework = () => {
             Our proprietary Push-Pull marketing framework delivers results by creating a seamless customer journey.
           </p>
         </motion.div>
-        
-        <motion.div 
+
+        <motion.div
           className="mt-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <img 
-            src="/lovable-uploads/3a2eb97b-644e-417a-88db-c0bf8d2e32a8.png" 
-            alt="Push-Pull Marketing Framework" 
+          <img
+            src="/lovable-uploads/3a2eb97b-644e-417a-88db-c0bf8d2e32a8.png"
+            alt="Push-Pull Marketing Framework"
             className="max-w-4xl w-full mx-auto"
           />
         </motion.div>
-        
+
         <div className="mt-16 grid md:grid-cols-2 gap-8">
-          <motion.div 
+          <motion.div
             className="bg-black p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -229,8 +232,8 @@ const Framework = () => {
               </li>
             </ul>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="bg-black p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -281,7 +284,7 @@ const Services = () => {
   return (
     <div id="services" className="py-16 lg:py-24">
       <div className="container mx-auto px-4 md:px-6">
-        <motion.div 
+        <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -293,7 +296,7 @@ const Services = () => {
             Comprehensive digital marketing solutions tailored to your business goals.
           </p>
         </motion.div>
-        
+
         <div className="grid md:grid-cols-2 gap-8 mt-12">
           {services.map((service, index) => (
             <motion.div
@@ -351,7 +354,7 @@ const Testimonials = () => {
   return (
     <div id="testimonials" className="py-16 lg:py-24 bg-gray-900">
       <div className="container mx-auto px-4 md:px-6">
-        <motion.div 
+        <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -363,7 +366,7 @@ const Testimonials = () => {
             Don't just take our word for it. Here's what our clients have to say.
           </p>
         </motion.div>
-        
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           {testimonials.map((testimonial, index) => (
             <motion.div
@@ -400,7 +403,7 @@ const Contact = () => {
   return (
     <div id="contact" className="py-16 lg:py-24 bg-gray-900">
       <div className="container mx-auto px-4 md:px-6">
-        <motion.div 
+        <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -412,8 +415,8 @@ const Contact = () => {
             Ready to take your digital marketing to the next level? Contact us for a free consultation.
           </p>
         </motion.div>
-        
-        <motion.div 
+
+        <motion.div
           className="max-w-2xl mx-auto bg-black rounded-xl p-6 md:p-8"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -424,18 +427,18 @@ const Contact = () => {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Your Name</label>
-                <input 
-                  type="text" 
-                  id="name" 
+                <input
+                  type="text"
+                  id="name"
                   className="w-full bg-gray-800 border-gray-700 rounded-md px-4 py-2 text-white focus:ring-yellow-400 focus:border-yellow-400"
                   placeholder="John Doe"
                 />
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">Your Email</label>
-                <input 
-                  type="email" 
-                  id="email" 
+                <input
+                  type="email"
+                  id="email"
                   className="w-full bg-gray-800 border-gray-700 rounded-md px-4 py-2 text-white focus:ring-yellow-400 focus:border-yellow-400"
                   placeholder="john@example.com"
                 />
@@ -443,24 +446,24 @@ const Contact = () => {
             </div>
             <div>
               <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-1">Subject</label>
-              <input 
-                type="text" 
-                id="subject" 
+              <input
+                type="text"
+                id="subject"
                 className="w-full bg-gray-800 border-gray-700 rounded-md px-4 py-2 text-white focus:ring-yellow-400 focus:border-yellow-400"
                 placeholder="How can we help you?"
               />
             </div>
             <div>
               <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">Message</label>
-              <textarea 
-                id="message" 
-                rows={4} 
+              <textarea
+                id="message"
+                rows={4}
                 className="w-full bg-gray-800 border-gray-700 rounded-md px-4 py-2 text-white focus:ring-yellow-400 focus:border-yellow-400"
                 placeholder="Your message here..."
               ></textarea>
             </div>
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="w-full bg-yellow-400 text-black px-4 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors"
             >
               Send Message
@@ -469,9 +472,9 @@ const Contact = () => {
         </motion.div>
       </div>
     </div>
-    
+
   );
-  
+
 };
 
 

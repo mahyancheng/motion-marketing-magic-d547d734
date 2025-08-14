@@ -1,8 +1,7 @@
-
 import { OrderProvider } from '@/contexts/OrderContext';
 import { Navbar } from './Index';
 import Footer from './Footer';
-import { useEffect, useState, lazy, Suspense } from 'react';
+import { useEffect, useState, lazy, Suspense, useRef } from 'react';
 import CustomSoftwareHero from '@/components/custom-software/Hero';
 import ServicesSection from '@/components/custom-software/Services';
 import BenefitsSection from '@/components/custom-software/Benefits';
@@ -11,10 +10,16 @@ import FAQSection from '@/components/custom-software/FAQ';
 import CTASection from '@/components/custom-software/CTA';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
+// ---- Lazy & Preload ----
 const DemoShowcase = lazy(() => import('@/components/custom-software/DemoShowcase'));
+// 预加载函数（鼠标移入/聚焦触发）
+const preloadDemoShowcase = () => {
+  import('@/components/custom-software/DemoShowcase');
+};
 
 const CustomerSoftware = () => {
   const [open, setOpen] = useState(false);
+  const hasPrefetched = useRef(false);
 
   // Basic SEO setup for this page
   useEffect(() => {
@@ -32,7 +37,7 @@ const CustomerSoftware = () => {
       return el;
     };
 
-    const descTag = ensureMeta(
+    ensureMeta(
       'description',
       'Software development company in Malaysia offering custom software development services, custom business systems, and automation tools for cost optimization.'
     );
@@ -111,6 +116,21 @@ const CustomerSoftware = () => {
     };
   }, []);
 
+  // 进入视口时也尝试预加载（可选）
+  useEffect(() => {
+    const el = document.getElementById('demo');
+    if (!el || hasPrefetched.current) return;
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) {
+        preloadDemoShowcase();
+        hasPrefetched.current = true;
+        io.disconnect();
+      }
+    }, { rootMargin: '200px' });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <OrderProvider>
       <div className="min-h-screen bg-black text-white overflow-x-hidden">
@@ -126,14 +146,38 @@ const CustomerSoftware = () => {
             <div className="container mx-auto px-4 md:px-6">
               <Collapsible open={open} onOpenChange={setOpen}>
                 <div className="flex justify-center">
-                  <CollapsibleTrigger className="bg-yellow-400 text-black px-6 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors">
+                  <CollapsibleTrigger
+                    className="bg-yellow-400 text-black px-6 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400/70"
+                    onMouseEnter={() => !hasPrefetched.current && (preloadDemoShowcase(), (hasPrefetched.current = true))}
+                    onFocus={() => !hasPrefetched.current && (preloadDemoShowcase(), (hasPrefetched.current = true))}
+                  >
                     {open ? 'Hide Demo' : 'Try Our Demo'}
                   </CollapsibleTrigger>
                 </div>
-                <CollapsibleContent className="mt-8">
-                  <Suspense fallback={<div className="text-center py-10">Loading demo…</div>}>
-                    <DemoShowcase />
-                  </Suspense>
+
+                {/* Smooth transition using data-state from Radix */}
+                <CollapsibleContent
+                  className={`
+                    mt-8 overflow-hidden transition-all duration-500 ease-in-out
+                    data-[state=closed]:max-h-0
+                    data-[state=open]:max-h-auto
+                    data-[state=closed]:opacity-0
+                    data-[state=open]:opacity-100
+                    data-[state=open]:translate-y-0
+                    data-[state=closed]:-translate-y-1
+                  `}
+                >
+                  <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                    <Suspense
+                      fallback={
+                        <div className="flex h-40 items-center justify-center">
+                          <div className="animate-pulse text-sm text-white/70">Loading demo…</div>
+                        </div>
+                      }
+                    >
+                      <DemoShowcase />
+                    </Suspense>
+                  </div>
                 </CollapsibleContent>
               </Collapsible>
             </div>

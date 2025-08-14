@@ -29,13 +29,13 @@ const DynamicActionBar = React.forwardRef<
 
   const containerAnimate = activeAction
     ? {
-        width: activeAction.dimensions.width,
-        height: activeAction.dimensions.height + BUTTON_BAR_HEIGHT,
-      }
+      width: activeAction.dimensions.width,
+      height: activeAction.dimensions.height + BUTTON_BAR_HEIGHT,
+    }
     : {
-        width: 410,
-        height: BUTTON_BAR_HEIGHT,
-      };
+      width: 410,
+      height: BUTTON_BAR_HEIGHT,
+    };
 
   const transition = { type: "spring", stiffness: 400, damping: 35 };
 
@@ -52,6 +52,25 @@ const DynamicActionBar = React.forwardRef<
         transition={transition}
         initial={{ width: 410, height: BUTTON_BAR_HEIGHT }}
       >
+
+        <div
+          className="flex flex-shrink-0 items-center justify-center gap-2 px-2"
+          style={{ height: `${BUTTON_BAR_HEIGHT}px` }}
+        >
+          {actions.map((action, index) => {
+            const Icon = action.icon;
+            return (
+              <button
+                key={action.id}
+                onMouseEnter={() => setActiveIndex(index)}
+                className="flex items-center justify-center gap-2 rounded-2xl py-3 px-4 text-white transition-colors duration-300 hover:bg-white/10 hover:text-yellow-400"
+              >
+                <Icon className="size-6 text-yellow-400" />
+                <span className="font-bold w-full">{action.label}</span>
+              </button>
+            );
+          })}
+        </div>
         <div className="flex-grow overflow-hidden">
           <AnimatePresence>
             {activeAction && (
@@ -67,25 +86,7 @@ const DynamicActionBar = React.forwardRef<
             )}
           </AnimatePresence>
         </div>
-
-        <div
-          className="flex flex-shrink-0 items-center justify-center gap-2 px-2"
-          style={{ height: `${BUTTON_BAR_HEIGHT}px` }}
-        >
-          {actions.map((action, index) => {
-            const Icon = action.icon;
-            return (
-              <button
-                key={action.id}
-                onMouseEnter={() => setActiveIndex(index)}
-                className="flex items-center justify-center gap-2 rounded-2xl py-3 px-4 text-white transition-colors duration-300 hover:bg-white/10 hover:text-yellow-400"
-              >
-                <Icon className="size-6 text-yellow-400" />
-                <span className="font-bold">{action.label}</span>
-              </button>
-            );
-          })}
-        </div>
+            
       </motion.div>
     </div>
   );
