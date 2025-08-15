@@ -56,7 +56,7 @@ const DemoShowcase = () => {
             All data in this demo is for illustrative purposes and will reset when you refresh the page.
           </p>
         </div>
-        <StickyScroll content={content} contentClassName="w-96 h-80" />
+        <StickyScroll content={content} />
       </div>
     </div>
   );
