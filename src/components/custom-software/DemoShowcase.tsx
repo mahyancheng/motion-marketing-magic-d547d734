@@ -1,6 +1,10 @@
 import React from "react";
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
-import { ShoppingCart, Package, Truck, Users, BarChart3 } from "lucide-react";
+import OrderProcessingSection from "@/components/OrderProcessingSection";
+import InventorySection from "@/components/InventorySection";
+import FulfillmentSection from "@/components/FulfillmentSection";
+import CustomerSection from "@/components/CustomerSection";
+import AnalyticsSection from "@/components/AnalyticsSection";
 
 const DemoShowcase = () => {
   const content = [
@@ -8,61 +12,31 @@ const DemoShowcase = () => {
       title: "Order Processing",
       description:
         "Streamline your order workflow with automated processing, real-time status updates, and intelligent routing. Handle multiple orders simultaneously while maintaining accuracy and speed.",
-      content: (
-        <div className="h-full w-full bg-[linear-gradient(to_bottom_right,rgb(6_182_212),rgb(16_185_129))] flex flex-col items-center justify-center text-white p-6">
-          <ShoppingCart className="w-16 h-16 mb-4" />
-          <h3 className="text-xl font-bold mb-2">Order Processing</h3>
-          <p className="text-center text-sm">Real-time order management</p>
-        </div>
-      ),
+      content: <OrderProcessingSection />,
     },
     {
       title: "Inventory Management",
       description:
         "Keep track of your stock levels in real-time. Get automated alerts for low inventory, manage multiple warehouses, and optimize your supply chain with intelligent forecasting.",
-      content: (
-        <div className="h-full w-full bg-[linear-gradient(to_bottom_right,rgb(236_72_153),rgb(99_102_241))] flex flex-col items-center justify-center text-white p-6">
-          <Package className="w-16 h-16 mb-4" />
-          <h3 className="text-xl font-bold mb-2">Inventory Control</h3>
-          <p className="text-center text-sm">Smart stock management</p>
-        </div>
-      ),
+      content: <InventorySection />,
     },
     {
       title: "Fulfillment & Shipping",
       description:
         "Automate your fulfillment process with integrated shipping solutions. Generate labels, track packages, and provide customers with real-time delivery updates.",
-      content: (
-        <div className="h-full w-full bg-[linear-gradient(to_bottom_right,rgb(249_115_22),rgb(234_179_8))] flex flex-col items-center justify-center text-white p-6">
-          <Truck className="w-16 h-16 mb-4" />
-          <h3 className="text-xl font-bold mb-2">Fulfillment</h3>
-          <p className="text-center text-sm">Automated shipping & tracking</p>
-        </div>
-      ),
+      content: <FulfillmentSection />,
     },
     {
       title: "Customer Management",
       description:
         "Build stronger relationships with comprehensive customer profiles, communication history, and personalized service tools. Track customer satisfaction and lifetime value.",
-      content: (
-        <div className="h-full w-full bg-[linear-gradient(to_bottom_right,rgb(168_85_247),rgb(139_92_246))] flex flex-col items-center justify-center text-white p-6">
-          <Users className="w-16 h-16 mb-4" />
-          <h3 className="text-xl font-bold mb-2">Customer Hub</h3>
-          <p className="text-center text-sm">360° customer view</p>
-        </div>
-      ),
+      content: <CustomerSection />,
     },
     {
       title: "Analytics & Insights",
       description:
         "Make data-driven decisions with comprehensive analytics. Track key performance indicators, generate custom reports, and gain insights into your business operations.",
-      content: (
-        <div className="h-full w-full bg-[linear-gradient(to_bottom_right,rgb(34_197_94),rgb(59_130_246))] flex flex-col items-center justify-center text-white p-6">
-          <BarChart3 className="w-16 h-16 mb-4" />
-          <h3 className="text-xl font-bold mb-2">Analytics</h3>
-          <p className="text-center text-sm">Business intelligence</p>
-        </div>
-      ),
+      content: <AnalyticsSection />,
     },
   ];
 
@@ -82,7 +56,7 @@ const DemoShowcase = () => {
             All data in this demo is for illustrative purposes and will reset when you refresh the page.
           </p>
         </div>
-        <StickyScroll content={content} />
+        <StickyScroll content={content} contentClassName="w-96 h-80" />
       </div>
     </div>
   );
