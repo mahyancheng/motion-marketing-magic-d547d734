@@ -1,10 +1,10 @@
 import React from "react";
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
-import OrderProcessingSection from "@/components/OrderProcessingSection";
-import InventorySection from "@/components/InventorySection";
-import FulfillmentSection from "@/components/FulfillmentSection";
-import CustomerSection from "@/components/CustomerSection";
-import AnalyticsSection from "@/components/AnalyticsSection";
+import OrderProcessingDemo from "@/components/demo-only/OrderProcessingDemo";
+import InventoryDemo from "@/components/demo-only/InventoryDemo";
+import FulfillmentDemo from "@/components/demo-only/FulfillmentDemo";
+import CustomerDemo from "@/components/demo-only/CustomerDemo";
+import AnalyticsDemo from "@/components/demo-only/AnalyticsDemo";
 
 const DemoShowcase = () => {
   const content = [
@@ -12,31 +12,31 @@ const DemoShowcase = () => {
       title: "Order Processing",
       description:
         "Streamline your order workflow with automated processing, real-time status updates, and intelligent routing. Handle multiple orders simultaneously while maintaining accuracy and speed.",
-      content: <OrderProcessingSection />,
+      content: <OrderProcessingDemo />,
     },
     {
       title: "Inventory Management",
       description:
         "Keep track of your stock levels in real-time. Get automated alerts for low inventory, manage multiple warehouses, and optimize your supply chain with intelligent forecasting.",
-      content: <InventorySection />,
+      content: <InventoryDemo />,
     },
     {
       title: "Fulfillment & Shipping",
       description:
         "Automate your fulfillment process with integrated shipping solutions. Generate labels, track packages, and provide customers with real-time delivery updates.",
-      content: <FulfillmentSection />,
+      content: <FulfillmentDemo />,
     },
     {
       title: "Customer Management",
       description:
         "Build stronger relationships with comprehensive customer profiles, communication history, and personalized service tools. Track customer satisfaction and lifetime value.",
-      content: <CustomerSection />,
+      content: <CustomerDemo />,
     },
     {
       title: "Analytics & Insights",
       description:
         "Make data-driven decisions with comprehensive analytics. Track key performance indicators, generate custom reports, and gain insights into your business operations.",
-      content: <AnalyticsSection />,
+      content: <AnalyticsDemo />,
     },
   ];
 
