@@ -141,48 +141,6 @@ const CustomerSoftware = () => {
           <BenefitsSection />
           <ProcessSection />
           <CTASection />
-
-          <section id="demo" className="py-12">
-            <div className="container mx-auto px-4 md:px-6">
-              <Collapsible open={open} onOpenChange={setOpen}>
-                <div className="flex justify-center">
-                  <CollapsibleTrigger
-                    className="bg-yellow-400 text-black px-6 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400/70"
-                    onMouseEnter={() => !hasPrefetched.current && (preloadDemoShowcase(), (hasPrefetched.current = true))}
-                    onFocus={() => !hasPrefetched.current && (preloadDemoShowcase(), (hasPrefetched.current = true))}
-                  >
-                    {open ? 'Hide Demo' : 'Try Our Demo'}
-                  </CollapsibleTrigger>
-                </div>
-
-                {/* Smooth transition using data-state from Radix */}
-                <CollapsibleContent
-                  className={`
-                    mt-8 overflow-hidden transition-all duration-500 ease-in-out
-                    data-[state=closed]:max-h-0
-                    data-[state=open]:max-h-auto
-                    data-[state=closed]:opacity-0
-                    data-[state=open]:opacity-100
-                    data-[state=open]:translate-y-0
-                    data-[state=closed]:-translate-y-1
-                  `}
-                >
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                    <Suspense
-                      fallback={
-                        <div className="flex h-40 items-center justify-center">
-                          <div className="animate-pulse text-sm text-white/70">Loading demo…</div>
-                        </div>
-                      }
-                    >
-                      <DemoShowcase />
-                    </Suspense>
-                  </div>
-                </CollapsibleContent>
-              </Collapsible>
-            </div>
-          </section>
-
           <FAQSection />
           <Footer />
         </main>
