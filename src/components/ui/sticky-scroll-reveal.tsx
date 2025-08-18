@@ -101,13 +101,16 @@ export const StickyScroll = ({
   };
 
   return (
+    
     <motion.div
+    
       animate={{ backgroundColor: backgroundColors[activeCard % backgroundColors.length] }}
       // 一屏一页 + 平滑滚动
       className="h-screen min-h-screen overflow-y-auto scroll-smooth snap-y snap-mandatory flex justify-center relative gap-4 lg:gap-8 rounded-md p-4 lg:p-8 w-full max-w-7xl mx-auto outline-none"
       ref={containerRef}
       onScroll={handleScroll}
       tabIndex={0} // 让容器可聚焦，键盘事件才会生效
+      
     >
       {/* 左侧：进度轨道（可点击） */}
       <aside className="hidden lg:flex w-8 shrink-0 mr-1">
@@ -159,20 +162,22 @@ export const StickyScroll = ({
       </div>
 
       {/* 右侧：demo 面板（80vh，高度居中 sticky） */}
-    {/* 右侧：demo 面板（更高：88vh，垂直居中 sticky 到 7vh） */}
-<div
+      {/* 右侧：demo 面板（更高：88vh，垂直居中 sticky 到 7vh） */}
+     <div
   style={{ background: backgroundGradient }}
   className={cn(
-    "hidden lg:block grow min-w-0 h-[88vh] max-h-[88vh] w-full max-w-none rounded-xl bg-black/10 backdrop-blur-sm",
-    "sticky top-[7vh] overflow-hidden border border-yellow-400/20 shadow-2xl",
+    // 高度从 88vh → 96vh
+    "hidden lg:block grow min-w-0 h-[100vh] max-h-[100vh] w-full max-w-none rounded-xl bg-black/10 backdrop-blur-sm",
+    // 顶部从 7vh → 4vh；top + height = 100vh，刚好占满，不溢出
+    "sticky top-[4vh] overflow-hidden border border-yellow-400/20 shadow-2xl",
     contentClassName
   )}
 >
-  {/* 内层滚动：加底部留白，避免被底部提示覆盖；并稳定滚动条宽度 */}
+  {/* 内层滚动：留白避免被底部提示遮挡；稳定滚动条宽度 */}
   <div
     className="h-full w-full overflow-auto bg-black/30 backdrop-blur-sm p-6"
     style={{
-      paddingBottom: "max(72px, env(safe-area-inset-bottom))", // 预留给底部“Scroll or use”
+      paddingBottom: "max(72px, env(safe-area-inset-bottom))",
       scrollbarGutter: "stable both-edges",
     }}
   >
@@ -182,21 +187,7 @@ export const StickyScroll = ({
 
 
       {/* 底部滚动提示（可删） */}
-      <motion.div
-        className="pointer-events-none fixed z-50 left-1/2 -translate-x-1/2 hidden lg:flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 ring-1 ring-white/20 backdrop-blur-md text-white/80 text-xl lg:text-2xl font-semibold"
-        style={{
-          // 避开底部安全区：iOS 刘海屏不会被遮住
-          bottom: "max(24px, env(safe-area-inset-bottom))",
-        }}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.35 }}
-      >
-        <span>Scroll</span>
-        <span className="opacity-80">or use</span>
-        <span className="px-1">↑</span>
-        <span className="px-1">↓</span>
-      </motion.div>
+     
     </motion.div>
   );
 };

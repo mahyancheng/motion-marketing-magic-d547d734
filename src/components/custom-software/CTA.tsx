@@ -99,15 +99,8 @@ const CTASection = () => {
         <section className="py-10 sm:py-14 bg-black">
           <div className="container mx-auto px-4 md:px-6">
             <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-              <Suspense
-                fallback={
-                  <div className="flex h-40 items-center justify-center">
-                    <div className="animate-pulse text-sm text-white/70">Loading demo…</div>
-                  </div>
-                }
-              >
-                <DemoShowcase />
-              </Suspense>
+
+              <DemoShowcase />
             </div>
           </div>
         </section>
