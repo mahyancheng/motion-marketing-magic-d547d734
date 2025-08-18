@@ -83,11 +83,14 @@ export const StickyScroll = ({
   // 深色背景（保留）
   const backgroundColors = ["rgb(0 0 0)", "rgb(15 15 15)", "rgb(23 23 23)"];
   // 右侧面板渐变（保留原配色）
+  // 保留原本 1、2；增强第 3 个对比
   const linearGradients = [
-    "linear-gradient(to bottom right, rgb(234 179 8), rgb(249 115 22))",
-    "linear-gradient(to bottom right, rgb(249 115 22), rgb(234 179 8))",
-    "linear-gradient(to bottom right, rgb(234 179 8), rgb(251 191 36))",
+    "linear-gradient(135deg, rgb(234 179 8) 0%, rgb(249 115 22) 100%)", // 黄500 → 橙500
+    "linear-gradient(135deg, rgb(249 115 22) 0%, rgb(234 179 8) 100%)", // 橙500 → 黄500
+    // 新：黄→琥珀→橙，三段更有层次
+    "linear-gradient(135deg, rgb(250 204 21) 0%, rgb(217 119 6) 55%, rgb(249 115 22) 100%)",
   ];
+
   const [backgroundGradient, setBackgroundGradient] = useState(linearGradients[0]);
   useEffect(() => {
     setBackgroundGradient(linearGradients[activeCard % linearGradients.length]);
@@ -101,16 +104,16 @@ export const StickyScroll = ({
   };
 
   return (
-    
+
     <motion.div
-    
+
       animate={{ backgroundColor: backgroundColors[activeCard % backgroundColors.length] }}
       // 一屏一页 + 平滑滚动
       className="h-screen min-h-screen overflow-y-auto scroll-smooth snap-y snap-mandatory flex justify-center relative gap-4 lg:gap-8 rounded-md p-4 lg:p-8 w-full max-w-7xl mx-auto outline-none"
       ref={containerRef}
       onScroll={handleScroll}
       tabIndex={0} // 让容器可聚焦，键盘事件才会生效
-      
+
     >
       {/* 左侧：进度轨道（可点击） */}
       <aside className="hidden lg:flex w-8 shrink-0 mr-1">
@@ -163,31 +166,31 @@ export const StickyScroll = ({
 
       {/* 右侧：demo 面板（80vh，高度居中 sticky） */}
       {/* 右侧：demo 面板（更高：88vh，垂直居中 sticky 到 7vh） */}
-     <div
-  style={{ background: backgroundGradient }}
-  className={cn(
-    // 高度从 88vh → 96vh
-    "hidden lg:block grow min-w-0 h-[100vh] max-h-[100vh] w-full max-w-none rounded-xl bg-black/10 backdrop-blur-sm",
-    // 顶部从 7vh → 4vh；top + height = 100vh，刚好占满，不溢出
-    "sticky top-[4vh] overflow-hidden border border-yellow-400/20 shadow-2xl",
-    contentClassName
-  )}
->
-  {/* 内层滚动：留白避免被底部提示遮挡；稳定滚动条宽度 */}
-  <div
-    className="h-full w-full overflow-auto bg-black/30 backdrop-blur-sm p-6"
-    style={{
-      paddingBottom: "max(72px, env(safe-area-inset-bottom))",
-      scrollbarGutter: "stable both-edges",
-    }}
-  >
-    {content[activeCard].content ?? null}
-  </div>
-</div>
+      <div
+        style={{ background: backgroundGradient }}
+        className={cn(
+          // 高度从 88vh → 96vh
+          "hidden lg:block grow min-w-0 h-[100vh] max-h-[100vh] w-full max-w-none rounded-xl bg-black/10 backdrop-blur-sm",
+          // 顶部从 7vh → 4vh；top + height = 100vh，刚好占满，不溢出
+          "sticky top-[4vh] overflow-hidden border border-yellow-400/20 shadow-2xl",
+          contentClassName
+        )}
+      >
+        {/* 内层滚动：留白避免被底部提示遮挡；稳定滚动条宽度 */}
+        <div
+          className="h-full w-full bg-black/30 backdrop-blur-sm p-6"
+          style={{
+            paddingBottom: "max(72px, env(safe-area-inset-bottom))",
+            scrollbarGutter: "stable both-edges",
+          }}
+        >
+          {content[activeCard].content ?? null}
+        </div>
+      </div>
 
 
       {/* 底部滚动提示（可删） */}
-     
+
     </motion.div>
   );
 };

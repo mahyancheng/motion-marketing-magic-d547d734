@@ -13,7 +13,6 @@ import {
   Cell,
   Legend,
 } from "recharts";
-// import SectionNavigation from "./SectionNavigation";
 
 const AnalyticsSection = () => {
   const { orders, products } = useOrder();
@@ -58,13 +57,13 @@ const AnalyticsSection = () => {
 
   return (
     <section id="section-5" className="section-container py-10 text-[11px] leading-tight">
-      {/* KPIs */}
+      {/* KPIs（文字大小不变） */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
         <Card>
           <CardHeader className="py-2">
             <CardTitle className="text-[11px] text-gray-500 uppercase">Total Orders Today</CardTitle>
           </CardHeader>
-          <CardContent className="p-2">
+          <CardContent className="p-3 md:p-4">
             <div className="text-xl font-extrabold leading-none">{totalOrders}</div>
             <p className="text-[10px] text-gray-500 mt-1">
               {totalOrders > 0 ? `+${totalOrders} from yesterday` : "No change from yesterday"}
@@ -76,7 +75,7 @@ const AnalyticsSection = () => {
           <CardHeader className="py-2">
             <CardTitle className="text-[11px] text-gray-500 uppercase">Total Revenue</CardTitle>
           </CardHeader>
-          <CardContent className="p-2">
+          <CardContent className="p-3 md:p-4">
             <div className="text-xl font-extrabold leading-none">${totalRevenue.toFixed(2)}</div>
             <p className="text-[10px] text-gray-500 mt-1">
               {totalRevenue > 0 ? `+$${totalRevenue.toFixed(2)} from yesterday` : "No change from yesterday"}
@@ -88,7 +87,7 @@ const AnalyticsSection = () => {
           <CardHeader className="py-2">
             <CardTitle className="text-[11px] text-gray-500 uppercase">Top Product</CardTitle>
           </CardHeader>
-          <CardContent className="p-2">
+          <CardContent className="p-3 md:p-4">
             <div className="text-xl font-extrabold leading-none truncate">{topProduct}</div>
             <p className="text-[10px] text-gray-500 mt-1">
               {maxQuantity > 0 ? `${maxQuantity} units sold` : "No sales yet"}
@@ -97,24 +96,24 @@ const AnalyticsSection = () => {
         </Card>
       </div>
 
-      {/* Charts */}
+      {/* Charts：只放大容器和图形，不动文字大小 */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-        {/* Product Units Chart (Bar) */}
+        {/* Bar */}
         <Card className="lg:col-span-1">
           <CardHeader className="py-2">
             <CardTitle className="text-xs">Product Popularity</CardTitle>
           </CardHeader>
-          <CardContent className="p-2">
-            <div className="h-56"> {/* 从 h-80 缩小为 h-56 */}
+          <CardContent className="p-3 md:p-4">
+            <div className="h-[clamp(320px,45vh,520px)]">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={barData} margin={{ top: 12, right: 12, left: 4, bottom: 36 }}>
+                <BarChart data={barData} margin={{ top: 12, right: 12, left: 4, bottom: 44 }}>
                   <CartesianGrid strokeDasharray="3 3" vertical={false} />
                   <XAxis
                     dataKey="name"
                     tick={{ fontSize: 10 }}
                     angle={-25}
                     textAnchor="end"
-                    height={36}
+                    height={44}
                     interval={0}
                   />
                   <YAxis tick={{ fontSize: 10 }} />
@@ -123,20 +122,20 @@ const AnalyticsSection = () => {
                     contentStyle={{ padding: "6px 8px" }}
                     labelStyle={{ fontSize: 10 }}
                   />
-                  <Bar dataKey="units" name="Units Sold" fill="#8B5CF6" barSize={20} radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="units" name="Units Sold" fill="#8B5CF6" barSize={28} radius={[6, 6, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
           </CardContent>
         </Card>
 
-        {/* Order Status Chart (Pie) */}
+        {/* Pie */}
         <Card className="lg:col-span-1">
           <CardHeader className="py-2">
             <CardTitle className="text-xs">Order Status Breakdown</CardTitle>
           </CardHeader>
-          <CardContent className="p-2">
-            <div className="h-56">
+          <CardContent className="p-3 md:p-4">
+            <div className="h-[clamp(320px,45vh,520px)]">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
@@ -144,7 +143,7 @@ const AnalyticsSection = () => {
                     cx="50%"
                     cy="50%"
                     labelLine={false}
-                    outerRadius={68}
+                    outerRadius={96}
                     dataKey="value"
                     label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
                   >
@@ -169,9 +168,6 @@ const AnalyticsSection = () => {
           </CardContent>
         </Card>
       </div>
-
-      {/* 可选：底部导航 */}
-      {/* <SectionNavigation sectionId={5} targetSectionId={6} title="Next: ..." /> */}
     </section>
   );
 };
