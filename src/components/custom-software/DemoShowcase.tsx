@@ -1,17 +1,17 @@
 import React from "react";
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
-import OrderProcessingDemo from "@/components/demo-only/OrderProcessingDemo";
-import InventoryDemo from "@/components/demo-only/InventoryDemo";
-import FulfillmentDemo from "@/components/demo-only/FulfillmentDemo";
-import CustomerDemo from "@/components/demo-only/CustomerDemo";
-import AnalyticsDemo from "@/components/demo-only/AnalyticsDemo";
+import OrderProcessingDemo from "@/components/OrderProcessingSection";
+import InventoryDemo from "@/components/InventorySection";
+import FulfillmentDemo from "@/components/FulfillmentSection";
+import CustomerDemo from "@/components/CustomerSection";
+import AnalyticsDemo from "@/components/AnalyticsSection";
 
 const DemoShowcase = () => {
   const content = [
     {
-      title: "Order Processing",
+      title: "Step 1: Effortless Order Processing",
       description:
-        "Streamline your order workflow with automated processing, real-time status updates, and intelligent routing. Handle multiple orders simultaneously while maintaining accuracy and speed.",
+        "See how easily orders can be captured and validated from the salesperson's perspective and how they instantly appear for your admin team. No more manual entry errors or delays!",
       content: <OrderProcessingDemo />,
     },
     {

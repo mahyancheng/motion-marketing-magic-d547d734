@@ -1,5 +1,6 @@
 
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 export default {
 	darkMode: ["class"],
@@ -115,7 +116,27 @@ export default {
 				"bounce-down": "bounce-down 1.5s infinite"
 
 			}
+			
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	
+	
+plugins: [
+    require("tailwindcss-animate"),
+    // 新增：no-scrollbar 工具类
+    plugin(({ addUtilities }) => {
+      addUtilities({
+        ".no-scrollbar": {
+          /* Firefox */
+          scrollbarWidth: "none",
+          /* IE & Edge */
+          "-ms-overflow-style": "none",
+        },
+        ".no-scrollbar::-webkit-scrollbar": {
+          /* Chrome / Safari */
+          display: "none",
+        },
+      });
+    }),
+  ],	
 } satisfies Config;

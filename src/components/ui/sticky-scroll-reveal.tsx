@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export const StickyScroll = ({
@@ -12,12 +12,11 @@ export const StickyScroll = ({
 }) => {
   const [activeCard, setActiveCard] = useState(0);
 
-  // 滚动容器（外层就是滚动主体）
+  // 外层滚动容器（整体一屏一页的滚动）
   const containerRef = useRef<HTMLDivElement | null>(null);
-  // 每一页（左侧 section）的 refs，用 HTMLElement 兼容 section/div
+  // 左侧每个 section 的 refs
   const itemRefs = useRef<Array<HTMLElement | null>>([]);
 
-  // 稳定的 ref setter，避免 TS & 回调重建问题
   const setItemRef = useCallback(
     (i: number) => (el: HTMLElement | null) => {
       itemRefs.current[i] = el;
@@ -33,13 +32,11 @@ export const StickyScroll = ({
   const handleScroll = useCallback(() => {
     const root = containerRef.current;
     if (!root || itemRefs.current.length === 0) return;
-
     const rootRect = root.getBoundingClientRect();
     const rootMid = rootRect.top + rootRect.height / 2;
 
     let best = 0;
     let bestDist = Infinity;
-
     itemRefs.current.forEach((el, i) => {
       if (!el) return;
       const r = el.getBoundingClientRect();
@@ -57,65 +54,24 @@ export const StickyScroll = ({
     handleScroll();
   }, [handleScroll, content.length]);
 
-  // 键盘快捷键：↑/↓ 切换上一/下一页
-  useEffect(() => {
-    const root = containerRef.current;
-    if (!root) return;
-
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowDown" || e.key === "PageDown") {
-        e.preventDefault();
-        scrollToIndex(Math.min(activeCard + 1, content.length - 1));
-      } else if (e.key === "ArrowUp" || e.key === "PageUp") {
-        e.preventDefault();
-        scrollToIndex(Math.max(activeCard - 1, 0));
-      }
-    };
-    root.addEventListener("keydown", onKeyDown);
-    return () => root.removeEventListener("keydown", onKeyDown);
-  }, [activeCard, content.length]);
+  // 深色背景过渡（保留页面背景的暗色变化）
+  const backgroundColors = ["rgb(0 0 0)", "rgb(15 15 15)", "rgb(23 23 23)"];
 
   const scrollToIndex = (i: number) => {
-    const el = itemRefs.current[i];
-    el?.scrollIntoView({ behavior: "smooth", block: "start" });
+    itemRefs.current[i]?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  // 深色背景（保留）
-  const backgroundColors = ["rgb(0 0 0)", "rgb(15 15 15)", "rgb(23 23 23)"];
-  // 右侧面板渐变（保留原配色）
-  // 保留原本 1、2；增强第 3 个对比
-  const linearGradients = [
-    "linear-gradient(135deg, rgb(234 179 8) 0%, rgb(249 115 22) 100%)", // 黄500 → 橙500
-    "linear-gradient(135deg, rgb(249 115 22) 0%, rgb(234 179 8) 100%)", // 橙500 → 黄500
-    // 新：黄→琥珀→橙，三段更有层次
-    "linear-gradient(135deg, rgb(250 204 21) 0%, rgb(217 119 6) 55%, rgb(249 115 22) 100%)",
-  ];
-
-  const [backgroundGradient, setBackgroundGradient] = useState(linearGradients[0]);
-  useEffect(() => {
-    setBackgroundGradient(linearGradients[activeCard % linearGradients.length]);
-  }, [activeCard]);
-
-  // demo 内容切换动画
-  const demoVariants = {
-    initial: { opacity: 0, y: 16, scale: 0.995 },
-    enter: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.35, ease: "easeOut" } },
-    exit: { opacity: 0, y: -12, scale: 0.995, transition: { duration: 0.25, ease: "easeIn" } },
-  };
+  
 
   return (
-
     <motion.div
-
       animate={{ backgroundColor: backgroundColors[activeCard % backgroundColors.length] }}
-      // 一屏一页 + 平滑滚动
       className="h-screen min-h-screen overflow-y-auto scroll-smooth snap-y snap-mandatory flex justify-center relative gap-4 lg:gap-8 rounded-md p-4 lg:p-8 w-full max-w-7xl mx-auto outline-none"
       ref={containerRef}
       onScroll={handleScroll}
-      tabIndex={0} // 让容器可聚焦，键盘事件才会生效
-
+      tabIndex={0}
     >
-      {/* 左侧：进度轨道（可点击） */}
+      {/* 左侧：进度轨道 */}
       <aside className="hidden lg:flex w-8 shrink-0 mr-1">
         <div className="sticky top-1/2 -translate-y-1/2 flex flex-col items-center gap-3">
           {content.map((_, i) => {
@@ -128,9 +84,7 @@ export const StickyScroll = ({
                 aria-current={active ? "step" : undefined}
                 className={cn(
                   "relative h-3.5 w-3.5 rounded-full transition",
-                  active
-                    ? "bg-yellow-400 ring-2 ring-yellow-400/50"
-                    : "bg-white/20 hover:bg-white/40"
+                  active ? "bg-yellow-400 ring-2 ring-yellow-400/50" : "bg-white/20 hover:bg-white/40"
                 )}
               />
             );
@@ -164,31 +118,32 @@ export const StickyScroll = ({
         </div>
       </div>
 
-      {/* 右侧：demo 面板（80vh，高度居中 sticky） */}
-      {/* 右侧：demo 面板（更高：88vh，垂直居中 sticky 到 7vh） */}
+      {/* 右侧：demo 面板（去掉 gradient；保留毛玻璃与边框；让内层自己滚动且隐藏滚动条） */}
       <div
-        style={{ background: backgroundGradient, height: "calc(100vh - 8vh)" }}
         className={cn(
           "hidden lg:block grow min-w-0 max-h-[100vh] w-full max-w-none rounded-xl bg-black/10 backdrop-blur-sm",
           "sticky top-[4vh] overflow-hidden border border-yellow-400/20 shadow-2xl",
+          // 外层高度：占满视口但留出 4vh 顶部
+          "h-[calc(100vh-8vh)]",
           contentClassName
         )}
       >
-        {/* 内层滚动：留白避免被底部提示遮挡；稳定滚动条宽度 */}
+        {/* 可滚动内容：隐藏滚动条但允许滚动 */}
         <div
-          className="h-full w-full bg-black/30 backdrop-blur-sm p-6"
+          className="h-full w-full overflow-auto no-scrollbar bg-black/30 backdrop-blur-sm p-6"
           style={{
-            paddingBottom: "max(72px, env(safe-area-inset-bottom))",
+            // 预留空间（如果有底部提示或阴影）
+            paddingBottom: "max(48px, env(safe-area-inset-bottom))",
+            // 稳定滚动条占位（即使隐藏也避免布局抖动）
             scrollbarGutter: "stable both-edges",
-          }}
+            // 非 WebKit 的隐藏方式
+            msOverflowStyle: "none",
+            scrollbarWidth: "none",
+          } as React.CSSProperties}
         >
           {content[activeCard].content ?? null}
         </div>
       </div>
-
-
-      {/* 底部滚动提示（可删） */}
-
     </motion.div>
   );
 };

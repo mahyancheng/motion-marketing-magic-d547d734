@@ -255,7 +255,6 @@ const ContactInfo = () => {
               height="100%" 
               style={{ border: 0 }} 
               allowFullScreen 
-              loading="lazy"
               title="Office Location"
             ></iframe>
           </div>
