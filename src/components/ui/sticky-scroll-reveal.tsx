@@ -167,11 +167,9 @@ export const StickyScroll = ({
       {/* 右侧：demo 面板（80vh，高度居中 sticky） */}
       {/* 右侧：demo 面板（更高：88vh，垂直居中 sticky 到 7vh） */}
       <div
-        style={{ background: backgroundGradient }}
+        style={{ background: backgroundGradient, height: "calc(100vh - 8vh)" }}
         className={cn(
-          // 高度从 88vh → 96vh
-          "hidden lg:block grow min-w-0 h-[100vh] max-h-[100vh] w-full max-w-none rounded-xl bg-black/10 backdrop-blur-sm",
-          // 顶部从 7vh → 4vh；top + height = 100vh，刚好占满，不溢出
+          "hidden lg:block grow min-w-0 max-h-[100vh] w-full max-w-none rounded-xl bg-black/10 backdrop-blur-sm",
           "sticky top-[4vh] overflow-hidden border border-yellow-400/20 shadow-2xl",
           contentClassName
         )}
