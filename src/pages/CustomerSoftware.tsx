@@ -1,25 +1,15 @@
 import { OrderProvider } from '@/contexts/OrderContext';
 import { Navbar } from './Index';
 import Footer from './Footer';
-import { useEffect, useState, lazy, Suspense, useRef } from 'react';
+import { useEffect } from 'react';
 import CustomSoftwareHero from '@/components/custom-software/Hero';
 import ServicesSection from '@/components/custom-software/Services';
 import BenefitsSection from '@/components/custom-software/Benefits';
 import ProcessSection from '@/components/custom-software/Process';
 import FAQSection from '@/components/custom-software/FAQ';
 import CTASection from '@/components/custom-software/CTA';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-
-// ---- Lazy & Preload ----
-const DemoShowcase = lazy(() => import('@/components/custom-software/DemoShowcase'));
-// 预加载函数（鼠标移入/聚焦触发）
-const preloadDemoShowcase = () => {
-  import('@/components/custom-software/DemoShowcase');
-};
 
 const CustomerSoftware = () => {
-  const [open, setOpen] = useState(false);
-  const hasPrefetched = useRef(false);
 
   // Basic SEO setup for this page
   useEffect(() => {
@@ -116,20 +106,6 @@ const CustomerSoftware = () => {
     };
   }, []);
 
-  // 进入视口时也尝试预加载（可选）
-  useEffect(() => {
-    const el = document.getElementById('demo');
-    if (!el || hasPrefetched.current) return;
-    const io = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting)) {
-        preloadDemoShowcase();
-        hasPrefetched.current = true;
-        io.disconnect();
-      }
-    }, { rootMargin: '200px' });
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
 
   return (
     <OrderProvider>

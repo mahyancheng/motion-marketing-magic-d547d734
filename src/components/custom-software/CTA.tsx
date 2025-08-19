@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState, useEffect, Suspense, lazy } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
@@ -7,10 +7,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-
-// 懒加载 Demo，并提供预加载函数（hover/focus 时预取 chunk）
-const DemoShowcase = lazy(() => import("./DemoShowcase"));
-const preloadDemoShowcase = () => import("./DemoShowcase");
+import DemoShowcase from "./DemoShowcase";
 
 const CTASection = () => {
   const [open, setOpen] = useState(false);
@@ -56,21 +53,8 @@ const CTASection = () => {
                 Schedule a Consultation
               </Link>
 
-              {/* Try Our Demo：触发折叠，并在 hover/focus 预加载 Demo */}
               <CollapsibleTrigger
                 className="bg-yellow-400 text-black px-6 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400/70"
-                onMouseEnter={() => {
-                  if (!hasPrefetched.current) {
-                    preloadDemoShowcase();
-                    hasPrefetched.current = true;
-                  }
-                }}
-                onFocus={() => {
-                  if (!hasPrefetched.current) {
-                    preloadDemoShowcase();
-                    hasPrefetched.current = true;
-                  }
-                }}
                 aria-controls="demo"
               >
                 {open ? "Hide Demo" : "Try Our Demo"}
