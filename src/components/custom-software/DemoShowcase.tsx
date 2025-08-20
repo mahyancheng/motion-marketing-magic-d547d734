@@ -1,17 +1,7 @@
 import React from "react";
-import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
 import DisplayCardsDemo from "@/components/demo-only/DisplayCardsDemo";
 
 const DemoShowcase = () => {
-  const content = [
-    {
-      title: "Interactive Component Demo",
-      description:
-        "Experience our expandable card system that transforms simple displays into immersive content experiences. Click any card to see it expand with detailed information and smooth animations.",
-      content: <DisplayCardsDemo />,
-    },
-  ];
-
   return (
     <div className="container mx-auto px-4">
       <div className="max-w-6xl mx-auto">
@@ -26,8 +16,8 @@ const DemoShowcase = () => {
             Discover how our tailored software solutions can revolutionize your operations.
             This interactive card system demonstrates the kind of engaging user experiences we build for your unique business needs.
           </p>
-        </div>
-        <StickyScroll content={content} />
+        </div>        
+        <DisplayCardsDemo />
       </div>
     </div>
   );
