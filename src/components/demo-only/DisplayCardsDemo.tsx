@@ -53,17 +53,19 @@ function DisplayCard({
       height: "9rem",
       skewY: "-8deg",
       position: "relative" as const,
+      zIndex: 1,
     },
     expanded: {
       scale: 1,
-      width: "700px",
-      height: "540px",
+      x: "50vw",
+      y: "50vh",
+      width: "600px",
+      height: "500px",
       skewY: "0deg",
       position: "fixed" as const,
-      left: "50%",
-      top: "50%",
-      x: "-50%",
-      y: "-50%",
+      zIndex: 50,
+      translateX: "-50%",
+      translateY: "-50%",
     }
   };
 
@@ -110,19 +112,19 @@ function DisplayCard({
         )}
 
         <div className={isExpanded ? "flex items-center gap-4" : ""}>
-          <span className={cn("relative inline-block rounded-full", isExpanded ? "p-3 bg-primary/20" : "p-1 bg-primary/10")}>
+          <span className={cn("relative inline-block rounded-full bg-blue-800", isExpanded ? "p-3" : "p-1")}>
             {icon}
           </span>
           <div>
-            <p className={cn("font-medium text-foreground", isExpanded ? "text-3xl" : "text-lg", titleClassName)}>{title}</p>
-            <p className={cn("text-muted-foreground", isExpanded ? "text-lg" : "text-sm")}>{date}</p>
+            <p className={cn("font-medium", isExpanded ? "text-3xl" : "text-lg", titleClassName)}>{title}</p>
+            <p className={cn("text-muted-foreground", isExpanded ? "text-lg" : "")}>{date}</p>
           </div>
         </div>
 
         {isExpanded ? (
           <>
             <div className="flex-1 flex items-center">
-              <p className="text-lg text-center w-full text-muted-foreground mb-4">{description}</p>
+              <p className="text-2xl text-center w-full">{description}</p>
             </div>
             <div className="space-y-4">
               <div className="max-h-[58vh] overflow-y-auto pr-3 [-webkit-overflow-scrolling:touch]">
@@ -136,7 +138,7 @@ function DisplayCard({
           </>
         ) : (
           <>
-            <p className="text-sm text-muted-foreground truncate max-w-[18rem]">{description}</p>
+            <p className="whitespace-nowrap text-lg">{description}</p>
           </>
         )}
       </motion.div>
@@ -150,6 +152,20 @@ interface DisplayCardsProps {
 
 function DisplayCards({ cards }: DisplayCardsProps) {
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
+  
+  const defaultCards: DisplayCardProps[] = [
+    {
+      className: "[grid-area:stack] hover:-translate-y-10 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration:700 hover:grayscale-0 before:left-0 before:top-0",
+    },
+    {
+      className: "[grid-area:stack] translate-x-16 translate-y-10 hover:-translate-y-1 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration:700 hover:grayscale-0 before:left-0 before:top-0",
+    },
+    {
+      className: "[grid-area:stack] translate-x-32 translate-y-20 hover:translate-y-10",
+    },
+  ];
+
+  const displayCards = cards || defaultCards;
 
   const handleCardClick = (id: number) => {
     setExpandedCard(id);
@@ -158,9 +174,6 @@ function DisplayCards({ cards }: DisplayCardsProps) {
   const handleClose = () => {
     setExpandedCard(null);
   };
-
-  // Use the custom software cards by default
-  const displayCards = cards || defaultCards;
 
   return (
     <div className="grid [grid-template-areas:'stack'] place-items-center opacity-100 animate-in fade-in-0 duration-700">
@@ -188,7 +201,7 @@ const defaultCards: DisplayCardProps[] = [
     iconClassName: "text-yellow-500",
     titleClassName: "text-yellow-500",
     className:
-      "[grid-area:stack] hover:-translate-y-10 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration:700 hover:grayscale-0 before:left-0 before:top-0",
+      "[grid-area:stack] translate-x-24 translate-y-20 hover:translate-y-10",
   },
   {
     id: 1,
@@ -199,7 +212,7 @@ const defaultCards: DisplayCardProps[] = [
     iconClassName: "text-yellow-500",
     titleClassName: "text-yellow-500",
     className:
-      "[grid-area:stack] translate-x-8 translate-y-8 hover:-translate-y-1 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration:700 hover:grayscale-0 before:left-0 before:top-0",
+      "[grid-area:stack] translate-x-12 translate-y-10 hover:-translate-y-1",
   },
   {
     id: 2,
@@ -210,30 +223,31 @@ const defaultCards: DisplayCardProps[] = [
     iconClassName: "text-yellow-500",
     titleClassName: "text-yellow-500",
     className:
-      "[grid-area:stack] translate-x-16 translate-y-16 hover:translate-y-6",
+      "[grid-area:stack] translate-x-0 translate-y-0 hover:-translate-y-2",
   },
   {
     id: 3,
-    icon: <Sparkles className="size-4 text-purple-300" />,
+    icon: <Sparkles className="size-4 text-green-300" />,
     title: "Step 4: Know Your Customers Better",
     description: "A single view of your customer's history and preferences helps you provide better service and build lasting relationships.",
     date: "Step 4",
     iconClassName: "text-yellow-500",
     titleClassName: "text-yellow-500",
     className:
-      "[grid-area:stack] translate-x-24 translate-y-24 hover:translate-y-14",
+      "[grid-area:stack] -translate-x-12 translate-y-8 hover:-translate-y-1",
   },
   {
     id: 4,
-    icon: <Sparkles className="size-4 text-pink-300" />,
+    icon: <Sparkles className="size-4 text-green-300" />,
     title: "Step 5: Make Data-Driven Decisions with Analytics",
-    description: "Turn your data into actionable insights with comprehensive analytics and reporting tools.",
+    description: "A single view of your customer's history and preferences helps you provide better service and build lasting relationships.",
     date: "Step 5",
     iconClassName: "text-yellow-500",
     titleClassName: "text-yellow-500",
     className:
-      "[grid-area:stack] translate-x-32 translate-y-32 hover:translate-y-22",
+      "[grid-area:stack] -translate-x-20 translate-y-16 hover:-translate-y-0",
   },
+
 ];
 
 export default function DisplayCardsDemo() {
