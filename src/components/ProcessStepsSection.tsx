@@ -46,8 +46,9 @@ const ProcessStepsSection = () => {
           {PROCESS_STEPS.map((step, index) => (
             <CardSticky
               key={step.id}
-              index={index + 2}
-              className="rounded-lg border bg-white shadow-sm backdrop-blur-md overflow-hidden mx-auto w-[80vw] max-w-6xl h-[60vh] max-h-[800px]"
+              index={index}
+              className="rounded-lg border bg-white shadow-sm backdrop-blur-md overflow-hidden mx-auto w-[80vw] max-w-6xl h-[60vh] max-h-[800px] sticky"
+              style={{ top: `${(index + 1) * 20}px` }}
               incrementY={20}
             >
               <div className="bg-brand-50 px-4 py-3 border-b flex-shrink-0">

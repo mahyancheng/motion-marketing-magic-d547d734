@@ -49,8 +49,8 @@ const CardSticky = React.forwardRef<HTMLDivElement, CardStickyProps>(
         ref={ref}
         layout="position"
         style={{
-          top: y,
-          z,
+          top: `${y}px`,
+          zIndex: 100 - index,
           backfaceVisibility: "hidden",
           ...style,
         }}

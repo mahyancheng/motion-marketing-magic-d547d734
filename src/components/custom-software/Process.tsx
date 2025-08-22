@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 const steps = [
   { n: "01", title: "Discovery & Strategy", desc: "Align on goals, map processes, and define scope for your custom software." },
