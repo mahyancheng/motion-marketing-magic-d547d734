@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const benefits = [
   { title: "Efficiency & Cost Optimization", desc: "Reduce operational costs with efficient software tailored to your workflows." },

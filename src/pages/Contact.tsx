@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Navbar } from "./Index";
 import { Phone, Mail, MapPin, Clock, MessageSquare, CheckCircle } from "lucide-react";
 import PhoneInput from '../components/PhoneInput';

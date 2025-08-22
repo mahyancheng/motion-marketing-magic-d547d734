@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { Sparkles, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { useExpandable } from "@/hooks/use-expandable";
 import OrderProcessingDemo from "@/components/demo-only/OrderProcessingDemo";
 import InventoryDemo from "@/components/InventorySection";
