@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Footer from './Footer'; // adjust path if needed
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent } from "@/components/ui/navigation-menu";
-import DynamicActionBar, { type ActionItem } from "@/components/ui/dynamic-action";
+
 import { Search, Megaphone, CodeXml } from "lucide-react";
 export const Index = () => {
   return (
@@ -32,71 +32,71 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const actions: ActionItem[] = [
-    {
-      id: "seo",
-      to: "/seo",
-      label: "SEO",
-      icon: Search,
-      content: (
-        <div className="flex flex-col items-center">
-          <div className="w-full">
-            <div className="mx-auto w-[95%] rounded-2xl py-3 px-3 transition duration-300 hover:bg-white/10">
-              <div className="flex items-center gap-1">
-                <Search className="size-6 text-yellow-400" />
-                {/* Label is the actual link */}
-                <Link to="/seo" className="font-bold text-white hover:underline">
-                  Search Engine Optimization
-                </Link>
-              </div>
-              <div className="mt-1 text-sm text-yellow-400">Information</div>
-            </div>
-          </div>
-        </div>
-      ),
-      dimensions: { width: 500, height: 100 },
-    },
-    {
-      id: "ads",
-      to: "/social-media-ads",
-      label: "Social Ads",
-      icon: Megaphone,
-      content: (
-        <div className="flex flex-col items-center">
-          <Link to="/social-media-ads" className="w-full">
-            <div className="mx-auto w-[95%] rounded-2xl py-3 px-3 transition duration-300 hover:bg-white/10">
-              <div className="flex items-center gap-1">
-                <Megaphone className="size-6 text-yellow-400" />
-                <span className="font-bold text-white">Social Media Paid Ads</span>
-              </div>
-              <div className="mt-1 text-sm text-yellow-400">Information</div>
-            </div>
-          </Link>
-        </div>
-      ),
-      dimensions: { width: 500, height: 100 },
-    },
-    {
-      id: "software",
-      to: "/customer-software-demo",
-      label: "Custom Software",
-      icon: CodeXml,
-      content: (
-        <div className="flex flex-col items-center">
-          <Link to="/customer-software-demo" className="w-full">
-            <div className="mx-auto w-[95%] rounded-2xl py-3 px-3 transition duration-300 hover:bg-white/10">
-              <div className="flex items-center gap-1">
-                <CodeXml className="size-6 text-yellow-400" />
-                <span className="font-bold text-white">Custom Software Solution</span>
-              </div>
-              <div className="mt-1 text-sm text-yellow-400">Information</div>
-            </div>
-          </Link>
-        </div>
-      ),
-      dimensions: { width: 500, height: 100 },
-    },
-  ];
+  // const actions: ActionItem[] = [
+  //   {
+  //     id: "seo",
+  //     to: "/seo",
+  //     label: "SEO",
+  //     icon: Search,
+  //     content: (
+  //       <div className="flex flex-col items-center">
+  //         <div className="w-full">
+  //           <div className="mx-auto w-[95%] rounded-2xl py-3 px-3 transition duration-300 hover:bg-white/10">
+  //             <div className="flex items-center gap-1">
+  //               <Search className="size-6 text-yellow-400" />
+  //               {/* Label is the actual link */}
+  //               <Link to="/seo" className="font-bold text-white hover:underline">
+  //                 Search Engine Optimization
+  //               </Link>
+  //             </div>
+  //             <div className="mt-1 text-sm text-yellow-400">Information</div>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     ),
+  //     dimensions: { width: 500, height: 100 },
+  //   },
+  //   {
+  //     id: "ads",
+  //     to: "/social-media-ads",
+  //     label: "Social Ads",
+  //     icon: Megaphone,
+  //     content: (
+  //       <div className="flex flex-col items-center">
+  //         <Link to="/social-media-ads" className="w-full">
+  //           <div className="mx-auto w-[95%] rounded-2xl py-3 px-3 transition duration-300 hover:bg-white/10">
+  //             <div className="flex items-center gap-1">
+  //               <Megaphone className="size-6 text-yellow-400" />
+  //               <span className="font-bold text-white">Social Media Paid Ads</span>
+  //             </div>
+  //             <div className="mt-1 text-sm text-yellow-400">Information</div>
+  //           </div>
+  //         </Link>
+  //       </div>
+  //     ),
+  //     dimensions: { width: 500, height: 100 },
+  //   },
+  //   {
+  //     id: "software",
+  //     to: "/customer-software-demo",
+  //     label: "Custom Software",
+  //     icon: CodeXml,
+  //     content: (
+  //       <div className="flex flex-col items-center">
+  //         <Link to="/customer-software-demo" className="w-full">
+  //           <div className="mx-auto w-[95%] rounded-2xl py-3 px-3 transition duration-300 hover:bg-white/10">
+  //             <div className="flex items-center gap-1">
+  //               <CodeXml className="size-6 text-yellow-400" />
+  //               <span className="font-bold text-white">Custom Software Solution</span>
+  //             </div>
+  //             <div className="mt-1 text-sm text-yellow-400">Information</div>
+  //           </div>
+  //         </Link>
+  //       </div>
+  //     ),
+  //     dimensions: { width: 500, height: 100 },
+  //   },
+  // ];
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-black/90 py-2' : 'py-4'}`}>
@@ -113,8 +113,25 @@ export const Navbar = () => {
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="bg-transparent text-white hover:text-yellow-400">Services</NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-black z-50">
-                  <div className="p-4">
-                    <DynamicActionBar actions={actions} />
+                  <div className="p-4 space-y-2">
+                    <Link to="/seo" className="block p-3 hover:bg-white/10 rounded transition-colors">
+                      <div className="flex items-center gap-2">
+                        <Search className="size-5 text-yellow-400" />
+                        <span className="text-white">SEO Services</span>
+                      </div>
+                    </Link>
+                    <Link to="/social-media-ads" className="block p-3 hover:bg-white/10 rounded transition-colors">
+                      <div className="flex items-center gap-2">
+                        <Megaphone className="size-5 text-yellow-400" />
+                        <span className="text-white">Social Media Ads</span>
+                      </div>
+                    </Link>
+                    <Link to="/customer-software-demo" className="block p-3 hover:bg-white/10 rounded transition-colors">
+                      <div className="flex items-center gap-2">
+                        <CodeXml className="size-5 text-yellow-400" />
+                        <span className="text-white">Custom Software</span>
+                      </div>
+                    </Link>
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
