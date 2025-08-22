@@ -1,6 +1,6 @@
 
 import { createContext, useContext, useState, ReactNode } from 'react';
-import { products, customer, orders as initialOrders, generateId } from '../lib/flow-data';
+import { products, customer, orders as initialOrders, generateId } from '../lib/data';
 import { toast } from '@/hooks/use-toast';
 
 // Define the Order context type

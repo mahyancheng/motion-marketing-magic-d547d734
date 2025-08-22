@@ -1,79 +1,100 @@
-"use client";
+import * as React from "react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link, To } from "react-router-dom";
 
-import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import React, { ReactNode } from "react";
-
-interface ActionItem {
+export interface ActionItem {
+  to: To;
   id: string;
-  to: string;
   label: string;
-  icon: React.ComponentType<{ className?: string }>;
-  content: ReactNode;
-  dimensions: { width: number; height: number };
+  icon: React.ElementType;
+  content: React.ReactNode;
+  dimensions: {
+    width: number;
+    height: number;
+  };
 }
 
-interface DynamicActionProps {
+export interface DynamicActionBarProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   actions: ActionItem[];
-  className?: string;
-  triggerClassName?: string;
-  menuClassName?: string;
 }
 
-export function DynamicAction({
-  actions,
-  className,
-  triggerClassName,
-  menuClassName,
-}: DynamicActionProps) {
-  const [hoveredAction, setHoveredAction] = React.useState<ActionItem | null>(null);
+const DynamicActionBar = React.forwardRef<
+  HTMLDivElement,
+  DynamicActionBarProps
+>(({ actions, className, ...props }, ref) => {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const activeAction = activeIndex !== null ? actions[activeIndex] : null;
+
+  const BUTTON_BAR_HEIGHT = 56;
+
+  const containerAnimate = activeAction
+    ? {
+      width: activeAction.dimensions.width,
+      height: activeAction.dimensions.height + BUTTON_BAR_HEIGHT,
+    }
+    : {
+      width: 410,
+      height: BUTTON_BAR_HEIGHT,
+    };
+
+  const transition = { type: "spring", stiffness: 400, damping: 35 };
 
   return (
-    <div className={cn("relative", className)}>
-      <div className="flex items-center gap-6">
-        {actions.map((action) => {
-          const Icon = action.icon;
-          return (
-            <div
-              key={action.id}
-              className="relative"
-              onMouseEnter={() => setHoveredAction(action)}
-              onMouseLeave={() => setHoveredAction(null)}
-            >
-              <Link
-                to={action.to}
-                className={cn(
-                  "flex items-center gap-2 px-3 py-2 text-gray-300 hover:text-white transition-colors",
-                  triggerClassName
-                )}
-              >
-                <Icon className="size-4" />
-                <span>{action.label}</span>
-              </Link>
+    <div
+      ref={ref}
+      className={`relative ${className ?? ""}`}
+      onMouseLeave={() => setActiveIndex(null)}
+      {...props}
+    >
+      <motion.div
+        className="flex flex-col overflow-hidden rounded-2xl bg-black/5 backdrop-blur-xl"
+        animate={containerAnimate}
+        transition={transition}
+        initial={{ width: 410, height: BUTTON_BAR_HEIGHT }}
+      >
 
-              {hoveredAction?.id === action.id && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                  transition={{ duration: 0.15, ease: "easeOut" }}
-                  className={cn(
-                    "absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-black/90 backdrop-blur-sm border border-gray-700 rounded-lg shadow-lg z-50",
-                    menuClassName
-                  )}
-                  style={{
-                    width: action.dimensions.width,
-                    minHeight: action.dimensions.height,
-                  }}
-                >
-                  {action.content}
-                </motion.div>
-              )}
-            </div>
-          );
-        })}
-      </div>
+       <div
+  className="flex flex-shrink-0 items-center justify-center gap-2 px-2"
+  style={{ height: `${BUTTON_BAR_HEIGHT}px` }}
+>
+  {actions.map((action, index) => {
+    const Icon = action.icon;
+    return (
+      <Link
+        key={action.id}
+        to={action.to}                        // ← 点击跳转
+        onMouseEnter={() => setActiveIndex(index)}
+        className="flex items-center justify-center gap-2 rounded-2xl py-3 px-4 text-white transition-colors duration-300 hover:bg-white/10 hover:text-yellow-400"
+      >
+        <Icon className="size-6 text-yellow-400" />
+        <span className="font-bold w-full">{action.label}</span>
+      </Link>
+    );
+  })}
+</div>
+        <div className="flex-grow overflow-hidden">
+          <AnimatePresence>
+            {activeAction && (
+              <motion.div
+                className="w-full"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2, delay: 0.1 }}
+              >
+                {activeAction.content}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+            
+      </motion.div>
     </div>
   );
-}
+});
+
+DynamicActionBar.displayName = "DynamicActionBar";
+
+export default DynamicActionBar;

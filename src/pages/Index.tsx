@@ -3,9 +3,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Footer from './Footer'; // adjust path if needed
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent } from "@/components/ui/navigation-menu";
-
+import DynamicActionBar, { type ActionItem } from "@/components/ui/dynamic-action";
 import { Search, Megaphone, CodeXml } from "lucide-react";
-import { DynamicAction } from "@/components/ui/dynamic-action";
 export const Index = () => {
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
@@ -33,7 +32,7 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const actions = [
+  const actions: ActionItem[] = [
     {
       id: "seo",
       to: "/seo",
@@ -114,25 +113,8 @@ export const Navbar = () => {
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="bg-transparent text-white hover:text-yellow-400">Services</NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-black z-50">
-                  <div className="p-4 space-y-2">
-                    <Link to="/seo" className="block p-3 hover:bg-white/10 rounded transition-colors">
-                      <div className="flex items-center gap-2">
-                        <Search className="size-5 text-yellow-400" />
-                        <span className="text-white">SEO Services</span>
-                      </div>
-                    </Link>
-                    <Link to="/social-media-ads" className="block p-3 hover:bg-white/10 rounded transition-colors">
-                      <div className="flex items-center gap-2">
-                        <Megaphone className="size-5 text-yellow-400" />
-                        <span className="text-white">Social Media Ads</span>
-                      </div>
-                    </Link>
-                    <Link to="/customer-software-demo" className="block p-3 hover:bg-white/10 rounded transition-colors">
-                      <div className="flex items-center gap-2">
-                        <CodeXml className="size-5 text-yellow-400" />
-                        <span className="text-white">Custom Software</span>
-                      </div>
-                    </Link>
+                  <div className="p-4">
+                    <DynamicActionBar actions={actions} />
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
