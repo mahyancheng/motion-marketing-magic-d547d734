@@ -4,13 +4,12 @@ import { cn } from "@/lib/utils";
 import { Sparkles, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useExpandable } from "@/hooks/use-expandable";
-import OrderProcessingDemo from "@/components/demo-only/OrderProcessingDemo";
+// import { useExpandable } from "@/hooks/use-expandable"; // 未使用可移除
+import OrderProcessingDemo from "@/components/OrderProcessingSection";
 import InventoryDemo from "@/components/InventorySection";
 import FullfillmentDemo from "@/components/FulfillmentSection";
 import CustomizationDemo from "@/components/CustomerSection";
 import AnalyticsDemo from "@/components/AnalyticsSection";
-
 
 interface DisplayCardProps {
   className?: string;
@@ -41,20 +40,24 @@ function DisplayCard({
 
   const handleCardClick = () => {
     if (!isExpanded) {
-      onCardClick?.(id);
+      onCardClick?.(id!);
     }
   };
 
+  // 维持你原本的 variant（注意：使用 fixed 会从视口定位，
+  // 如果想从卡片原位放大，建议后续换 layoutId 方案）
   const cardVariants = {
     normal: {
       scale: 1,
-      x: 0,
-      y: 0,
+      x: 180,
+      y: -40,
       width: "22rem",
-      height: "9rem",
-      skewY: "-8deg",
+      height: "10rem",
+      skewY: "6deg",
+      skewX: "4deg",
+
+
       position: "relative" as const,
-      // zIndex: 1,
     },
     expanded: {
       scale: 1,
@@ -62,11 +65,10 @@ function DisplayCard({
       height: "540px",
       skewY: "0deg",
       position: "fixed" as const,
-      // zIndex: 50,
-      left: "50%",
+      left: "0%",
       top: "50%",
-      x: "-50%",
-      y: "-50%",
+      x: "0%",
+      y: "-52%",
     }
   };
 
@@ -90,16 +92,15 @@ function DisplayCard({
         animate={isExpanded ? "expanded" : "normal"}
         transition={{ type: "spring", stiffness: 300, damping: 30, duration: 0.6 }}
         onClick={handleCardClick}
-        // 👇 用内联 zIndex 控层级：id 越小层级越高（0 最高）
+        // 用内联 zIndex 控层级：展开时顶层；未展开按 id 递减
         style={{ zIndex: isExpanded ? 1000 : 100 - (id ?? 0) }}
         className={cn(
-          "flex select-none flex-col justify-between rounded-xl border-2 bg-muted/70 backdrop-blur-sm px-4 py-3 transition-all duration-700 cursor-pointer",
-          !isExpanded && "after:absolute after:-right-1 after:top-[-5%] after:h-[110%] after:w-[20rem] after:bg-gradient-to-l after:from-background after:to-transparent after:content-[''] hover:border-white/20 hover:bg-muted [&>*]:flex [&>*]:items-center [&>*]:gap-2 hover:scale-105",
+          "flex select-none flex-col justify-between rounded-xl border-2 bg-muted/70 px-4 py-3 duration-700 cursor-pointer",
+          !isExpanded && "after:absolute after:-right-1 after:top-[-20%] after:h-[110%] after:w-[20rem]  after:from-background hover:border-white/20 hover:bg-muted [&>*]:flex [&>*]:items-center [&>*]:gap-2 hover:scale-105",
           isExpanded && "bg-muted/90 px-8 py-6 hover:border-white/20 overflow-hidden",
           className
         )}
       >
-
         {isExpanded && (
           <button
             onClick={(e) => {
@@ -122,29 +123,17 @@ function DisplayCard({
         </div>
 
         {isExpanded ? (
-          // 外层保持 overflow-hidden，滚动交给内容区
           <div className="mt-4 flex-1 overflow-hidden">
-            {/* 标题区（不滚动） */}
             <div className="text-center mb-3">
               <p className="text-md text-muted-foreground">{description}</p>
             </div>
-
-            {/* 内容区（滚动） */}
             <div className="relative">
               <div className="max-h-[58vh] overflow-y-auto pr-3 [-webkit-overflow-scrolling:touch]">
                 {id === 0 && <OrderProcessingDemo />}
-                {id === 1 && (
-                  <InventoryDemo />
-                )}
-                {id === 2 && (
-                  <FullfillmentDemo />
-                )}
-                {id === 3 && (
-                  <CustomizationDemo />
-                )}
-                {id === 4 && (
-                  <AnalyticsDemo />
-                )}
+                {id === 1 && <InventoryDemo />}
+                {id === 2 && <FullfillmentDemo />}
+                {id === 3 && <CustomizationDemo />}
+                {id === 4 && <AnalyticsDemo />}
               </div>
             </div>
           </div>
@@ -166,9 +155,7 @@ function DisplayCards({ cards }: DisplayCardsProps) {
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
   const [isUserExpanded, setIsUserExpanded] = useState(false);
 
-  // Scroll-driven card expansion disabled - cards only expand on click
-
-  // Keyboard navigation
+  // 键盘导航
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!isUserExpanded) return;
@@ -191,25 +178,14 @@ function DisplayCards({ cards }: DisplayCardsProps) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [cards, isUserExpanded]);
 
-  const defaultCards: DisplayCardProps[] = [
-    {
-      className: "[grid-area:stack] hover:-translate-y-10 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration:700 hover:grayscale-0 before:left-0 before:top-0",
-    },
-    {
-      className: "[grid-area:stack] translate-x-16 translate-y-10 hover:-translate-y-1 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration:700 hover:grayscale-0 before:left-0 before:top-0",
-    },
-    {
-      className: "[grid-area:stack] translate-x-32 translate-y-20 hover:translate-y-10",
-    },
-  ];
-
+  // 你传入的卡组或默认
   const displayCards = cards || defaultCards;
 
+  // ✅ 修正这里：展开被点击的那一张，而不是总是 0
   const handleCardClick = (_id: number) => {
-    setExpandedCard(0);
+    setExpandedCard(_id);
     setIsUserExpanded(true);
   };
-
 
   const handleClose = () => {
     setExpandedCard(null);
@@ -226,23 +202,85 @@ function DisplayCards({ cards }: DisplayCardsProps) {
     setExpandedCard(prev => prev === null ? 0 : Math.min(maxIndex, (prev || 0) + 1));
   };
 
+  // —— 这里是“阶梯式分层”的包装渲染 —— //
   return (
-    <div className="grid [grid-template-areas:'stack'] place-items-center opacity-100 animate-in fade-in-0 duration-700">
-      {displayCards.map((cardProps, index) => (
-        <DisplayCard
-          key={index}
-          {...cardProps}
-          id={index}
-          onCardClick={handleCardClick}
-          isExpanded={expandedCard === index}
-          onClose={handleClose}
-        />
-      ))}
+    <div className="relative w-full max-w-3xl min-h-[360px] py-10 mx-auto">
+      {/* 阶梯层叠：用外层 motion.div 给每张卡未展开时的位移/旋转/缩放/透明度 */}
+      {displayCards.map((cardProps, index) => {
+        const GAP_X = 80;   // 右移
+        const GAP_Y = -20;  // 上移（负数=向上）
+        const ROT = -1.5; // 每层旋转
+        const SCALE = 0.02; // 每层缩放衰减
+        const OPAC = 0.18; // 每层透明度衰减
+        const BLUR = -0.5;  // 每层模糊衰减(px)
 
-      {/* Navigation Controls for Expanded Card */}
+        const depth = index;
+        const isThisExpanded = expandedCard === index;
+        const anyExpanded = expandedCard !== null;
+
+        // 计算未展开状态下的基础变换
+        const baseX = depth * GAP_X;
+        const baseY = depth * GAP_Y;
+        const baseScale = 1 - depth * SCALE;
+        const baseRotate = depth * ROT;
+
+        return (
+          <motion.div
+            key={index}
+            initial={false}
+            animate={
+              isThisExpanded
+                ? { x: 0, y: 0, rotate: 0, scale: 1, opacity: 1, filter: "blur(0px)" }
+                : {
+                  x: baseX,
+                  y: baseY,
+                  rotate: baseRotate,
+                  scale: baseScale,
+                  opacity: Math.max(1 - depth * OPAC, 0.25),
+                  filter: `blur(${depth * BLUR}px)`,
+                }
+            }
+            // ✨ 悬浮上抬（仅未展开时生效）
+            whileHover={
+              !isThisExpanded && !anyExpanded
+                ? {
+                  y: baseY - 30,             // 上抬 10px
+                  scale: baseScale + 0.02,    // 轻微放大
+                  rotate: baseRotate + 0.3,   // 微调旋转，增加“浮起”感觉
+                }
+                : undefined
+            }
+            transition={{
+              type: "spring",
+              stiffness: 260,
+              damping: 28,
+              // 让 hover 动画更灵敏
+              layout: { duration: 0.2 },
+            }}
+            style={{
+              transformOrigin: "left center",
+              zIndex: isThisExpanded ? 1000 : 30 - depth,
+            }}
+            className={cn(
+              "absolute left-0 top-1/2 -translate-y-1/2 will-change-transform",
+              anyExpanded && !isThisExpanded && "pointer-events-none"
+            )}
+          >
+            <DisplayCard
+              {...cardProps}
+              id={index}
+              onCardClick={handleCardClick}
+              isExpanded={isThisExpanded}
+              onClose={handleClose}
+            />
+          </motion.div>
+        );
+      })}
+
+
+      {/* 导航控件（固定在视口） */}
       {expandedCard !== null && isUserExpanded && (
         <>
-          {/* Previous Button */}
           {expandedCard > 0 && (
             <button
               onClick={handlePrevious}
@@ -253,7 +291,6 @@ function DisplayCards({ cards }: DisplayCardsProps) {
             </button>
           )}
 
-          {/* Next Button */}
           {expandedCard < displayCards.length - 1 && (
             <button
               onClick={handleNext}
@@ -264,7 +301,6 @@ function DisplayCards({ cards }: DisplayCardsProps) {
             </button>
           )}
 
-          {/* Card Indicators */}
           <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex gap-2 bg-black/50 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
             {displayCards.map((_, index) => (
               <button
@@ -284,6 +320,7 @@ function DisplayCards({ cards }: DisplayCardsProps) {
   );
 }
 
+// 你原本的默认卡片数据
 const defaultCards: DisplayCardProps[] = [
   {
     id: 0,
@@ -292,8 +329,7 @@ const defaultCards: DisplayCardProps[] = [
     description: "See how easily orders can be captured and validated from the salesperson's perspective and how they instantly appear for your admin team. No more manual entry errors or delays!",
     iconClassName: "text-yellow-500",
     titleClassName: "text-yellow-500",
-    className:
-      "[grid-area:stack] translate-x-24 translate-y-20 hover:translate-y-10",
+    className: "translate-x-24 translate-y-20 hover:translate-y-10",
   },
   {
     id: 1,
@@ -302,8 +338,7 @@ const defaultCards: DisplayCardProps[] = [
     description: "Accurate inventory is crucial. Watch how stock levels update automatically as orders are processed, preventing overselling and ensuring sales teams have the latest information.",
     iconClassName: "text-yellow-500",
     titleClassName: "text-yellow-500",
-    className:
-      "[grid-area:stack] translate-x-12 translate-y-10 hover:-translate-y-1",
+    className: "translate-x-12 translate-y-10 hover:-translate-y-1",
   },
   {
     id: 2,
@@ -312,8 +347,7 @@ const defaultCards: DisplayCardProps[] = [
     description: "Reduce manual work in your warehouse. See how the system can guide your team through picking, packing, and shipping.",
     iconClassName: "text-yellow-500",
     titleClassName: "text-yellow-500",
-    className:
-      "[grid-area:stack] translate-x-0 translate-y-0 hover:-translate-y-2",
+    className: "translate-x-0 translate-y-0 hover:-translate-y-2",
   },
   {
     id: 3,
@@ -322,20 +356,17 @@ const defaultCards: DisplayCardProps[] = [
     description: "A single view of your customer's history and preferences helps you provide better service and build lasting relationships.",
     iconClassName: "text-yellow-500",
     titleClassName: "text-yellow-500",
-    className:
-      "[grid-area:stack] -translate-x-12 translate-y-8 hover:-translate-y-1",
+    className: "-translate-x-12 translate-y-8 hover:-translate-y-1",
   },
   {
     id: 4,
     icon: <Sparkles className="size-4 text-green-300" />,
     title: "Step 5: Make Data-Driven Decisions with Analytics",
-    description: "A single view of your customer's history and preferences helps you provide better service and build lasting relationships.",
+    description: "Turn your operational data into actionable insights. Our system provides comprehensive reports to help you track performance and identify growth opportunities.",
     iconClassName: "text-yellow-500",
     titleClassName: "text-yellow-500",
-    className:
-      "[grid-area:stack] -translate-x-20 translate-y-16 hover:-translate-y-0",
+    className: "-translate-x-20 translate-y-16 hover:-translate-y-0",
   },
-
 ];
 
 export default function DisplayCardsDemo() {
