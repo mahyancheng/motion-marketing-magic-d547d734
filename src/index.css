@@ -1,11 +1,6 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-
-@theme inline {
-  --animate-marquee: marquee var(--duration) infinite linear;
-  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
-}
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @keyframes marquee {
   from {
