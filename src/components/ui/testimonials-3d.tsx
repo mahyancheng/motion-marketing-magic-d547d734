@@ -75,7 +75,7 @@ function TestimonialCard({ img, name, username, body, country }: (typeof testimo
       <CardContent>
         <div className="flex items-center gap-2.5">
           <Avatar className="size-9">
-            <AvatarImage src={img} alt={`${name} avatar`} />
+            <AvatarImage src={img} alt="@reui_io" />
             <AvatarFallback>{name[0]}</AvatarFallback>
           </Avatar>
           <div className="flex flex-col">
@@ -85,13 +85,13 @@ function TestimonialCard({ img, name, username, body, country }: (typeof testimo
             <p className="text-xs font-medium text-muted-foreground">{username}</p>
           </div>
         </div>
-        <blockquote className="mt-3 text-sm text-secondary-foreground">{body}</blockquote>
+        <blockquote className="mt-3 text-sm text-econdary-foreground">{body}</blockquote>
       </CardContent>
     </Card>
   );
 }
 
-export default function Testimonials3D() {
+export default function DemoOne() {
   return (
     <div className="border border-border rounded-lg relative flex h-96 w-full max-w-[800px] flex-row items-center justify-center overflow-hidden gap-1.5 [perspective:300px]">
       <div
@@ -113,7 +113,7 @@ export default function Testimonials3D() {
             <TestimonialCard key={review.username} {...review} />
           ))}
         </Marquee>
-        {/* Vertical Marquee (downwards) */}
+        {/* Vertical Marquee (upwards) */}
         <Marquee vertical pauseOnHover repeat={3} className="[--duration:40s]">
           {testimonials.map((review) => (
             <TestimonialCard key={review.username} {...review} />

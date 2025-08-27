@@ -5,7 +5,7 @@ import Footer from './Footer'; // adjust path if needed
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent } from "@/components/ui/navigation-menu";
 import DynamicActionBar, { type ActionItem } from "@/components/ui/dynamic-action";
 import { Search, Megaphone, CodeXml } from "lucide-react";
-import Testimonials3DReal from "@/components/ui/testimonials-3d-real";
+import DemoOne from "@/components/ui/testimonials-3d";
 export const Index = () => {
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
@@ -351,7 +351,7 @@ const Testimonials = () => {
         </motion.div>
 
         <div className="flex justify-center mt-12">
-          <Testimonials3DReal />
+          <DemoOne />
         </div>
       </div>
     </div>
