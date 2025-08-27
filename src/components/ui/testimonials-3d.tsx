@@ -1,69 +1,69 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent } from '@/components/ui/card';
-import { Marquee } from '@/components/ui/3d-testimonials';
+import { Marquee } from './3d-testimonials';
 
 // Unique reviews data
 const testimonials = [
   {
     name: 'Ava Green',
     username: '@ava',
-    body: 'LeadZap AI made my workflow 10x faster!',
+    body: 'Cascade AI made my workflow 10x faster!',
     img: 'https://randomuser.me/api/portraits/women/32.jpg',
     country: '🇦🇺 Australia',
   },
   {
     name: 'Ana Miller',
     username: '@ana',
-    body: 'The automation features are a game changer!',
+    body: 'Vertical marquee is a game changer!',
     img: 'https://randomuser.me/api/portraits/women/68.jpg',
     country: '🇩🇪 Germany',
   },
   {
     name: 'Mateo Rossi',
     username: '@mat',
-    body: 'Lead generation has never been this smooth!',
+    body: 'Animations are buttery smooth!',
     img: 'https://randomuser.me/api/portraits/men/51.jpg',
     country: '🇮🇹 Italy',
   },
   {
     name: 'Maya Patel',
     username: '@maya',
-    body: 'Setup was a breeze, results were instant!',
+    body: 'Setup was a breeze!',
     img: 'https://randomuser.me/api/portraits/women/53.jpg',
     country: '🇮🇳 India',
   },
   {
     name: 'Noah Smith',
     username: '@noah',
-    body: 'Best lead generation system I\'ve used!',
+    body: 'Best marquee component!',
     img: 'https://randomuser.me/api/portraits/men/33.jpg',
     country: '🇺🇸 USA',
   },
   {
     name: 'Lucas Stone',
     username: '@luc',
-    body: 'Very customizable and results-driven.',
+    body: 'Very customizable and smooth.',
     img: 'https://randomuser.me/api/portraits/men/22.jpg',
     country: '🇫🇷 France',
   },
   {
     name: 'Haruto Sato',
     username: '@haru',
-    body: 'Impressive ROI improvements across the board!',
+    body: 'Impressive performance on mobile!',
     img: 'https://randomuser.me/api/portraits/men/85.jpg',
     country: '🇯🇵 Japan',
   },
   {
     name: 'Emma Lee',
     username: '@emma',
-    body: 'Love the AI-powered lead scoring feature!',
+    body: 'Love the pause on hover feature!',
     img: 'https://randomuser.me/api/portraits/women/45.jpg',
     country: '🇨🇦 Canada',
   },
   {
     name: 'Carlos Ray',
     username: '@carl',
-    body: 'Perfect for scaling our digital marketing.',
+    body: 'Great for testimonials and logos.',
     img: 'https://randomuser.me/api/portraits/men/61.jpg',
     country: '🇪🇸 Spain',
   },
