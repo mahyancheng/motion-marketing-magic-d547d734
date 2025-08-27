@@ -32,8 +32,8 @@ export const StickyScroll = ({
   // 居中弹出动画
   const modalVariants = {
     hidden: { opacity: 0, scale: 0.96, y: 12 },
-    show: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.25, ease: "easeOut" } },
-    exit: { opacity: 0, scale: 0.98, y: 10, transition: { duration: 0.2, ease: "easeIn" } },
+    show: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.25, ease: "easeOut" as const } },
+    exit: { opacity: 0, scale: 0.98, y: 10, transition: { duration: 0.2, ease: "easeIn" as const } },
   };
 
   // 进度点切换（不再依赖滚动/section refs）

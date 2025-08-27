@@ -5,6 +5,7 @@ import Footer from './Footer'; // adjust path if needed
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent } from "@/components/ui/navigation-menu";
 import DynamicActionBar, { type ActionItem } from "@/components/ui/dynamic-action";
 import { Search, Megaphone, CodeXml } from "lucide-react";
+import Testimonials3D from "@/components/ui/testimonials-3d";
 export const Index = () => {
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
@@ -331,29 +332,8 @@ const Services = () => {
   );
 };
 
-// Testimonials component
+// Testimonials component  
 const Testimonials = () => {
-  const testimonials = [
-    {
-      name: "Sarah Johnson",
-      position: "CEO, TechStart Inc.",
-      content: "LeadZap transformed our digital strategy. Their Push-Pull approach helped us increase our qualified leads by 230% in just three months. We couldn't be happier with the results!",
-      image: "https://randomuser.me/api/portraits/women/12.jpg"
-    },
-    {
-      name: "Michael Chen",
-      position: "Marketing Director, GrowFast",
-      content: "Working with LeadZap has been a game-changer for our business. Their data-driven approach to marketing delivers real results that we can measure and scale.",
-      image: "https://randomuser.me/api/portraits/men/32.jpg"
-    },
-    {
-      name: "Emma Rodriguez",
-      position: "Founder, BrightIdea Solutions",
-      content: "After struggling with inconsistent lead generation, LeadZap's framework completely revolutionized how we approach our marketing. Our conversion rates are up 45% and still climbing!",
-      image: "https://randomuser.me/api/portraits/women/65.jpg"
-    }
-  ];
-
   return (
     <div id="testimonials" className="py-16 lg:py-24 bg-gray-900">
       <div className="container mx-auto px-4 md:px-6">
@@ -366,35 +346,12 @@ const Testimonials = () => {
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Client Testimonials</h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-            Don't just take our word for it. Here's what our clients have to say.
+            Don't just take our word for it. Here's what our clients have to say about our AI-powered solutions.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              className="bg-black p-6 md:p-8 rounded-xl shadow-lg"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              viewport={{ once: true }}
-            >
-              <div className="flex items-center mb-6">
-                <div className="w-14 h-14 rounded-full overflow-hidden mr-4">
-                  <img src={testimonial.image} alt={testimonial.name} className="w-full h-full object-cover" />
-                </div>
-                <div>
-                  <h4 className="text-xl font-semibold">{testimonial.name}</h4>
-                  <p className="text-yellow-400">{testimonial.position}</p>
-                </div>
-              </div>
-              <p className="text-gray-300 italic">{testimonial.content}</p>
-              <div className="mt-4 flex">
-                <span className="text-yellow-400">★★★★★</span>
-              </div>
-            </motion.div>
-          ))}
+        <div className="flex justify-center mt-12">
+          <Testimonials3D />
         </div>
       </div>
     </div>
