@@ -30,10 +30,10 @@ function useStepOffsets() {
       let gap = 10;
 
       if (w >= 1024) {        // lg+
-        headerH = 64;
+        headerH = 10;
         gap = 10;
       } else if (w >= 768) {  // md
-        headerH = 60;
+        headerH = 10;
         gap = 12;
       }
 
@@ -56,7 +56,9 @@ export default function ProcessStepsSection() {
     <section className="min-h-screen bg-gray-50">
       <div className="w-full">
         {/* 这个容器提供足够滚动高度 */}
-        <ContainerScroll className="w-full min-h-[40vh] pb-20">
+        <ContainerScroll className="w-full pb-40"
+          style={{ minHeight: `${PROCESS_STEPS.length * 120}vh` }}
+        >
           {PROCESS_STEPS.map((step, index) => {
             const bodyRef = useRef<HTMLDivElement>(null);
             const cardRef = useRef<HTMLDivElement>(null);
@@ -64,21 +66,23 @@ export default function ProcessStepsSection() {
             useClampToViewport({ cardRef, bodyRef, bottomPad: 24 });
 
             return (
+              // ✅ 只展示关键变动（其余保持你现有逻辑/props）
               <CardSticky
                 key={step.id}
-                ref={cardRef}
                 index={index}
                 topBasePx={topBasePx}
                 perStepOffsetPx={perStepOffsetPx}
                 baseZ={3000}
                 zStep={20}
                 className="
-        rounded-lg border bg-white shadow-sm backdrop-blur-md overflow-hidden
-        mx-auto w-[94vw] sm:w-[90vw] md:w-[86vw] lg:w-[80vw] max-w-6xl
-        h-auto min-h-[56vh]                  /* 外壳自适应 + 下限 */
-      "
+                  rounded-lg border bg-white shadow-sm backdrop-blur-md
+                  /* ❌ 去掉 overflow-hidden（否则内容会被裁剪） */
+                  /* ❌ 去掉固定高度和 max-h，改为自适应 */
+                  mx-auto w-[94vw] sm:w-[90vw] md:w-[86vw] lg:w-[80vw] max-w-6xl
+                  h-auto
+                "
               >
-                {/* 头部固定高，避免高度抖动 */}
+                {/* 头部保持固定高，避免换行抖动 */}
                 <div className="px-4 border-b bg-brand-50 flex items-center justify-between gap-4 h-14 md:h-[60px] lg:h-16 bg-yellow-300">
                   <h3 className="text-base md:text-lg font-semibold text-gray-800 truncate">{step.title}</h3>
                   <div className="text-xs md:text-sm font-bold text-brand-600 bg-white rounded-full w-7 h-7 md:w-8 md:h-8 flex items-center justify-center shadow-sm">
@@ -86,13 +90,16 @@ export default function ProcessStepsSection() {
                   </div>
                 </div>
 
-                {/* ✅ 内容区交给内部滚动，maxHeight 由 hook 实测设置 */}
-                <div ref={bodyRef} className={`flex-1 overflow-auto p-3 md:p-4 ${index < 2 ? "pb-28 md:pb-32" : ""}`}>
+
+                {/* ✅ 主体不再单独滚动，也不要 overflow-auto */}
+                <div className={`flex-1 p-3 md:p-4 ${index < 2 ? "pb-28 md:pb-32" : ""}`}>
                   {step.component}
                 </div>
               </CardSticky>
+
             );
           })}
+          <div className="h-[35vh] md:h-[40vh] lg:h-[48vh]" />
 
         </ContainerScroll>
       </div>

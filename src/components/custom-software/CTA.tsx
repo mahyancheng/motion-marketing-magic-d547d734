@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect, useMemo } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
@@ -8,29 +8,17 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import ProcessStepsSection from "../ProcessStepsSection"; // sticky 步骤区
+import ProcessStepsSection from "../ProcessStepsSection";
 
-/** 
- * 计算真实视口高度（避免移动端 100vh 问题），
- * 并根据断点返回合适的“占比”高度。
- */
+// —— 如果你已经有这类 hook，就保留你自己的 —— //
+// 简单版：让 demo 高度在 480~1000px 之间自适应
 function useResponsiveDemoHeight() {
-  const [vhUnit, setVhUnit] = useState<number>(window?.innerHeight ? window.innerHeight * 0.01 : 7.2); // 每 1vh 的像素
-  const [percent, setPercent] = useState<number>(0.9); // 占视口高度的比例：默认 90%
-
+  const [h, setH] = useState(720);
   useEffect(() => {
     const update = () => {
-      const vh = window.innerHeight * 0.01;
-      setVhUnit(vh);
-
-      // 简单断点：可按需微调
-      const w = window.innerWidth;
-      if (w < 480) setPercent(0.78);         // 手机
-      else if (w < 768) setPercent(0.82);    // 小平板
-      else if (w < 1024) setPercent(0.86);   // 平板/小屏笔电
-      else setPercent(0.9);                  // 桌面
+      const base = Math.min(Math.max(window.innerHeight * 0.90, 480), 1000);
+      setH(base);
     };
-
     update();
     window.addEventListener("resize", update);
     window.addEventListener("orientationchange", update);
@@ -39,22 +27,36 @@ function useResponsiveDemoHeight() {
       window.removeEventListener("orientationchange", update);
     };
   }, []);
+  return h;
+}
 
-  // 返回像素高度，必要时加上上限/下限
-  const heightPx = useMemo(() => {
-    const h = vhUnit * 200 * percent;      // calc(var(--app-vh) * 100) * percent
-    const clamped = Math.max(420, Math.min(h, 1120)); // 420px~980px 之间
-    return clamped;
-  }, [vhUnit, percent]);
+// 允许内层滚到底/顶时，将多余滚动量传给外层页面（链式滚动）
+function useScrollChain(ref: React.RefObject<HTMLElement | null>) {
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
 
-  return heightPx;
+    const onWheel = (e: WheelEvent) => {
+      const { scrollTop, scrollHeight, clientHeight } = el;
+      const atTop = scrollTop <= 0;
+      const atBottom = Math.ceil(scrollTop + clientHeight) >= scrollHeight;
+
+      if ((atTop && e.deltaY < 0) || (atBottom && e.deltaY > 0)) {
+        // 让页面继续滚
+        // 不要阻止默认，交给浏览器把滚动传给外层
+        // 如果外层是自定义容器，也可以改成 window.scrollBy({ top: e.deltaY })
+      }
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: true });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, [ref]);
 }
 
 const CTASection = () => {
   const [open, setOpen] = useState(false);
-  const hasPrefetched = useRef(false);
 
-  // 展开后，平滑滚动到 #demo-anchor
+  // 展开后滚动到锚点
   useEffect(() => {
     if (open) {
       const id = requestAnimationFrame(() => {
@@ -67,8 +69,11 @@ const CTASection = () => {
     }
   }, [open]);
 
-  // 计算自适应高度（像素）
   const demoHeightPx = useResponsiveDemoHeight();
+
+  // 用 ref 开启链式滚动
+  const demoScrollRef = useRef<HTMLDivElement>(null);
+  useScrollChain(demoScrollRef);
 
   return (
     <Collapsible open={open} onOpenChange={setOpen}>
@@ -86,8 +91,7 @@ const CTASection = () => {
               Ready to build custom software?
             </h2>
             <p className="text-lg mb-8">
-              Talk to our team about your goals and get a tailored plan from a
-              trusted software development company.
+              Talk to our team about your goals and get a tailored plan from a trusted software development company.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -109,7 +113,7 @@ const CTASection = () => {
         </div>
       </section>
 
-      {/* Demo Section（自适应高度的内滚容器） */}
+      {/* Demo Section */}
       <CollapsibleContent id="demo" forceMount className="mt-0 overflow-visible">
         <div id="demo-anchor" className="h-0" />
 
@@ -124,14 +128,24 @@ const CTASection = () => {
               className="py-8 sm:py-10 md:py-12 bg-black"
             >
               <div className="container mx-auto px-4 md:px-6">
-                {/* ✅ 自适应高度 + 内滚 */}
+                {/* ⬇️ demo 宽一些 + 居中 + 链式滚动 */}
                 <div
-                  data-demo-scroll
-                  className="relative overflow-y-auto overscroll-contain no-scrollbar rounded-lg"
-                  style={{ height: `${demoHeightPx + 60}px` }} // 比之前多 60px 余量
+                  // ref={demoScrollRef}
+                  // data-demo-scroll
+                  className="
+                    relative overflow-y-auto no-scrollbar rounded-xl
+                    mx-auto
+                    /* ⚠️ 加宽一些 */
+                    w-[98vw] sm:w-[94vw] md:w-[90vw] lg:w-[86vw] xl:w-[84vw]
+                    max-w-[1400px]
+                    bg-black/40 ring-1 ring-white/10
+                    overscroll-auto    /* 允许链式滚动到页面 */
+                  "
+                  style={{ height: `${demoHeightPx + 200}px` }}   // ← 外层高度控制
                 >
                   <ProcessStepsSection />
                 </div>
+
 
               </div>
             </motion.section>
