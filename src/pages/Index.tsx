@@ -109,7 +109,6 @@ export const Navbar = () => {
         </div>
         <div className="hidden md:flex items-center space-x-8">
           <Link to="/" className="hover:text-yellow-400 transition-colors">Home</Link>
-          <Link to="/blog" className="hover:text-yellow-400 transition-colors">Blog</Link>
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
@@ -122,6 +121,7 @@ export const Navbar = () => {
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
+          <Link to="/blog" className="hover:text-yellow-400 transition-colors">Blog</Link>
           <Link to="/contact" className="hover:text-yellow-400 transition-colors">Contact Us</Link>
         </div>
         <Link to="/contact">

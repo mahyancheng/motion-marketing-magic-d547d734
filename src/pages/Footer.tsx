@@ -34,6 +34,7 @@ const Footer: React.FC = () => {
                             <li className="ml-4"><a href="/seo" className="hover:underline">SEO</a></li>
                             <li className="ml-4"><a href="/social-media-ads" className="hover:underline">Social Media Paid Ads</a></li>
                             <li className="ml-4"><a href="/customer-software-demo" className="hover:underline">Custom Software solution</a></li>
+                            <li><a href="/blog" className="hover:underline">Blog</a></li>
                             <li><a href="/contact" className="hover:underline">Contact Us</a></li>
                         </ul>
                     </div>
