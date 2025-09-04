@@ -11,27 +11,34 @@ import SocialMediaAds from "./pages/SocialMediaAds";
 import OrderManagement from "./pages/OrderManagement";
 import Contact from "./pages/Contact";
 import CustomerSoftware from "./pages/CustomerSoftware";
+import Blog from "./pages/Blog";
+import AdminDashboard from "./pages/AdminDashboard";
 import ScrollToTop from "@/components/ScrollToTop";
+import { ContentProvider } from "@/contexts/ContentContext";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-      <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/seo" element={<SEO />} />
-          <Route path="/social-media-ads" element={<SocialMediaAds />} />
-          <Route path="/customer-software-demo" element={<CustomerSoftware/>} />
-          <Route path="/order-management" element={<OrderManagement />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<NotFound />} />
-          </Routes>
-      </BrowserRouter>
+      <ContentProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+        <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/seo" element={<SEO />} />
+            <Route path="/social-media-ads" element={<SocialMediaAds />} />
+            <Route path="/customer-software-demo" element={<CustomerSoftware/>} />
+            <Route path="/order-management" element={<OrderManagement />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="*" element={<NotFound />} />
+            </Routes>
+        </BrowserRouter>
+      </ContentProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
