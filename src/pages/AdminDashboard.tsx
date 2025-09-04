@@ -9,8 +9,9 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
-import { PlusCircle, Edit, Trash2, Users, FileText } from 'lucide-react';
+import { PlusCircle, Edit, Trash2, Users, FileText, ArrowLeft } from 'lucide-react';
 import { BlogPost, Testimonial } from '@/contexts/ContentContext';
+import { motion } from 'framer-motion';
 
 export default function AdminDashboard() {
   const { 
@@ -95,66 +96,102 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-background">
+    <div className="min-h-screen bg-black text-white">
       {/* Header */}
-      <header className="border-b bg-background/80 backdrop-blur-sm sticky top-0 z-10">
+      <header className="border-b border-gray-800 bg-black/90 backdrop-blur-sm sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-primary">Admin Dashboard</h1>
-          <nav className="flex gap-6">
-            <Link to="/blog" className="text-muted-foreground hover:text-foreground transition-colors">
-              View Blog
+          <div className="flex items-center gap-4">
+            <Link to="/" className="flex items-center gap-2 text-gray-300 hover:text-yellow-400 transition-colors">
+              <ArrowLeft className="w-5 h-5" />
+              Back to Home
             </Link>
-            <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors">
-              Home
+            <h1 className="text-2xl font-bold text-yellow-400">Admin Dashboard</h1>
+          </div>
+          <nav className="flex gap-6">
+            <Link to="/blog" className="text-gray-300 hover:text-yellow-400 transition-colors">
+              View Blog
             </Link>
           </nav>
         </div>
       </header>
 
       <div className="max-w-6xl mx-auto px-4 py-8">
+        {/* Welcome Section */}
+        <motion.div
+          className="mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className="text-4xl font-bold mb-4">
+            Welcome to <span className="text-yellow-400">LeadZap</span> Admin
+          </h2>
+          <p className="text-gray-300 text-lg">
+            Manage your blog content and client testimonials to showcase your marketing expertise.
+          </p>
+        </motion.div>
+
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Posts</CardTitle>
-              <FileText className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{blogPosts.length}</div>
-            </CardContent>
-          </Card>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <Card className="bg-gray-900 border-gray-800">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-gray-300">Total Posts</CardTitle>
+                <FileText className="h-4 w-4 text-yellow-400" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-white">{blogPosts.length}</div>
+                <p className="text-xs text-gray-500">Marketing insights published</p>
+              </CardContent>
+            </Card>
+          </motion.div>
           
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Testimonials</CardTitle>
-              <Users className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{testimonials.length}</div>
-            </CardContent>
-          </Card>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <Card className="bg-gray-900 border-gray-800">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-gray-300">Client Testimonials</CardTitle>
+                <Users className="h-4 w-4 text-yellow-400" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-white">{testimonials.length}</div>
+                <p className="text-xs text-gray-500">Happy client reviews</p>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
 
         <Tabs defaultValue="posts" className="space-y-4">
-          <TabsList>
-            <TabsTrigger value="posts">Blog Posts</TabsTrigger>
-            <TabsTrigger value="testimonials">Testimonials</TabsTrigger>
+          <TabsList className="bg-gray-900 border-gray-800">
+            <TabsTrigger value="posts" className="text-gray-300 data-[state=active]:bg-yellow-400 data-[state=active]:text-black">
+              Blog Posts
+            </TabsTrigger>
+            <TabsTrigger value="testimonials" className="text-gray-300 data-[state=active]:bg-yellow-400 data-[state=active]:text-black">
+              Testimonials
+            </TabsTrigger>
           </TabsList>
 
           {/* Blog Posts Tab */}
           <TabsContent value="posts" className="space-y-4">
             <div className="flex justify-between items-center">
-              <h2 className="text-xl font-semibold">Manage Blog Posts</h2>
+              <h2 className="text-2xl font-semibold text-white">Manage Blog Posts</h2>
               <Dialog open={isAddingPost} onOpenChange={setIsAddingPost}>
                 <DialogTrigger asChild>
-                  <Button>
+                  <Button className="bg-yellow-400 text-black hover:bg-yellow-300">
                     <PlusCircle className="w-4 h-4 mr-2" />
                     Add New Post
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-gray-900 border-gray-800 text-white">
                   <DialogHeader>
-                    <DialogTitle>Create New Blog Post</DialogTitle>
+                    <DialogTitle className="text-yellow-400">Create New Blog Post</DialogTitle>
                   </DialogHeader>
                   <div className="space-y-4">
                     <div>
@@ -223,17 +260,17 @@ export default function AdminDashboard() {
 
             <div className="grid gap-4">
               {blogPosts.map((post) => (
-                <Card key={post.id}>
+                <Card key={post.id} className="bg-gray-900 border-gray-800">
                   <CardHeader>
                     <div className="flex justify-between items-start">
                       <div className="space-y-2">
-                        <CardTitle className="text-lg">{post.title}</CardTitle>
-                        <p className="text-sm text-muted-foreground">
+                        <CardTitle className="text-lg text-white">{post.title}</CardTitle>
+                        <p className="text-sm text-gray-400">
                           by {post.author} • {post.publishedAt.toLocaleDateString()}
                         </p>
                         <div className="flex flex-wrap gap-1">
                           {post.tags.map((tag) => (
-                            <Badge key={tag} variant="secondary" className="text-xs">
+                            <Badge key={tag} className="text-xs bg-yellow-400/20 text-yellow-400 border-yellow-400/30">
                               {tag}
                             </Badge>
                           ))}
@@ -324,7 +361,7 @@ export default function AdminDashboard() {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-muted-foreground line-clamp-2">{post.excerpt}</p>
+                    <p className="text-gray-300 line-clamp-2">{post.excerpt}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -334,17 +371,17 @@ export default function AdminDashboard() {
           {/* Testimonials Tab */}
           <TabsContent value="testimonials" className="space-y-4">
             <div className="flex justify-between items-center">
-              <h2 className="text-xl font-semibold">Manage Testimonials</h2>
+              <h2 className="text-2xl font-semibold text-white">Manage Client Testimonials</h2>
               <Dialog open={isAddingTestimonial} onOpenChange={setIsAddingTestimonial}>
                 <DialogTrigger asChild>
-                  <Button>
+                  <Button className="bg-yellow-400 text-black hover:bg-yellow-300">
                     <PlusCircle className="w-4 h-4 mr-2" />
                     Add New Testimonial
                   </Button>
                 </DialogTrigger>
-                <DialogContent>
+                <DialogContent className="bg-gray-900 border-gray-800 text-white">
                   <DialogHeader>
-                    <DialogTitle>Create New Testimonial</DialogTitle>
+                    <DialogTitle className="text-yellow-400">Create New Testimonial</DialogTitle>
                   </DialogHeader>
                   <div className="space-y-4">
                     <div>
@@ -403,7 +440,7 @@ export default function AdminDashboard() {
 
             <div className="grid gap-4">
               {testimonials.map((testimonial) => (
-                <Card key={testimonial.id}>
+                <Card key={testimonial.id} className="bg-gray-900 border-gray-800">
                   <CardHeader>
                     <div className="flex justify-between items-start">
                       <div className="flex items-center gap-3">
@@ -413,9 +450,9 @@ export default function AdminDashboard() {
                           className="w-12 h-12 rounded-full object-cover"
                         />
                         <div>
-                          <h3 className="font-semibold">{testimonial.name}</h3>
-                          <p className="text-sm text-muted-foreground">{testimonial.username}</p>
-                          <p className="text-sm text-muted-foreground">{testimonial.country}</p>
+                          <h3 className="font-semibold text-white">{testimonial.name}</h3>
+                          <p className="text-sm text-gray-400">{testimonial.username}</p>
+                          <p className="text-sm text-gray-400">{testimonial.country}</p>
                         </div>
                       </div>
                       <div className="flex gap-2">
@@ -491,7 +528,7 @@ export default function AdminDashboard() {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-muted-foreground">"{testimonial.body}"</p>
+                    <p className="text-gray-300">"{testimonial.body}"</p>
                   </CardContent>
                 </Card>
               ))}

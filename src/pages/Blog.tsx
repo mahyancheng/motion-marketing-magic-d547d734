@@ -3,24 +3,25 @@ import { useContent } from '@/contexts/ContentContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Calendar, ArrowRight } from 'lucide-react';
+import { Calendar, ArrowRight, User } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function Blog() {
   const { blogPosts } = useContent();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-background">
+    <div className="min-h-screen bg-black text-white">
       {/* Header */}
-      <header className="border-b bg-background/80 backdrop-blur-sm sticky top-0 z-10">
+      <header className="border-b border-gray-800 bg-black/90 backdrop-blur-sm sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link to="/" className="text-2xl font-bold text-primary">
-            TechBlog
+          <Link to="/" className="text-2xl font-bold text-yellow-400">
+            LeadZap Marketing
           </Link>
           <nav className="flex gap-6">
-            <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link to="/" className="text-gray-300 hover:text-yellow-400 transition-colors">
               Home
             </Link>
-            <Link to="/admin" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link to="/admin" className="text-gray-300 hover:text-yellow-400 transition-colors">
               Admin
             </Link>
           </nav>
@@ -28,79 +29,190 @@ export default function Blog() {
       </header>
 
       {/* Hero Section */}
-      <section className="py-20 text-center">
+      <section className="py-20 text-center bg-gradient-to-b from-black via-gray-900 to-black">
         <div className="max-w-4xl mx-auto px-4">
-          <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            Latest Tech Insights
-          </h1>
-          <p className="text-xl text-muted-foreground mb-8">
-            Discover the latest trends, tutorials, and insights in web development and technology.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              Marketing <span className="text-yellow-400">Insights</span>
+            </h1>
+            <p className="text-xl text-gray-300 mb-8">
+              Discover proven strategies, expert insights, and actionable tips to accelerate your digital marketing success.
+            </p>
+            <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto rounded-full"></div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Blog Posts Grid */}
-      <section className="py-16">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post) => (
-              <Card key={post.id} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-2">
-                {post.imageUrl && (
-                  <div className="aspect-video overflow-hidden rounded-t-lg">
-                    <img 
-                      src={post.imageUrl} 
-                      alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
+      {/* Featured Post */}
+      {blogPosts.length > 0 && (
+        <section className="py-16">
+          <div className="max-w-6xl mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl font-bold mb-8 text-center">Featured Article</h2>
+              <Link to={`/blog/${blogPosts[0].id}`} className="group">
+                <div className="bg-gray-900 rounded-2xl overflow-hidden shadow-2xl hover:shadow-yellow-400/20 transition-all duration-300 hover:-translate-y-2">
+                  <div className="grid md:grid-cols-2 gap-0">
+                    {blogPosts[0].imageUrl && (
+                      <div className="aspect-video md:aspect-auto overflow-hidden">
+                        <img 
+                          src={blogPosts[0].imageUrl} 
+                          alt={blogPosts[0].title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                    )}
+                    <div className="p-8 flex flex-col justify-center">
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {blogPosts[0].tags.map((tag) => (
+                          <Badge key={tag} className="bg-yellow-400/20 text-yellow-400 border-yellow-400/30">
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+                      <h3 className="text-3xl font-bold mb-4 group-hover:text-yellow-400 transition-colors">
+                        {blogPosts[0].title}
+                      </h3>
+                      <p className="text-gray-300 mb-6 text-lg leading-relaxed">
+                        {blogPosts[0].excerpt}
+                      </p>
+                      <div className="flex items-center gap-4 text-sm text-gray-400 mb-6">
+                        <div className="flex items-center gap-2">
+                          <User className="w-4 h-4" />
+                          <span>{blogPosts[0].author}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4" />
+                          <span>{blogPosts[0].publishedAt.toLocaleDateString()}</span>
+                        </div>
+                      </div>
+                      <Button variant="ghost" className="group/btn p-0 h-auto font-semibold text-yellow-400 hover:text-yellow-300 w-fit">
+                        Read Full Article
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                      </Button>
+                    </div>
                   </div>
-                )}
-                <CardHeader>
-                  <div className="flex flex-wrap gap-2 mb-2">
-                    {post.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary" className="text-xs">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                  <CardTitle className="text-xl mb-2 group-hover:text-primary transition-colors">
-                    {post.title}
-                  </CardTitle>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Calendar className="w-4 h-4" />
-                    <span>{post.publishedAt.toLocaleDateString()}</span>
-                    <span>•</span>
-                    <span>by {post.author}</span>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground mb-4 line-clamp-3">
-                    {post.excerpt}
-                  </p>
-                  <Button variant="ghost" className="group/btn p-0 h-auto font-semibold">
-                    Read More 
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {blogPosts.length === 0 && (
-            <div className="text-center py-16">
-              <p className="text-muted-foreground text-lg mb-4">No blog posts yet.</p>
-              <Link to="/admin">
-                <Button>Create Your First Post</Button>
+                </div>
               </Link>
+            </motion.div>
+          </div>
+        </section>
+      )}
+
+      {/* Blog Posts Grid */}
+      <section className="py-16 bg-gray-900">
+        <div className="max-w-6xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl font-bold mb-12 text-center">Latest Articles</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {blogPosts.slice(1).map((post, index) => (
+                <motion.div
+                  key={post.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <Link to={`/blog/${post.id}`} className="group">
+                    <Card className="group bg-black border-gray-800 hover:border-yellow-400/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                      {post.imageUrl && (
+                        <div className="aspect-video overflow-hidden rounded-t-lg">
+                          <img 
+                            src={post.imageUrl} 
+                            alt={post.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                        </div>
+                      )}
+                      <CardHeader>
+                        <div className="flex flex-wrap gap-2 mb-2">
+                          {post.tags.map((tag) => (
+                            <Badge key={tag} className="text-xs bg-yellow-400/20 text-yellow-400 border-yellow-400/30">
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
+                        <CardTitle className="text-xl mb-2 group-hover:text-yellow-400 transition-colors text-white">
+                          {post.title}
+                        </CardTitle>
+                        <div className="flex items-center gap-4 text-sm text-gray-400">
+                          <div className="flex items-center gap-1">
+                            <User className="w-3 h-3" />
+                            <span>{post.author}</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Calendar className="w-3 h-3" />
+                            <span>{post.publishedAt.toLocaleDateString()}</span>
+                          </div>
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-gray-300 mb-4 line-clamp-3">
+                          {post.excerpt}
+                        </p>
+                        <Button variant="ghost" className="group/btn p-0 h-auto font-semibold text-yellow-400 hover:text-yellow-300">
+                          Read More 
+                          <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </motion.div>
+              ))}
             </div>
-          )}
+
+            {blogPosts.length === 0 && (
+              <div className="text-center py-16">
+                <p className="text-gray-400 text-lg mb-4">No blog posts yet.</p>
+                <Link to="/admin">
+                  <Button className="bg-yellow-400 text-black hover:bg-yellow-300">Create Your First Post</Button>
+                </Link>
+              </div>
+            )}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Newsletter CTA */}
+      <section className="py-16 bg-gradient-to-r from-yellow-400/10 to-transparent">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
+            <p className="text-xl text-gray-300 mb-8">
+              Get the latest marketing insights and strategies delivered to your inbox.
+            </p>
+            <Link to="/contact">
+              <Button className="bg-yellow-400 text-black hover:bg-yellow-300 text-lg px-8 py-3">
+                Subscribe to Newsletter
+              </Button>
+            </Link>
+          </motion.div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t mt-20">
-        <div className="max-w-6xl mx-auto px-4 py-8">
-          <div className="text-center text-muted-foreground">
-            <p>&copy; 2024 TechBlog. All rights reserved.</p>
+      <footer className="border-t border-gray-800 py-8">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center text-gray-400">
+            <p>&copy; 2024 LeadZap Marketing. All rights reserved.</p>
           </div>
         </div>
       </footer>

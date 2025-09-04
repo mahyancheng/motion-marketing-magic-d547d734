@@ -12,6 +12,7 @@ import OrderManagement from "./pages/OrderManagement";
 import Contact from "./pages/Contact";
 import CustomerSoftware from "./pages/CustomerSoftware";
 import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import AdminDashboard from "./pages/AdminDashboard";
 import ScrollToTop from "@/components/ScrollToTop";
 import { ContentProvider } from "@/contexts/ContentContext";
@@ -33,8 +34,9 @@ const App = () => (
             <Route path="/customer-software-demo" element={<CustomerSoftware/>} />
             <Route path="/order-management" element={<OrderManagement />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
+          <Route path="/admin" element={<AdminDashboard />} />
             <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>
