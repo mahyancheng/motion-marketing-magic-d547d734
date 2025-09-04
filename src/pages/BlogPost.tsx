@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Calendar, User, ArrowLeft, Share2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Navbar } from './Index';
 
 export default function BlogPost() {
   const { id } = useParams<{ id: string }>();
@@ -17,18 +18,8 @@ export default function BlogPost() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Header */}
-      <header className="border-b border-gray-800 bg-black/90 backdrop-blur-sm sticky top-0 z-10">
-        <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link to="/blog" className="flex items-center gap-2 text-yellow-400 hover:text-yellow-300 transition-colors">
-            <ArrowLeft className="w-5 h-5" />
-            Back to Blog
-          </Link>
-          <Link to="/" className="text-2xl font-bold text-yellow-400">
-            LeadZap Marketing
-          </Link>
-        </div>
-      </header>
+      {/* Use same navbar as home page */}
+      <Navbar />
 
       {/* Hero Image */}
       {post.imageUrl && (
@@ -43,7 +34,7 @@ export default function BlogPost() {
       )}
 
       {/* Article Content */}
-      <article className="max-w-4xl mx-auto px-4 py-12">
+      <article className="max-w-4xl mx-auto px-4 py-12 pt-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

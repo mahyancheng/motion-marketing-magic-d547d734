@@ -5,31 +5,19 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Calendar, ArrowRight, User } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Navbar } from './Index';
 
 export default function Blog() {
-  const { blogPosts } = useContent();
+  const { blogPosts, getFeaturedPost } = useContent();
+  const featuredPost = getFeaturedPost();
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Header */}
-      <header className="border-b border-gray-800 bg-black/90 backdrop-blur-sm sticky top-0 z-10">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link to="/" className="text-2xl font-bold text-yellow-400">
-            LeadZap Marketing
-          </Link>
-          <nav className="flex gap-6">
-            <Link to="/" className="text-gray-300 hover:text-yellow-400 transition-colors">
-              Home
-            </Link>
-            <Link to="/admin" className="text-gray-300 hover:text-yellow-400 transition-colors">
-              Admin
-            </Link>
-          </nav>
-        </div>
-      </header>
+      {/* Use same navbar as home page */}
+      <Navbar />
 
       {/* Hero Section */}
-      <section className="py-20 text-center bg-gradient-to-b from-black via-gray-900 to-black">
+      <section className="pt-24 pb-20 text-center bg-gradient-to-b from-black via-gray-900 to-black">
         <div className="max-w-4xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -48,7 +36,7 @@ export default function Blog() {
       </section>
 
       {/* Featured Post */}
-      {blogPosts.length > 0 && (
+      {featuredPost && (
         <section className="py-16">
           <div className="max-w-6xl mx-auto px-4">
             <motion.div
@@ -58,40 +46,40 @@ export default function Blog() {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl font-bold mb-8 text-center">Featured Article</h2>
-              <Link to={`/blog/${blogPosts[0].id}`} className="group">
+              <Link to={`/blog/${featuredPost.id}`} className="group">
                 <div className="bg-gray-900 rounded-2xl overflow-hidden shadow-2xl hover:shadow-yellow-400/20 transition-all duration-300 hover:-translate-y-2">
                   <div className="grid md:grid-cols-2 gap-0">
-                    {blogPosts[0].imageUrl && (
+                    {featuredPost.imageUrl && (
                       <div className="aspect-video md:aspect-auto overflow-hidden">
                         <img 
-                          src={blogPosts[0].imageUrl} 
-                          alt={blogPosts[0].title}
+                          src={featuredPost.imageUrl} 
+                          alt={featuredPost.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                       </div>
                     )}
                     <div className="p-8 flex flex-col justify-center">
                       <div className="flex flex-wrap gap-2 mb-4">
-                        {blogPosts[0].tags.map((tag) => (
+                        {featuredPost.tags.map((tag) => (
                           <Badge key={tag} className="bg-yellow-400/20 text-yellow-400 border-yellow-400/30">
                             {tag}
                           </Badge>
                         ))}
                       </div>
                       <h3 className="text-3xl font-bold mb-4 group-hover:text-yellow-400 transition-colors">
-                        {blogPosts[0].title}
+                        {featuredPost.title}
                       </h3>
                       <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-                        {blogPosts[0].excerpt}
+                        {featuredPost.excerpt}
                       </p>
                       <div className="flex items-center gap-4 text-sm text-gray-400 mb-6">
                         <div className="flex items-center gap-2">
                           <User className="w-4 h-4" />
-                          <span>{blogPosts[0].author}</span>
+                          <span>{featuredPost.author}</span>
                         </div>
                         <div className="flex items-center gap-2">
                           <Calendar className="w-4 h-4" />
-                          <span>{blogPosts[0].publishedAt.toLocaleDateString()}</span>
+                          <span>{featuredPost.publishedAt.toLocaleDateString()}</span>
                         </div>
                       </div>
                       <Button variant="ghost" className="group/btn p-0 h-auto font-semibold text-yellow-400 hover:text-yellow-300 w-fit">
@@ -118,7 +106,7 @@ export default function Blog() {
           >
             <h2 className="text-3xl font-bold mb-12 text-center">Latest Articles</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {blogPosts.slice(1).map((post, index) => (
+              {blogPosts.filter(post => !post.featured).map((post, index) => (
                 <motion.div
                   key={post.id}
                   initial={{ opacity: 0, y: 30 }}

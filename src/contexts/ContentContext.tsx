@@ -9,6 +9,7 @@ export interface BlogPost {
   publishedAt: Date;
   imageUrl?: string;
   tags: string[];
+  featured?: boolean;
 }
 
 export interface Testimonial {
@@ -26,6 +27,8 @@ interface ContentContextType {
   addBlogPost: (post: Omit<BlogPost, 'id' | 'publishedAt'>) => void;
   updateBlogPost: (id: string, post: Partial<BlogPost>) => void;
   deleteBlogPost: (id: string) => void;
+  setFeaturedPost: (id: string) => void;
+  getFeaturedPost: () => BlogPost | undefined;
   addTestimonial: (testimonial: Omit<Testimonial, 'id'>) => void;
   updateTestimonial: (id: string, testimonial: Partial<Testimonial>) => void;
   deleteTestimonial: (id: string) => void;
@@ -50,7 +53,8 @@ const initialBlogPosts: BlogPost[] = [
     author: 'LeadZap Marketing Team',
     publishedAt: new Date('2024-01-15'),
     imageUrl: '/lovable-uploads/3a2eb97b-644e-417a-88db-c0bf8d2e32a8.png',
-    tags: ['digital marketing', 'push-pull strategy', 'lead generation']
+    tags: ['digital marketing', 'push-pull strategy', 'lead generation'],
+    featured: true
   },
   {
     id: '2',
@@ -140,6 +144,17 @@ export function ContentProvider({ children }: { children: ReactNode }) {
     setBlogPosts(prev => prev.filter(post => post.id !== id));
   };
 
+  const setFeaturedPost = (id: string) => {
+    setBlogPosts(prev => prev.map(post => ({
+      ...post,
+      featured: post.id === id
+    })));
+  };
+
+  const getFeaturedPost = (): BlogPost | undefined => {
+    return blogPosts.find(post => post.featured);
+  };
+
   const addTestimonial = (testimonial: Omit<Testimonial, 'id'>) => {
     const newTestimonial: Testimonial = {
       ...testimonial,
@@ -164,6 +179,8 @@ export function ContentProvider({ children }: { children: ReactNode }) {
     addBlogPost,
     updateBlogPost,
     deleteBlogPost,
+    setFeaturedPost,
+    getFeaturedPost,
     addTestimonial,
     updateTestimonial,
     deleteTestimonial

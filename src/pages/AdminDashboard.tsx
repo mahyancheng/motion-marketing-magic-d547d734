@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
-import { PlusCircle, Edit, Trash2, Users, FileText, ArrowLeft } from 'lucide-react';
+import { PlusCircle, Edit, Trash2, Users, FileText, ArrowLeft, Star } from 'lucide-react';
 import { BlogPost, Testimonial } from '@/contexts/ContentContext';
 import { motion } from 'framer-motion';
 
@@ -20,6 +20,7 @@ export default function AdminDashboard() {
     addBlogPost, 
     updateBlogPost, 
     deleteBlogPost,
+    setFeaturedPost,
     addTestimonial,
     updateTestimonial,
     deleteTestimonial
@@ -279,13 +280,13 @@ export default function AdminDashboard() {
                       <div className="flex gap-2">
                         <Dialog open={editingPost?.id === post.id} onOpenChange={() => setEditingPost(editingPost?.id === post.id ? null : post)}>
                           <DialogTrigger asChild>
-                            <Button variant="outline" size="sm">
+                            <Button variant="outline" size="sm" className="border-gray-700 hover:bg-gray-800">
                               <Edit className="w-4 h-4" />
                             </Button>
                           </DialogTrigger>
-                          <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                          <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-gray-900 border-gray-800 text-white">
                             <DialogHeader>
-                              <DialogTitle>Edit Blog Post</DialogTitle>
+                              <DialogTitle className="text-yellow-400">Edit Blog Post</DialogTitle>
                             </DialogHeader>
                             {editingPost && (
                               <div className="space-y-4">
@@ -353,9 +354,20 @@ export default function AdminDashboard() {
                           variant="outline" 
                           size="sm" 
                           onClick={() => deleteBlogPost(post.id)}
-                          className="text-destructive hover:text-destructive"
+                          className="text-destructive hover:text-destructive border-gray-700 hover:bg-gray-800"
                         >
                           <Trash2 className="w-4 h-4" />
+                        </Button>
+                        <Button 
+                          variant={post.featured ? "default" : "outline"} 
+                          size="sm" 
+                          onClick={() => setFeaturedPost(post.id)}
+                          className={post.featured 
+                            ? "bg-yellow-400 text-black hover:bg-yellow-300" 
+                            : "border-gray-700 hover:bg-gray-800 text-yellow-400 hover:text-yellow-300"
+                          }
+                        >
+                          {post.featured ? "Featured" : "Set Featured"}
                         </Button>
                       </div>
                     </div>
@@ -458,13 +470,13 @@ export default function AdminDashboard() {
                       <div className="flex gap-2">
                         <Dialog open={editingTestimonial?.id === testimonial.id} onOpenChange={() => setEditingTestimonial(editingTestimonial?.id === testimonial.id ? null : testimonial)}>
                           <DialogTrigger asChild>
-                            <Button variant="outline" size="sm">
+                            <Button variant="outline" size="sm" className="border-gray-700 hover:bg-gray-800">
                               <Edit className="w-4 h-4" />
                             </Button>
                           </DialogTrigger>
-                          <DialogContent>
+                          <DialogContent className="bg-gray-900 border-gray-800 text-white">
                             <DialogHeader>
-                              <DialogTitle>Edit Testimonial</DialogTitle>
+                              <DialogTitle className="text-yellow-400">Edit Testimonial</DialogTitle>
                             </DialogHeader>
                             {editingTestimonial && (
                               <div className="space-y-4">
@@ -520,7 +532,7 @@ export default function AdminDashboard() {
                           variant="outline" 
                           size="sm" 
                           onClick={() => deleteTestimonial(testimonial.id)}
-                          className="text-destructive hover:text-destructive"
+                          className="text-destructive hover:text-destructive border-gray-700 hover:bg-gray-800"
                         >
                           <Trash2 className="w-4 h-4" />
                         </Button>
