@@ -1,4 +1,7 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
+import Push_Pull from "@/image/Push-Pull-MarketingFrame.png"
+import Push_ADS from "@/image/Push-ADS.png"
+import Org_Traffic from "@/image/Org-Traffic.png"
 
 export interface BlogPost {
   id: string;
@@ -52,7 +55,7 @@ const initialBlogPosts: BlogPost[] = [
     excerpt: 'Discover how our proprietary Push-Pull marketing framework helps small businesses achieve 300% growth in qualified leads within 90 days.',
     author: 'LeadZap Marketing Team',
     publishedAt: new Date('2024-01-15'),
-    imageUrl: '/lovable-uploads/3a2eb97b-644e-417a-88db-c0bf8d2e32a8.png',
+    imageUrl: Push_Pull,
     tags: ['digital marketing', 'push-pull strategy', 'lead generation'],
     featured: true
   },
@@ -63,7 +66,7 @@ const initialBlogPosts: BlogPost[] = [
     excerpt: 'Learn how strategic social media advertising delivers 4:1 ROAS and transforms your business growth trajectory.',
     author: 'Sarah Chen, Paid Ads Specialist',
     publishedAt: new Date('2024-01-10'),
-    imageUrl: '/lovable-uploads/0187c1c5-f772-4140-8e30-6a1c4a91a51e.png',
+    imageUrl: Push_ADS,
     tags: ['social media ads', 'roas', 'paid advertising']
   },
   {
@@ -73,7 +76,7 @@ const initialBlogPosts: BlogPost[] = [
     excerpt: 'Unlock the SEO strategies that drive 250% organic traffic growth and first-page Google rankings.',
     author: 'Mike Rodriguez, SEO Director',
     publishedAt: new Date('2024-01-05'),
-    imageUrl: '/lovable-uploads/587b4a19-4c03-47a5-ac99-74983c6e259a.png',
+    imageUrl: Org_Traffic,
     tags: ['seo', 'content strategy', 'organic traffic']
   }
 ];
