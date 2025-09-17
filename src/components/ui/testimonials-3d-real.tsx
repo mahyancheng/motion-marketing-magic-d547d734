@@ -141,7 +141,16 @@ export default function Testimonials3DReal({
   const data = testimonials?.length ? testimonials : leadzapTestimonials;
 
   return (
-    <div className="h-[36rem] w-full max-w-6xl mx-auto rounded-2xl border border-white/10 ring-1 ring-yellow-400/20 shadow-[0_0_80px_-40px_rgba(250,204,21,0.5)] bg-[radial-gradient(1200px_800px_at_50%_-10%,rgba(250,204,21,0.08),transparent)]">
+    <div className="h-[36rem] w-full max-w-6xl mx-auto rounded-2xl shadow-[0_0_80px_-40px_rgba(250,204,21,0.5)] bg-[radial-gradient(1200px_800px_at_50%_-10%,rgba(250,204,21,0.08),transparent)] relative overflow-hidden">
+      {/* Feather edges */}
+      <div className="absolute inset-0 rounded-2xl" style={{
+        background: `
+          radial-gradient(ellipse at top, transparent 60%, rgba(0,0,0,0.1) 100%),
+          radial-gradient(ellipse at bottom, transparent 60%, rgba(0,0,0,0.1) 100%),
+          radial-gradient(ellipse at left, transparent 60%, rgba(0,0,0,0.1) 100%),
+          radial-gradient(ellipse at right, transparent 60%, rgba(0,0,0,0.1) 100%)
+        `
+      }} />
       <Canvas
         camera={{ position: [0, 0, 9.2], fov: 60 }}
         dpr={[1, 2]}
