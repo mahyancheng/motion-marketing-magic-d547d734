@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaFacebookF, FaGoogle, FaInstagram } from 'react-icons/fa';
+import Logo from "@/image/Logo.png"
 
 const Footer: React.FC = () => {
     return (
@@ -8,7 +9,7 @@ const Footer: React.FC = () => {
                 <div className="grid md:grid-cols-3 gap-8">
                     {/* Column 1: Logo & About */}
                     <div>
-                        <img src="/lovable-uploads/cdaaf38a-f7c3-452d-b62b-d48316225e45.png" alt="LeadZap Marketing logo" className="h-10 md:h-12 mb-4" />
+                        <img src={Logo} alt="LeadZap Marketing logo" className="h-10 md:h-12 mb-4" />
                         <p className="mb-4">
                             LeadZap Marketing helps businesses grow with SEO, social media paid ads, and custom software solutions.
                         </p>
@@ -34,6 +35,7 @@ const Footer: React.FC = () => {
                             <li className="ml-4"><a href="/seo" className="hover:underline">SEO</a></li>
                             <li className="ml-4"><a href="/social-media-ads" className="hover:underline">Social Media Paid Ads</a></li>
                             <li className="ml-4"><a href="/customer-software-demo" className="hover:underline">Custom Software solution</a></li>
+                            <li><a href="/blog" className="hover:underline">Blog</a></li>
                             <li><a href="/contact" className="hover:underline">Contact Us</a></li>
                         </ul>
                     </div>

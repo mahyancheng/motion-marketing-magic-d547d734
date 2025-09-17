@@ -6,6 +6,7 @@
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(calc(-100% - var(--gap)));
   }
@@ -15,6 +16,7 @@
   from {
     transform: translateY(0);
   }
+
   to {
     transform: translateY(calc(-100% - var(--gap)));
   }
@@ -233,4 +235,13 @@
 
 .guided-action {
   @apply bg-brand-100 border-l-4 border-brand-500 p-3 mb-4 text-gray-800;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }

@@ -7,6 +7,7 @@ import { Calendar, ArrowRight, User } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Navbar } from './Index';
 
+
 export default function Blog() {
   const { blogPosts, getFeaturedPost } = useContent();
   const featuredPost = getFeaturedPost();
