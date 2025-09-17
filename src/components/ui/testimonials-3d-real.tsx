@@ -141,7 +141,7 @@ export default function Testimonials3DReal({
   const data = testimonials?.length ? testimonials : leadzapTestimonials;
 
   return (
-    <div className="relative h-[36rem] w-full max-w-6xl mx-auto rounded-2xl shadow-[0_0_80px_-40px_rgba(250,204,21,0.5)] bg-[radial-gradient(1200px_800px_at_50%_-10%,rgba(250,204,21,0.08),transparent)]">
+    <div className="relative h-[36rem] w-full max-w-6xl mx-auto rounded-2xl bg-transparent">
       {/* Feather edge overlay */}
       <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-black/20 via-transparent via-30% to-black/20 pointer-events-none" />
       <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-black/15 via-transparent via-25% to-black/15 pointer-events-none" />

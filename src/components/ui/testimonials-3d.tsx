@@ -80,9 +80,8 @@ export default function DemoOne({
     <div
       className={cn(
         "relative flex h-[32rem] w-full max-w-[1100px] flex-row items-center justify-center overflow-hidden gap-2",
-        "rounded-2xl border border-white/10 ring-1 ring-yellow-400/20",
+        "rounded-2xl",
         "bg-gradient-to-b from-black to-gray-900/60",
-        "shadow-[0_0_80px_-40px_rgba(250,204,21,0.5)]",
         "[perspective:1000px]",
         className
       )}
