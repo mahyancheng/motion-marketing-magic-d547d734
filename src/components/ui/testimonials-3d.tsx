@@ -86,6 +86,17 @@ export default function DemoOne({
         className
       )}
     >
+      {/* Feathered edges overlay */}
+      <div className="pointer-events-none absolute inset-0 rounded-2xl">
+        {/* Top feather */}
+        <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/80 via-black/40 to-transparent z-10" />
+        {/* Bottom feather */}
+        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10" />
+        {/* Left feather */}
+        <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-black/80 via-black/40 to-transparent z-10" />
+        {/* Right feather */}
+        <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-black/80 via-black/40 to-transparent z-10" />
+      </div>
       <div
         className="flex flex-row items-center gap-5 will-change-transform"
         style={{
@@ -117,12 +128,6 @@ export default function DemoOne({
             <TestimonialCard key={review.username + '-4'} {...review} />
           ))}
         </Marquee>
-
-        {/* 四周渐变遮罩，突出内容 */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-black"></div>
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black"></div>
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-black"></div>
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-black"></div>
       </div>
     </div>
   );
