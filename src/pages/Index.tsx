@@ -6,13 +6,6 @@ import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuT
 import DynamicActionBar, { type ActionItem } from "@/components/ui/dynamic-action";
 import { Search, Megaphone, CodeXml } from "lucide-react";
 import DemoOne from "@/components/ui/testimonials-3d";
-import Logo from "@/image/Logo.png"
-import Push_Pull from "@/image/Push-Pull-MarketingFrame.png"
-import Push_ADS from "@/image/Push-ADS.png"
-import Org_Traffic from "@/image/Org-Traffic.png"
-
-
-
 export const Index = () => {
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
@@ -111,11 +104,12 @@ export const Navbar = () => {
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
         <div className="flex items-center">
           <Link to="/">
-            <img src={Logo} alt="LeadZap Marketing" className="h-8 md:h-10" />
+            <img src="/lovable-uploads/cdaaf38a-f7c3-452d-b62b-d48316225e45.png" alt="LeadZap Marketing" className="h-8 md:h-10" />
           </Link>
         </div>
         <div className="hidden md:flex items-center space-x-8">
           <Link to="/" className="hover:text-yellow-400 transition-colors">Home</Link>
+          <Link to="/blog" className="hover:text-yellow-400 transition-colors">Blog</Link>
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
@@ -128,7 +122,6 @@ export const Navbar = () => {
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
-          <Link to="/blog" className="hover:text-yellow-400 transition-colors">Blog</Link>
           <Link to="/contact" className="hover:text-yellow-400 transition-colors">Contact Us</Link>
         </div>
         <Link to="/contact">
@@ -174,7 +167,7 @@ const Hero = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <img
-            src={Logo}
+            src="/lovable-uploads/cdaaf38a-f7c3-452d-b62b-d48316225e45.png"
             alt="LeadZap Marketing Logo"
             className="w-full max-w-lg mx-auto"
           />
@@ -210,7 +203,7 @@ const Framework = () => {
           viewport={{ once: true }}
         >
           <img
-            src={Push_Pull}
+            src="/lovable-uploads/3a2eb97b-644e-417a-88db-c0bf8d2e32a8.png"
             alt="Push-Pull Marketing Framework"
             className="max-w-4xl w-full mx-auto"
           />
@@ -284,12 +277,12 @@ const Services = () => {
     {
       title: "Push Advertising",
       description: "Strategic paid advertising across social media platforms to reach your target audience directly.",
-      image: Push_ADS
+      image: "/lovable-uploads/0187c1c5-f772-4140-8e30-6a1c4a91a51e.png"
     },
     {
       title: "Organic Traffic",
       description: "SEO-optimized content and technical optimization to drive sustainable organic traffic growth.",
-      image: Org_Traffic
+      image: "/lovable-uploads/587b4a19-4c03-47a5-ac99-74983c6e259a.png"
     }
   ];
 
