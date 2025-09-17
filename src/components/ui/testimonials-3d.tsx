@@ -89,7 +89,7 @@ export default function DemoOne({
         {/* Right outward feather */}
         <div className="absolute top-0 bottom-0 -right-8 w-16 bg-gradient-to-l from-transparent via-gray-900/30 to-gray-900/60 rounded-r-3xl" />
       </div>
-      
+
       <div
         className={cn(
           "relative flex h-[32rem] w-full max-w-[1100px] flex-row items-center justify-center overflow-hidden gap-2",
