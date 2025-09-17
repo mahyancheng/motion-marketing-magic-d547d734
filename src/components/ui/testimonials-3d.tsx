@@ -77,26 +77,39 @@ export default function DemoOne({
   const data = testimonials?.length ? testimonials : (fromContext?.length ? fromContext : leadzapTestimonials);
 
   return (
-    <div
-      className={cn(
-        "relative flex h-[32rem] w-full max-w-[1100px] flex-row items-center justify-center overflow-hidden gap-2",
-        "rounded-2xl",
-        "bg-gradient-to-b from-black to-gray-900/60",
-        "[perspective:1000px]",
-        className
-      )}
-    >
-      {/* Feathered edges overlay */}
-      <div className="pointer-events-none absolute inset-0 rounded-2xl">
-        {/* Top feather */}
-        <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/80 via-black/40 to-transparent z-10" />
-        {/* Bottom feather */}
-        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10" />
-        {/* Left feather */}
-        <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-black/80 via-black/40 to-transparent z-10" />
-        {/* Right feather */}
-        <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-black/80 via-black/40 to-transparent z-10" />
+    <div className="relative">
+      {/* Outward feather effect */}
+      <div className="absolute -inset-8 pointer-events-none">
+        {/* Top outward feather */}
+        <div className="absolute -top-8 left-0 right-0 h-16 bg-gradient-to-b from-transparent via-gray-900/30 to-gray-900/60 rounded-t-3xl" />
+        {/* Bottom outward feather */}
+        <div className="absolute -bottom-8 left-0 right-0 h-16 bg-gradient-to-t from-transparent via-gray-900/30 to-gray-900/60 rounded-b-3xl" />
+        {/* Left outward feather */}
+        <div className="absolute top-0 bottom-0 -left-8 w-16 bg-gradient-to-r from-transparent via-gray-900/30 to-gray-900/60 rounded-l-3xl" />
+        {/* Right outward feather */}
+        <div className="absolute top-0 bottom-0 -right-8 w-16 bg-gradient-to-l from-transparent via-gray-900/30 to-gray-900/60 rounded-r-3xl" />
       </div>
+      
+      <div
+        className={cn(
+          "relative flex h-[32rem] w-full max-w-[1100px] flex-row items-center justify-center overflow-hidden gap-2",
+          "rounded-2xl",
+          "bg-gradient-to-b from-black to-gray-900/60",
+          "[perspective:1000px]",
+          className
+        )}
+      >
+        {/* Inward feathered edges overlay */}
+        <div className="pointer-events-none absolute inset-0 rounded-2xl">
+          {/* Top feather */}
+          <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/80 via-black/40 to-transparent z-10" />
+          {/* Bottom feather */}
+          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10" />
+          {/* Left feather */}
+          <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-black/80 via-black/40 to-transparent z-10" />
+          {/* Right feather */}
+          <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-black/80 via-black/40 to-transparent z-10" />
+        </div>
       <div
         className="flex flex-row items-center gap-5 will-change-transform"
         style={{
@@ -128,6 +141,7 @@ export default function DemoOne({
             <TestimonialCard key={review.username + '-4'} {...review} />
           ))}
         </Marquee>
+      </div>
       </div>
     </div>
   );
