@@ -19,6 +19,9 @@ export const Index = () => {
       <Navbar />
       <Hero />
       <Framework />
+      <Vision />
+      <TotalDigitalSolutions />
+      <WebsiteDesign />
       <Services />
       <Testimonials />
       <Contact />
@@ -67,7 +70,7 @@ export const Navbar = () => {
     {
       id: "ads",
       to: "/social-media-ads",
-      label: "Social Ads",
+      label: "Social Media Marketing",
       icon: Megaphone,
       content: (
         <div className="flex flex-col items-center">
@@ -147,17 +150,49 @@ const Hero = () => {
     <div className="pt-24 lg:pt-32 pb-16 lg:pb-24">
       <div className="container mx-auto px-4 md:px-6 flex flex-col lg:flex-row items-center">
         <motion.div
-          className="lg:w-1/2 mb-8 lg:mb-0"
+          className="lg:w-3/5 mb-8 lg:mb-0"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            Supercharge Your <span className="text-yellow-400">Digital Marketing</span> Strategy
+            Total <span className="text-yellow-400">Digital Marketing</span> Solutions
           </h1>
-          <p className="text-lg md:text-xl text-gray-300 mb-8">
-            We help businesses grow through data-driven marketing strategies that deliver measurable results.
+          <p className="text-lg md:text-xl text-gray-300 mb-6">
+            LeadZap Marketing (LeadZap Sdn Bhd) is a Total marketing solution provider and software development company based in Malaysia. We plan, build, launch, and optimize everything under one roof—helping businesses accelerate growth through four core service pillars:
           </p>
+          
+          <div className="space-y-4 mb-8">
+            <div className="flex items-start space-x-3">
+              <span className="text-yellow-400 font-bold">🎯</span>
+              <div>
+                <h3 className="font-semibold text-yellow-400">Search Engine Optimization (SEO)</h3>
+                <p className="text-gray-400 text-sm">Comprehensive strategies to boost organic visibility, local and international market expertise, data-driven approach for sustainable growth</p>
+              </div>
+            </div>
+            <div className="flex items-start space-x-3">
+              <span className="text-yellow-400 font-bold">📱</span>
+              <div>
+                <h3 className="font-semibold text-yellow-400">Social Media Marketing</h3>
+                <p className="text-gray-400 text-sm">Strategic paid campaigns across major platforms, ROI-focused ad management and optimization, Push–Pull methodologies for maximum impact</p>
+              </div>
+            </div>
+            <div className="flex items-start space-x-3">
+              <span className="text-yellow-400 font-bold">🤝</span>
+              <div>
+                <h3 className="font-semibold text-yellow-400">Influencer Marketing (New)</h3>
+                <p className="text-gray-400 text-sm">Creator discovery, vetting, and brand matching, campaign strategy, briefs, and contract management, content amplification (whitelisting/Spark Ads)</p>
+              </div>
+            </div>
+            <div className="flex items-start space-x-3">
+              <span className="text-yellow-400 font-bold">💻</span>
+              <div>
+                <h3 className="font-semibold text-yellow-400">Custom Software Development</h3>
+                <p className="text-gray-400 text-sm">Tailored business automation systems, scalable solutions for operational efficiency, CRM, ERP, and third-party integrations</p>
+              </div>
+            </div>
+          </div>
+
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <button className="bg-yellow-400 text-black px-6 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors">
               Get a Free Consultation
@@ -168,7 +203,7 @@ const Hero = () => {
           </div>
         </motion.div>
         <motion.div
-          className="lg:w-1/2"
+          className="lg:w-2/5"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -198,7 +233,7 @@ const Framework = () => {
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Marketing Framework</h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-            Our proprietary Push-Pull marketing framework delivers results by creating a seamless customer journey.
+            Our proprietary Push-Pull marketing framework creates a connected ecosystem where push data feeds into pull marketing (e.g., retargeting), while pull data is used to improve push campaigns.
           </p>
         </motion.div>
 
@@ -227,20 +262,20 @@ const Framework = () => {
           >
             <h3 className="text-2xl font-bold mb-4 text-yellow-400">PUSH Strategy</h3>
             <p className="text-gray-300 mb-4">
-              Our push marketing strategy actively promotes your brand to your target audience through strategic paid advertising campaigns on social platforms.
+              Our push marketing strategy actively promotes your brand through strategic paid advertising campaigns. Data from push campaigns feeds into pull marketing for retargeting and remarketing.
             </p>
             <ul className="space-y-2 text-gray-300">
               <li className="flex items-start">
                 <span className="text-yellow-400 mr-2">→</span>
-                <span>Strategic ad placement across platforms</span>
+                <span>Facebook, Instagram & TikTok advertising</span>
               </li>
               <li className="flex items-start">
                 <span className="text-yellow-400 mr-2">→</span>
-                <span>Targeted audience segmentation</span>
+                <span>Influencer marketing campaigns</span>
               </li>
               <li className="flex items-start">
                 <span className="text-yellow-400 mr-2">→</span>
-                <span>Optimized ad spend for maximum ROI</span>
+                <span>Retargeting with pull data insights</span>
               </li>
             </ul>
           </motion.div>
@@ -255,23 +290,187 @@ const Framework = () => {
           >
             <h3 className="text-2xl font-bold mb-4 text-yellow-400">PULL Strategy</h3>
             <p className="text-gray-300 mb-4">
-              Our pull strategy focuses on creating valuable content that naturally attracts users through search engines and organic discovery.
+              Our pull strategy naturally attracts users through search engines and organic discovery. Pull data is used to improve push campaigns and create highly targeted audiences.
             </p>
             <ul className="space-y-2 text-gray-300">
               <li className="flex items-start">
                 <span className="text-yellow-400 mr-2">→</span>
-                <span>SEO-optimized content strategy</span>
+                <span>SEO audit Malaysia & local optimization</span>
               </li>
               <li className="flex items-start">
                 <span className="text-yellow-400 mr-2">→</span>
-                <span>Technical website optimization</span>
+                <span>Content marketing & authority building</span>
               </li>
               <li className="flex items-start">
                 <span className="text-yellow-400 mr-2">→</span>
-                <span>Authority building through quality content</span>
+                <span>Data feeds into push advertising</span>
               </li>
             </ul>
           </motion.div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Vision component
+const Vision = () => {
+  return (
+    <div className="py-16 lg:py-24 bg-black">
+      <div className="container mx-auto px-4 md:px-6">
+        <motion.div
+          className="text-center max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Vision</h2>
+          <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+            To be Malaysia's most trusted turnkey growth partner, compounding client value by fusing creativity and innovation. We believe breakthroughs come from innovative ideas that are tested rigorously, scaled responsibly, and measured transparently.
+          </p>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
+// Total Digital Solutions component
+const TotalDigitalSolutions = () => {
+  const solutions = [
+    {
+      title: "SEO Audit Malaysia",
+      description: "Comprehensive local SEO Malaysia services, free SEO analysis Malaysia, and SEO Kuala Lumpur optimization"
+    },
+    {
+      title: "Facebook Marketing Malaysia",
+      description: "Facebook marketing service Malaysia, Facebook ads agency Malaysia, and Facebook marketing agency Malaysia"
+    },
+    {
+      title: "Google Ads Agency Malaysia",
+      description: "Pay per click Malaysia campaigns, SEM agency Malaysia services, and strategic PPC management"
+    },
+    {
+      title: "Social Media Marketing Agency Malaysia",
+      description: "Full service digital marketing across Facebook, Instagram, TikTok with ROI-focused strategies"
+    },
+    {
+      title: "Custom Software Solutions",
+      description: "Healthcare software, ERP systems, customer help desk platforms, and business automation tools"
+    },
+    {
+      title: "Influencer Marketing",
+      description: "Creator partnerships, content amplification, whitelisting/Spark Ads, and performance tracking"
+    }
+  ];
+
+  return (
+    <div className="py-16 lg:py-24 bg-gray-900">
+      <div className="container mx-auto px-4 md:px-6">
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Total Digital Marketing Solutions</h2>
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+            We provide everything needed for a complete digital marketing ecosystem. All services included under one roof for maximum synergy and results.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {solutions.map((solution, index) => (
+            <motion.div
+              key={index}
+              className="bg-black p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">{solution.title}</h3>
+              <p className="text-gray-300">{solution.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Website Design component
+const WebsiteDesign = () => {
+  const websites = [
+    {
+      name: "Howkee CRM",
+      description: "Custom CRM solution for business management",
+      url: "https://howkee.com",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop"
+    },
+    {
+      name: "E-Commerce Platform",
+      description: "Full-featured online store with payment integration",
+      url: "#",
+      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=250&fit=crop"
+    },
+    {
+      name: "Healthcare Portal",
+      description: "Patient management and appointment booking system",
+      url: "#",
+      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=250&fit=crop"
+    }
+  ];
+
+  return (
+    <div className="py-16 lg:py-24">
+      <div className="container mx-auto px-4 md:px-6">
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Website Design & Development</h2>
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+            Featured client websites showcasing our custom software development and web design capabilities.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {websites.map((website, index) => (
+            <motion.div
+              key={index}
+              className="bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <img 
+                src={website.image} 
+                alt={website.name}
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2 text-yellow-400">{website.name}</h3>
+                <p className="text-gray-300 mb-4">{website.description}</p>
+                <a 
+                  href={website.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-yellow-400 hover:text-yellow-300 transition-colors"
+                >
+                  Visit Website
+                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </div>
