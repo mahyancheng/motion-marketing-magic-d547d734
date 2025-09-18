@@ -51,14 +51,19 @@ export default function Blog() {
                 <div className="bg-gray-900 rounded-2xl overflow-hidden shadow-2xl hover:shadow-yellow-400/20 transition-all duration-300 hover:-translate-y-2">
                   <div className="grid md:grid-cols-2 gap-0">
                     {featuredPost.imageUrl && (
-                      <div className="aspect-video md:aspect-auto overflow-hidden">
-                        <img 
-                          src={featuredPost.imageUrl} 
+                      <div
+                        className="overflow-hidden"
+                        style={{ aspectRatio: 16 / 9 }}   // ✅ 原生 aspect-ratio
+                      >
+                        <img
+                          src={featuredPost.imageUrl}
                           alt={featuredPost.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          loading="lazy"
                         />
                       </div>
                     )}
+
                     <div className="p-8 flex flex-col justify-center">
                       <div className="flex flex-wrap gap-2 mb-4">
                         {featuredPost.tags.map((tag) => (
@@ -118,14 +123,19 @@ export default function Blog() {
                   <Link to={`/blog/${post.id}`} className="group">
                     <Card className="group bg-black border-gray-800 hover:border-yellow-400/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
                       {post.imageUrl && (
-                        <div className="aspect-video overflow-hidden rounded-t-lg">
-                          <img 
-                            src={post.imageUrl} 
+                        <div
+                          className="overflow-hidden rounded-t-lg"
+                          style={{ aspectRatio: 16 / 9 }}   // ✅ 原生 aspect-ratio
+                        >
+                          <img
+                            src={post.imageUrl}
                             alt={post.title}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            loading="lazy"
                           />
                         </div>
                       )}
+
                       <CardHeader>
                         <div className="flex flex-wrap gap-2 mb-2">
                           {post.tags.map((tag) => (
@@ -153,7 +163,7 @@ export default function Blog() {
                           {post.excerpt}
                         </p>
                         <Button variant="ghost" className="group/btn p-0 h-auto font-semibold text-yellow-400 hover:text-yellow-300">
-                          Read More 
+                          Read More
                           <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
                         </Button>
                       </CardContent>
