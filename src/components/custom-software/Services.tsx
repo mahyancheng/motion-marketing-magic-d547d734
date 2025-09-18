@@ -99,14 +99,15 @@ const ServicesSection = () => {
                 alt="Howkee CRM Dashboard"
                 className="rounded-lg w-full"
               />
-              <a 
-                href="https://howkee.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
+              <button 
+                onClick={() => {
+                  const demoSection = document.querySelector('#demo-section');
+                  demoSection?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className="inline-block mt-4 bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors"
               >
-                Visit Howkee CRM
-              </a>
+                Try Our Demo
+              </button>
             </div>
           </div>
         </motion.div>
