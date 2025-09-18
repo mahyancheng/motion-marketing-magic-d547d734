@@ -30,14 +30,14 @@ const Hero = () => {
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            Dominate Search Rankings with <span className="text-yellow-400">Data-Driven SEO</span>
+            Get Your <span className="text-yellow-400">FREE SEO Audit</span> Malaysia
           </h1>
           <p className="text-lg md:text-xl text-gray-300 mb-8">
-            Our comprehensive SEO strategies combine technical optimization, content excellence, and strategic link building to drive sustainable organic growth.
+            Professional SEO audit Malaysia services. Our local SEO Malaysia experts provide comprehensive free SEO analysis Malaysia to boost your Kuala Lumpur SEO rankings and organic visibility.
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-            <button className="bg-yellow-400 text-black px-6 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors">
-              Get a Free SEO Audit
+            <button className="bg-yellow-400 text-black px-8 py-4 rounded-md font-medium hover:bg-yellow-300 transition-colors text-lg">
+              Get Your FREE SEO Audit
             </button>
             <button className="border border-white px-6 py-3 rounded-md font-medium hover:bg-white hover:text-black transition-colors">
               View SEO Case Studies
@@ -201,21 +201,93 @@ const CallToAction = () => {
   return (
     <div className="py-16 lg:py-24 bg-gray-900">
       <div className="container mx-auto px-4 md:px-6">
-        <motion.div 
-          className="max-w-3xl mx-auto text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Improve Your Search Rankings?</h2>
-          <p className="text-lg text-gray-300 mb-8">
-            Get started with a free SEO audit and discover how our data-driven strategies can help you outrank your competitors.
-          </p>
-          <button className="bg-yellow-400 text-black px-8 py-4 rounded-md font-medium hover:bg-yellow-300 transition-colors text-lg">
-            Get Your Free SEO Audit
-          </button>
-        </motion.div>
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Get Your FREE SEO Audit Today!</h2>
+            <p className="text-lg text-gray-300 mb-6">
+              Discover how our SEO audit Malaysia service can improve your search rankings. Get a comprehensive free SEO analysis Malaysia report delivered to your inbox.
+            </p>
+            <ul className="space-y-3 text-gray-300">
+              <li className="flex items-center">
+                <span className="text-yellow-400 mr-3">✓</span>
+                Complete technical SEO analysis
+              </li>
+              <li className="flex items-center">
+                <span className="text-yellow-400 mr-3">✓</span>
+                Local SEO Malaysia opportunities
+              </li>
+              <li className="flex items-center">
+                <span className="text-yellow-400 mr-3">✓</span>
+                Competitor analysis report
+              </li>
+              <li className="flex items-center">
+                <span className="text-yellow-400 mr-3">✓</span>
+                Actionable improvement recommendations
+              </li>
+            </ul>
+          </motion.div>
+          
+          <motion.div
+            className="bg-black p-8 rounded-xl border border-gray-800"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-2xl font-bold mb-6 text-center">Request Your Free SEO Audit</h3>
+            <form className="space-y-6">
+              <div>
+                <label htmlFor="website-url" className="block text-sm font-medium text-gray-300 mb-2">
+                  Website URL *
+                </label>
+                <input
+                  type="url"
+                  id="website-url"
+                  required
+                  className="w-full bg-gray-800 border-gray-700 rounded-md px-4 py-3 text-white focus:ring-yellow-400 focus:border-yellow-400"
+                  placeholder="https://yourwebsite.com"
+                />
+              </div>
+              <div>
+                <label htmlFor="company-email" className="block text-sm font-medium text-gray-300 mb-2">
+                  Company Email *
+                </label>
+                <input
+                  type="email"
+                  id="company-email"
+                  required
+                  className="w-full bg-gray-800 border-gray-700 rounded-md px-4 py-3 text-white focus:ring-yellow-400 focus:border-yellow-400"
+                  placeholder="you@company.com"
+                />
+              </div>
+              <div>
+                <label htmlFor="company-name" className="block text-sm font-medium text-gray-300 mb-2">
+                  Company Name
+                </label>
+                <input
+                  type="text"
+                  id="company-name"
+                  className="w-full bg-gray-800 border-gray-700 rounded-md px-4 py-3 text-white focus:ring-yellow-400 focus:border-yellow-400"
+                  placeholder="Your Company Name"
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-yellow-400 text-black px-6 py-4 rounded-md font-medium hover:bg-yellow-300 transition-colors text-lg"
+              >
+                Get My FREE SEO Audit Report
+              </button>
+              <p className="text-sm text-gray-400 text-center">
+                No spam. Detailed audit report delivered within 24 hours.
+              </p>
+            </form>
+          </motion.div>
+        </div>
       </div>
     </div>
   );

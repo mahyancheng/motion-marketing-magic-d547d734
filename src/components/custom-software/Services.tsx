@@ -2,20 +2,28 @@ import { motion } from "framer-motion";
 
 const items = [
   {
-    title: "Custom Business Systems",
-    desc: "Tailored custom software to streamline operations across departments and teams.",
+    title: "Healthcare Software Solutions",
+    desc: "Patient management systems, appointment booking, electronic health records, and HIPAA-compliant platforms.",
+  },
+  {
+    title: "ERP Systems",
+    desc: "Enterprise resource planning systems for inventory, finance, HR, and operations management.",
+  },
+  {
+    title: "Customer Help Desk Platforms",
+    desc: "Ticketing systems, live chat solutions, and customer support automation for enhanced service delivery.",
   },
   {
     title: "Business Automation Software",
-    desc: "Automate repetitive tasks with efficient software and reduce manual overhead.",
+    desc: "Workflow automation, document processing, and task management systems to reduce manual overhead.",
   },
   {
-    title: "Software Automation Tools",
-    desc: "Integrate tools and build automation that accelerates delivery and improves accuracy.",
+    title: "CRM & Sales Systems",
+    desc: "Customer relationship management platforms like our flagship project Howkee CRM for sales optimization.",
   },
   {
     title: "Building Automation System Software",
-    desc: "Develop monitoring and control systems to optimize building efficiency.",
+    desc: "IoT-enabled monitoring and control systems to optimize building efficiency and energy management.",
   },
 ];
 
@@ -36,7 +44,7 @@ const ServicesSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {items.map((item, i) => (
             <motion.article
               key={item.title}
@@ -51,6 +59,57 @@ const ServicesSection = () => {
             </motion.article>
           ))}
         </div>
+
+        {/* Past Projects Showcase */}
+        <motion.div
+          className="mt-16 bg-white/5 rounded-xl p-8 border border-white/10"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          viewport={{ once: true }}
+        >
+          <h3 className="text-2xl font-bold mb-6 text-center">Featured Project: Howkee CRM</h3>
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <p className="text-gray-300 mb-4">
+                Our flagship CRM system built for Malaysian businesses, featuring:
+              </p>
+              <ul className="space-y-2 text-gray-300">
+                <li className="flex items-start">
+                  <span className="text-yellow-400 mr-2">✓</span>
+                  <span>Customer lifecycle management</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-yellow-400 mr-2">✓</span>
+                  <span>Sales pipeline automation</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-yellow-400 mr-2">✓</span>
+                  <span>Multi-language support (English/Malay/Chinese)</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-yellow-400 mr-2">✓</span>
+                  <span>Integration with Malaysian banking systems</span>
+                </li>
+              </ul>
+            </div>
+            <div className="text-center">
+              <img 
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop" 
+                alt="Howkee CRM Dashboard"
+                className="rounded-lg w-full"
+              />
+              <a 
+                href="https://howkee.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block mt-4 bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors"
+              >
+                Visit Howkee CRM
+              </a>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
