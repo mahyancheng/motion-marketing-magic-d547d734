@@ -410,22 +410,28 @@ const TotalDigitalSolutions = () => {
 const WebsiteDesign = () => {
   const websites = [
     {
-      name: "Howkee CRM",
-      description: "Custom CRM solution for business management",
-      url: "https://howkee.com",
+      name: "WorkConnect",
+      description: "Professional networking and career development platform",
+      url: "https://workconnect.com.my",
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop"
     },
     {
-      name: "E-Commerce Platform",
-      description: "Full-featured online store with payment integration",
-      url: "#",
+      name: "Tectone Steel",
+      description: "Industrial steel solutions and construction services",
+      url: "https://tectonesteel.com",
       image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=250&fit=crop"
     },
     {
-      name: "Healthcare Portal",
-      description: "Patient management and appointment booking system",
-      url: "#",
+      name: "AG Kaizen",
+      description: "Business consulting and process improvement solutions",
+      url: "https://agkaizen.com",
       image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=250&fit=crop"
+    },
+    {
+      name: "Puregen",  
+      description: "Advanced water purification and treatment systems",
+      url: "https://www.puregen.com.my",
+      image: "https://images.unsplash.com/photo-1544511916-0148ccdeb877?w=400&h=250&fit=crop"
     }
   ];
 
