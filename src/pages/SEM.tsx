@@ -11,6 +11,8 @@ const SEM = () => {
       <Hero />
       <Features />
       <Process />
+      <PPCFeatures />
+      <PPCProcess />
       <CallToAction />
       <Footer />
     </div>
@@ -201,10 +203,137 @@ const Process = () => {
   );
 };
 
+// PPC Features component
+const PPCFeatures = () => {
+  const features = [
+    {
+      icon: <TrendingUp className="h-8 w-8 text-yellow-400" />,
+      title: "Precision Targeting",
+      description: "Target the exact keywords and demographics that matter most to your business for maximum ROI."
+    },
+    {
+      icon: <ArrowUpRight className="h-8 w-8 text-yellow-400" />,
+      title: "Lightning-Fast Results",
+      description: "See immediate traffic and conversions as soon as your campaigns go live."
+    },
+    {
+      icon: <BarChart2 className="h-8 w-8 text-yellow-400" />,
+      title: "Cost Optimization",
+      description: "Advanced bid management and optimization strategies to minimize costs and maximize profits."
+    },
+    {
+      icon: <LineChart className="h-8 w-8 text-yellow-400" />,
+      title: "Performance Tracking",
+      description: "Detailed reporting and analytics to track every click, conversion, and dollar spent."
+    }
+  ];
+
+  return (
+    <div className="py-16 bg-black">
+      <div className="container mx-auto px-4 md:px-6">
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Pay Per Click (Google Ads) Management</h2>
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+            Want to pay your way up to the first page of Google? Our team crafts lightning-precise campaigns that strike with maximum impact and drive costs down.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {features.map((feature, index) => (
+            <motion.div
+              key={index}
+              className="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ scale: 1.02 }}
+              viewport={{ once: true }}
+            >
+              <div className="mb-4">{feature.icon}</div>
+              <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+              <p className="text-gray-300">{feature.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// PPC Process component
+const PPCProcess = () => {
+  const steps = [
+    {
+      number: "01",
+      title: "Campaign Strategy",
+      description: "We analyze your business goals and create a tailored Google Ads strategy."
+    },
+    {
+      number: "02", 
+      title: "Keyword Research",
+      description: "Identify high-converting keywords with the best cost-per-click ratios."
+    },
+    {
+      number: "03",
+      title: "Ad Creation",
+      description: "Craft compelling ad copy and landing pages optimized for conversions."
+    },
+    {
+      number: "04",
+      title: "Campaign Launch",
+      description: "Launch campaigns with precise targeting and bid optimization."
+    },
+    {
+      number: "05",
+      title: "Monitoring & Optimization",
+      description: "Continuously monitor and optimize campaigns for maximum ROI."
+    }
+  ];
+
+  return (
+    <div className="py-16 bg-gray-900">
+      <div className="container mx-auto px-4 md:px-6">
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Google Ads Process</h2>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {steps.map((step, index) => (
+            <motion.div
+              key={index}
+              className="bg-black p-6 rounded-xl"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <div className="text-yellow-400 text-2xl font-bold mb-4">{step.number}</div>
+              <h3 className="text-xl font-bold mb-3">{step.title}</h3>
+              <p className="text-gray-300">{step.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // Call to Action component
 const CallToAction = () => {
   return (
-    <div className="py-16 lg:py-24 bg-gray-900">
+    <div className="py-16 lg:py-24 bg-black">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div 
@@ -234,17 +363,21 @@ const CallToAction = () => {
                 <span className="text-yellow-400 mr-3">✓</span>
                 Actionable SEM improvement recommendations
               </li>
+              <li className="flex items-center">
+                <span className="text-yellow-400 mr-3">✓</span>
+                FREE Google Ads audit & strategy
+              </li>
             </ul>
           </motion.div>
           
           <motion.div
-            className="bg-black p-8 rounded-xl border border-gray-800"
+            className="bg-gray-900 p-8 rounded-xl border border-gray-800"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold mb-6 text-center">Request Your Free SEM Audit</h3>
+            <h3 className="text-2xl font-bold mb-6 text-center">Request Your Free SEM & PPC Audit</h3>
             <form className="space-y-6">
               <div>
                 <label htmlFor="website-url" className="block text-sm font-medium text-gray-300 mb-2">
@@ -285,7 +418,7 @@ const CallToAction = () => {
                 type="submit"
                 className="w-full bg-yellow-400 text-black px-6 py-4 rounded-md font-medium hover:bg-yellow-300 transition-colors text-lg"
               >
-                Get My FREE SEM Audit Report
+                Get My FREE SEM & PPC Audit Report
               </button>
               <p className="text-sm text-gray-400 text-center">
                 No spam. Detailed audit report delivered within 24 hours.

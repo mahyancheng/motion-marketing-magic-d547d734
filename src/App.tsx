@@ -7,7 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Index } from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import SEM from "./pages/SEM";
-import PayPerClick from "./pages/PayPerClick";
 import SocialMediaAds from "./pages/SocialMediaAds";
 import OrderManagement from "./pages/OrderManagement";
 import Contact from "./pages/Contact";
@@ -31,7 +30,6 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/sem" element={<SEM />} />
-            <Route path="/pay-per-click" element={<PayPerClick />} />
             <Route path="/social-media-ads" element={<SocialMediaAds />} />
             <Route path="/custom-software" element={<CustomerSoftware/>} />
             <Route path="/customer-software-demo" element={<CustomerSoftware/>} />

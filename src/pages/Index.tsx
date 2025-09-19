@@ -45,9 +45,9 @@ export const Navbar = () => {
 
   const actions: ActionItem[] = [
     {
-      id: "seo",
-      to: "/seo",
-      label: "SEO",
+      id: "sem",
+      to: "/sem",
+      label: "SEM",
       icon: Search,
       content: (
         <div className="flex flex-col items-center">
@@ -56,8 +56,8 @@ export const Navbar = () => {
               <div className="flex items-center gap-1">
                 <Search className="size-6 text-yellow-400" />
                 {/* Label is the actual link */}
-                <Link to="/seo" className="font-bold text-white hover:underline">
-                  Search Engine Optimization
+                <Link to="/sem" className="font-bold text-white hover:underline">
+                  Search Engine Marketing
                 </Link>
               </div>
               <div className="mt-1 text-sm text-yellow-400">Information</div>
@@ -168,62 +168,6 @@ const Hero = () => {
             LeadZap Marketing (LeadZap Sdn Bhd) is a Total marketing solution provider and software development company based in Malaysia. We plan, build, launch, and optimize everything under one roof—helping businesses accelerate growth through four core service pillars (include but not limited to):
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-            <div className="bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors">
-              <span className="text-yellow-400 font-bold text-2xl">🎯</span>
-              <h3 className="font-semibold text-yellow-400 mt-2 mb-2">Search Engine Marketing (SEM)</h3>
-              <p className="text-gray-400 text-sm">Get a free SEO analysis - our team delivers electrifying strategies that doesn't just rank, but also increase your revenue numbers</p>
-              <Link to="/sem" className="inline-block mt-3">
-                <button className="bg-yellow-400 text-black px-4 py-2 rounded-md text-sm font-medium hover:bg-yellow-300 transition-colors">
-                  FREE SEO AUDIT
-                </button>
-              </Link>
-            </div>
-            
-            <div className="bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors">
-              <span className="text-yellow-400 font-bold text-2xl">🚀</span>
-              <h3 className="font-semibold text-yellow-400 mt-2 mb-2">Pay Per Click (Google Ads)</h3>
-              <p className="text-gray-400 text-sm">Want to pay your way up to the first page of Google? Our team crafts lightning-precise campaigns that strike with maximum impact and drive costs down</p>
-              <Link to="/pay-per-click" className="inline-block mt-3">
-                <button className="bg-yellow-400 text-black px-4 py-2 rounded-md text-sm font-medium hover:bg-yellow-300 transition-colors">
-                  FREE AUDIT
-                </button>
-              </Link>
-            </div>
-            
-            <div className="bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors">
-              <span className="text-yellow-400 font-bold text-2xl">📱</span>
-              <h3 className="font-semibold text-yellow-400 mt-2 mb-2">Social Media Marketing</h3>
-              <p className="text-gray-400 text-sm">TikTok, Facebook, Instagram—hand it all to us. We'll spark the lightning and ride the thunder, handling everything from content planning to creation so your brand stays electrifying across every platform.</p>
-              <Link to="/social-media-ads" className="inline-block mt-3">
-                <button className="bg-yellow-400 text-black px-4 py-2 rounded-md text-sm font-medium hover:bg-yellow-300 transition-colors">
-                  Get Free Consultation
-                </button>
-              </Link>
-            </div>
-            
-            <div className="bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors border-2 border-yellow-400">
-              <span className="text-yellow-400 font-bold text-2xl">⚡</span>
-              <h3 className="font-semibold text-yellow-400 mt-2 mb-2">Full Service Digital Marketing</h3>
-              <p className="text-gray-400 text-sm">Hand us the reins—from social media to your website—and we'll unleash our proprietary Push & Pull Power System, igniting a surge to supercharge your business growth.</p>
-              <Link to="/contact" className="inline-block mt-3">
-                <button className="bg-yellow-400 text-black px-4 py-2 rounded-md text-sm font-medium hover:bg-yellow-300 transition-colors">
-                  Get Free Consultation
-                </button>
-              </Link>
-            </div>
-            
-            <div className="md:col-span-2 bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors">
-              <span className="text-yellow-400 font-bold text-2xl">💻</span>
-              <h3 className="font-semibold text-yellow-400 mt-2 mb-2">Custom Software</h3>
-              <p className="text-gray-400 text-sm">Streamline every process with our lightning-fast custom software solutions, from automated ERP systems to cutting-edge IoT integrations. We'll help you harness the storm of automation so you run your business—not the other way around.</p>
-              <Link to="/custom-software" className="inline-block mt-3">
-                <button className="bg-yellow-400 text-black px-4 py-2 rounded-md text-sm font-medium hover:bg-yellow-300 transition-colors">
-                  Get Free Consultation
-                </button>
-              </Link>
-            </div>
-          </div>
 
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <button className="bg-yellow-400 text-black px-6 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors">
@@ -515,10 +459,10 @@ const WebsiteDesign = () => {
   );
 };
 
-// Services component
+// Services component - Bento Grid Design
 const Services = () => {
   return (
-    <div id="services" className="py-16 lg:py-24">
+    <div id="services" className="py-16 lg:py-24 bg-black">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           className="text-center mb-12"
@@ -529,132 +473,105 @@ const Services = () => {
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-            Electrify Your Digital Growth
+            Comprehensive digital marketing solutions to supercharge your business growth
           </p>
         </motion.div>
 
-        <div className="space-y-8">
-          {/* SEM Section */}
+        {/* Bento Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 max-w-7xl mx-auto">
+          
+          {/* SEM - Large Card */}
           <motion.div
-            className="bg-gray-900 rounded-xl p-6 md:p-8"
+            className="md:col-span-2 lg:col-span-3 bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors group"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-start justify-between mb-4">
+              <span className="text-yellow-400 font-bold text-3xl">🎯</span>
+              <ArrowUpRight className="w-6 h-6 text-gray-400 group-hover:text-yellow-400 transition-colors" />
+            </div>
+            <h3 className="text-2xl font-bold mb-3 text-yellow-400">Search Engine Marketing (SEM)</h3>
+            <p className="text-gray-300 mb-4">
+              Get a free SEO analysis - our team delivers electrifying strategies that doesn't just rank, but also increase your revenue numbers. Includes SEO & GEO optimization.
+            </p>
+            <Link to="/sem">
+              <button className="bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors">
+                FREE SEO AUDIT
+              </button>
+            </Link>
+          </motion.div>
+
+          {/* Social Media Marketing - Medium Card */}
+          <motion.div
+            className="md:col-span-2 lg:col-span-2 bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors group"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl md:text-3xl font-bold mb-6 text-yellow-400">SEM (Search Engine Marketing)</h3>
-            
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="space-y-4">
-                <h4 className="text-xl font-semibold">SEO (Search Engine Optimization)</h4>
-                <p className="text-gray-300">
-                  Get a free SEO analysis - our team delivers electrifying strategies that doesn't just rank, but also increase your revenue numbers
-                </p>
-                <Link to="/seo">
-                  <button className="bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors">
-                    FREE SEO AUDIT
-                  </button>
-                </Link>
-              </div>
-              
-              <div className="space-y-4">
-                <h4 className="text-xl font-semibold">Pay Per Click (Google Ads)</h4>
-                <p className="text-gray-300">
-                  Want to pay your way up to the first page of Google? Our team crafts lightning-precise campaigns that strike with maximum impact and drive costs down
-                </p>
-                <button className="bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors">
-                  FREE AUDIT
-                </button>
-              </div>
+            <div className="flex items-start justify-between mb-4">
+              <span className="text-yellow-400 font-bold text-3xl">📱</span>
+              <ArrowUpRight className="w-6 h-6 text-gray-400 group-hover:text-yellow-400 transition-colors" />
             </div>
+            <h3 className="text-xl font-bold mb-3 text-yellow-400">Social Media Marketing</h3>
+            <p className="text-gray-300 text-sm mb-4">
+              TikTok, Facebook, Instagram management and ads with electrifying content creation.
+            </p>
+            <Link to="/social-media-ads">
+              <button className="bg-yellow-400 text-black px-4 py-2 rounded-md text-sm font-medium hover:bg-yellow-300 transition-colors">
+                Get Consultation
+              </button>
+            </Link>
           </motion.div>
 
-          {/* Social Media Marketing Section */}
+          {/* Custom Software - Small Card */}
           <motion.div
-            className="bg-gray-900 rounded-xl p-6 md:p-8"
+            className="md:col-span-2 lg:col-span-1 bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors group"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl md:text-3xl font-bold mb-6 text-yellow-400">Social Media Marketing</h3>
-            
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="space-y-4">
-                <h4 className="text-xl font-semibold">Facebook Marketing</h4>
-                <p className="text-gray-300">
-                  Need a full-scale team to unleash a storm of results? Partner with us and join our clients who've supercharged their growth to seven-figure heights with lightning-charged Facebook ad campaigns.
-                </p>
-                <Link to="/contact">
-                  <button className="bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors">
-                    Get Free Consultation
-                  </button>
-                </Link>
-              </div>
-              
-              <div className="space-y-4">
-                <h4 className="text-xl font-semibold">Social Media Management</h4>
-                <p className="text-gray-300">
-                  TikTok, Facebook, Instagram—hand it all to us. We'll spark the lightning and ride the thunder, handling everything from content planning to creation so your brand stays electrifying across every platform.
-                </p>
-                <Link to="/contact">
-                  <button className="bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors">
-                    Get Free Consultation
-                  </button>
-                </Link>
-              </div>
-              
-              <div className="space-y-4">
-                <h4 className="text-xl font-semibold">Social Media Ads</h4>
-                <p className="text-gray-300">
-                  Get a crack of power for every buck and watch us electrify your social media ads—awareness, leads, or sales. Whatever you need, we only bring results.
-                </p>
-                <Link to="/social-media-ads">
-                  <button className="bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors">
-                    Get Free Consultation
-                  </button>
-                </Link>
-              </div>
+            <div className="flex items-start justify-between mb-4">
+              <span className="text-yellow-400 font-bold text-2xl">💻</span>
+              <ArrowUpRight className="w-5 h-5 text-gray-400 group-hover:text-yellow-400 transition-colors" />
             </div>
+            <h3 className="text-lg font-bold mb-3 text-yellow-400">Custom Software</h3>
+            <p className="text-gray-300 text-sm mb-4">
+              Lightning-fast ERP & IoT solutions.
+            </p>
+            <Link to="/customer-software-demo">
+              <button className="bg-yellow-400 text-black px-3 py-2 rounded-md text-xs font-medium hover:bg-yellow-300 transition-colors">
+                Get Consultation
+              </button>
+            </Link>
           </motion.div>
 
-          {/* Full Service Digital Marketing - Highlighted */}
+          {/* Full Service Digital Marketing - Featured Large Card */}
           <motion.div
-            className="bg-gradient-to-r from-yellow-400/20 to-yellow-600/20 border-2 border-yellow-400 rounded-xl p-6 md:p-8"
+            className="md:col-span-4 lg:col-span-6 bg-gradient-to-r from-yellow-400/20 to-yellow-600/20 border-2 border-yellow-400 rounded-xl p-8 group"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl md:text-3xl font-bold mb-6 text-yellow-400">Full Service Digital Marketing</h3>
-            <p className="text-gray-300 mb-6 text-lg">
+            <div className="flex items-start justify-between mb-4">
+              <span className="text-yellow-400 font-bold text-4xl">⚡</span>
+              <ArrowUpRight className="w-8 h-8 text-yellow-400 group-hover:scale-110 transition-transform" />
+            </div>
+            <h3 className="text-3xl font-bold mb-4 text-yellow-400">Full Service Digital Marketing</h3>
+            <p className="text-gray-300 text-lg mb-6 max-w-2xl">
               Hand us the reins—from social media to your website—and we'll unleash our proprietary Push & Pull Power System, igniting a surge to supercharge your business growth.
             </p>
             <Link to="/contact">
-              <button className="bg-yellow-400 text-black px-8 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors text-lg">
+              <button className="bg-yellow-400 text-black px-8 py-3 rounded-md text-lg font-medium hover:bg-yellow-300 transition-colors">
                 Get Free Consultation
               </button>
             </Link>
           </motion.div>
 
-          {/* Custom Software Section */}
-          <motion.div
-            className="bg-gray-900 rounded-xl p-6 md:p-8"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-2xl md:text-3xl font-bold mb-6 text-yellow-400">Custom Software</h3>
-            <p className="text-gray-300 mb-6">
-              Streamline every process with our lightning-fast custom software solutions, from automated ERP systems to cutting-edge IoT integrations. We'll help you harness the storm of automation so you run your business—not the other way around.
-            </p>
-            <Link to="/customer-software-demo">
-              <button className="bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors">
-                Get Free Consultation
-              </button>
-            </Link>
-          </motion.div>
         </div>
       </div>
     </div>
