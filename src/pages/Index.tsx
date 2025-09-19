@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Footer from './Footer'; // adjust path if needed
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent } from "@/components/ui/navigation-menu";
 import DynamicActionBar, { type ActionItem } from "@/components/ui/dynamic-action";
-import { Search, Megaphone, CodeXml } from "lucide-react";
+import { Search, Megaphone, CodeXml, ArrowUpRight } from "lucide-react";
 import DemoOne from "@/components/ui/testimonials-3d";
 import Logo from "@/image/Logo.png"
 import Push_Pull from "@/image/Push-Pull-MarketingFrame.png"
