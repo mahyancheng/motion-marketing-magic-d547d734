@@ -168,34 +168,60 @@ const Hero = () => {
             LeadZap Marketing (LeadZap Sdn Bhd) is a Total marketing solution provider and software development company based in Malaysia. We plan, build, launch, and optimize everything under one roof—helping businesses accelerate growth through four core service pillars (include but not limited to):
           </p>
           
-          <div className="space-y-4 mb-8">
-            <div className="flex items-start space-x-3">
-              <span className="text-yellow-400 font-bold">🎯</span>
-              <div>
-                <h3 className="font-semibold text-yellow-400">Search Engine Optimization (SEO)</h3>
-                <p className="text-gray-400 text-sm">Comprehensive strategies to boost organic visibility, local and international market expertise, data-driven approach for sustainable growth</p>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+            <div className="bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors">
+              <span className="text-yellow-400 font-bold text-2xl">🎯</span>
+              <h3 className="font-semibold text-yellow-400 mt-2 mb-2">Search Engine Marketing (SEM)</h3>
+              <p className="text-gray-400 text-sm">Get a free SEO analysis - our team delivers electrifying strategies that doesn't just rank, but also increase your revenue numbers</p>
+              <Link to="/sem" className="inline-block mt-3">
+                <button className="bg-yellow-400 text-black px-4 py-2 rounded-md text-sm font-medium hover:bg-yellow-300 transition-colors">
+                  FREE SEO AUDIT
+                </button>
+              </Link>
             </div>
-            <div className="flex items-start space-x-3">
-              <span className="text-yellow-400 font-bold">📱</span>
-              <div>
-                <h3 className="font-semibold text-yellow-400">Social Media Marketing</h3>
-                <p className="text-gray-400 text-sm">Strategic paid campaigns across major platforms, ROI-focused ad management and optimization, Push–Pull methodologies for maximum impact</p>
-              </div>
+            
+            <div className="bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors">
+              <span className="text-yellow-400 font-bold text-2xl">🚀</span>
+              <h3 className="font-semibold text-yellow-400 mt-2 mb-2">Pay Per Click (Google Ads)</h3>
+              <p className="text-gray-400 text-sm">Want to pay your way up to the first page of Google? Our team crafts lightning-precise campaigns that strike with maximum impact and drive costs down</p>
+              <Link to="/pay-per-click" className="inline-block mt-3">
+                <button className="bg-yellow-400 text-black px-4 py-2 rounded-md text-sm font-medium hover:bg-yellow-300 transition-colors">
+                  FREE AUDIT
+                </button>
+              </Link>
             </div>
-            <div className="flex items-start space-x-3">
-              <span className="text-yellow-400 font-bold">🤝</span>
-              <div>
-                <h3 className="font-semibold text-yellow-400">Influencer Marketing (New)</h3>
-                <p className="text-gray-400 text-sm">Creator discovery, vetting, and brand matching, campaign strategy, briefs, and contract management, content amplification (whitelisting/Spark Ads)</p>
-              </div>
+            
+            <div className="bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors">
+              <span className="text-yellow-400 font-bold text-2xl">📱</span>
+              <h3 className="font-semibold text-yellow-400 mt-2 mb-2">Social Media Marketing</h3>
+              <p className="text-gray-400 text-sm">TikTok, Facebook, Instagram—hand it all to us. We'll spark the lightning and ride the thunder, handling everything from content planning to creation so your brand stays electrifying across every platform.</p>
+              <Link to="/social-media-ads" className="inline-block mt-3">
+                <button className="bg-yellow-400 text-black px-4 py-2 rounded-md text-sm font-medium hover:bg-yellow-300 transition-colors">
+                  Get Free Consultation
+                </button>
+              </Link>
             </div>
-            <div className="flex items-start space-x-3">
-              <span className="text-yellow-400 font-bold">💻</span>
-              <div>
-                <h3 className="font-semibold text-yellow-400">Custom Software Development</h3>
-                <p className="text-gray-400 text-sm">Tailored business automation systems, scalable solutions for operational efficiency, CRM, ERP, and third-party integrations</p>
-              </div>
+            
+            <div className="bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors border-2 border-yellow-400">
+              <span className="text-yellow-400 font-bold text-2xl">⚡</span>
+              <h3 className="font-semibold text-yellow-400 mt-2 mb-2">Full Service Digital Marketing</h3>
+              <p className="text-gray-400 text-sm">Hand us the reins—from social media to your website—and we'll unleash our proprietary Push & Pull Power System, igniting a surge to supercharge your business growth.</p>
+              <Link to="/contact" className="inline-block mt-3">
+                <button className="bg-yellow-400 text-black px-4 py-2 rounded-md text-sm font-medium hover:bg-yellow-300 transition-colors">
+                  Get Free Consultation
+                </button>
+              </Link>
+            </div>
+            
+            <div className="md:col-span-2 bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors">
+              <span className="text-yellow-400 font-bold text-2xl">💻</span>
+              <h3 className="font-semibold text-yellow-400 mt-2 mb-2">Custom Software</h3>
+              <p className="text-gray-400 text-sm">Streamline every process with our lightning-fast custom software solutions, from automated ERP systems to cutting-edge IoT integrations. We'll help you harness the storm of automation so you run your business—not the other way around.</p>
+              <Link to="/custom-software" className="inline-block mt-3">
+                <button className="bg-yellow-400 text-black px-4 py-2 rounded-md text-sm font-medium hover:bg-yellow-300 transition-colors">
+                  Get Free Consultation
+                </button>
+              </Link>
             </div>
           </div>
 
