@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Index } from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import SEO from "./pages/SEO";
+import SEM from "./pages/SEM";
+import PayPerClick from "./pages/PayPerClick";
 import SocialMediaAds from "./pages/SocialMediaAds";
 import OrderManagement from "./pages/OrderManagement";
 import Contact from "./pages/Contact";
@@ -29,7 +31,9 @@ const App = () => (
         <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/sem" element={<SEM />} />
             <Route path="/seo" element={<SEO />} />
+            <Route path="/pay-per-click" element={<PayPerClick />} />
             <Route path="/social-media-ads" element={<SocialMediaAds />} />
             <Route path="/customer-software-demo" element={<CustomerSoftware/>} />
             <Route path="/order-management" element={<OrderManagement />} />

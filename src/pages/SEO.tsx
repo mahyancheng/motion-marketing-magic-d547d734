@@ -30,10 +30,13 @@ const Hero = () => {
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            Get Your <span className="text-yellow-400">FREE SEO Audit</span> Malaysia
+            Dominate Search Rankings with <span className="text-yellow-400">Data-Driven SEO</span>
           </h1>
+          <h2 className="text-2xl md:text-3xl font-bold mb-6">
+            Electrify Search Rankings with Leadzap's SEO
+          </h2>
           <p className="text-lg md:text-xl text-gray-300 mb-8">
-            Professional SEO audit Malaysia services. Our local SEO Malaysia experts provide comprehensive free SEO analysis Malaysia to boost your Kuala Lumpur SEO rankings and organic visibility.
+            Our data-driven SEO Malaysia strategies strike like thunder—mixing technical optimization, powerhouse content, and high-voltage link building to spark sustainable organic growth across Kuala Lumpur and beyond.
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <button className="bg-yellow-400 text-black px-8 py-4 rounded-md font-medium hover:bg-yellow-300 transition-colors text-lg">
@@ -66,23 +69,23 @@ const Features = () => {
   const features = [
     {
       icon: <Search className="h-8 w-8 text-yellow-400" />,
-      title: "Keyword Research",
-      description: "Discover high-intent, valuable keywords that your target audience is actively searching for."
+      title: "Keyword Rankings",
+      description: "Dominate search results with data-driven strategies that boost visibility for SEO Malaysia, local SEO Malaysia, and SEO Kuala Lumpur, putting your brand ahead of the competition."
     },
     {
       icon: <Globe className="h-8 w-8 text-yellow-400" />,
-      title: "Technical SEO",
-      description: "Optimize your website's structure, speed, and mobile-friendliness to improve search performance."
+      title: "Google My Business Management", 
+      description: "We optimise and maintain your GMB profile so you shine across all Google assets, driving more local clicks, calls, and foot traffic."
     },
     {
       icon: <BarChart2 className="h-8 w-8 text-yellow-400" />,
-      title: "Analytics & Reporting",
-      description: "Track your SEO progress with comprehensive analytics and transparent reporting."
+      title: "Website Development",
+      description: "Fast, mobile-friendly sites built to convert, with technical SEO audit Malaysia standards baked in for maximum performance."
     },
     {
       icon: <TrendingUp className="h-8 w-8 text-yellow-400" />,
-      title: "Rank Tracking",
-      description: "Monitor your rankings for targeted keywords and outperform your competitors."
+      title: "Content Creation",
+      description: "Engaging, keyword-rich content that sparks traffic, strengthens authority, and powers long-term rankings across Malaysia."
     }
   ];
 
@@ -98,7 +101,10 @@ const Features = () => {
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our SEO Services</h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-            Comprehensive search engine optimization solutions designed to increase visibility and drive organic traffic.
+            What can you expect from our services?
+          </p>
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto mt-4">
+            Our SEO strategy doesn't stop at top search positions. We supercharge every corner of Google's ecosystem—Maps, My Business, Search, and more
           </p>
         </motion.div>
         

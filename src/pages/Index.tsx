@@ -156,10 +156,16 @@ const Hero = () => {
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            Total <span className="text-yellow-400">Digital Marketing</span> Solutions
+            Supercharge Your <span className="text-yellow-400">Digital Marketing</span> Strategy
           </h1>
+          <h2 className="text-2xl md:text-3xl font-bold mb-6">
+            The Full Service Digital Marketing Agency You Need
+          </h2>
           <p className="text-lg md:text-xl text-gray-300 mb-6">
-            LeadZap Marketing (LeadZap Sdn Bhd) is a Total marketing solution provider and software development company based in Malaysia. We plan, build, launch, and optimize everything under one roof—helping businesses accelerate growth through four core service pillars:
+            We help businesses grow through data-driven marketing strategies that deliver measurable results. We handle everything about digital marketing and supercharge your company's growth.
+          </p>
+          <p className="text-lg md:text-xl text-gray-300 mb-6">
+            LeadZap Marketing (LeadZap Sdn Bhd) is a Total marketing solution provider and software development company based in Malaysia. We plan, build, launch, and optimize everything under one roof—helping businesses accelerate growth through four core service pillars (include but not limited to):
           </p>
           
           <div className="space-y-4 mb-8">
@@ -479,19 +485,6 @@ const WebsiteDesign = () => {
 
 // Services component
 const Services = () => {
-  const services = [
-    {
-      title: "Push Advertising",
-      description: "Strategic paid advertising across social media platforms to reach your target audience directly.",
-      image: Push_ADS
-    },
-    {
-      title: "Organic Traffic",
-      description: "SEO-optimized content and technical optimization to drive sustainable organic traffic growth.",
-      image: Org_Traffic
-    }
-  ];
-
   return (
     <div id="services" className="py-16 lg:py-24">
       <div className="container mx-auto px-4 md:px-6">
@@ -504,35 +497,132 @@ const Services = () => {
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-            Comprehensive digital marketing solutions tailored to your business goals.
+            Electrify Your Digital Growth
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 mt-12">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              className="bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              viewport={{ once: true }}
-            >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
-                <img src={service.image} alt={service.title} className="w-full h-auto" />
-              </motion.div>
-              <div className="p-6">
-                <h3 className="text-2xl font-bold mb-3 text-yellow-400">{service.title}</h3>
-                <p className="text-gray-300">{service.description}</p>
-                <button className="mt-6 bg-transparent hover:bg-yellow-400 text-yellow-400 hover:text-black border border-yellow-400 px-4 py-2 rounded-md transition-colors">
-                  Learn More
+        <div className="space-y-8">
+          {/* SEM Section */}
+          <motion.div
+            className="bg-gray-900 rounded-xl p-6 md:p-8"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-2xl md:text-3xl font-bold mb-6 text-yellow-400">SEM (Search Engine Marketing)</h3>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-4">
+                <h4 className="text-xl font-semibold">SEO (Search Engine Optimization)</h4>
+                <p className="text-gray-300">
+                  Get a free SEO analysis - our team delivers electrifying strategies that doesn't just rank, but also increase your revenue numbers
+                </p>
+                <Link to="/seo">
+                  <button className="bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors">
+                    FREE SEO AUDIT
+                  </button>
+                </Link>
+              </div>
+              
+              <div className="space-y-4">
+                <h4 className="text-xl font-semibold">Pay Per Click (Google Ads)</h4>
+                <p className="text-gray-300">
+                  Want to pay your way up to the first page of Google? Our team crafts lightning-precise campaigns that strike with maximum impact and drive costs down
+                </p>
+                <button className="bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors">
+                  FREE AUDIT
                 </button>
               </div>
-            </motion.div>
-          ))}
+            </div>
+          </motion.div>
+
+          {/* Social Media Marketing Section */}
+          <motion.div
+            className="bg-gray-900 rounded-xl p-6 md:p-8"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-2xl md:text-3xl font-bold mb-6 text-yellow-400">Social Media Marketing</h3>
+            
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="space-y-4">
+                <h4 className="text-xl font-semibold">Facebook Marketing</h4>
+                <p className="text-gray-300">
+                  Need a full-scale team to unleash a storm of results? Partner with us and join our clients who've supercharged their growth to seven-figure heights with lightning-charged Facebook ad campaigns.
+                </p>
+                <Link to="/contact">
+                  <button className="bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors">
+                    Get Free Consultation
+                  </button>
+                </Link>
+              </div>
+              
+              <div className="space-y-4">
+                <h4 className="text-xl font-semibold">Social Media Management</h4>
+                <p className="text-gray-300">
+                  TikTok, Facebook, Instagram—hand it all to us. We'll spark the lightning and ride the thunder, handling everything from content planning to creation so your brand stays electrifying across every platform.
+                </p>
+                <Link to="/contact">
+                  <button className="bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors">
+                    Get Free Consultation
+                  </button>
+                </Link>
+              </div>
+              
+              <div className="space-y-4">
+                <h4 className="text-xl font-semibold">Social Media Ads</h4>
+                <p className="text-gray-300">
+                  Get a crack of power for every buck and watch us electrify your social media ads—awareness, leads, or sales. Whatever you need, we only bring results.
+                </p>
+                <Link to="/social-media-ads">
+                  <button className="bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors">
+                    Get Free Consultation
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Full Service Digital Marketing - Highlighted */}
+          <motion.div
+            className="bg-gradient-to-r from-yellow-400/20 to-yellow-600/20 border-2 border-yellow-400 rounded-xl p-6 md:p-8"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-2xl md:text-3xl font-bold mb-6 text-yellow-400">Full Service Digital Marketing</h3>
+            <p className="text-gray-300 mb-6 text-lg">
+              Hand us the reins—from social media to your website—and we'll unleash our proprietary Push & Pull Power System, igniting a surge to supercharge your business growth.
+            </p>
+            <Link to="/contact">
+              <button className="bg-yellow-400 text-black px-8 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors text-lg">
+                Get Free Consultation
+              </button>
+            </Link>
+          </motion.div>
+
+          {/* Custom Software Section */}
+          <motion.div
+            className="bg-gray-900 rounded-xl p-6 md:p-8"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-2xl md:text-3xl font-bold mb-6 text-yellow-400">Custom Software</h3>
+            <p className="text-gray-300 mb-6">
+              Streamline every process with our lightning-fast custom software solutions, from automated ERP systems to cutting-edge IoT integrations. We'll help you harness the storm of automation so you run your business—not the other way around.
+            </p>
+            <Link to="/customer-software-demo">
+              <button className="bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors">
+                Get Free Consultation
+              </button>
+            </Link>
+          </motion.div>
         </div>
       </div>
     </div>

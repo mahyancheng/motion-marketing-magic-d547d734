@@ -8,6 +8,7 @@ import BenefitsSection from '@/components/custom-software/Benefits';
 import ProcessSection from '@/components/custom-software/Process';
 import FAQSection from '@/components/custom-software/FAQ';
 import CTASection from '@/components/custom-software/CTA';
+import DemoShowcase from '@/components/custom-software/DemoShowcase';
 
 const CustomerSoftware = () => {
 
@@ -116,6 +117,7 @@ const CustomerSoftware = () => {
           <ServicesSection />
           <BenefitsSection />
           <ProcessSection />
+          <DemoShowcase />
           <CTASection />
           <FAQSection />
           <Footer />

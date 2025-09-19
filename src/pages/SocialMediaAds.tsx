@@ -29,10 +29,13 @@ const Hero = () => {
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            Maximize ROI with <span className="text-yellow-400">Social Media Marketing</span>
+            Maximize ROI with <span className="text-yellow-400">Strategic Social Ads</span>
           </h1>
+          <h2 className="text-2xl md:text-3xl font-bold mb-6">
+            Social Media Ads That Generates Revenue
+          </h2>
           <p className="text-lg md:text-xl text-gray-300 mb-8">
-            Facebook marketing Malaysia, Facebook ads agency Malaysia services, and TikTok advertising. Our social media marketing agency Malaysia delivers strategic campaigns across all major platforms.
+            Our data-driven social media advertising strikes like a thunderbolt—launching hyper-targeted campaigns on Facebook, Instagram, and TikTok that turn scrolling audiences into paying customers. Get ready for conversions that crackle with energy and results that roar like thunder.
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <button className="bg-yellow-400 text-black px-6 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors">
@@ -133,24 +136,24 @@ const Platforms = () => {
 const CampaignTypes = () => {
   const campaigns = [
     {
-      icon: <Target className="h-10 w-10" />,
-      name: "Retargeting Campaigns",
-      description: "Re-engage users who have shown interest in your products or services with personalized ads."
-    },
-    {
       icon: <Megaphone className="h-10 w-10" />,
       name: "Brand Awareness",
-      description: "Build brand recognition and reach new potential customers with strategic awareness campaigns."
+      description: "Build brand awareness and reach new potential customers with continuos refined targeting."
     },
     {
       icon: <TrendingUp className="h-10 w-10" />,
-      name: "Conversion Campaigns",
-      description: "Drive sales and leads with optimized campaigns focused on specific conversion goals."
+      name: "Lead Generation",
+      description: "Generate high quality leads for your sales team to convert them into revenue numbers"
     },
     {
       icon: <Users className="h-10 w-10" />,
-      name: "Engagement Campaigns",
-      description: "Build community and foster relationships through engaging content and interactions."
+      name: "Foot Traffic",
+      description: "Want people to visit your physical store? We design online campaigns that lead people to your store"
+    },
+    {
+      icon: <Target className="h-10 w-10" />,
+      name: "Online Sales",
+      description: "Want to see gren in your ecommerce revenue? We have implemented retargeting strategies to bring interested customers back to your site"
     }
   ];
 
@@ -166,7 +169,7 @@ const CampaignTypes = () => {
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Campaign Types</h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-            Strategic campaign types designed to achieve specific business objectives and maximize your social media ROI.
+            We create campaigns based on your business goals -
           </p>
         </motion.div>
         
