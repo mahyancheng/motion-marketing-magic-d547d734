@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Navbar } from "./Index";
 import { BarChart2, Search, ArrowUpRight, Globe, TrendingUp, LineChart } from "lucide-react";
 import Footer from "./Footer";
+import BlogSection from "@/components/BlogSection";
 
 const SEM = () => {
   return (
@@ -13,6 +14,11 @@ const SEM = () => {
       <Process />
       <PPCFeatures />
       <PPCProcess />
+      <BlogSection 
+        tags={['SEM', 'SEO', 'search engine marketing', 'google ads', 'paid advertising', 'organic traffic']}
+        title="SEM & SEO Insights"
+        subtitle="Learn the latest strategies and tips for search engine marketing success"
+      />
       <CallToAction />
       <Footer />
     </div>

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Navbar } from "./Index";
 import { BarChart2, Target, TrendingUp, Users, Instagram, Facebook, Youtube, Megaphone } from "lucide-react";
 import Footer from "./Footer";
+import BlogSection from "@/components/BlogSection";
 
 const SocialMediaAds = () => {
   return (
@@ -12,6 +13,11 @@ const SocialMediaAds = () => {
       <Platforms />
       <CampaignTypes />
       <Process />
+      <BlogSection 
+        tags={['social media marketing', 'social media ads', 'facebook ads', 'instagram marketing', 'tiktok advertising', 'paid social']}
+        title="Social Media Marketing Insights"
+        subtitle="Discover proven strategies for social media advertising and organic growth"
+      />
       <CallToAction />
       <Footer />
     </div>
