@@ -153,9 +153,15 @@ const GEOExplanation = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             What is <span className="text-yellow-400">GEO</span> (Generative Engine Optimization)?
           </h2>
+          <div className="bg-yellow-400/10 border border-yellow-400/30 rounded-lg p-6 mb-8 max-w-4xl mx-auto">
+            <p className="text-lg text-yellow-100 font-medium text-center">
+              ⚠️ Not to be confused with Geographic SEO or Local SEO
+            </p>
+          </div>
           <p className="text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            The future of search is here. While traditional SEO targets search engines like Google, 
-            GEO optimizes your content for AI-powered search engines and chatbots like ChatGPT, Claude, Bard, and Perplexity.
+            GEO is the cutting-edge practice of optimizing your content specifically for AI-powered search engines 
+            and generative AI tools like ChatGPT, Claude, Bard, Perplexity, and other AI assistants that generate 
+            answers from web content.
           </p>
         </motion.div>
 
