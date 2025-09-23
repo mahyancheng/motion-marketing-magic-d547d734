@@ -11,6 +11,7 @@ const SEM = () => {
       <Navbar />
       <Hero />
       <Features />
+      <GEOExplanation />
       <Process />
       <PPCFeatures />
       <PPCProcess />
@@ -132,6 +133,110 @@ const Features = () => {
             </motion.div>
           ))}
         </div>
+      </div>
+    </div>
+  );
+};
+
+// GEO Explanation component
+const GEOExplanation = () => {
+  return (
+    <div className="py-16 lg:py-24 bg-gradient-to-br from-gray-900 via-black to-gray-900">
+      <div className="container mx-auto px-4 md:px-6">
+        <motion.div 
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            What is <span className="text-yellow-400">GEO</span> (Generative Engine Optimization)?
+          </h2>
+          <p className="text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            The future of search is here. While traditional SEO targets search engines like Google, 
+            GEO optimizes your content for AI-powered search engines and chatbots like ChatGPT, Claude, Bard, and Perplexity.
+          </p>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-2xl font-bold mb-6 text-yellow-400">Why GEO Matters for Your Business</h3>
+            <div className="space-y-4 text-gray-300">
+              <div className="flex items-start space-x-3">
+                <span className="text-yellow-400 font-bold text-xl">•</span>
+                <p><strong>AI Search Growth:</strong> Over 60% of users now use AI chatbots for research and product discovery</p>
+              </div>
+              <div className="flex items-start space-x-3">
+                <span className="text-yellow-400 font-bold text-xl">•</span>
+                <p><strong>Future-Proof Strategy:</strong> Get ahead of competitors who are still stuck in traditional SEO</p>
+              </div>
+              <div className="flex items-start space-x-3">
+                <span className="text-yellow-400 font-bold text-xl">•</span>
+                <p><strong>Higher Quality Traffic:</strong> AI-powered searches often indicate higher purchase intent</p>
+              </div>
+              <div className="flex items-start space-x-3">
+                <span className="text-yellow-400 font-bold text-xl">•</span>
+                <p><strong>Local Market Advantage:</strong> Dominate AI search results for Malaysia and KL market</p>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <div className="bg-black p-8 rounded-xl border border-yellow-400/20">
+              <h4 className="text-xl font-bold mb-4 text-yellow-400">GEO vs Traditional SEO</h4>
+              <div className="space-y-4">
+                <div className="border-l-4 border-yellow-400 pl-4">
+                  <h5 className="font-semibold text-white">Traditional SEO</h5>
+                  <p className="text-gray-300 text-sm">Optimizes for keyword rankings on Google search results pages</p>
+                </div>
+                <div className="border-l-4 border-green-400 pl-4">
+                  <h5 className="font-semibold text-white">GEO (Our Approach)</h5>
+                  <p className="text-gray-300 text-sm">Optimizes for AI responses, ensuring your business gets mentioned in AI-generated answers and recommendations</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        <motion.div
+          className="bg-gradient-to-r from-yellow-400/10 to-yellow-600/10 p-8 rounded-xl border border-yellow-400/30"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <div className="text-center">
+            <h3 className="text-2xl font-bold mb-4">Our SEO + GEO Advantage</h3>
+            <p className="text-lg text-gray-300 mb-6 max-w-3xl mx-auto">
+              We don't just do traditional SEO. Our dual approach ensures your business dominates both Google search results 
+              AND gets featured in AI-powered responses when customers ask questions about your industry in Malaysia.
+            </p>
+            <div className="grid md:grid-cols-3 gap-6 mt-8">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-yellow-400 mb-2">Traditional SEO</div>
+                <p className="text-gray-300">Google, Bing, Yahoo rankings</p>
+              </div>
+              <div className="text-center">
+                <div className="text-xl text-gray-400 mb-2">+</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-green-400 mb-2">GEO Optimization</div>
+                <p className="text-gray-300">ChatGPT, Claude, Bard, Perplexity mentions</p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </div>
   );
