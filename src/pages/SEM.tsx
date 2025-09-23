@@ -78,7 +78,7 @@ const Features = () => {
     {
       icon: <Search className="h-8 w-8 text-yellow-400" />,
       title: "Keyword Rankings",
-      description: "Dominate search results with data-driven strategies that boost visibility for SEO Malaysia, local SEO Malaysia, and SEO Kuala Lumpur, putting your brand ahead of the competition."
+      description: "Dominate search results with data-driven strategies that boost visibility across traditional search engines and AI-powered platforms, putting your brand ahead of the competition."
     },
     {
       icon: <Globe className="h-8 w-8 text-yellow-400" />,
