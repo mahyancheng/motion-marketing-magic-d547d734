@@ -29,7 +29,7 @@ const items = [
 
 const ServicesSection = () => {
   return (
-    <section className="py-16 lg:py-24">
+    <section className="py-16 lg:py-24 bg-gray-900">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           className="text-center mb-12"
@@ -48,7 +48,7 @@ const ServicesSection = () => {
           {items.map((item, i) => (
             <motion.article
               key={item.title}
-              className="bg-white/5 p-6 rounded-xl border border-white/10 hover:bg-white/10 transition-all"
+              className="bg-black p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: i * 0.05 }}
@@ -62,13 +62,13 @@ const ServicesSection = () => {
 
         {/* Past Projects Showcase */}
         <motion.div
-          className="mt-16 bg-white/5 rounded-xl p-8 border border-white/10"
+          className="mt-10 bg-black p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
           viewport={{ once: true }}
         >
-          <h3 className="text-2xl font-bold mb-6 text-center">Featured Project: Howkee CRM</h3>
+          <h3 className="text-2xl font-bold mb-6 text-center text-yellow-400">Featured Project: Howkee CRM</h3>
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <p className="text-gray-300 mb-4">
@@ -94,20 +94,11 @@ const ServicesSection = () => {
               </ul>
             </div>
             <div className="text-center">
-              <img 
-                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop" 
+              <img
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop"
                 alt="Howkee CRM Dashboard"
                 className="rounded-lg w-full"
               />
-              <button 
-                onClick={() => {
-                  const demoSection = document.querySelector('#demo-section');
-                  demoSection?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="inline-block mt-4 bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors"
-              >
-                Try Our Demo
-              </button>
             </div>
           </div>
         </motion.div>

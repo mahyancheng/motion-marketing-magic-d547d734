@@ -113,7 +113,7 @@ const Platforms = () => {
           {platforms.map((platform, index) => (
             <motion.div
               key={index}
-              className="bg-black p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-800"
+              className="bg-black p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-800 hover:border-yellow-400 transition-colors"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -184,7 +184,7 @@ const CampaignTypes = () => {
           {campaigns.map((campaign, index) => (
             <motion.div
               key={index}
-              className="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow text-center"
+              className="bg-gray-900/50 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-800 hover:border-yellow-400 transition-colors text-center"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -253,7 +253,7 @@ const Process = () => {
           {steps.map((step, index) => (
             <motion.div
               key={index}
-              className="bg-black p-6 rounded-xl shadow-lg relative"
+              className="bg-gray-900/50 p-6 rounded-xl shadow-lg relative border border-gray-800 hover:border-yellow-400 transition-colors"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}

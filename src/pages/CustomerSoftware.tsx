@@ -8,7 +8,6 @@ import BenefitsSection from '@/components/custom-software/Benefits';
 import ProcessSection from '@/components/custom-software/Process';
 import FAQSection from '@/components/custom-software/FAQ';
 import CTASection from '@/components/custom-software/CTA';
-import DemoShowcase from '@/components/custom-software/DemoShowcase';
 import BlogSection from '@/components/BlogSection';
 
 const CustomerSoftware = () => {
@@ -118,8 +117,7 @@ const CustomerSoftware = () => {
           <ServicesSection />
           <BenefitsSection />
           <ProcessSection />
-          <DemoShowcase />
-          <BlogSection 
+          <BlogSection
             tags={['custom software', 'software development', 'automation', 'business systems', 'erp', 'crm integration']}
             title="Software Development Insights"
             subtitle="Explore the latest trends and best practices in custom software development"

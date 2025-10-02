@@ -9,7 +9,7 @@ const steps = [
 
 const ProcessSection = () => {
   return (
-    <section className="py-16 lg:py-24">
+    <section className="py-16 lg:py-24 bg-gray-900">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           className="text-center mb-12"
@@ -28,7 +28,7 @@ const ProcessSection = () => {
           {steps.map((s, i) => (
             <motion.div
               key={s.n}
-              className="bg-white/5 p-6 rounded-xl border border-white/10 hover:bg-white/10 transition-all"
+              className="bg-black p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: i * 0.05 }}

@@ -30,13 +30,14 @@ const Footer: React.FC = () => {
                     <div>
                         <h3 className="text-lg font-semibold mb-4">Company</h3>
                         <ul className="space-y-2">
-                            <li><a href="/" className="hover:underline">Home</a></li>
+                            <li><a href="/" className="hover:text-yellow-400 hover:no-underline">Home</a></li>
+                            <li><a href="/corporate-profile" className="hover:text-yellow-400 hover:no-underline">Company Profile</a></li>
                             <li className="font-medium">Services</li>
-                            <li className="ml-4"><a href="/seo" className="hover:underline">SEO</a></li>
-                            <li className="ml-4"><a href="/social-media-ads" className="hover:underline">Social Media Paid Ads</a></li>
-                            <li className="ml-4"><a href="/customer-software-demo" className="hover:underline">Custom Software solution</a></li>
-                            <li><a href="/blog" className="hover:underline">Blog</a></li>
-                            <li><a href="/contact" className="hover:underline">Contact Us</a></li>
+                            <li className="ml-4"><a href="/seo" className="hover:text-yellow-400 hover:no-underline">SEO</a></li>
+                            <li className="ml-4"><a href="/social-media-ads" className="hover:text-yellow-400 hover:no-underline">Social Media Paid Ads</a></li>
+                            <li className="ml-4"><a href="/customer-software-demo" className="hover:text-yellow-400 hover:no-underline">Custom Software solution</a></li>
+                            <li><a href="/blog" className="hover:text-yellow-400 hover:no-underline">Blog</a></li>
+                            <li><a href="/contact" className="hover:text-yellow-400 hover:no-underline">Contact Us</a></li>
                         </ul>
                     </div>
 

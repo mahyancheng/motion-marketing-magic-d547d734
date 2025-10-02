@@ -132,6 +132,7 @@ export const Navbar = () => {
             </NavigationMenuList>
           </NavigationMenu>
           <Link to="/blog" className="hover:text-yellow-400 transition-colors">Blog</Link>
+          <Link to="/corporate-profile" className="hover:text-yellow-400 transition-colors">Company Profile</Link>
           <Link to="/contact" className="hover:text-yellow-400 transition-colors">Contact Us</Link>
         </div>
         <Link to="/contact">
@@ -167,7 +168,7 @@ const Hero = () => {
           <p className="text-lg md:text-xl text-gray-300 mb-6">
             LeadZap Marketing (LeadZap Sdn Bhd) is a Total marketing solution provider and software development company based in Malaysia. We plan, build, launch, and optimize everything under one roof—helping businesses accelerate growth through four core service pillars (include but not limited to):
           </p>
-          
+
 
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <button className="bg-yellow-400 text-black px-6 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors">
@@ -229,7 +230,7 @@ const Framework = () => {
 
         <div className="mt-16 grid md:grid-cols-2 gap-8">
           <motion.div
-            className="bg-black p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+            className="bg-black p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-800 hover:border-yellow-400 transition-colors"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
@@ -257,7 +258,7 @@ const Framework = () => {
           </motion.div>
 
           <motion.div
-            className="bg-black p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+            className="bg-black p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-800 hover:border-yellow-400 transition-colors"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
@@ -383,31 +384,31 @@ const WebsiteDesign = () => {
       name: "WorkConnect",
       description: "Professional networking and career development platform",
       url: "https://workconnect.com.my",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop"
+      image: "src/image/WorkConnect.png"
     },
     {
       name: "Tectone Steel",
       description: "Industrial steel solutions and construction services",
       url: "https://tectonesteel.com",
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=250&fit=crop"
+      image: "src/image/tectone.jpg"
     },
     {
       name: "AG Kaizen",
       description: "Business consulting and process improvement solutions",
       url: "https://agkaizen.com",
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=250&fit=crop"
+      image: "src/image/agkaizen.jpg"
     },
     {
-      name: "Puregen",  
+      name: "Puregen",
       description: "Advanced water purification and treatment systems",
       url: "https://www.puregen.com.my",
-      image: "https://images.unsplash.com/photo-1544511916-0148ccdeb877?w=400&h=250&fit=crop"
+      image: "src/image/Puregen.png"
     }
   ];
 
   return (
-    <div className="py-16 lg:py-24">
-      <div className="container mx-auto px-4 md:px-6">
+    <div className="py-16 lg:py-24 ">
+      <div className="container mx-auto px-4 md:px-6 ">
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
@@ -423,35 +424,39 @@ const WebsiteDesign = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {websites.map((website, index) => (
-            <motion.div
-              key={index}
-              className="bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <img 
-                src={website.image} 
-                alt={website.name}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 text-yellow-400">{website.name}</h3>
-                <p className="text-gray-300 mb-4">{website.description}</p>
-                <a 
-                  href={website.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-yellow-400 hover:text-yellow-300 transition-colors"
-                >
-                  Visit Website
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
-              </div>
-            </motion.div>
+            // Wrapper grows the hover hit-area around the card
+            <div key={index} className="group rounded-2xl p-2 -m-2">
+              <motion.a
+                href={website.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block rounded-xl overflow-hidden border border-transparent transition-colors duration-200 bg-gray-900 shadow-lg hover:shadow-xl cursor-pointer focus:outline-none focus:ring-2 focus:ring-yellow-400/40 group-hover:border-yellow-400"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <img
+                  src={website.image}
+                  alt={website.name}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2 text-yellow-400 group-hover:text-yellow-300 transition-colors">
+                    {website.name}
+                  </h3>
+                  <p className="text-gray-300 mb-4">
+                    {website.description}
+                  </p>
+                  <span className="inline-flex items-center text-yellow-400 group-hover:text-yellow-300 transition-colors">
+                    Visit Website
+                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </span>
+                </div>
+              </motion.a>
+            </div>
           ))}
         </div>
       </div>
@@ -477,101 +482,104 @@ const Services = () => {
           </p>
         </motion.div>
 
-        {/* Bento Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 max-w-7xl mx-auto">
-          
-          {/* SEM - Large Card */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* SEM */}
           <motion.div
-            className="md:col-span-2 lg:col-span-3 bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors group"
+            className="bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors group h-full min-h-[280px] flex flex-col"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <div className="flex items-start justify-between mb-4">
-              <span className="text-yellow-400 font-bold text-3xl">🎯</span>
-              <ArrowUpRight className="w-6 h-6 text-gray-400 group-hover:text-yellow-400 transition-colors" />
+            <div>
+              <div className="flex items-start justify-between mb-4">
+                <span className="text-yellow-400 font-bold text-3xl">🎯</span>
+                <ArrowUpRight className="w-6 h-6 text-gray-400 group-hover:text-yellow-400 transition-colors" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">Search Engine Marketing (SEM)</h3>
+              <p className="text-gray-300 mb-6">
+                Get a free SEO analysis — strategies that not only rank, but also grow revenue. Includes SEO & GEO optimization.
+              </p>
             </div>
-            <h3 className="text-2xl font-bold mb-3 text-yellow-400">Search Engine Marketing (SEM)</h3>
-            <p className="text-gray-300 mb-4">
-              Get a free SEO analysis - our team delivers electrifying strategies that doesn't just rank, but also increase your revenue numbers. Includes SEO & GEO optimization.
-            </p>
-            <Link to="/sem">
-              <button className="bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors">
+            <Link to="/sem" className="mt-auto">
+              <button className="bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors w-full">
                 FREE SEO AUDIT
               </button>
             </Link>
           </motion.div>
 
-          {/* Social Media Marketing - Medium Card */}
+          {/* Social Media Marketing */}
           <motion.div
-            className="md:col-span-2 lg:col-span-2 bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors group"
+            className="bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors group h-full min-h-[280px] flex flex-col"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <div className="flex items-start justify-between mb-4">
-              <span className="text-yellow-400 font-bold text-3xl">📱</span>
-              <ArrowUpRight className="w-6 h-6 text-gray-400 group-hover:text-yellow-400 transition-colors" />
+            <div>
+              <div className="flex items-start justify-between mb-4">
+                <span className="text-yellow-400 font-bold text-3xl">📱</span>
+                <ArrowUpRight className="w-6 h-6 text-gray-400 group-hover:text-yellow-400 transition-colors" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">Social Media Marketing</h3>
+              <p className="text-gray-300 mb-6">
+                TikTok, Facebook, Instagram management & ads with electrifying content.
+              </p>
             </div>
-            <h3 className="text-xl font-bold mb-3 text-yellow-400">Social Media Marketing</h3>
-            <p className="text-gray-300 text-sm mb-4">
-              TikTok, Facebook, Instagram management and ads with electrifying content creation.
-            </p>
-            <Link to="/social-media-ads">
-              <button className="bg-yellow-400 text-black px-4 py-2 rounded-md text-sm font-medium hover:bg-yellow-300 transition-colors">
+            <Link to="/social-media-ads" className="mt-auto">
+              <button className="bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors w-full">
                 Get Consultation
               </button>
             </Link>
           </motion.div>
 
-          {/* Custom Software - Small Card */}
+          {/* Custom Software */}
           <motion.div
-            className="md:col-span-2 lg:col-span-1 bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors group"
+            className="bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors group h-full min-h-[280px] flex flex-col"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <div className="flex items-start justify-between mb-4">
-              <span className="text-yellow-400 font-bold text-2xl">💻</span>
-              <ArrowUpRight className="w-5 h-5 text-gray-400 group-hover:text-yellow-400 transition-colors" />
+            <div>
+              <div className="flex items-start justify-between mb-4">
+                <span className="text-yellow-400 font-bold text-2xl">💻</span>
+                <ArrowUpRight className="w-5 h-5 text-gray-400 group-hover:text-yellow-400 transition-colors" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">Custom Software</h3>
+              <p className="text-gray-300 mb-6">Lightning-fast ERP & IoT solutions.</p>
             </div>
-            <h3 className="text-lg font-bold mb-3 text-yellow-400">Custom Software</h3>
-            <p className="text-gray-300 text-sm mb-4">
-              Lightning-fast ERP & IoT solutions.
-            </p>
-            <Link to="/customer-software-demo">
-              <button className="bg-yellow-400 text-black px-3 py-2 rounded-md text-xs font-medium hover:bg-yellow-300 transition-colors">
+            <Link to="/customer-software-demo" className="mt-auto">
+              <button className="bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors w-full">
                 Get Consultation
               </button>
             </Link>
           </motion.div>
 
-          {/* Full Service Digital Marketing - Featured Large Card */}
+          {/* Full Service Digital Marketing */}
           <motion.div
-            className="md:col-span-4 lg:col-span-6 bg-gradient-to-r from-yellow-400/20 to-yellow-600/20 border-2 border-yellow-400 rounded-xl p-8 group"
+            className="bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors group h-full min-h-[280px] flex flex-col"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <div className="flex items-start justify-between mb-4">
-              <span className="text-yellow-400 font-bold text-4xl">⚡</span>
-              <ArrowUpRight className="w-8 h-8 text-yellow-400 group-hover:scale-110 transition-transform" />
+            <div>
+              <div className="flex items-start justify-between mb-4">
+                <span className="text-yellow-400 font-bold text-3xl">⚡</span>
+                <ArrowUpRight className="w-6 h-6 text-gray-400 group-hover:text-yellow-400 transition-colors" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-yellow-400">Full Service Digital Marketing</h3>
+              <p className="text-gray-300 mb-6">
+                From social to web — our Push & Pull Power System to supercharge growth.
+              </p>
             </div>
-            <h3 className="text-3xl font-bold mb-4 text-yellow-400">Full Service Digital Marketing</h3>
-            <p className="text-gray-300 text-lg mb-6 max-w-2xl">
-              Hand us the reins—from social media to your website—and we'll unleash our proprietary Push & Pull Power System, igniting a surge to supercharge your business growth.
-            </p>
-            <Link to="/contact">
-              <button className="bg-yellow-400 text-black px-8 py-3 rounded-md text-lg font-medium hover:bg-yellow-300 transition-colors">
+            <Link to="/contact" className="mt-auto">
+              <button className="bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors w-full">
                 Get Free Consultation
               </button>
             </Link>
           </motion.div>
-
         </div>
       </div>
     </div>

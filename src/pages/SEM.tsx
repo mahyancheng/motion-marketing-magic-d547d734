@@ -120,7 +120,7 @@ const Features = () => {
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              className="bg-black p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+              className="bg-black p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-800 hover:border-yellow-400 transition-colors"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -365,7 +365,7 @@ const PPCFeatures = () => {
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              className="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+              className="bg-gray-900/50 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-800 hover:border-yellow-400 transition-colors"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -430,7 +430,7 @@ const PPCProcess = () => {
           {steps.map((step, index) => (
             <motion.div
               key={index}
-              className="bg-black p-6 rounded-xl"
+              className="bg-black p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}

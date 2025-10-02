@@ -16,6 +16,7 @@ import BlogPost from "./pages/BlogPost";
 import AdminDashboard from "./pages/AdminDashboard";
 import ScrollToTop from "@/components/ScrollToTop";
 import { ContentProvider } from "@/contexts/ContentContext";
+import CorporateProfile from "./pages/CorporateProfile";
 
 const queryClient = new QueryClient();
 
@@ -26,20 +27,21 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-        <ScrollToTop />
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/sem" element={<SEM />} />
             <Route path="/social-media-ads" element={<SocialMediaAds />} />
-            <Route path="/custom-software" element={<CustomerSoftware/>} />
-            <Route path="/customer-software-demo" element={<CustomerSoftware/>} />
+            <Route path="/custom-software" element={<CustomerSoftware />} />
+            <Route path="/customer-software-demo" element={<CustomerSoftware />} />
             <Route path="/order-management" element={<OrderManagement />} />
             <Route path="/contact" element={<Contact />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:id" element={<BlogPost />} />
-          <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/corporate-profile" element={<CorporateProfile />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<BlogPost />} />
+            <Route path="/admin" element={<AdminDashboard />} />
             <Route path="*" element={<NotFound />} />
-            </Routes>
+          </Routes>
         </BrowserRouter>
       </ContentProvider>
     </TooltipProvider>

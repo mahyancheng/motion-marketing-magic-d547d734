@@ -18,7 +18,7 @@ export default function Blog() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-20 text-center bg-gradient-to-b from-black via-gray-900 to-black">
+      <section className="pt-24 text-center bg-gradient-to-b from-black via-gray-900 to-black">
         <div className="max-w-4xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -47,18 +47,26 @@ export default function Blog() {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl font-bold mb-8 text-center">Featured Article</h2>
+
+              {/* keep this group for title/color transitions, etc. */}
               <Link to={`/blog/${featuredPost.id}`} className="group">
-                <div className="bg-gray-900 rounded-2xl overflow-hidden shadow-2xl hover:shadow-yellow-400/20 transition-all duration-300 hover:-translate-y-2">
+                <div className="bg-gray-900 rounded-2xl overflow-hidden border border-gray-800 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2">
                   <div className="grid md:grid-cols-2 gap-0">
                     {featuredPost.imageUrl && (
+                      // ⬇️ give the image wrapper its own named group
                       <div
-                        className="overflow-hidden"
-                        style={{ aspectRatio: 16 / 9 }}   // ✅ 原生 aspect-ratio
+                        className="overflow-hidden [aspect-ratio:16/9] group/image"
+                      // or className="overflow-hidden aspect-[16/9] group/image" if you use tailwind v3.3+
                       >
                         <img
                           src={featuredPost.imageUrl}
                           alt={featuredPost.title}
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          className="
+                  w-full h-full object-cover
+                  transition-transform duration-300
+                  group-hover/image:scale-105  /* only when hovering THIS wrapper */
+                  group-hover:scale-100         /* explicitly cancel parent group hover */
+                "
                           loading="lazy"
                         />
                       </div>
@@ -72,12 +80,16 @@ export default function Blog() {
                           </Badge>
                         ))}
                       </div>
+
+                      {/* This still reacts to the outer group hover for color */}
                       <h3 className="text-3xl font-bold mb-4 group-hover:text-yellow-400 transition-colors">
                         {featuredPost.title}
                       </h3>
+
                       <p className="text-gray-300 mb-6 text-lg leading-relaxed">
                         {featuredPost.excerpt}
                       </p>
+
                       <div className="flex items-center gap-4 text-sm text-gray-400 mb-6">
                         <div className="flex items-center gap-2">
                           <User className="w-4 h-4" />
@@ -88,7 +100,11 @@ export default function Blog() {
                           <span>{featuredPost.publishedAt.toLocaleDateString()}</span>
                         </div>
                       </div>
-                      <Button variant="ghost" className="group/btn p-0 h-auto font-semibold text-yellow-400 hover:text-yellow-300 w-fit">
+
+                      <Button
+                        variant="ghost"
+                        className="group/btn p-0 h-auto font-semibold text-yellow-400 hover:text-yellow-300 w-fit"
+                      >
                         Read Full Article
                         <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
                       </Button>
@@ -121,7 +137,7 @@ export default function Blog() {
                   viewport={{ once: true }}
                 >
                   <Link to={`/blog/${post.id}`} className="group">
-                    <Card className="group bg-black border-gray-800 hover:border-yellow-400/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                    <Card className="group bg-black border-gray-800 hover:border-yellow-400 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
                       {post.imageUrl && (
                         <div
                           className="overflow-hidden rounded-t-lg"

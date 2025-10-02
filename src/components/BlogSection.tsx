@@ -13,10 +13,10 @@ const BlogSection = ({ tags, title = "Latest Insights", subtitle = "Stay updated
   const { blogPosts } = useContent();
 
   // Filter blog posts that have any of the specified tags
-  const filteredPosts = blogPosts.filter(post => 
-    post.tags.some(tag => 
-      tags.some(filterTag => 
-        tag.toLowerCase().includes(filterTag.toLowerCase()) || 
+  const filteredPosts = blogPosts.filter(post =>
+    post.tags.some(tag =>
+      tags.some(filterTag =>
+        tag.toLowerCase().includes(filterTag.toLowerCase()) ||
         filterTag.toLowerCase().includes(tag.toLowerCase())
       )
     )
@@ -27,9 +27,9 @@ const BlogSection = ({ tags, title = "Latest Insights", subtitle = "Stay updated
   }
 
   return (
-    <div className="py-16 bg-gray-800">
+    <div className="py-16">
       <div className="container mx-auto px-4 md:px-6">
-        <motion.div 
+        <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -46,7 +46,7 @@ const BlogSection = ({ tags, title = "Latest Insights", subtitle = "Stay updated
           {filteredPosts.map((post, index) => (
             <motion.article
               key={post.id}
-              className="bg-black rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-700"
+              className="bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl hover:border-yellow-400 transition-all duration-300 border border-gray-700"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -55,14 +55,14 @@ const BlogSection = ({ tags, title = "Latest Insights", subtitle = "Stay updated
             >
               {post.imageUrl && (
                 <div className="aspect-video overflow-hidden">
-                  <img 
-                    src={post.imageUrl} 
+                  <img
+                    src={post.imageUrl}
                     alt={post.title}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </div>
               )}
-              
+
               <div className="p-6">
                 <div className="flex items-center gap-4 text-sm text-gray-400 mb-3">
                   <div className="flex items-center gap-1">
@@ -81,7 +81,7 @@ const BlogSection = ({ tags, title = "Latest Insights", subtitle = "Stay updated
                   </div>
                 </div>
 
-                <h3 className="text-xl font-bold mb-3 text-white hover:text-yellow-400 transition-colors">
+                <h3 className="text-xl font-bold mb-3 text-white transition-colors">
                   <Link to={`/blog/${post.id}`} className="line-clamp-2">
                     {post.title}
                   </Link>
@@ -102,7 +102,7 @@ const BlogSection = ({ tags, title = "Latest Insights", subtitle = "Stay updated
                       </span>
                     ))}
                   </div>
-                  
+
                   <Link
                     to={`/blog/${post.id}`}
                     className="text-yellow-400 hover:text-yellow-300 transition-colors flex items-center gap-1 text-sm font-medium"
@@ -117,7 +117,7 @@ const BlogSection = ({ tags, title = "Latest Insights", subtitle = "Stay updated
         </div>
 
         {filteredPosts.length > 0 && (
-          <motion.div 
+          <motion.div
             className="text-center mt-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

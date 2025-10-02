@@ -30,7 +30,7 @@ const CustomSoftwareHero = ({ subtitle }: HeroProps) => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <div className="bg-white/5 border border-white/10 rounded-xl p-6 m-4">
+          <div className="bg-black p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-800 hover:border-yellow-400 transition-colors m-10">
             <h2 className="text-xl font-semibold mb-2 text-yellow-400">Why choose our software development company?</h2>
             <p className="text-gray-300">
               As a trusted software provider, we build scalable custom software and business automation software tailored to your workflows.
