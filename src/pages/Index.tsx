@@ -10,6 +10,10 @@ import Logo from "@/image/Logo.png"
 import Push_Pull from "@/image/Push-Pull-MarketingFrame.png"
 import Push_ADS from "@/image/Push-ADS.png"
 import Org_Traffic from "@/image/Org-Traffic.png"
+import Workconnect from "@/image/workconnect.png"
+import Tectone from "@/image/tectone.jpg"
+import AGKaizen from "@/image/agkaizen.jpg"
+import Puregen from "@/image/puregen.png"
 
 
 
@@ -384,25 +388,25 @@ const WebsiteDesign = () => {
       name: "WorkConnect",
       description: "Professional networking and career development platform",
       url: "https://workconnect.com.my",
-      image: "src/image/WorkConnect.png"
+      image:Workconnect
     },
     {
       name: "Tectone Steel",
       description: "Industrial steel solutions and construction services",
       url: "https://tectonesteel.com",
-      image: "src/image/tectone.jpg"
+      image:Tectone
     },
     {
       name: "AG Kaizen",
       description: "Business consulting and process improvement solutions",
       url: "https://agkaizen.com",
-      image: "src/image/agkaizen.jpg"
+      image:AGKaizen
     },
     {
       name: "Puregen",
       description: "Advanced water purification and treatment systems",
       url: "https://www.puregen.com.my",
-      image: "src/image/Puregen.png"
+      image:Puregen
     }
   ];
 

@@ -32,9 +32,7 @@ const CorporateProfile = () => {
         <MarketingFramework />
         <PerformanceResults />
         <WhyChooseUs />
-        <ClientPortfolio />
         <OutOfHomePortfolio />
-        <CompanyStats />
         <ContactInformation />
       </main>
       <Footer />
@@ -458,8 +456,9 @@ const MarketingFramework = () => {
           <img
             src={PushPullFramework}
             alt="Push-Pull Marketing Framework showing social media platforms for push strategy and search engines for pull strategy"
-            className="max-w-full h-auto rounded-lg bg-black p-8"
+            className="mx-auto max-w-md md:max-w-lg lg:max-w-2xl h-auto rounded-lg bg-black p-6"
           />
+
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8 mt-12">
@@ -702,145 +701,6 @@ const WhyChooseUs = () => {
   );
 };
 
-// Client Portfolio
-const ClientPortfolio = () => {
-  const clients = [
-    {
-      name: "WorkConnect",
-      industry: "Professional Networking",
-      description: "Career development platform connecting professionals across Malaysia",
-      url: "workconnect.com.my"
-    },
-    {
-      name: "Tectone Steel",
-      industry: "Industrial Manufacturing",
-      description: "Leading steel solutions provider for construction and infrastructure",
-      url: "tectonesteel.com"
-    },
-    {
-      name: "AG Kaizen",
-      industry: "Business Consulting",
-      description: "Process improvement and business transformation consultancy",
-      url: "agkaizen.com"
-    },
-    {
-      name: "Puregen",
-      industry: "Water Treatment",
-      description: "Advanced water purification systems and environmental solutions",
-      url: "puregen.com.my"
-    }
-  ];
-
-  return (
-    <section className="py-16 lg:py-24 bg-gray-900">
-      <div className="container mx-auto px-4 md:px-6">
-        <motion.div
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Client Portfolio</h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-            Trusted by leading companies across diverse industries in Malaysia and beyond.
-          </p>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 gap-8">
-          {clients.map((client, index) => {
-            const href = /^https?:\/\//i.test(client.url) ? client.url : `https://${client.url}`;
-            return (
-              <div key={index} className="group rounded-2xl p-2 -m-2 h-full">
-                <motion.a
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="
-                    block h-full min-h-[180px]  /* same height for all */
-                     bg-black p-6 rounded-xl border border-gray-800
-                     transition-all duration-300 cursor-pointer
-                     hover:border-yellow-400 hover:shadow-lg
-                     group-hover:ring-2 group-hover:ring-yellow-400/30
-                     focus:outline-none focus:ring-2 focus:ring-yellow-400/40
-                     flex flex-col
-                  "
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="flex items-start justify-between mb-3">
-                    <h3 className="text-xl font-bold text-yellow-400 line-clamp-1">
-                      {client.name}
-                    </h3>
-                    <span className="text-sm text-gray-400 bg-gray-800 px-2 py-1 rounded whitespace-nowrap">
-                      {client.industry}
-                    </span>
-                  </div>
-
-                  <p className="text-gray-300 mb-3 line-clamp-3">
-                    {client.description}
-                  </p>
-
-                  {/* stick to bottom so spacing is consistent */}
-                  <p className="mt-auto text-sm text-yellow-400">
-                    {client.url}
-                  </p>
-                </motion.a>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// Company Stats
-const CompanyStats = () => {
-  const stats = [
-    { number: "461K+", label: "Sessions Generated", icon: <TrendingUp className="h-6 w-6" /> },
-    { number: "75%", label: "Average Growth Rate", icon: <BarChart2 className="h-6 w-6" /> },
-    { number: "6+", label: "Years Experience", icon: <Award className="h-6 w-6" /> },
-    { number: "24/7", label: "Support Available", icon: <Users className="h-6 w-6" /> }
-  ];
-
-  return (
-    <section className="py-16 lg:py-24 bg-black">
-      <div className="container mx-auto px-4 md:px-6">
-        <motion.div
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Track Record</h2>
-        </motion.div>
-
-        <div className="grid md:grid-cols-4 gap-8">
-          {stats.map((stat, index) => (
-            <motion.div
-              key={index}
-              className="text-center bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400/50 transition-all duration-300"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <div className="text-yellow-400 mb-4 flex justify-center">
-                {stat.icon}
-              </div>
-              <div className="text-4xl md:text-5xl font-bold text-yellow-400 mb-2">{stat.number}</div>
-              <div className="text-gray-300">{stat.label}</div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
 
 // Out of Home Portfolio
 const OutOfHomePortfolio = () => {
