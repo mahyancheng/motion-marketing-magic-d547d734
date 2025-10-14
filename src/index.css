@@ -245,3 +245,18 @@
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+/* 防止容器继承到任何平滑滚动 */
+.no-smooth {
+  scroll-behavior: auto !important;
+}
+
+.demo-scroll-container {
+  -webkit-overflow-scrolling: auto;
+  /* iOS 避免动量和 JS 冲突 */
+  overscroll-behavior-y: auto;
+  overflow-anchor: none;
+  /* 避免浏览器锚点校正抖动 */
+  contain: paint;
+  /* 降低重绘范围 */
+}

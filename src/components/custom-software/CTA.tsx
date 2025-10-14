@@ -18,11 +18,15 @@ import FulfillmentSection from "../FulfillmentSection";
 import CustomerSection from "../CustomerSection";
 import AnalyticsSection from "../AnalyticsSection";
 
+
 // ================= 可调参数（交互灵敏度 / 行为配置） =================
-const WHEEL_TRIGGER_PX = 240;
-const WHEEL_DECAY_MS = 220;
-const STEP_COOLDOWN_MS = 480;
-const TOUCH_TRIGGER_PX = 90;
+const WHEEL_TRIGGER_PX = 120;    // 更灵敏
+const WHEEL_DECAY_MS = 140;      // 累积衰减更快
+const STEP_COOLDOWN_MS = 300;    // 翻页冷却更短
+const TOUCH_TRIGGER_PX = 60;     // 触控更灵敏
+const FAST_SNAP_PX = 80;         // 单次大滚动直接翻页
+const WHEEL_GAIN = 1.15;         // Demo 内滚动增益
+const TOUCH_GAIN = 1.10;
 
 // ====== 尺寸参数（demo 容器更小） ======
 const DEMO_HEIGHT_VH = 0.75;
@@ -149,6 +153,25 @@ function useUnifiedStepSnap(
   apiRef: React.MutableRefObject<SnapAPI | null>,
   onActiveChange?: (i: number) => void
 ) {
+
+  const UNLOCK_HYSTERESIS_PX = 64;   // 靠近底部这么多像素内触发“解锁到页面”
+  const RELOCK_GAP_MS = UNLOCK_HYSTERESIS_PX * 3;         // 解锁后至少这么久才允许回锁
+
+  // 放在 useUnifiedStepSnap 内部（和其它 ref 一起）
+  const unlockedToPageRef = React.useRef(false);
+  const unlockTsRef = React.useRef(0);
+
+  // 小工具：计算“最后目标位”
+  const getLastTarget = () => {
+    const s = stepH();
+    return Math.max(0, (totalSteps - 1) * s - lastStopOffsetPx);
+  };
+  // 👇 把滚动“接管”给页面
+  const handoffToPage = (amount: number) => {
+    try { containerRef.current?.blur(); } catch { }
+    window.scrollBy({ top: amount, behavior: "smooth" });
+  };
+
   const animatingRef = useRef(false);
   const lastSnapAtRef = useRef(0);
 
@@ -262,12 +285,18 @@ function useUnifiedStepSnap(
     if (!el) return;
 
     // WHEEL
+    // ===== onWheel =====
     const onWheel = (e: WheelEvent) => {
+      const el = containerRef.current!;
       const now = e.timeStamp || performance.now();
       const page = stepH();
-      const dyPx = normalizeWheelDeltaY(e, page);
-      const dirDown = dyPx > 0;
+      const dyRaw = normalizeWheelDeltaY(e, page);
+      const dirDown = dyRaw > 0;
 
+      // 让 Demo 内滚动更“跟手”
+      const dyPx = dyRaw * WHEEL_GAIN;
+
+      // 1) 如果指针下存在一个还能滚的子滚动容器，优先滚它
       const targetEl = (e.target as Element) ?? null;
       const scrollerUnderPointer = targetEl ? (getScrollableAncestor(targetEl, el) as HTMLElement | null) : null;
       if (scrollerUnderPointer && canScrollFurther(scrollerUnderPointer, dirDown)) {
@@ -277,6 +306,7 @@ function useUnifiedStepSnap(
         return;
       }
 
+      // 2) 当前 step 的 body 还能滚，优先滚 body
       const curIdx = getIdxFromScrollTop(el.scrollTop);
       const body = bodyRefs.current[curIdx];
       if (body && canScrollFurther(body, dirDown)) {
@@ -286,11 +316,12 @@ function useUnifiedStepSnap(
         return;
       }
 
+      // 3) 冷却或动画期间：放行（避免困住）
       if (animatingRef.current || now - lastSnapAtRef.current < STEP_COOLDOWN_MS) {
-        swallow(e);
         return;
       }
 
+      // 4) 累积判断是否翻页
       const acc = wheelAccRef.current;
       const dir = dirDown ? 1 : -1;
       if (now - acc.ts > WHEEL_DECAY_MS || acc.dir !== dir) {
@@ -301,60 +332,127 @@ function useUnifiedStepSnap(
       acc.ts = now;
 
       const nextIdx = clamp(curIdx + dir, 0, totalSteps - 1);
+
+      // 边界/底部判定
       const atVirtualBottom = el.scrollTop >= targetForIdx(totalSteps - 1) - 1;
+      const atActualBottom = Math.ceil(el.scrollTop + el.clientHeight) >= el.scrollHeight - 1;
       const atTop = el.scrollTop <= 0;
 
+      // 5) 快速通道：一次较大滚动直接翻页
+      if (Math.abs(dyPx) >= FAST_SNAP_PX && nextIdx !== curIdx) {
+        swallow(e);
+        lastSnapAtRef.current = now;
+        scrollToIdx(nextIdx);
+        return;
+      }
+
+      // 6) Step 5 结尾：继续向下 → 把滚动交给页面
+      if (dirDown && curIdx === totalSteps - 1 && (atActualBottom || atVirtualBottom)) {
+        swallow(e);
+        const amount = Math.max(80, Math.min(600, Math.abs(dyPx))); // handoff 平滑距离
+        handoffToPage(amount);
+        return;
+      }
+
+      // 7) 达到阈值则吸附翻页
       if (acc.val >= WHEEL_TRIGGER_PX && nextIdx !== curIdx) {
         swallow(e);
         acc.val = 0;
         lastSnapAtRef.current = now;
         scrollToIdx(nextIdx);
-      } else {
-        if ((dirDown && atVirtualBottom) || (!dirDown && atTop)) {
-          swallow(e);
-          return;
-        }
-        swallow(e);
+        return;
       }
+
+      // 8) 不是翻页、不是内部滚，但也不在边界 → 主动滚容器（更跟手）
+      if ((dirDown && atActualBottom) || (!dirDown && atTop)) {
+        // 边界：让页面接管
+        return;
+      }
+      swallow(e);
+      el.scrollBy({ top: dyPx });
     };
+
+
 
     // TOUCH
     const onTouchStart = (e: TouchEvent) => {
       touchStartY.current = e.touches[0]?.clientY ?? null;
     };
+    // ===== onTouchMove =====
     const onTouchMove = (e: TouchEvent) => {
+      const el = containerRef.current!;
       const startY = touchStartY.current;
       if (startY == null) return;
 
+      const now = e.timeStamp || performance.now();
       const currY = e.touches[0]?.clientY ?? startY;
-      const dy = startY - currY;
-      const dirDown = dy > 0;
+      const dyRaw = startY - currY;     // 向下为正
+      const dirDown = dyRaw > 0;
+      const dy = dyRaw * TOUCH_GAIN;
 
+      // ---- 解锁到页面时：完全放行。用户上拉离底足够远再回锁 ----
+      if (unlockedToPageRef.current) {
+        if (!dirDown) {
+          const awayEnough = el.scrollTop <= getLastTarget() - UNLOCK_HYSTERESIS_PX * 2;
+          const cooled = now - unlockTsRef.current > RELOCK_GAP_MS;
+          if (awayEnough && cooled) {
+            unlockedToPageRef.current = false;
+          }
+        }
+        return;
+      }
+
+      // 1) 指针下的可滚元素优先
       const targetEl = (e.target as Element) ?? null;
       const scroller = targetEl ? (getScrollableAncestor(targetEl, el) as HTMLElement | null) : null;
       if (scroller && canScrollFurther(scroller, dirDown)) {
-        swallow(e);
+        e.preventDefault(); e.stopPropagation();
         scroller.scrollBy({ top: dy });
         return;
       }
 
+      // 2) 当前 step body 优先
       const curIdx = getIdxFromScrollTop(el.scrollTop);
       const body = bodyRefs.current[curIdx];
       if (body && canScrollFurther(body, dirDown)) {
-        swallow(e);
+        e.preventDefault(); e.stopPropagation();
         body.scrollBy({ top: dy });
         return;
       }
 
-      const atVirtualBottom = el.scrollTop >= targetForIdx(totalSteps - 1) - 1;
+      const lastTarget = getLastTarget();
+      const atActualBottom = Math.ceil(el.scrollTop + el.clientHeight) >= el.scrollHeight - 1;
       const atTop = el.scrollTop <= 0;
-      if ((dirDown && atVirtualBottom) || (!dirDown && atTop)) {
-        swallow(e);
+
+      // 3) 单次较大滑动：翻页
+      if (Math.abs(dy) >= TOUCH_TRIGGER_PX) {
+        const dir = dirDown ? 1 : -1;
+        const nextIdx = clamp(curIdx + dir, 0, totalSteps - 1);
+        if (nextIdx !== curIdx) {
+          e.preventDefault(); e.stopPropagation();
+          lastSnapAtRef.current = now;
+          scrollToIdx(nextIdx);
+          return;
+        }
+      }
+
+      // 4) Step5 近底：开启解锁模式（不再拦截，让页面自然滚）
+      if (dirDown && curIdx === totalSteps - 1 && el.scrollTop >= lastTarget - UNLOCK_HYSTERESIS_PX) {
+        unlockedToPageRef.current = true;
+        unlockTsRef.current = now;
+        try { el.blur(); } catch { }
         return;
       }
 
-      swallow(e);
+      // 5) 容器顶/底：直接放行；否则滚一点容器，保持跟手
+      if ((dirDown && atActualBottom) || (!dirDown && atTop)) {
+        return; // 放行
+      }
+      e.preventDefault(); e.stopPropagation();
+      el.scrollBy({ top: dy });
     };
+
+
     const onTouchEnd = () => {
       touchStartY.current = null;
     };
@@ -372,7 +470,7 @@ function useUnifiedStepSnap(
       const body = bodyRefs.current[curIdx];
 
       if (animatingRef.current || now - lastSnapAtRef.current < STEP_COOLDOWN_MS) {
-        e.preventDefault(); e.stopPropagation(); return;
+        return; // 放行
       }
 
       if (body && canScrollFurther(body, dirDown)) {
@@ -388,9 +486,17 @@ function useUnifiedStepSnap(
         lastSnapAtRef.current = now;
         scrollToIdx(nextIdx);
       } else {
+        // ⬇️ 最后一屏向下，或顶端向上 → 放行，让页面接管
+        const atActualBottom = Math.ceil(el.scrollTop + el.clientHeight) >= el.scrollHeight - 1;
+        const atTop = el.scrollTop <= 0;
+        if ((dirDown && (curIdx === totalSteps - 1 || atActualBottom)) || (!dirDown && atTop)) {
+          return; // 放行
+        }
+        // 否则保持吸附
         e.preventDefault(); e.stopPropagation();
       }
     };
+
 
     el.addEventListener("wheel", onWheel, { passive: false, capture: true });
     el.addEventListener("touchstart", onTouchStart, { passive: true, capture: true });
@@ -488,6 +594,8 @@ function StepCard({
     </CardSticky>
   );
 }
+
+
 
 const CTASection = () => {
   const [open, setOpen] = useState(false);
@@ -599,6 +707,8 @@ const CTASection = () => {
 
   const activeTitle = STEPS[activeIdx]?.title ?? "";
 
+
+
   return (
     <Collapsible open={open} onOpenChange={setOpen}>
       {/* 顶部 CTA */}
@@ -656,19 +766,15 @@ const CTASection = () => {
                 <div
                   ref={demoScrollRef}
                   tabIndex={0}
-                  className="
-                    relative overflow-y-auto no-scrollbar rounded-xl
-                    mx-auto scroll-smooth overscroll-y-contain
-                    w-[94vw] sm:w-[88vw] md:w-[84vw] lg:w-[78vw] xl:w-[72vw]
-                    max-w-[1100px]
-                    bg-black/40 ring-1 ring-white/10
-                    focus:outline-none focus:ring-2 focus:ring-yellow-400/70
-                  "
+                  className="relative overflow-y-auto no-scrollbar rounded-xl mx-auto no-smooth
+              w-[94vw] sm:w-[88vw] md:w-[84vw] lg:w-[78vw] xl:w-[72vw] max-w-[1100px]
+              bg-black/40 ring-1 ring-white/10 focus:outline-none focus:ring-2 focus:ring-yellow-400/70"
                   style={{
                     height: `${pageH}px`,
-                    overscrollBehaviorY: "contain",
+                    overscrollBehaviorY: "auto",    // ✅ 允许滚动串联到页面
                   }}
                 >
+
                   {/* === HUD：固定导航条（不随内容滚动） === */}
                   <div className="pointer-events-none sticky top-3 z-[10000] px-3">
                     <div
@@ -742,8 +848,12 @@ const CTASection = () => {
           )}
         </AnimatePresence>
       </CollapsibleContent>
-    </Collapsible>
+    </Collapsible >
   );
+
+
 };
+
+
 
 export default CTASection;
