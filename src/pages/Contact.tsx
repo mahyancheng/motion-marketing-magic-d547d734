@@ -1,26 +1,57 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Navbar } from "./Index";
-import { Phone, Mail, MapPin, Clock, MessageSquare, CheckCircle } from "lucide-react";
-import PhoneInput from '../components/PhoneInput';
-import Footer from './Footer'; // adjust path if needed
-
+import { Phone, Mail, CheckCircle } from "lucide-react";
+import PhoneInput from "../components/PhoneInput";
+import Footer from "./Footer";
 
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    service: "",
+    message: "",
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const handlePhoneChange = (value: string) => {
+    setFormData((prev) => ({ ...prev, phone: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically handle the form submission to your backend
-    // For this example, we'll just show a success message
-    setSubmitted(true);
 
-    // Reset form after 3 seconds
+    try {
+      const res = await fetch(
+        "https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY0MDYzMzA0MzA1MjZmNTUzNTUxMzQi_pc",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (res.ok) {
+        setSubmitted(true);
+        console.log("✅ Data sent successfully to Pabbly!");
+      } else {
+        console.error("❌ Failed to send data to Pabbly");
+      }
+    } catch (err) {
+      console.error("❌ Error sending data to Pabbly:", err);
+    }
+
+    // Reset after 3s
     setTimeout(() => {
       setSubmitted(false);
-      // Here you could also reset the form
-      const form = e.target as HTMLFormElement;
-      form.reset();
+      setFormData({ name: "", email: "", phone: "", company: "", service: "", message: "" });
     }, 3000);
   };
 
@@ -28,40 +59,55 @@ const Contact = () => {
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       <Navbar />
       <Hero />
-      <ContactForm submitted={submitted} onSubmit={handleSubmit} />
+      <ContactForm
+        submitted={submitted}
+        onSubmit={handleSubmit}
+        formData={formData}
+        handleChange={handleChange}
+        handlePhoneChange={handlePhoneChange}
+      />
       <ContactInfo />
       <Footer />
-
-    </div>
-
-  );
-};
-
-// Hero component
-const Hero = () => {
-  return (
-    <div className="pt-24 lg:pt-32 pb-16 lg:pb-20">
-      <div className="container mx-auto px-4 md:px-6">
-        <motion.div
-          className="text-center max-w-3xl mx-auto"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            Get in Touch with <span className="text-yellow-400">LeadZap</span>
-          </h1>
-          <p className="text-lg md:text-xl text-gray-300 mb-8">
-            Have questions about our services? Ready to start your marketing journey? Our team of experts is ready to help you achieve your business goals.
-          </p>
-        </motion.div>
-      </div>
     </div>
   );
 };
 
-// Contact Form component
-const ContactForm = ({ submitted, onSubmit }: { submitted: boolean; onSubmit: (e: React.FormEvent) => void }) => {
+// ✅ Hero Section
+const Hero = () => (
+  <div className="pt-24 lg:pt-32 pb-16 lg:pb-10">
+    <div className="container mx-auto px-4 md:px-6">
+      <motion.div
+        className="text-center max-w-3xl mx-auto"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+          Get in Touch with <span className="text-yellow-400">LeadZap</span>
+        </h1>
+        <p className="text-lg md:text-xl text-gray-300 mb-8">
+          Have questions about our services? Ready to start your marketing journey? Our team of experts is ready to help
+          you achieve your business goals.
+        </p>
+      </motion.div>
+    </div>
+  </div>
+);
+
+// ✅ Contact Form
+const ContactForm = ({
+  submitted,
+  onSubmit,
+  formData,
+  handleChange,
+  handlePhoneChange,
+}: {
+  submitted: boolean;
+  onSubmit: (e: React.FormEvent) => void;
+  formData: any;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
+  handlePhoneChange: (value: string) => void;
+}) => {
   return (
     <div className="py-8">
       <div className="container mx-auto px-4 md:px-6">
@@ -90,80 +136,60 @@ const ContactForm = ({ submitted, onSubmit }: { submitted: boolean; onSubmit: (e
               <form onSubmit={onSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Your Name</label>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
+                      Your Name
+                    </label>
                     <input
                       type="text"
                       id="name"
                       required
-                      className="
-                          w-full bg-gray-800 text-white px-4 py-3 rounded-md
-                          border border-gray-700
-                          outline-none
-                          focus:border-yellow-400/20
-                          focus:ring-1 focus:ring-yellow-400 focus:ring-offset-0
-                          transition-colors
-                        "
+                      value={formData.name}
+                      onChange={handleChange}
                       placeholder="John Doe"
+                      className="w-full bg-gray-800 text-white px-4 py-3 rounded-md border border-gray-700 outline-none focus:border-yellow-400/20 focus:ring-1 focus:ring-yellow-400 transition-colors"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">Your Email</label>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
+                      Your Email
+                    </label>
                     <input
                       type="email"
                       id="email"
                       required
-                      className="
-                          w-full bg-gray-800 text-white px-4 py-3 rounded-md
-                          border border-gray-700
-                          outline-none
-                          focus:border-yellow-400/20
-                          focus:ring-1 focus:ring-yellow-400 focus:ring-offset-0
-                          transition-colors
-                        "                      placeholder="john@example.com"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="john@example.com"
+                      className="w-full bg-gray-800 text-white px-4 py-3 rounded-md border border-gray-700 outline-none focus:border-yellow-400/20 focus:ring-1 focus:ring-yellow-400 transition-colors"
                     />
                   </div>
                 </div>
 
-                <PhoneInput id="phone"
-                  required
-                  className="
-                  w-full bg-gray-800 text-white px-4 py-3 rounded-md
-                  border border-gray-700
-                  outline-none
-                  focus:border-yellow-400/20
-                  focus:ring-1 focus:ring-yellow-400 focus:ring-offset-0
-                  transition-colors
-                "
-                />
 
                 <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-1">Company Name</label>
+                  <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-1">
+                    Company Name
+                  </label>
                   <input
                     type="text"
                     id="company"
-                    className="
-                          w-full bg-gray-800 text-white px-4 py-3 rounded-md
-                          border border-gray-700
-                          outline-none
-                          focus:border-yellow-400/20
-                          focus:ring-1 focus:ring-yellow-400 focus:ring-offset-0
-                          transition-colors
-                        "                    placeholder="Your Company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    placeholder="Your Company"
+                    className="w-full bg-gray-800 text-white px-4 py-3 rounded-md border border-gray-700 outline-none focus:border-yellow-400/20 focus:ring-1 focus:ring-yellow-400 transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="service" className="block text-sm font-medium text-gray-300 mb-1">Service Interested In</label>
+                  <label htmlFor="service" className="block text-sm font-medium text-gray-300 mb-1">
+                    Service Interested In
+                  </label>
                   <select
                     id="service"
-                    className="
-                          w-full bg-gray-800 text-white px-4 py-3 rounded-md
-                          border border-gray-700
-                          outline-none
-                          focus:border-yellow-400/20
-                          focus:ring-1 focus:ring-yellow-400 focus:ring-offset-0
-                          transition-colors
-                        "                  >
+                    value={formData.service}
+                    onChange={handleChange}
+                    className="w-full bg-gray-800 text-white px-4 py-3 rounded-md border border-gray-700 outline-none focus:border-yellow-400/20 focus:ring-1 focus:ring-yellow-400 transition-colors"
+                  >
                     <option value="">Select a Service</option>
                     <option value="seo">SEO</option>
                     <option value="social">Social Media Ads</option>
@@ -173,19 +199,17 @@ const ContactForm = ({ submitted, onSubmit }: { submitted: boolean; onSubmit: (e
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">Message</label>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
+                    Message
+                  </label>
                   <textarea
                     id="message"
                     rows={5}
                     required
-                    className="
-                          w-full bg-gray-800 text-white px-4 py-3 rounded-md
-                          border border-gray-700
-                          outline-none
-                          focus:border-yellow-400/20
-                          focus:ring-1 focus:ring-yellow-400 focus:ring-offset-0
-                          transition-colors
-                        "                    placeholder="Tell us about your project or inquiry..."
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Tell us about your project or inquiry..."
+                    className="w-full bg-gray-800 text-white px-4 py-3 rounded-md border border-gray-700 outline-none focus:border-yellow-400/20 focus:ring-1 focus:ring-yellow-400 transition-colors"
                   ></textarea>
                 </div>
 
@@ -204,43 +228,19 @@ const ContactForm = ({ submitted, onSubmit }: { submitted: boolean; onSubmit: (e
   );
 };
 
-// Contact Info component
+// ✅ Contact Info Section
 const ContactInfo = () => {
   const contactDetails = [
     {
       icon: <Phone className="h-8 w-8 text-yellow-400" />,
       title: "Phone",
-      details: [
-        "+1 (555) 123-4567",
-        "Mon-Fri: 9AM - 6PM"
-      ]
+      details: ["+60-111-1335119", "Mon-Fri: 9AM - 6PM"],
     },
     {
       icon: <Mail className="h-8 w-8 text-yellow-400" />,
       title: "Email",
-      details: [
-        "info@leadzap.com",
-        "support@leadzap.com"
-      ]
+      details: ["sales@leadzap.com.my"],
     },
-    {
-      icon: <MapPin className="h-8 w-8 text-yellow-400" />,
-      title: "Office",
-      details: [
-        "123 Marketing Street",
-        "Suite 456",
-        "San Francisco, CA 94103"
-      ]
-    },
-    {
-      icon: <Clock className="h-8 w-8 text-yellow-400" />,
-      title: "Business Hours",
-      details: [
-        "Monday-Friday: 9AM - 6PM",
-        "Saturday: By appointment",
-        "Sunday: Closed"
-      ]
-    }
   ];
 
   return (
@@ -259,7 +259,7 @@ const ContactInfo = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 mt-12">
           {contactDetails.map((item, index) => (
             <motion.div
               key={index}
@@ -269,9 +269,7 @@ const ContactInfo = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <div className="flex items-center justify-center mb-4">
-                {item.icon}
-              </div>
+              <div className="flex items-center justify-center mb-4">{item.icon}</div>
               <h3 className="text-xl font-bold mb-3 text-center text-yellow-400">{item.title}</h3>
               <div className="text-gray-300 text-center">
                 {item.details.map((detail, detailIndex) => (
@@ -281,7 +279,6 @@ const ContactInfo = () => {
             </motion.div>
           ))}
         </div>
-
         <motion.div
           className="mt-16"
           initial={{ opacity: 0, y: 30 }}

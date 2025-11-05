@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
                         <p className="mb-4">
                             LeadZap Marketing helps businesses grow with SEO, social media paid ads, and custom software solutions.
                         </p>
-                        <div className="flex space-x-4">
+                        {/* <div className="flex space-x-4">
                             <a href="#" aria-label="LeadZap Marketing on Facebook" target="_blank" rel="noopener noreferrer">
                                 <FaFacebookF className="w-5 h-5 hover:text-yellow-300" />
                             </a>
@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
                             <a href="#" aria-label="LeadZap Marketing on Instagram" target="_blank" rel="noopener noreferrer">
                                 <FaInstagram className="w-5 h-5 hover:text-yellow-300" />
                             </a>
-                        </div>
+                        </div> */}
                     </div>
 
                     {/* Column 2: Company Links */}
@@ -44,12 +44,26 @@ const Footer: React.FC = () => {
                     {/* Column 3: Contact Info */}
                     <div>
                         <h3 className="text-lg font-semibold mb-4">Get In Touch</h3>
-                        <p className="mb-3">
-                            123 Marketing Street Suite 456 San Francisco, CA 94103
+
+                        <p className="mb-1">
+                            <a
+                                href="mailto:sales@leadzap.com.my"
+                                className="hover:text-yellow-400 hover:no-underline"
+                            >
+                                sales@leadzap.com.my
+                            </a>
                         </p>
-                        <p className="mb-1">info@leadzap.com</p>
-                        <p>+1(555)123-4567</p>
+
+                        <p>
+                            <a
+                                href="tel:+601111335119"
+                                className="hover:text-yellow-400 hover:no-underline"
+                            >
+                                +60-111-1335119
+                            </a>
+                        </p>
                     </div>
+
                 </div>
 
                 {/* Bottom copyright */}

@@ -1,21 +1,25 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import Footer from './Footer'; // adjust path if needed
-import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent } from "@/components/ui/navigation-menu";
+import Footer from "./Footer"; // adjust path if needed
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+} from "@/components/ui/navigation-menu";
 import DynamicActionBar, { type ActionItem } from "@/components/ui/dynamic-action";
-import { Search, Megaphone, CodeXml, ArrowUpRight } from "lucide-react";
+import { Search, Megaphone, CodeXml, ArrowUpRight, Phone, Mail, CheckCircle } from "lucide-react";
 import DemoOne from "@/components/ui/testimonials-3d";
-import Logo from "@/image/Logo.png"
-import Push_Pull from "@/image/Push-Pull-MarketingFrame.png"
-import Push_ADS from "@/image/Push-ADS.png"
-import Org_Traffic from "@/image/Org-Traffic.png"
-import Workconnect from "@/image/workconnect.png"
-import Tectone from "@/image/tectone.jpg"
-import AGKaizen from "@/image/agkaizen.jpg"
-import Puregen from "@/image/puregen.png"
-
-
+import Logo from "@/image/Logo.png";
+import Push_Pull from "@/image/Push-Pull-MarketingFrame.png";
+import Push_ADS from "@/image/Push-ADS.png"; // unused but keep if later used
+import Org_Traffic from "@/image/Org-Traffic.png"; // unused but keep if later used
+import Workconnect from "@/image/workconnect.png";
+import Tectone from "@/image/tectone.jpg";
+import AGKaizen from "@/image/agkaizen.jpg";
+import Puregen from "@/image/puregen.png";
 
 export const Index = () => {
   return (
@@ -28,7 +32,7 @@ export const Index = () => {
       <WebsiteDesign />
       <Services />
       <Testimonials />
-      <Contact />
+      <ContactForm />
       <Footer />
     </div>
   );
@@ -43,8 +47,8 @@ export const Navbar = () => {
       setIsScrolled(window.scrollY > 10);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const actions: ActionItem[] = [
@@ -55,18 +59,18 @@ export const Navbar = () => {
       icon: Search,
       content: (
         <div className="flex flex-col items-center">
-          <div className="w-full">
+          <Link to="/sem" className="w-full">
             <div className="mx-auto w-[95%] rounded-2xl py-3 px-3 transition duration-300 hover:bg-white/10">
               <div className="flex items-center gap-1">
-                <Search className="size-6 text-yellow-400" />
-                {/* Label is the actual link */}
-                <Link to="/sem" className="font-bold text-white hover:underline">
-                  Search Engine Marketing
-                </Link>
+                <Megaphone className="size-6 text-yellow-400" />
+                <span className="font-bold text-white">Social Media Paid Ads</span>
               </div>
-              <div className="mt-1 text-sm text-yellow-400">Information</div>
+              <div className="mt-1 text-sm text-yellow-400">
+                Data-driven SEM that boosts visibility and leads through SEO, GEO, and Google Ads across traditional and
+                AI search platforms.
+              </div>
             </div>
-          </div>
+          </Link>
         </div>
       ),
       dimensions: { width: 500, height: 100 },
@@ -84,7 +88,10 @@ export const Navbar = () => {
                 <Megaphone className="size-6 text-yellow-400" />
                 <span className="font-bold text-white">Social Media Paid Ads</span>
               </div>
-              <div className="mt-1 text-sm text-yellow-400">Information</div>
+              <div className="mt-1 text-sm text-yellow-400">
+                Data-driven social media ads that turn audiences into customers — using Facebook, Instagram, TikTok, and
+                more to drive leads, sales, and in-store traffic.
+              </div>
             </div>
           </Link>
         </div>
@@ -104,7 +111,10 @@ export const Navbar = () => {
                 <CodeXml className="size-6 text-yellow-400" />
                 <span className="font-bold text-white">Custom Software Solution</span>
               </div>
-              <div className="mt-1 text-sm text-yellow-400">Information</div>
+              <div className="mt-1 text-sm text-yellow-400">
+                Custom software development for Malaysian businesses — we design, build, and maintain tailored systems
+                (CRM, ERP, automation, IoT, healthcare) to streamline operations and drive growth.
+              </div>
             </div>
           </Link>
         </div>
@@ -114,7 +124,7 @@ export const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-black/90 py-2' : 'py-4'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? "bg-black/90 py-2" : "py-4"}`}>
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
         <div className="flex items-center">
           <Link to="/">
@@ -122,11 +132,15 @@ export const Navbar = () => {
           </Link>
         </div>
         <div className="hidden md:flex items-center space-x-8">
-          <Link to="/" className="hover:text-yellow-400 transition-colors">Home</Link>
+          <Link to="/" className="hover:text-yellow-400 transition-colors">
+            Home
+          </Link>
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent text-white hover:text-yellow-400">Services</NavigationMenuTrigger>
+                <NavigationMenuTrigger className="bg-transparent text-white hover:text-yellow-400">
+                  Services
+                </NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-black z-50">
                   <div className="p-4">
                     <DynamicActionBar actions={actions} />
@@ -135,9 +149,15 @@ export const Navbar = () => {
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
-          <Link to="/blog" className="hover:text-yellow-400 transition-colors">Blog</Link>
-          <Link to="/corporate-profile" className="hover:text-yellow-400 transition-colors">Company Profile</Link>
-          <Link to="/contact" className="hover:text-yellow-400 transition-colors">Contact Us</Link>
+          <Link to="/blog" className="hover:text-yellow-400 transition-colors">
+            Blog
+          </Link>
+          <Link to="/corporate-profile" className="hover:text-yellow-400 transition-colors">
+            Company Profile
+          </Link>
+          <Link to="/contact" className="hover:text-yellow-400 transition-colors">
+            Contact Us
+          </Link>
         </div>
         <Link to="/contact">
           <button className="bg-yellow-400 text-black px-4 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors">
@@ -163,16 +183,16 @@ const Hero = () => {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
             Supercharge Your <span className="text-yellow-400">Digital Marketing</span> Strategy
           </h1>
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">
-            The Full Service Digital Marketing Agency You Need
-          </h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-6">The Full Service Digital Marketing Agency You Need</h2>
           <p className="text-lg md:text-xl text-gray-300 mb-6">
-            We help businesses grow through data-driven marketing strategies that deliver measurable results. We handle everything about digital marketing and supercharge your company's growth.
+            We help businesses grow through data-driven marketing strategies that deliver measurable results. We handle
+            everything about digital marketing and supercharge your company's growth.
           </p>
           <p className="text-lg md:text-xl text-gray-300 mb-6">
-            LeadZap Marketing (LeadZap Sdn Bhd) is a Total marketing solution provider and software development company based in Malaysia. We plan, build, launch, and optimize everything under one roof—helping businesses accelerate growth through four core service pillars (include but not limited to):
+            LeadZap Marketing (LeadZap Sdn Bhd) is a Total marketing solution provider and software development company
+            based in Malaysia. We plan, build, launch, and optimize everything under one roof—helping businesses
+            accelerate growth through four core service pillars (include but not limited to):
           </p>
-
 
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <button className="bg-yellow-400 text-black px-6 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors">
@@ -189,11 +209,7 @@ const Hero = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <img
-            src={Logo}
-            alt="LeadZap Marketing Logo"
-            className="w-full max-w-lg mx-auto"
-          />
+          <img src={Logo} alt="LeadZap Marketing Logo" className="w-full max-w-lg mx-auto" />
         </motion.div>
       </div>
     </div>
@@ -214,7 +230,8 @@ const Framework = () => {
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Marketing Framework</h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-            Our proprietary Push-Pull marketing framework creates a connected ecosystem where push data feeds into pull marketing (e.g., retargeting), while pull data is used to improve push campaigns.
+            Our proprietary Push-Pull marketing framework creates a connected ecosystem where push data feeds into pull
+            marketing (e.g., retargeting), while pull data is used to improve push campaigns.
           </p>
         </motion.div>
 
@@ -225,11 +242,7 @@ const Framework = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <img
-            src={Push_Pull}
-            alt="Push-Pull Marketing Framework"
-            className="max-w-4xl w-full mx-auto"
-          />
+          <img src={Push_Pull} alt="Push-Pull Marketing Framework" className="max-w-4xl w-full mx-auto" />
         </motion.div>
 
         <div className="mt-16 grid md:grid-cols-2 gap-8">
@@ -243,7 +256,8 @@ const Framework = () => {
           >
             <h3 className="text-2xl font-bold mb-4 text-yellow-400">PUSH Strategy</h3>
             <p className="text-gray-300 mb-4">
-              Our push marketing strategy actively promotes your brand through strategic paid advertising campaigns. Data from push campaigns feeds into pull marketing for retargeting and remarketing.
+              Our push marketing strategy actively promotes your brand through strategic paid advertising campaigns.
+              Data from push campaigns feeds into pull marketing for retargeting and remarketing.
             </p>
             <ul className="space-y-2 text-gray-300">
               <li className="flex items-start">
@@ -271,7 +285,8 @@ const Framework = () => {
           >
             <h3 className="text-2xl font-bold mb-4 text-yellow-400">PULL Strategy</h3>
             <p className="text-gray-300 mb-4">
-              Our pull strategy naturally attracts users through search engines and organic discovery. Pull data is used to improve push campaigns and create highly targeted audiences.
+              Our pull strategy naturally attracts users through search engines and organic discovery. Pull data is used
+              to improve push campaigns and create highly targeted audiences.
             </p>
             <ul className="space-y-2 text-gray-300">
               <li className="flex items-start">
@@ -308,7 +323,9 @@ const Vision = () => {
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Vision</h2>
           <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-            To be Malaysia's most trusted turnkey growth partner, compounding client value by fusing creativity and innovation. We believe breakthroughs come from innovative ideas that are tested rigorously, scaled responsibly, and measured transparently.
+            To be Malaysia's most trusted turnkey growth partner, compounding client value by fusing creativity and
+            innovation. We believe breakthroughs come from innovative ideas that are tested rigorously, scaled
+            responsibly, and measured transparently.
           </p>
         </motion.div>
       </div>
@@ -321,28 +338,28 @@ const TotalDigitalSolutions = () => {
   const solutions = [
     {
       title: "SEO Audit Malaysia",
-      description: "Comprehensive local SEO Malaysia services, free SEO analysis Malaysia, and SEO Kuala Lumpur optimization"
+      description: "Comprehensive local SEO Malaysia services, free SEO analysis Malaysia, and SEO Kuala Lumpur optimization",
     },
     {
       title: "Facebook Marketing Malaysia",
-      description: "Facebook marketing service Malaysia, Facebook ads agency Malaysia, and Facebook marketing agency Malaysia"
+      description: "Facebook marketing service Malaysia, Facebook ads agency Malaysia, and Facebook marketing agency Malaysia",
     },
     {
       title: "Google Ads Agency Malaysia",
-      description: "Pay per click Malaysia campaigns, SEM agency Malaysia services, and strategic PPC management"
+      description: "Pay per click Malaysia campaigns, SEM agency Malaysia services, and strategic PPC management",
     },
     {
       title: "Social Media Marketing Agency Malaysia",
-      description: "Full service digital marketing across Facebook, Instagram, TikTok with ROI-focused strategies"
+      description: "Full service digital marketing across Facebook, Instagram, TikTok with ROI-focused strategies",
     },
     {
       title: "Custom Software Solutions",
-      description: "Healthcare software, ERP systems, customer help desk platforms, and business automation tools"
+      description: "Healthcare software, ERP systems, customer help desk platforms, and business automation tools",
     },
     {
       title: "Influencer Marketing",
-      description: "Creator partnerships, content amplification, whitelisting/Spark Ads, and performance tracking"
-    }
+      description: "Creator partnerships, content amplification, whitelisting/Spark Ads, and performance tracking",
+    },
   ];
 
   return (
@@ -357,7 +374,8 @@ const TotalDigitalSolutions = () => {
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Total Digital Marketing Solutions</h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-            We provide everything needed for a complete digital marketing ecosystem. All services included under one roof for maximum synergy and results.
+            We provide everything needed for a complete digital marketing ecosystem. All services included under one roof
+            for maximum synergy and results.
           </p>
         </motion.div>
 
@@ -388,26 +406,26 @@ const WebsiteDesign = () => {
       name: "WorkConnect",
       description: "Professional networking and career development platform",
       url: "https://workconnect.com.my",
-      image:Workconnect
+      image: Workconnect,
     },
     {
       name: "Tectone Steel",
       description: "Industrial steel solutions and construction services",
       url: "https://tectonesteel.com",
-      image:Tectone
+      image: Tectone,
     },
     {
       name: "AG Kaizen",
       description: "Business consulting and process improvement solutions",
       url: "https://agkaizen.com",
-      image:AGKaizen
+      image: AGKaizen,
     },
     {
       name: "Puregen",
       description: "Advanced water purification and treatment systems",
       url: "https://www.puregen.com.my",
-      image:Puregen
-    }
+      image: Puregen,
+    },
   ];
 
   return (
@@ -428,7 +446,6 @@ const WebsiteDesign = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {websites.map((website, index) => (
-            // Wrapper grows the hover hit-area around the card
             <div key={index} className="group rounded-2xl p-2 -m-2">
               <motion.a
                 href={website.url}
@@ -440,22 +457,21 @@ const WebsiteDesign = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <img
-                  src={website.image}
-                  alt={website.name}
-                  className="w-full h-48 object-cover"
-                />
+                <img src={website.image} alt={website.name} className="w-full h-48 object-cover" />
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2 text-yellow-400 group-hover:text-yellow-300 transition-colors">
                     {website.name}
                   </h3>
-                  <p className="text-gray-300 mb-4">
-                    {website.description}
-                  </p>
+                  <p className="text-gray-300 mb-4">{website.description}</p>
                   <span className="inline-flex items-center text-yellow-400 group-hover:text-yellow-300 transition-colors">
                     Visit Website
                     <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
                     </svg>
                   </span>
                 </div>
@@ -502,7 +518,8 @@ const Services = () => {
               </div>
               <h3 className="text-xl font-bold mb-3 text-yellow-400">Search Engine Marketing (SEM)</h3>
               <p className="text-gray-300 mb-6">
-                Get a free SEO analysis — strategies that not only rank, but also grow revenue. Includes SEO & GEO optimization.
+                Get a free SEO analysis — strategies that not only rank, but also grow revenue. Includes SEO & GEO
+                optimization.
               </p>
             </div>
             <Link to="/sem" className="mt-auto">
@@ -590,7 +607,7 @@ const Services = () => {
   );
 };
 
-// Testimonials component  
+// Testimonials component
 const Testimonials = () => {
   return (
     <div id="testimonials" className="py-16 lg:py-24 bg-gray-900">
@@ -616,10 +633,58 @@ const Testimonials = () => {
   );
 };
 
-// Contact component
-const Contact = () => {
+// ✅ Contact component – 自带状态 + Pabbly 集成
+const ContactForm = () => {
+  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    service: "",
+    message: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      await fetch(
+        "https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY0MDYzMzA0MzA1MjZmNTUzNTUxMzQi_pc",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      setSubmitted(true);
+      // 清空表单
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        service: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Error sending to Pabbly:", error);
+    }
+
+    // 3 秒后关闭成功提示
+    setTimeout(() => {
+      setSubmitted(false);
+    }, 3000);
+  };
+
   return (
-    <div id="contact" className="py-16 lg:py-24 bg-gray-900">
+    <div className="py-16 lg:py-24 bg-gray-900" id="contact">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           className="text-center mb-12"
@@ -635,65 +700,115 @@ const Contact = () => {
         </motion.div>
 
         <motion.div
-          className="max-w-2xl mx-auto bg-black rounded-xl p-6 md:p-8"
+          className="max-w-2xl mx-auto bg-black rounded-xl p-6 md:p-8 shadow-xl"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <form className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
+          {submitted ? (
+            <motion.div
+              className="bg-green-800/30 border border-green-600 rounded-lg p-6 text-center"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
+              <h3 className="text-xl font-bold mb-2">Message Sent Successfully!</h3>
+              <p className="text-gray-300">Thank you for reaching out. Our team will get back to you shortly.</p>
+            </motion.div>
+          ) : (
+            <form className="space-y-6" onSubmit={handleSubmit}>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
+                    Your Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full bg-gray-800 border-gray-700 rounded-md px-4 py-3 text-white focus:ring-yellow-400 focus:border-yellow-400"
+                    placeholder="John Doe"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
+                    Your Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full bg-gray-800 border-gray-700 rounded-md px-4 py-3 text-white focus:ring-yellow-400 focus:border-yellow-400"
+                    placeholder="john@example.com"
+                  />
+                </div>
+              </div>
+
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Your Name</label>
+                <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-1">
+                  Company Name
+                </label>
                 <input
                   type="text"
-                  id="name"
-                  className="w-full bg-gray-800 border-gray-700 rounded-md px-4 py-2 text-white focus:ring-yellow-400 focus:border-yellow-400"
-                  placeholder="John Doe"
+                  id="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  className="w-full bg-gray-800 border-gray-700 rounded-md px-4 py-3 text-white focus:ring-yellow-400 focus:border-yellow-400"
+                  placeholder="Your Company"
                 />
               </div>
+
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">Your Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full bg-gray-800 border-gray-700 rounded-md px-4 py-2 text-white focus:ring-yellow-400 focus:border-yellow-400"
-                  placeholder="john@example.com"
-                />
+                <label htmlFor="service" className="block text-sm font-medium text-gray-300 mb-1">
+                  Service Interested In
+                </label>
+                <select
+                  id="service"
+                  value={formData.service}
+                  onChange={handleChange}
+                  className="w-full bg-gray-800 border-gray-700 rounded-md px-4 py-3 text-white focus:ring-yellow-400 focus:border-yellow-400"
+                >
+                  <option value="">Select a Service</option>
+                  <option value="seo">SEO</option>
+                  <option value="social">Social Media Ads</option>
+                  <option value="order">Order Management System</option>
+                  <option value="other">Other</option>
+                </select>
               </div>
-            </div>
-            <div>
-              <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-1">Subject</label>
-              <input
-                type="text"
-                id="subject"
-                className="w-full bg-gray-800 border-gray-700 rounded-md px-4 py-2 text-white focus:ring-yellow-400 focus:border-yellow-400"
-                placeholder="How can we help you?"
-              />
-            </div>
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">Message</label>
-              <textarea
-                id="message"
-                rows={4}
-                className="w-full bg-gray-800 border-gray-700 rounded-md px-4 py-2 text-white focus:ring-yellow-400 focus:border-yellow-400"
-                placeholder="Your message here..."
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-yellow-400 text-black px-4 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors"
-            >
-              Send Message
-            </button>
-          </form>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  rows={5}
+                  required
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="w-full bg-gray-800 border-gray-700 rounded-md px-4 py-3 text-white focus:ring-yellow-400 focus:border-yellow-400"
+                  placeholder="Tell us about your project or inquiry..."
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-yellow-400 text-black px-4 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors"
+              >
+                Send Message
+              </button>
+            </form>
+          )}
         </motion.div>
       </div>
     </div>
-
   );
-
 };
-
 
 export default Index;
