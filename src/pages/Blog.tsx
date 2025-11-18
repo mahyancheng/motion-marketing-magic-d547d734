@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Calendar, ArrowRight, User } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Navbar } from './Index';
+import Footer from "./Footer"; // adjust path if needed
 
 
 export default function Blog() {
@@ -188,15 +189,6 @@ export default function Blog() {
                 </motion.div>
               ))}
             </div>
-
-            {blogPosts.length === 0 && (
-              <div className="text-center py-16">
-                <p className="text-gray-400 text-lg mb-4">No blog posts yet.</p>
-                <Link to="/admin">
-                  <Button className="bg-yellow-400 text-black hover:bg-yellow-300">Create Your First Post</Button>
-                </Link>
-              </div>
-            )}
           </motion.div>
         </div>
       </section>
@@ -222,15 +214,8 @@ export default function Blog() {
           </motion.div>
         </div>
       </section>
+      <Footer />
 
-      {/* Footer */}
-      <footer className="border-t border-gray-800 py-8">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center text-gray-400">
-            <p>&copy; 2024 LeadZap Marketing. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

@@ -27,7 +27,7 @@ const DynamicActionBar = React.forwardRef<
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const activeAction = activeIndex !== null ? actions[activeIndex] : null;
 
-  const BUTTON_BAR_HEIGHT = 56;
+  const BUTTON_BAR_HEIGHT = 60;
 
   const containerAnimate = activeAction
     ? {
@@ -35,7 +35,7 @@ const DynamicActionBar = React.forwardRef<
       height: activeAction.dimensions.height + BUTTON_BAR_HEIGHT,
     }
     : {
-      width: 410,
+      width: 460,
       height: BUTTON_BAR_HEIGHT,
     };
 
@@ -52,7 +52,7 @@ const DynamicActionBar = React.forwardRef<
         className="flex flex-col overflow-hidden rounded-2xl bg-black/5 backdrop-blur-xl"
         animate={containerAnimate}
         transition={transition}
-        initial={{ width: 410, height: BUTTON_BAR_HEIGHT }}
+        initial={{ width: 420, height: BUTTON_BAR_HEIGHT }}
       >
 
        <div

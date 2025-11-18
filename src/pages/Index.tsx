@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Footer from "./Footer"; // adjust path if needed
 import {
   NavigationMenu,
@@ -10,7 +10,7 @@ import {
   NavigationMenuContent,
 } from "@/components/ui/navigation-menu";
 import DynamicActionBar, { type ActionItem } from "@/components/ui/dynamic-action";
-import { Search, Megaphone, CodeXml, ArrowUpRight, Phone, Mail, CheckCircle } from "lucide-react";
+import { Search, Megaphone, CodeXml, ArrowUpRight, Phone, Mail, CheckCircle, X, Menu } from "lucide-react";
 import DemoOne from "@/components/ui/testimonials-3d";
 import Logo from "@/image/Logo.png";
 import Push_Pull from "@/image/Push-Pull-MarketingFrame.png";
@@ -38,9 +38,118 @@ export const Index = () => {
   );
 };
 
+// 在你的 Navbar 组件上方或单独文件中
+const SideMenu = ({ isMenuOpen, toggleMenu, actions }) => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  // 辅助函数：检查路径是否是当前激活的链接
+  // 检查链接的 'to' 是否与当前路径完全匹配
+  const isActive = (to) => {
+    // 处理根路径 '/'
+    if (to === "/" && currentPath === "/") {
+      return true;
+    }
+    // 对于其他路径，精确匹配
+    return currentPath === to;
+  };
+  return (
+    <>
+      {/* Overlay - 点击覆盖层关闭菜单 */}
+      <div
+        className={`fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 md:hidden ${isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+          }`}
+        onClick={toggleMenu}
+      ></div>
+
+      {/* Side Menu Panel */}
+      <div
+        className={`fixed top-0 right-0 h-full w-64 bg-black border-l border-gray-800 z-50 transform transition-transform duration-300 ease-in-out md:hidden ${isMenuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+      >
+        <div className="p-4 pt-6 flex justify-between items-center border-b border-gray-800">
+          <span className="text-white font-bold text-lg">Navigation</span>
+          <button onClick={toggleMenu} className="text-white hover:text-yellow-400 p-1">
+            <X className="size-6" />
+          </button>
+        </div>
+
+        <nav className="flex flex-col p-4 space-y-2 text-white">
+          {/* 1. Home 链接高亮逻辑 */}
+          <Link
+            to="/"
+            onClick={toggleMenu}
+            // 动态类名：如果 isActive("/"), 则 text-yellow-400, 否则 text-white
+            className={`py-2 border-b border-gray-900 transition-colors ${isActive("/") ? "text-yellow-400 font-bold" : "hover:text-yellow-400 text-white"
+              }`}
+          >
+            Home
+          </Link>
+
+          {/* 2. Services 分组下的链接高亮逻辑 */}
+          <div className="pt-2">
+            <h4 className="font-bold text-gary-900 mb-2">Services</h4>
+
+            <div className="flex flex-col space-y-2 pl-3">
+              {actions.map((action) => (
+                <Link
+                  key={action.id}
+                  to={action.to}
+                  onClick={toggleMenu}
+                  // 动态类名：如果 isActive(action.to), 则 text-yellow-400, 否则 text-white/gray-300
+                  className={`py-1 text-sm transition-colors ${isActive(action.to)
+                    ? "text-yellow-400 font-medium"
+                    : "hover:text-yellow-400 text-gray-300" // 使用 text-gray-300 让它更明显地是子项
+                    }`}
+                >
+                  <span className="flex items-center gap-2">
+                    {action.icon && <action.icon className="size-4" />}
+                    {action.label}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* 3. 其他页面链接高亮逻辑 */}
+          <Link
+            to="/blog"
+            onClick={toggleMenu}
+            className={`py-2 border-t border-b border-gray-900 transition-colors ${isActive("/blog") ? "text-yellow-400 font-bold" : "hover:text-yellow-400 text-white"
+              }`}
+          >
+            Blog
+          </Link>
+          <Link
+            to="/corporate-profile"
+            onClick={toggleMenu}
+            className={`py-2 border-b border-gray-900 transition-colors ${isActive("/corporate-profile") ? "text-yellow-400 font-bold" : "hover:text-yellow-400 text-white"
+              }`}
+          >
+            Company Profile
+          </Link>
+          <Link
+            to="/contact"
+            onClick={toggleMenu}
+            className={`py-2 border-b border-gray-900 transition-colors ${isActive("/contact") ? "text-yellow-400 font-bold" : "hover:text-yellow-400 text-white"
+              }`}
+          >
+            Contact Us
+          </Link>
+        </nav>
+      </div>
+    </>
+  );
+};
+
 // Navbar component
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -159,12 +268,23 @@ export const Navbar = () => {
             Contact Us
           </Link>
         </div>
+        <div className="md:hidden flex items-center gap-4">
+          <button
+            onClick={toggleMenu}
+            className="text-white hover:text-yellow-400 p-2 rounded-md transition-colors"
+            aria-label="Toggle menu"
+          >
+            <Menu className="size-6" /> {/* 确保 Menu 组件在这里 */}
+          </button>
+          {/* ... 移动端 Get Started 按钮 ... */}
+        </div>
         <Link to="/contact">
           <button className="bg-yellow-400 text-black px-4 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors">
             Get Started
           </button>
         </Link>
       </div>
+      <SideMenu isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} actions={actions} />
     </nav>
   );
 };
@@ -195,12 +315,16 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-            <button className="bg-yellow-400 text-black px-6 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors">
-              Get a Free Consultation
-            </button>
-            <button className="border border-white px-6 py-3 rounded-md font-medium hover:bg-white hover:text-black transition-colors">
-              View Our Work
-            </button>
+            <Link to="/contact">
+              <button className="bg-yellow-400 text-black px-6 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors">
+                Get a Free Consultation
+              </button>
+            </Link>
+            <Link to="/customer-software-demo">
+              <button className="border border-white px-6 py-3 rounded-md font-medium hover:bg-white hover:text-black transition-colors">
+                View Our Work
+              </button>
+            </Link>
           </div>
         </motion.div>
         <motion.div
