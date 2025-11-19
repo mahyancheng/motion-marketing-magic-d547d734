@@ -57,10 +57,10 @@ const CompanyHeader = () => {
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
             <span className="text-yellow-400">Leadzap</span> Marketing Sdn Bhd
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
+          <p className="text-md md:text-2xl text-gray-300 mb-8 leading-relaxed">
             Malaysia's Premier Digital Marketing Agency & Software Development Company
           </p>
-          <div className="inline-flex items-center bg-yellow-400/10 border border-yellow-400/30 rounded-full px-6 py-3">
+          <div className="inline-flex items-center bg-yellow-400/10 border border-yellow-400/30 rounded-full px-6 py-2">
             <Globe className="h-5 w-5 text-yellow-400 mr-2" />
             <span className="text-yellow-400 font-medium">Established in Malaysia • Serving Global Markets</span>
           </div>
@@ -73,9 +73,9 @@ const CompanyHeader = () => {
 // Company Overview
 const CompanyOverview = () => {
   return (
-    <section className="py-16 lg:py-24 bg-gray-900">
+    <section className="py-12 lg:py-24 bg-gray-900">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 items-start">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -83,13 +83,13 @@ const CompanyOverview = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">About Leadzap Marketing Sdn Bhd</h2>
-            <p className="text-lg text-gray-300 mb-6 leading-relaxed">
+            <p className="text-md md:text-lg text-gray-300 mb-6 leading-relaxed">
               Leadzap Marketing Sdn Bhd is Malaysia's premier one-stop digital marketing solution provider, specializing in comprehensive, data-driven marketing strategies and custom software solutions that accelerate business growth across all digital channels.
             </p>
-            <p className="text-lg text-gray-300 mb-6 leading-relaxed">
+            <p className="text-md md:text-lg text-gray-300 mb-6 leading-relaxed">
               As a total solution provider, we plan, build, launch, and optimize everything under one roof—from SEO and social media marketing to graphic design, web development, and business automation software.
             </p>
-            <p className="text-lg text-gray-300 mb-6 leading-relaxed">
+            <p className="text-md md:text-lg text-gray-300 mb-6 leading-relaxed">
               With proven results of generating over 461K sessions and 75% growth for clients, we transform businesses through innovative strategies and cutting-edge technology.
             </p>
           </motion.div>
@@ -131,7 +131,7 @@ const CompanyOverview = () => {
           </motion.div>
         </div>
 
-        <div className="mt-16 grid md:grid-cols-2 gap-8">
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4">
           <motion.div
             className="bg-black p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-800 hover:border-yellow-400 transition-colors"
             initial={{ opacity: 0, x: -30 }}
@@ -140,8 +140,8 @@ const CompanyOverview = () => {
             whileHover={{ scale: 1.03 }}
             viewport={{ once: true }}
           >
-            <h4 className="font-semibold text-yellow-400 mb-3">Our Mission</h4>
-            <p className="text-gray-300">
+            <h4 className="text-lg md:text-md font-semibold text-yellow-400 mb-3">Our Mission</h4>
+            <p className="text-sm md:text-md text-gray-300">
               To be the one-stop digital marketing solution provider that accelerates business growth through innovative strategies, creative excellence, and measurable results.
             </p>
           </motion.div>
@@ -155,8 +155,8 @@ const CompanyOverview = () => {
             viewport={{ once: true }}
           >
 
-            <h4 className="font-semibold text-yellow-400 mb-3">Our Vision</h4>
-            <p className="text-gray-300">
+            <h4 className="text-lg md:text-md font-semibold text-yellow-400 mb-3">Our Vision</h4>
+            <p className="text-sm md:text-md text-gray-300">
               To be Malaysia's most trusted turnkey growth partner, leading the digital transformation of businesses through creativity, innovation, and proven methodologies.
             </p>
           </motion.div>
@@ -196,26 +196,26 @@ const CoreServices = () => {
   ];
 
   return (
-    <section className="py-16 lg:py-24 bg-black">
+    <section className="py-12 lg:py-24 bg-black">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-10"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Core Services</h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+          <p className="text-md md:text-lg text-gray-300 max-w-3xl mx-auto">
             Comprehensive digital marketing and software development solutions designed to accelerate your business growth.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-4">
           {services.map((service, index) => (
             <motion.div
               key={index}
-              className="bg-gray-900/50 p-8 rounded-xl border border-gray-800 hover:border-yellow-400/50 transition-all duration-300"
+              className="bg-gray-900/50 p-6 md:p-8 rounded-xl border border-gray-800 hover:border-yellow-400/50 transition-all duration-300"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -224,8 +224,8 @@ const CoreServices = () => {
               <div className="text-yellow-400 mb-4">
                 {service.icon}
               </div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">{service.title}</h3>
-              <p className="text-gray-300 mb-4">{service.description}</p>
+              <h3 className="text-lg md:text-xl font-bold mb-3 text-yellow-400">{service.title}</h3>
+              <p className="text-md md:text-lg text-gray-300 mb-4">{service.description}</p>
               <div className="grid grid-cols-2 gap-2">
                 {service.features.map((feature, featureIndex) => (
                   <div key={featureIndex} className="flex items-center text-sm text-gray-400">
@@ -268,7 +268,7 @@ const ComprehensiveServices = () => {
   ];
 
   return (
-    <section className="py-16 lg:py-24 bg-gray-900">
+    <section className="py-12 lg:py-24 bg-gray-900">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           className="text-center mb-12"
@@ -277,13 +277,13 @@ const ComprehensiveServices = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Complete Digital Solutions</h2>
-          <p className="text-lg text-gray-300 max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-4xl font-bold mb-4">Complete Digital Solutions</h2>
+          <p className="text-md md:text-lg text-gray-300 max-w-4xl mx-auto">
             Beyond our core services, we offer a comprehensive suite of creative and technical solutions to support your entire digital ecosystem.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-2">
           {additionalServices.map((service, index) => (
             <motion.div
               key={index}
@@ -303,17 +303,17 @@ const ComprehensiveServices = () => {
         </div>
 
         <motion.div
-          className="mt-16"
+          className="mt-10"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
           <div className="bg-black rounded-2xl p-8 border border-yellow-400/30">
-            <h3 className="text-2xl font-bold mb-6 text-center text-yellow-400">Multi-Device & Creative Excellence</h3>
+            <h3 className="text-xl md:text-2xl font-bold mb-6 text-center text-yellow-400">Multi-Device & Creative Excellence</h3>
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <div className="text-center lg:text-left">
-                <p className="text-lg text-gray-300 mb-4">
+                <p className="text-md md:text-lg text-gray-300 mb-4">
                   Our comprehensive approach ensures seamless user experiences across all devices while delivering creative excellence through:
                 </p>
                 <ul className="space-y-2 text-gray-300">
@@ -353,7 +353,7 @@ const ComprehensiveServices = () => {
 // Marketing Process
 const MarketingProcess = () => {
   return (
-    <section className="py-16 lg:py-24 bg-black">
+    <section className="py-12 lg:py-24 bg-black">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           className="text-center mb-12"
@@ -362,13 +362,13 @@ const MarketingProcess = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Strategic Marketing Process</h2>
-          <p className="text-lg text-gray-300 max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-4xl font-bold mb-4">Our Strategic Marketing Process</h2>
+          <p className="text-md md:text-lg text-gray-300 max-w-4xl mx-auto">
             Our systematic approach ensures every campaign is data-driven, results-focused, and continuously optimized for maximum impact.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-6 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -388,13 +388,13 @@ const MarketingProcess = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="space-y-6">
+            <div className="space-y-3">
               <div className="bg-gray-900/70 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors">
-                <div className="flex items-center mb-3">
+                <div className="flex items-center mb-2">
                   <div className="w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center text-sm font-bold mr-4">1</div>
                   <h3 className="text-xl font-bold text-yellow-400">Multi-Channel Approach</h3>
                 </div>
-                <p className="text-gray-300">Integrate SEO, Paid Ads, and Social Media for comprehensive market coverage.</p>
+                <p className="text-sm md:text-md text-gray-300">Integrate SEO, Paid Ads, and Social Media for comprehensive market coverage.</p>
               </div>
 
               <div className="bg-gray-900/70 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors">
@@ -402,7 +402,7 @@ const MarketingProcess = () => {
                   <div className="w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center text-sm font-bold mr-4">2</div>
                   <h3 className="text-xl font-bold text-yellow-400">Data Collection & Analysis</h3>
                 </div>
-                <p className="text-gray-300">Gather comprehensive data from all channels to optimize performance and identify opportunities.</p>
+                <p className="text-sm md:text-md text-gray-300">Gather comprehensive data from all channels to optimize performance and identify opportunities.</p>
               </div>
 
               <div className="bg-gray-900/70 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors">
@@ -410,7 +410,7 @@ const MarketingProcess = () => {
                   <div className="w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center text-sm font-bold mr-4">3</div>
                   <h3 className="text-xl font-bold text-yellow-400">Traffic & Lead Generation</h3>
                 </div>
-                <p className="text-gray-300">Convert optimized campaigns into qualified traffic and high-quality leads through CRM integration.</p>
+                <p className="text-sm md:text-md text-gray-300">Convert optimized campaigns into qualified traffic and high-quality leads through CRM integration.</p>
               </div>
 
               <div className="bg-gray-900/70 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors">
@@ -418,7 +418,7 @@ const MarketingProcess = () => {
                   <div className="w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center text-sm font-bold mr-4">4</div>
                   <h3 className="text-xl font-bold text-yellow-400">Continuous Optimization</h3>
                 </div>
-                <p className="text-gray-300">Maintain feedback loop to client, ensuring ongoing improvement and measurable results.</p>
+                <p className="text-sm md:text-md text-gray-300">Maintain feedback loop to client, ensuring ongoing improvement and measurable results.</p>
               </div>
             </div>
           </motion.div>
@@ -431,7 +431,7 @@ const MarketingProcess = () => {
 // Marketing Framework
 const MarketingFramework = () => {
   return (
-    <section className="py-16 lg:py-24 bg-gray-900">
+    <section className="py-12 lg:py-24 bg-gray-900">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           className="text-center mb-12"
@@ -440,14 +440,14 @@ const MarketingFramework = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Proprietary Push-Pull Framework</h2>
-          <p className="text-lg text-gray-300 max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-4xl font-bold mb-4">Our Proprietary Push-Pull Framework</h2>
+          <p className="text-md md:text-lg text-gray-300 max-w-4xl mx-auto">
             Our innovative marketing framework creates a connected ecosystem where push data feeds into pull marketing for retargeting, while pull data improves push campaigns—maximizing ROI across all channels.
           </p>
         </motion.div>
 
         <motion.div
-          className="flex justify-center mb-12"
+          className="flex justify-center mb-8 md:mb-12"
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
@@ -461,7 +461,7 @@ const MarketingFramework = () => {
 
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 mt-12">
+        <div className="grid md:grid-cols-2 gap-8 mt-8 md:mt-12">
           <motion.div
             className="bg-black p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-800 hover:border-yellow-400 transition-colors"
             initial={{ opacity: 0, x: -30 }}
@@ -474,23 +474,23 @@ const MarketingFramework = () => {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-yellow-400/20 rounded-full mb-4">
                 <Megaphone className="h-8 w-8 text-yellow-400" />
               </div>
-              <h3 className="text-2xl font-bold text-yellow-400">PUSH Strategy</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-yellow-400">PUSH Strategy</h3>
             </div>
-            <p className="text-gray-300 mb-4 text-center">
+            <p className="text-sm md:text-lg text-gray-300 mb-4 text-center">
               Active brand promotion through strategic paid advertising campaigns that feed data into pull marketing.
             </p>
             <ul className="space-y-3">
               <li className="flex items-start">
                 <span className="text-yellow-400 mr-3">•</span>
-                <span>Facebook, Instagram & TikTok advertising</span>
+                <span className="text-sm md:text-md">Facebook, Instagram & TikTok advertising</span>
               </li>
               <li className="flex items-start">
                 <span className="text-yellow-400 mr-3">•</span>
-                <span>Influencer marketing campaigns</span>
+                <span className="text-sm md:text-md">Influencer marketing campaigns</span>
               </li>
               <li className="flex items-start">
                 <span className="text-yellow-400 mr-3">•</span>
-                <span>Retargeting with pull data insights</span>
+                <span className="text-sm md:text-md">Retargeting with pull data insights</span>
               </li>
             </ul>
           </motion.div>
@@ -507,23 +507,23 @@ const MarketingFramework = () => {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-yellow-400/20 rounded-full mb-4">
                 <Search className="h-8 w-8 text-yellow-400" />
               </div>
-              <h3 className="text-2xl font-bold text-yellow-400">PULL Strategy</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-yellow-400">PULL Strategy</h3>
             </div>
-            <p className="text-gray-300 mb-4 text-center">
+            <p className="text-sm md:text-lg text-gray-300 mb-4 text-center">
               Natural audience attraction through search engines and organic discovery that enhances push campaigns.
             </p>
             <ul className="space-y-3">
               <li className="flex items-start">
                 <span className="text-yellow-400 mr-3">•</span>
-                <span>SEO audit Malaysia & GEO for AI search</span>
+                <span className="text-sm md:text-md">SEO audit Malaysia & GEO for AI search</span>
               </li>
               <li className="flex items-start">
                 <span className="text-yellow-400 mr-3">•</span>
-                <span>Content marketing & authority building</span>
+                <span className="text-sm md:text-md">Content marketing & authority building</span>
               </li>
               <li className="flex items-start">
                 <span className="text-yellow-400 mr-3">•</span>
-                <span>Data feeds into push advertising</span>
+                <span className="text-sm md:text-md">Data feeds into push advertising</span>
               </li>
             </ul>
           </motion.div>
@@ -554,13 +554,13 @@ const PerformanceResults = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Proven Performance Results</h2>
-          <p className="text-lg text-gray-300 max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-4xl font-bold mb-4">Proven Performance Results</h2>
+          <p className="text-md md:text-lg text-gray-300 max-w-4xl mx-auto">
             Real results from our digital marketing campaigns - showcasing the power of our integrated approach and data-driven strategies.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-12">
+        <div className="grid md:grid-cols-2 gap-12 items-center mb-8">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -581,25 +581,25 @@ const PerformanceResults = () => {
             viewport={{ once: true }}
           >
             <div className="bg-black/50 p-8 rounded-xl border border-yellow-400/30">
-              <h3 className="text-2xl font-bold mb-4 text-yellow-400">Single Client Case Study</h3>
-              <p className="text-sm text-gray-400 mb-6 italic">
+              <h3 className="text-xl md:text-2xl font-bold mb-4 text-yellow-400">Single Client Case Study</h3>
+              <p className="text-xs md:text-sm text-gray-400 mb-6 italic">
                 *Results shown are from one individual client campaign, demonstrating the effectiveness of our integrated approach.
               </p>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-300">Growth Achievement</span>
+                  <span className="text-sm md:text-md text-gray-300">Growth Achievement</span>
                   <span className="text-yellow-400 font-bold">+75%</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-300">Organic Traffic Share</span>
+                  <span className="text-sm md:text-md text-gray-300">Organic Traffic Share</span>
                   <span className="text-yellow-400 font-bold">79.6%</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-300">Campaign Duration</span>
+                  <span className="text-sm md:text-md text-gray-300">Campaign Duration</span>
                   <span className="text-yellow-400 font-bold">6+ Years</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-300">Total Engagement</span>
+                  <span className="text-sm md:text-md text-gray-300">Total Engagement</span>
                   <span className="text-yellow-400 font-bold">373+ Days</span>
                 </div>
               </div>
@@ -612,7 +612,7 @@ const PerformanceResults = () => {
           </motion.div>
         </div>
 
-        <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-6">
+        <div className="grid md:grid-cols-3 lg:grid-cols-6 md:gap-6 gap-2 grid-cols-3">
           {metrics.map((metric, index) => (
             <motion.div
               key={index}
@@ -669,19 +669,19 @@ const WhyChooseUs = () => {
     <section className="py-16 lg:py-24 bg-black">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
-          className="text-center mb-12"
+          className="text-center md:mb-12 mb-8 "
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Leadzap Marketing Sdn Bhd</h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+          <h2 className="text-2xl md:text-4xl font-bold mb-4">Why Choose Leadzap Marketing Sdn Bhd</h2>
+          <p className="text-md md:text-lg text-gray-300 max-w-3xl mx-auto">
             We believe breakthroughs come from innovative ideas that are tested rigorously, scaled responsibly, and measured transparently.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 ">
           {reasons.map((reason, index) => (
             <motion.div
               key={index}
@@ -691,8 +691,8 @@ const WhyChooseUs = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">{reason.title}</h3>
-              <p className="text-gray-300">{reason.description}</p>
+              <h3 className="text-lg md:text-xl font-bold mb-3 text-yellow-400">{reason.title}</h3>
+              <p className="text-sm md:text-md text-gray-300">{reason.description}</p>
             </motion.div>
           ))}
         </div>
@@ -723,22 +723,22 @@ const OutOfHomePortfolio = () => {
   ];
 
   return (
-    <section className="py-16 lg:py-16 bg-gray-900">
+    <section className="py-12 lg:py-16 bg-gray-900">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Out-of-Home & Event Marketing</h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+          <h2 className="text-2xl md:text-4xl font-bold mb-4">Out-of-Home & Event Marketing</h2>
+          <p className="text-md md:text-lg text-gray-300 max-w-3xl mx-auto">
             Comprehensive offline marketing solutions that create powerful brand presence and memorable customer experiences.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid lg:grid-cols-3 gap-3 md:gap-8 md:mb-12 mb-16">
           {portfolioItems.map((item, index) => (
             <motion.div
               key={index}
@@ -748,11 +748,11 @@ const OutOfHomePortfolio = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">{item.title}</h3>
-              <p className="text-gray-300 mb-4">{item.description}</p>
+              <h3 className="text-lg md:text-xl font-bold mb-3 text-yellow-400">{item.title}</h3>
+              <p className="text-sm md:text-md text-gray-300 mb-4">{item.description}</p>
               <ul className="space-y-2">
                 {item.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-center text-sm text-gray-400">
+                  <li key={featureIndex} className="flex items-center text-xs md:text-sm text-gray-400">
                     <CheckCircle className="h-4 w-4 text-green-400 mr-2 flex-shrink-0" />
                     {feature}
                   </li>
@@ -769,50 +769,43 @@ const OutOfHomePortfolio = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <div className="bg-gradient-to-r from-yellow-400/20 via-yellow-400/10 to-yellow-400/20 rounded-2xl p-8 border border-yellow-400/30">
-            <h3 className="text-2xl font-bold mb-6 text-center text-yellow-400">DOOH Road Show & Booth Experience</h3>
-            <div className="grid lg:grid-cols-2 gap-8 items-center">
+          <div className="bg-gradient-to-r from-yellow-400/20 via-yellow-400/10 to-yellow-400/20 rounded-2xl p-6 md:p-8 border border-yellow-400/30">
+            <h3 className="text-xl md:text-2xl font-bold mb-6 text-center text-yellow-400">
+              DOOH Road Show & Booth Experience
+            </h3>
+
+            <div className="grid lg:grid-cols-2 gap-6 md:gap-8 items-center">
+              {/* 文案 */}
               <div className="text-center lg:text-left">
-                <p className="text-lg text-gray-300 mb-4">
+                <p className="text-sm md:text-lg text-gray-300 mb-4">
                   Experience our cutting-edge Digital Out-of-Home advertising solutions that bring brands to life through:
                 </p>
-                <ul className="space-y-2 text-gray-300">
-                  <li className="flex items-center">
-                    <div className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
-                    Interactive digital displays and touch screens
-                  </li>
-                  <li className="flex items-center">
-                    <div className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
-                    Dynamic content that adapts to audience engagement
-                  </li>
-                  <li className="flex items-center">
-                    <div className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
-                    Professional booth setups for events and roadshows
-                  </li>
-                  <li className="flex items-center">
-                    <div className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
-                    Real-time analytics and audience insights
-                  </li>
+                <ul className="text-sm md:text-md space-y-4">
+                  {[
+                    "Interactive digital displays and touch screens",
+                    "Dynamic content that adapts to audience engagement",
+                    "Professional booth setups for events and roadshows",
+                    "Real-time analytics and audience insights",
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <span className="mt-1 w-1 md:w-3 h-1 md:h-3 bg-yellow-400 rounded-full flex-shrink-0"></span>
+                      <span className="text-gray-300 leading-relaxed">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
                 </ul>
               </div>
+
+              {/* 影片（手机自适应宽度，不会溢出） */}
               <div className="flex justify-center">
-                <div
-                  className="inline-block rounded-3xl overflow-hidden shadow-lg"
-                  style={{ width: 390, height: 312, lineHeight: 0 }}
-                >
+                <div className="inline-block w-full max-w-xs sm:max-w-sm md:max-w-md rounded-3xl overflow-hidden shadow-lg aspect-[5/4]">
                   <video
-                    className="block"
+                    className="w-full h-full object-cover"
                     autoPlay
                     loop
                     muted
                     playsInline
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      transform: 'scale(1.0)',
-                      transformOrigin: 'center',
-                      objectFit: 'cover'
-                    }}
                   >
                     <source src={DoohRoadshowDemo} type="video/mp4" />
                     Your browser does not support the video tag.
@@ -830,10 +823,10 @@ const OutOfHomePortfolio = () => {
 // Contact Information
 const ContactInformation = () => {
   return (
-    <section className="py-16 lg:py-24 bg-gray-900">
+    <section className="py-10 lg:py-24 bg-gray-900">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -845,7 +838,7 @@ const ContactInformation = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-2 md:gap-8">
           <motion.div
             className="bg-black p-8 rounded-xl border border-gray-800 text-center hover:border-yellow-400 transition-all"
             initial={{ opacity: 0, y: 30 }}
@@ -854,8 +847,8 @@ const ContactInformation = () => {
             viewport={{ once: true }}
           >
             <Globe className="h-12 w-12 text-yellow-400 mx-auto mb-4" />
-            <h3 className="text-xl font-bold mb-2 text-yellow-400">Location</h3>
-            <p className="text-gray-300">Malaysia</p>
+            <h3 className="text-md md:text-xl font-bold mb-2 text-yellow-400">Location</h3>
+            <p className="text-sx md:text-md text-gray-300">Malaysia</p>
             <p className="text-sm text-gray-400">Serving Global Markets</p>
           </motion.div>
 
@@ -867,7 +860,7 @@ const ContactInformation = () => {
             viewport={{ once: true }}
           >
             <Users className="h-12 w-12 text-yellow-400 mx-auto mb-4" />
-            <h3 className="text-xl font-bold mb-2 text-yellow-400">Email</h3>
+            <h3 className="text-md md:text-xl font-bold mb-2 text-yellow-400">Email</h3>
             <p className="text-gray-300">info@leadzap.com</p>
             <p className="text-sm text-gray-400">Business Inquiries</p>
           </motion.div>
@@ -880,7 +873,7 @@ const ContactInformation = () => {
             viewport={{ once: true }}
           >
             <CheckCircle className="h-12 w-12 text-yellow-400 mx-auto mb-4" />
-            <h3 className="text-xl font-bold mb-2 text-yellow-400">Free Consultation</h3>
+            <h3 className="text-md md:text-xl font-bold mb-2 text-yellow-400">Free Consultation</h3>
             <p className="text-gray-300">Available Now</p>
             <p className="text-sm text-gray-400">Strategy & Planning</p>
           </motion.div>
@@ -895,7 +888,7 @@ const ContactInformation = () => {
         >
           <a
             href="/contact"
-            className="inline-flex items-center bg-yellow-400 text-black px-8 py-4 rounded-lg font-medium hover:bg-yellow-300 transition-colors text-lg"
+            className="inline-flex items-center bg-yellow-400 text-black px-8 py-4 rounded-lg font-medium hover:bg-yellow-300 transition-colors text-md md:text-lg"
           >
             Start Your Growth Journey
             <ArrowRight className="h-5 w-5 ml-2" />

@@ -179,7 +179,7 @@ export default function BlogPost() {
       {/* Footer */}
       <footer className="border-t border-gray-800 py-8">
         <div className="max-w-4xl mx-auto px-4 text-center text-gray-400">
-          <p>&copy; 2024 LeadZap Marketing. All rights reserved.</p>
+          <p>&copy; 2024 Leadzap Marketing. All rights reserved.</p>
         </div>
       </footer>
     </div>

@@ -1,9 +1,17 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Navbar } from "./Index";
-import { Phone, Mail, CheckCircle } from "lucide-react";
+import { Phone, Mail, CheckCircle, ChevronDown, X } from "lucide-react";
 import PhoneInput from "../components/PhoneInput";
 import Footer from "./Footer";
+
+const serviceLabels: Record<string, string> = {
+  "": "Select a Service",
+  seo: "SEO",
+  social: "Social Media Ads",
+  order: "Order Management System",
+  other: "Other",
+};
 
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -16,13 +24,21 @@ const Contact = () => {
     message: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
   const handlePhoneChange = (value: string) => {
     setFormData((prev) => ({ ...prev, phone: value }));
+  };
+
+  const handleServiceChange = (value: string) => {
+    setFormData((prev) => ({ ...prev, service: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -51,7 +67,14 @@ const Contact = () => {
     // Reset after 3s
     setTimeout(() => {
       setSubmitted(false);
-      setFormData({ name: "", email: "", phone: "", company: "", service: "", message: "" });
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        service: "",
+        message: "",
+      });
     }, 3000);
   };
 
@@ -65,6 +88,7 @@ const Contact = () => {
         formData={formData}
         handleChange={handleChange}
         handlePhoneChange={handlePhoneChange}
+        handleServiceChange={handleServiceChange}
       />
       <ContactInfo />
       <Footer />
@@ -74,7 +98,7 @@ const Contact = () => {
 
 // ✅ Hero Section
 const Hero = () => (
-  <div className="pt-24 lg:pt-32 pb-16 lg:pb-10">
+  <div className="pt-24 lg:pt-32 pb-8 lg:pb-10">
     <div className="container mx-auto px-4 md:px-6">
       <motion.div
         className="text-center max-w-3xl mx-auto"
@@ -83,11 +107,12 @@ const Hero = () => (
         transition={{ duration: 0.5 }}
       >
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-          Get in Touch with <span className="text-yellow-400">LeadZap</span>
+          Get in Touch with <span className="text-yellow-400">Leadzap</span>
         </h1>
         <p className="text-lg md:text-xl text-gray-300 mb-8">
-          Have questions about our services? Ready to start your marketing journey? Our team of experts is ready to help
-          you achieve your business goals.
+          Have questions about our services? Ready to start your marketing
+          journey? Our team of experts is ready to help you achieve your
+          business goals.
         </p>
       </motion.div>
     </div>
@@ -101,25 +126,40 @@ const ContactForm = ({
   formData,
   handleChange,
   handlePhoneChange,
+  handleServiceChange,
 }: {
   submitted: boolean;
   onSubmit: (e: React.FormEvent) => void;
   formData: any;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
+  handleChange: (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => void;
   handlePhoneChange: (value: string) => void;
+  handleServiceChange: (value: string) => void;
 }) => {
+  const [isServicePickerOpen, setIsServicePickerOpen] = useState(false);
+
+  const handleMobileServiceSelect = (value: string) => {
+    handleServiceChange(value);
+    setIsServicePickerOpen(false);
+  };
+
   return (
-    <div className="py-8">
+    <div className="py-6 md:py-10">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
-          className="max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-xl"
+          className="max-w-xl md:max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-xl bg-black"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <div className="p-8 md:p-12">
-            <h2 className="text-2xl md:text-3xl font-bold mb-6">Send Us a Message</h2>
+          <div className="p-6 md:p-10">
+            <h2 className="text-xl md:text-3xl font-bold mb-4 md:mb-6">
+              Send Us a Message
+            </h2>
 
             {submitted ? (
               <motion.div
@@ -129,14 +169,23 @@ const ContactForm = ({
                 transition={{ duration: 0.3 }}
               >
                 <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-2">Message Sent Successfully!</h3>
-                <p className="text-gray-300">Thank you for reaching out. Our team will get back to you shortly.</p>
+                <h3 className="text-lg md:text-xl font-bold mb-2">
+                  Message Sent Successfully!
+                </h3>
+                <p className="text-gray-300 text-sm md:text-base">
+                  Thank you for reaching out. Our team will get back to you
+                  shortly.
+                </p>
               </motion.div>
             ) : (
-              <form onSubmit={onSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
+              <form onSubmit={onSubmit} className="space-y-5 md:space-y-6">
+                {/* Name / Email */}
+                <div className="grid gap-4 md:grid-cols-2 md:gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
+                    <label
+                      htmlFor="name"
+                      className="block text-xs md:text-sm font-medium text-gray-300 mb-1"
+                    >
                       Your Name
                     </label>
                     <input
@@ -146,11 +195,14 @@ const ContactForm = ({
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="John Doe"
-                      className="w-full bg-gray-800 text-white px-4 py-3 rounded-md border border-gray-700 outline-none focus:border-yellow-400/20 focus:ring-1 focus:ring-yellow-400 transition-colors"
+                      className="w-full bg-gray-800 text-white px-3 md:px-4 py-2.5 md:py-3 rounded-md border border-gray-700 outline-none focus:border-yellow-400/20 focus:ring-1 focus:ring-yellow-400 transition-colors text-sm"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
+                    <label
+                      htmlFor="email"
+                      className="block text-xs md:text-sm font-medium text-gray-300 mb-1"
+                    >
                       Your Email
                     </label>
                     <input
@@ -160,14 +212,30 @@ const ContactForm = ({
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="john@example.com"
-                      className="w-full bg-gray-800 text-white px-4 py-3 rounded-md border border-gray-700 outline-none focus:border-yellow-400/20 focus:ring-1 focus:ring-yellow-400 transition-colors"
+                      className="w-full bg-gray-800 text-white px-3 md:px-4 py-2.5 md:py-3 rounded-md border border-gray-700 outline-none focus:border-yellow-400/20 focus:ring-1 focus:ring-yellow-400 transition-colors text-sm"
                     />
                   </div>
                 </div>
 
-
+                {/* Phone */}
                 <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-1">
+                  <label
+                    htmlFor="phone"
+                    className="block text-xs md:text-sm font-medium text-gray-300 mb-1"
+                  >
+                    Phone Number
+                  </label>
+                  <div className="w-full bg-gray-800 rounded-md border border-gray-700 px-2 py-1.5">
+                    <PhoneInput value={formData.phone} onChange={handlePhoneChange} />
+                  </div>
+                </div>
+
+                {/* Company */}
+                <div>
+                  <label
+                    htmlFor="company"
+                    className="block text-xs md:text-sm font-medium text-gray-300 mb-1"
+                  >
                     Company Name
                   </label>
                   <input
@@ -176,19 +244,44 @@ const ContactForm = ({
                     value={formData.company}
                     onChange={handleChange}
                     placeholder="Your Company"
-                    className="w-full bg-gray-800 text-white px-4 py-3 rounded-md border border-gray-700 outline-none focus:border-yellow-400/20 focus:ring-1 focus:ring-yellow-400 transition-colors"
+                    className="w-full bg-gray-800 text-white px-3 md:px-4 py-2.5 md:py-3 rounded-md border border-gray-700 outline-none focus:border-yellow-400/20 focus:ring-1 focus:ring-yellow-400 transition-colors text-sm"
                   />
                 </div>
 
-                <div>
-                  <label htmlFor="service" className="block text-sm font-medium text-gray-300 mb-1">
+                {/* Service Interested In */}
+                {/* Mobile: bottom sheet trigger */}
+                <div className="md:hidden">
+                  <label
+                    htmlFor="service"
+                    className="block text-xs md:text-sm font-medium text-gray-300 mb-1"
+                  >
+                    Service Interested In
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() => setIsServicePickerOpen(true)}
+                    className="w-full bg-gray-800 text-white px-3 py-2.5 rounded-md border border-gray-700 flex items-center justify-between text-sm outline-none focus:border-yellow-400/20 focus:ring-1 focus:ring-yellow-400 transition-colors"
+                  >
+                    <span>
+                      {serviceLabels[formData.service] ?? "Select a Service"}
+                    </span>
+                    <ChevronDown className="h-4 w-4 text-gray-400" />
+                  </button>
+                </div>
+
+                {/* Desktop: normal select */}
+                <div className="hidden md:block">
+                  <label
+                    htmlFor="service"
+                    className="block text-xs md:text-sm font-medium text-gray-300 mb-1"
+                  >
                     Service Interested In
                   </label>
                   <select
                     id="service"
                     value={formData.service}
                     onChange={handleChange}
-                    className="w-full bg-gray-800 text-white px-4 py-3 rounded-md border border-gray-700 outline-none focus:border-yellow-400/20 focus:ring-1 focus:ring-yellow-400 transition-colors"
+                    className="w-full bg-gray-800 text-white px-4 py-3 rounded-md border border-gray-700 outline-none focus:border-yellow-400/20 focus:ring-1 focus:ring-yellow-400 transition-colors text-sm md:text-base"
                   >
                     <option value="">Select a Service</option>
                     <option value="seo">SEO</option>
@@ -198,24 +291,28 @@ const ContactForm = ({
                   </select>
                 </div>
 
+                {/* Message */}
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
+                  <label
+                    htmlFor="message"
+                    className="block text-xs md:text-sm font-medium text-gray-300 mb-1"
+                  >
                     Message
                   </label>
                   <textarea
                     id="message"
-                    rows={5}
+                    rows={4}
                     required
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Tell us about your project or inquiry..."
-                    className="w-full bg-gray-800 text-white px-4 py-3 rounded-md border border-gray-700 outline-none focus:border-yellow-400/20 focus:ring-1 focus:ring-yellow-400 transition-colors"
+                    className="w-full bg-gray-800 text-white px-3 md:px-4 py-2.5 md:py-3 rounded-md border border-gray-700 outline-none focus:border-yellow-400/20 focus:ring-1 focus:ring-yellow-400 transition-colors text-sm"
                   ></textarea>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-yellow-400 text-black px-4 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors"
+                  className="w-full bg-yellow-400 text-black px-4 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors text-sm md:text-base"
                 >
                   Send Message
                 </button>
@@ -224,6 +321,62 @@ const ContactForm = ({
           </div>
         </motion.div>
       </div>
+
+      {/* Mobile Service Picker Bottom Sheet */}
+      {isServicePickerOpen && (
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 md:hidden">
+          <motion.div
+            initial={{ y: 40, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 40, opacity: 0 }}
+            className="w-full max-w-md bg-gray-900 rounded-t-2xl p-4 pb-6"
+          >
+            <div className="flex justify-between items-center mb-3">
+              <h3 className="text-sm font-semibold text-white">
+                Select a Service
+              </h3>
+              <button
+                type="button"
+                className="text-gray-400"
+                onClick={() => setIsServicePickerOpen(false)}
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            <div className="space-y-2">
+              <button
+                type="button"
+                onClick={() => handleMobileServiceSelect("seo")}
+                className="w-full text-left px-3 py-2 rounded-md bg-gray-800 hover:bg-gray-700 text-sm text-white"
+              >
+                SEO
+              </button>
+              <button
+                type="button"
+                onClick={() => handleMobileServiceSelect("social")}
+                className="w-full text-left px-3 py-2 rounded-md bg-gray-800 hover:bg-gray-700 text-sm text-white"
+              >
+                Social Media Ads
+              </button>
+              <button
+                type="button"
+                onClick={() => handleMobileServiceSelect("order")}
+                className="w-full text-left px-3 py-2 rounded-md bg-gray-800 hover:bg-gray-700 text-sm text-white"
+              >
+                Order Management System
+              </button>
+              <button
+                type="button"
+                onClick={() => handleMobileServiceSelect("other")}
+                className="w-full text-left px-3 py-2 rounded-md bg-gray-800 hover:bg-gray-700 text-sm text-white"
+              >
+                Other
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 };
@@ -253,7 +406,9 @@ const ContactInfo = () => {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Contact Information</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Contact Information
+          </h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto">
             Our team is available to assist you with any questions or inquiries.
           </p>
@@ -269,8 +424,12 @@ const ContactInfo = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <div className="flex items-center justify-center mb-4">{item.icon}</div>
-              <h3 className="text-xl font-bold mb-3 text-center text-yellow-400">{item.title}</h3>
+              <div className="flex items-center justify-center mb-4">
+                {item.icon}
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-center text-yellow-400">
+                {item.title}
+              </h3>
               <div className="text-gray-300 text-center">
                 {item.details.map((detail, detailIndex) => (
                   <p key={detailIndex}>{detail}</p>
@@ -279,6 +438,7 @@ const ContactInfo = () => {
             </motion.div>
           ))}
         </div>
+
         <motion.div
           className="mt-16"
           initial={{ opacity: 0, y: 30 }}

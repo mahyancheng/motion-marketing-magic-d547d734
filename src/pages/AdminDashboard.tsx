@@ -298,7 +298,7 @@ export default function AdminDashboard() {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-4xl font-bold mb-4">
-            Welcome to <span className="text-yellow-400">LeadZap</span> Admin
+            Welcome to <span className="text-yellow-400">Leadzap</span> Admin
           </h2>
           <p className="text-gray-300 text-lg">
             Manage your blog content and client testimonials to showcase your marketing expertise.

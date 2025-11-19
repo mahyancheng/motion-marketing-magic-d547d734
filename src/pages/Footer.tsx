@@ -10,11 +10,11 @@ const Footer: React.FC = () => {
           <div>
             <img
               src={Logo}
-              alt="LeadZap Marketing logo"
+              alt="Leadzap Marketing logo"
               className="h-8 md:h-10 mb-3 md:mb-4"
             />
             <p className="mb-3 md:mb-4 text-sm md:text-base text-gray-300">
-              LeadZap Marketing helps businesses grow with SEO, social media
+              Leadzap Marketing helps businesses grow with SEO, social media
               paid ads, and custom software solutions.
             </p>
           </div>
@@ -113,7 +113,7 @@ const Footer: React.FC = () => {
 
         {/* Bottom copyright */}
         <div className="border-t border-white/40 mt-8 md:mt-12 pt-4 md:pt-6 text-xs md:text-sm text-center text-gray-300">
-          Copyright © 2025 | Powered by LeadZap Sdn Bhd
+          Copyright © 2025 | Powered by Leadzap Sdn Bhd
         </div>
       </div>
     </footer>

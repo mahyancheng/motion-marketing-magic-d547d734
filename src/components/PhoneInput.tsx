@@ -1,24 +1,24 @@
+// components/PhoneInput.tsx
+import React from "react";
 
-import React from 'react';
-
-interface PhoneInputProps {
-  id: string;
-  required?: boolean;
-  className?: string;
+export interface PhoneInputProps {
+  value: string;
+  onChange: (value: string) => void;
+  className?: string; // 可选：如果你想额外传 className
 }
 
-const PhoneInput = ({ id, required = false, className = "" }: PhoneInputProps) => {
+const PhoneInput: React.FC<PhoneInputProps> = ({ value, onChange, className }) => {
   return (
-    <div>
-      <label htmlFor={id} className="block text-sm font-medium text-gray-300 mb-1">Phone Number</label>
-      <input 
-        type="tel"
-        id={id}
-        required={required}
-        className={`w-full bg-gray-800 border-gray-700 rounded-md px-4 py-3 text-white focus:ring-yellow-400 focus:border-yellow-400 ${className}`}
-        placeholder="+1 (555) 123-4567"
-      />
-    </div>
+    <input
+      type="tel"
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      className={
+        className ??
+        "w-full bg-gray-800 text-white px-3 py-2.5 rounded-md outline-none text-sm"
+      }
+      placeholder="+60 12 345 6789"
+    />
   );
 };
 

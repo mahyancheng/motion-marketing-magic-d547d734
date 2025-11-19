@@ -249,7 +249,7 @@ export const Navbar = () => {
         {/* Logo - 左侧对齐 */}
         <div className="flex items-center">
           <Link to="/">
-            <img src={Logo} alt="LeadZap Marketing" className="h-8 md:h-10" />
+            <img src={Logo} alt="Leadzap Marketing" className="h-8 md:h-10" />
           </Link>
         </div>
 
@@ -332,7 +332,7 @@ const Hero = () => {
             everything about digital marketing and supercharge your company's growth.
           </p>
           <p className="text-md md:text-xl text-gray-300 mb-6">
-            LeadZap Marketing (LeadZap Sdn Bhd) is a Total marketing solution provider and software development company
+            Leadzap Marketing (Leadzap Sdn Bhd) is a Total marketing solution provider and software development company
             based in Malaysia. We plan, build, launch, and optimize everything under one roof—helping businesses
             accelerate growth through four core service pillars (include but not limited to):
           </p>
@@ -356,7 +356,7 @@ const Hero = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <img src={Logo} alt="LeadZap Marketing Logo" className="w-full max-w-lg mx-auto" />
+          <img src={Logo} alt="Leadzap Marketing Logo" className="w-full max-w-lg mx-auto" />
         </motion.div>
       </div>
     </div>

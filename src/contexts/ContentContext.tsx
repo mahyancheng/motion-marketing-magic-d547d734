@@ -81,7 +81,7 @@ const initialBlogPosts: Omit<BlogPost, 'id'>[] = [
       "The digital marketing landscape has become increasingly complex, but our proprietary Push-Pull framework simplifies the process by creating a seamless customer journey. Push marketing involves strategic paid advertising campaigns that actively promote your brand to your target audience through social media platforms like Facebook, Instagram, and LinkedIn. Meanwhile, Pull marketing focuses on creating valuable, SEO-optimized content that naturally attracts users through search engines when they're actively looking for solutions. When these strategies work together, businesses typically see a 300% increase in qualified leads within the first 90 days. The key is understanding that modern consumers interact with brands across multiple touchpoints before making a purchase decision. Our framework ensures your message is consistent and compelling at every stage of the customer journey, from initial awareness through final conversion.",
     excerpt:
       'Discover how our proprietary Push-Pull marketing framework helps small businesses achieve 300% growth in qualified leads within 90 days.',
-    author: 'LeadZap Marketing Team',
+    author: 'Leadzap Marketing Team',
     publishedAt: new Date('2024-01-15'),
     imageUrl: Push_Pull as unknown as string,
     tags: ['digital marketing', 'push-pull strategy', 'lead generation'],
@@ -115,7 +115,7 @@ const initialTestimonials: Omit<Testimonial, 'id'>[] = [
   {
     name: 'Jennifer Martinez',
     username: '@jmartinez_ceo',
-    body: "LeadZap's Push-Pull strategy increased our leads by 400% in just 3 months!",
+    body: "Leadzap's Push-Pull strategy increased our leads by 400% in just 3 months!",
     img: 'https://randomuser.me/api/portraits/women/32.jpg',
     country: '🇺🇸 United States',
   },
@@ -136,7 +136,7 @@ const initialTestimonials: Omit<Testimonial, 'id'>[] = [
   {
     name: 'James Wilson',
     username: '@jwilson_startup',
-    body: 'From zero to 10k followers and consistent sales. LeadZap delivers results!',
+    body: 'From zero to 10k followers and consistent sales. Leadzap delivers results!',
     img: 'https://randomuser.me/api/portraits/men/51.jpg',
     country: '🇬🇧 United Kingdom',
   },
