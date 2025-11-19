@@ -136,6 +136,14 @@ const SideMenu = ({ isMenuOpen, toggleMenu, actions }) => {
           >
             Contact Us
           </Link>
+
+          <div className="mt-auto pt-4 border-t border-gray-800">
+            <Link to="/contact" onClick={toggleMenu}>
+              <button className="w-full bg-yellow-400 text-black px-4 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors">
+                Get Started
+              </button>
+            </Link>
+          </div>
         </nav>
       </div>
     </>
@@ -235,15 +243,19 @@ export const Navbar = () => {
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? "bg-black/90 py-2" : "py-4"}`}>
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
+        {/* Logo */}
         <div className="flex items-center">
           <Link to="/">
             <img src={Logo} alt="LeadZap Marketing" className="h-8 md:h-10" />
           </Link>
         </div>
+
+        {/* Desktop Nav */}
         <div className="hidden md:flex items-center space-x-8">
           <Link to="/" className="hover:text-yellow-400 transition-colors">
             Home
           </Link>
+
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
@@ -258,6 +270,7 @@ export const Navbar = () => {
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
+
           <Link to="/blog" className="hover:text-yellow-400 transition-colors">
             Blog
           </Link>
@@ -267,23 +280,29 @@ export const Navbar = () => {
           <Link to="/contact" className="hover:text-yellow-400 transition-colors">
             Contact Us
           </Link>
+
+          {/* Desktop Get Started */}
+          {/* Desktop Get Started（md 以上才显示） */}
+          <Link to="/contact" onClick={toggleMenu}>
+            <button className="w-full bg-yellow-400 text-black px-4 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors">
+              Get Started
+            </button>
+          </Link>
+
         </div>
-        <div className="md:hidden flex items-center gap-4">
+
+        {/* Mobile: Menu Button */}
+        <div className="md:hidden flex items-center gap-2">
           <button
             onClick={toggleMenu}
             className="text-white hover:text-yellow-400 p-2 rounded-md transition-colors"
             aria-label="Toggle menu"
           >
-            <Menu className="size-6" /> {/* 确保 Menu 组件在这里 */}
+            <Menu className="size-6" />
           </button>
-          {/* ... 移动端 Get Started 按钮 ... */}
         </div>
-        <Link to="/contact">
-          <button className="bg-yellow-400 text-black px-4 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors">
-            Get Started
-          </button>
-        </Link>
       </div>
+      {/* Mobile Side Menu */}
       <SideMenu isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} actions={actions} />
     </nav>
   );
@@ -300,15 +319,15 @@ const Hero = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
             Supercharge Your <span className="text-yellow-400">Digital Marketing</span> Strategy
           </h1>
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">The Full Service Digital Marketing Agency You Need</h2>
-          <p className="text-lg md:text-xl text-gray-300 mb-6">
+          <h2 className="text-xl md:text-3xl font-bold mb-6">The Full Service Digital Marketing Agency You Need</h2>
+          <p className="text-md md:text-xl text-gray-300 mb-6">
             We help businesses grow through data-driven marketing strategies that deliver measurable results. We handle
             everything about digital marketing and supercharge your company's growth.
           </p>
-          <p className="text-lg md:text-xl text-gray-300 mb-6">
+          <p className="text-md md:text-xl text-gray-300 mb-6">
             LeadZap Marketing (LeadZap Sdn Bhd) is a Total marketing solution provider and software development company
             based in Malaysia. We plan, build, launch, and optimize everything under one roof—helping businesses
             accelerate growth through four core service pillars (include but not limited to):
@@ -328,7 +347,7 @@ const Hero = () => {
           </div>
         </motion.div>
         <motion.div
-          className="lg:w-2/5"
+          className="w-3/4 lg:w-2/5"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -353,7 +372,7 @@ const Framework = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Marketing Framework</h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+          <p className="text-sm md:text-lg text-gray-300 max-w-3xl mx-auto">
             Our proprietary Push-Pull marketing framework creates a connected ecosystem where push data feeds into pull
             marketing (e.g., retargeting), while pull data is used to improve push campaigns.
           </p>
@@ -369,21 +388,23 @@ const Framework = () => {
           <img src={Push_Pull} alt="Push-Pull Marketing Framework" className="max-w-4xl w-full mx-auto" />
         </motion.div>
 
-        <div className="mt-16 grid md:grid-cols-2 gap-8">
+        <div className="mt-16 grid grid-cols-2 gap-3 md:gap-6">
           <motion.div
-            className="bg-black p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-800 hover:border-yellow-400 transition-colors"
+            className="bg-black p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-800 hover:border-yellow-400 transition-colors flex flex-col h-full"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             whileHover={{ scale: 1.03 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold mb-4 text-yellow-400">PUSH Strategy</h3>
-            <p className="text-gray-300 mb-4">
+            <h3 className="text-xl font-bold mb-3 md:mb-4 text-yellow-400">
+              PUSH Strategy
+            </h3>
+            <p className="text-xs sm:text-sm md:text-base text-gray-300 mb-3 md:mb-4">
               Our push marketing strategy actively promotes your brand through strategic paid advertising campaigns.
               Data from push campaigns feeds into pull marketing for retargeting and remarketing.
             </p>
-            <ul className="space-y-2 text-gray-300">
+            <ul className="mt-auto space-y-1 md:space-y-2 text-xs sm:text-sm text-gray-300">
               <li className="flex items-start">
                 <span className="text-yellow-400 mr-2">→</span>
                 <span>Facebook, Instagram & TikTok advertising</span>
@@ -400,19 +421,21 @@ const Framework = () => {
           </motion.div>
 
           <motion.div
-            className="bg-black p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-800 hover:border-yellow-400 transition-colors"
+            className="bg-black p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-800 hover:border-yellow-400 transition-colors flex flex-col h-full"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             whileHover={{ scale: 1.03 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold mb-4 text-yellow-400">PULL Strategy</h3>
-            <p className="text-gray-300 mb-4">
+            <h3 className="text-xl font-bold mb-3 md:mb-4 text-yellow-400">
+              PULL Strategy
+            </h3>
+            <p className="text-xs sm:text-sm md:text-base text-gray-300 mb-3 md:mb-4">
               Our pull strategy naturally attracts users through search engines and organic discovery. Pull data is used
               to improve push campaigns and create highly targeted audiences.
             </p>
-            <ul className="space-y-2 text-gray-300">
+            <ul className="mt-auto space-y-1 md:space-y-2 text-xs sm:text-sm text-gray-300">
               <li className="flex items-start">
                 <span className="text-yellow-400 mr-2">→</span>
                 <span>SEO audit Malaysia & local optimization</span>
@@ -446,7 +469,7 @@ const Vision = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Vision</h2>
-          <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+          <p className="text-sm md:text-xl text-gray-300 leading-relaxed">
             To be Malaysia's most trusted turnkey growth partner, compounding client value by fusing creativity and
             innovation. We believe breakthroughs come from innovative ideas that are tested rigorously, scaled
             responsibly, and measured transparently.
@@ -487,17 +510,17 @@ const TotalDigitalSolutions = () => {
   ];
 
   return (
-    <div className="py-16 lg:py-24 bg-gray-900">
+    <div className="py-10 lg:py-24 bg-gray-900">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.2 }}
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Total Digital Marketing Solutions</h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+          <p className="text-sm md:text-xl text-gray-300 max-w-3xl mx-auto">
             We provide everything needed for a complete digital marketing ecosystem. All services included under one roof
             for maximum synergy and results.
           </p>
@@ -513,8 +536,8 @@ const TotalDigitalSolutions = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">{solution.title}</h3>
-              <p className="text-gray-300">{solution.description}</p>
+              <h3 className="text-lg md:text-xl font-bold mb-3 text-yellow-400">{solution.title}</h3>
+              <p className="text-gray-300 text-sm md:text-md">{solution.description}</p>
             </motion.div>
           ))}
         </div>
@@ -553,8 +576,8 @@ const WebsiteDesign = () => {
   ];
 
   return (
-    <div className="py-16 lg:py-24 ">
-      <div className="container mx-auto px-4 md:px-6 ">
+    <div className="py-10 lg:py-24 ">
+      <div className="container mx-auto px-4 md:px-3 ">
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
@@ -563,7 +586,7 @@ const WebsiteDesign = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Website Design & Development</h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+          <p className="text-sm md:text-lg text-gray-300 max-w-3xl mx-auto">
             Featured client websites showcasing our custom software development and web design capabilities.
           </p>
         </motion.div>
@@ -582,12 +605,14 @@ const WebsiteDesign = () => {
                 viewport={{ once: true }}
               >
                 <img src={website.image} alt={website.name} className="w-full h-48 object-cover" />
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2 text-yellow-400 group-hover:text-yellow-300 transition-colors">
+                <div className="p-4">
+                  <h3 className="text-lg font-bold mb-2 text-yellow-400 group-hover:text-yellow-300 transition-colors">
                     {website.name}
                   </h3>
-                  <p className="text-gray-300 mb-4">{website.description}</p>
-                  <span className="inline-flex items-center text-yellow-400 group-hover:text-yellow-300 transition-colors">
+                  <p className="text-sm text-gray-300 mb-3">
+                    {website.description}
+                  </p>
+                  <span className="inline-flex items-center text-sm text-yellow-400 group-hover:text-yellow-300 transition-colors">
                     Visit Website
                     <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path
@@ -621,33 +646,35 @@ const Services = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+          <p className="text-sm md:text-lg text-gray-300 max-w-3xl mx-auto">
             Comprehensive digital marketing solutions to supercharge your business growth
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {/* SEM */}
           <motion.div
-            className="bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors group h-full min-h-[280px] flex flex-col"
+            className="bg-gray-900/50 p-4 md:p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors group h-full min-h-[240px] md:min-h-[280px] flex flex-col"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
             <div>
-              <div className="flex items-start justify-between mb-4">
-                <span className="text-yellow-400 font-bold text-3xl">🎯</span>
-                <ArrowUpRight className="w-6 h-6 text-gray-400 group-hover:text-yellow-400 transition-colors" />
+              <div className="flex items-start justify-between mb-3 md:mb-4">
+                <span className="text-yellow-400 font-bold text-2xl md:text-3xl">🎯</span>
+                <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6 text-gray-400 group-hover:text-yellow-400 transition-colors" />
               </div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">Search Engine Marketing (SEM)</h3>
-              <p className="text-gray-300 mb-6">
+              <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-yellow-400">
+                Search Engine Marketing (SEM)
+              </h3>
+              <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6">
                 Get a free SEO analysis — strategies that not only rank, but also grow revenue. Includes SEO & GEO
                 optimization.
               </p>
             </div>
             <Link to="/sem" className="mt-auto">
-              <button className="bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors w-full">
+              <button className="bg-yellow-400 text-black px-4 md:px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors w-full text-sm md:text-base">
                 FREE SEO AUDIT
               </button>
             </Link>
@@ -655,24 +682,26 @@ const Services = () => {
 
           {/* Social Media Marketing */}
           <motion.div
-            className="bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors group h-full min-h-[280px] flex flex-col"
+            className="bg-gray-900/50 p-4 md:p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors group h-full min-h-[240px] md:min-h-[280px] flex flex-col"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
           >
             <div>
-              <div className="flex items-start justify-between mb-4">
-                <span className="text-yellow-400 font-bold text-3xl">📱</span>
-                <ArrowUpRight className="w-6 h-6 text-gray-400 group-hover:text-yellow-400 transition-colors" />
+              <div className="flex items-start justify-between mb-3 md:mb-4">
+                <span className="text-yellow-400 font-bold text-2xl md:text-3xl">📱</span>
+                <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6 text-gray-400 group-hover:text-yellow-400 transition-colors" />
               </div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">Social Media Marketing</h3>
-              <p className="text-gray-300 mb-6">
+              <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-yellow-400">
+                Social Media Marketing
+              </h3>
+              <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6">
                 TikTok, Facebook, Instagram management & ads with electrifying content.
               </p>
             </div>
             <Link to="/social-media-ads" className="mt-auto">
-              <button className="bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors w-full">
+              <button className="bg-yellow-400 text-black px-4 md:px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors w-full text-sm md:text-base">
                 Get Consultation
               </button>
             </Link>
@@ -680,22 +709,26 @@ const Services = () => {
 
           {/* Custom Software */}
           <motion.div
-            className="bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors group h-full min-h-[280px] flex flex-col"
+            className="bg-gray-900/50 p-4 md:p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors group h-full min-h-[240px] md:min-h-[280px] flex flex-col"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
           >
             <div>
-              <div className="flex items-start justify-between mb-4">
-                <span className="text-yellow-400 font-bold text-2xl">💻</span>
-                <ArrowUpRight className="w-5 h-5 text-gray-400 group-hover:text-yellow-400 transition-colors" />
+              <div className="flex items-start justify-between mb-3 md:mb-4">
+                <span className="text-yellow-400 font-bold text-2xl md:text-3xl">💻</span>
+                <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6 text-gray-400 group-hover:text-yellow-400 transition-colors" />
               </div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">Custom Software</h3>
-              <p className="text-gray-300 mb-6">Lightning-fast ERP & IoT solutions.</p>
+              <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-yellow-400">
+                Custom Software
+              </h3>
+              <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6">
+                Lightning-fast ERP & IoT solutions.
+              </p>
             </div>
             <Link to="/customer-software-demo" className="mt-auto">
-              <button className="bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors w-full">
+              <button className="bg-yellow-400 text-black px-4 md:px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors w-full text-sm md:text-base">
                 Get Consultation
               </button>
             </Link>
@@ -703,24 +736,26 @@ const Services = () => {
 
           {/* Full Service Digital Marketing */}
           <motion.div
-            className="bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors group h-full min-h-[280px] flex flex-col"
+            className="bg-gray-900/50 p-4 md:p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors group h-full min-h-[240px] md:min-h-[280px] flex flex-col"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             viewport={{ once: true }}
           >
             <div>
-              <div className="flex items-start justify-between mb-4">
-                <span className="text-yellow-400 font-bold text-3xl">⚡</span>
-                <ArrowUpRight className="w-6 h-6 text-gray-400 group-hover:text-yellow-400 transition-colors" />
+              <div className="flex items-start justify-between mb-3 md:mb-4">
+                <span className="text-yellow-400 font-bold text-2xl md:text-3xl">⚡</span>
+                <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6 text-gray-400 group-hover:text-yellow-400 transition-colors" />
               </div>
-              <h3 className="text-xl font-bold mb-3 text-yellow-400">Full Service Digital Marketing</h3>
-              <p className="text-gray-300 mb-6">
+              <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-yellow-400">
+                Full Service Digital Marketing
+              </h3>
+              <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6">
                 From social to web — our Push & Pull Power System to supercharge growth.
               </p>
             </div>
             <Link to="/contact" className="mt-auto">
-              <button className="bg-yellow-400 text-black px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors w-full">
+              <button className="bg-yellow-400 text-black px-4 md:px-6 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors w-full text-sm md:text-base">
                 Get Free Consultation
               </button>
             </Link>
@@ -744,14 +779,25 @@ const Testimonials = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Client Testimonials</h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+          <p className="text-sm md:text-lg text-gray-300 max-w-3xl mx-auto">
             Don't just take our word for it. Here's what our clients have to say about our AI-powered solutions.
           </p>
         </motion.div>
 
-        <div className="flex justify-center mt-12">
-          <DemoOne />
+        <div className="flex justify-center mt-10">
+          <div
+            className="
+                        w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-4xl
+                        px-2 sm:px-0
+                        transform
+                        scale-90 sm:scale-95 md:scale-100
+                        origin-top
+                      "
+          >
+            <DemoOne />
+          </div>
         </div>
+
       </div>
     </div>
   );
@@ -807,8 +853,19 @@ const ContactForm = () => {
     }, 3000);
   };
 
+  const serviceOptions = [
+    { value: "", label: "Select a Service" },
+    { value: "seo", label: "SEO" },
+    { value: "social", label: "Social Media Ads" },
+    { value: "order", label: "Order Management System" },
+    { value: "other", label: "Other" },
+  ];
+
+  const [isServicePopoutOpen, setIsServicePopoutOpen] = useState(false);
+
+
   return (
-    <div className="py-16 lg:py-24 bg-gray-900" id="contact">
+    <div className="py-6 lg:py-24 bg-gray-900" id="contact">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           className="text-center mb-12"
@@ -818,13 +875,13 @@ const ContactForm = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Get in Touch</h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xs md:text-lg text-gray-300 max-w-3xl mx-auto">
             Ready to take your digital marketing to the next level? Contact us for a free consultation.
           </p>
         </motion.div>
 
         <motion.div
-          className="max-w-2xl mx-auto bg-black rounded-xl p-6 md:p-8 shadow-xl"
+          className="max-w-2xl mx-auto bg-black rounded-xl p-4 md:p-6 lg:p-8 shadow-xl"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -832,20 +889,27 @@ const ContactForm = () => {
         >
           {submitted ? (
             <motion.div
-              className="bg-green-800/30 border border-green-600 rounded-lg p-6 text-center"
+              className="bg-green-800/30 border border-green-600 rounded-lg p-5 md:p-6 text-center"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3 }}
             >
-              <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2">Message Sent Successfully!</h3>
-              <p className="text-gray-300">Thank you for reaching out. Our team will get back to you shortly.</p>
+              <CheckCircle className="h-10 w-10 md:h-12 md:w-12 text-green-500 mx-auto mb-3 md:mb-4" />
+              <h3 className="text-lg md:text-xl font-bold mb-2">
+                Message Sent Successfully!
+              </h3>
+              <p className="text-sm md:text-base text-gray-300">
+                Thank you for reaching out. Our team will get back to you shortly.
+              </p>
             </motion.div>
           ) : (
-            <form className="space-y-6" onSubmit={handleSubmit}>
-              <div className="grid md:grid-cols-2 gap-6">
+            <form className="space-y-5 md:space-y-6" onSubmit={handleSubmit}>
+              <div className="grid md:grid-cols-2 gap-4 md:gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
+                  <label
+                    htmlFor="name"
+                    className="block text-xs md:text-sm font-medium text-gray-300 mb-1"
+                  >
                     Your Name
                   </label>
                   <input
@@ -854,12 +918,15 @@ const ContactForm = () => {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full bg-gray-800 border-gray-700 rounded-md px-4 py-3 text-white focus:ring-yellow-400 focus:border-yellow-400"
+                    className="w-full bg-gray-800 border border-gray-700 rounded-md px-3 md:px-4 py-2 md:py-3 text-sm md:text-base text-white focus:ring-yellow-400 focus:border-yellow-400"
                     placeholder="John Doe"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
+                  <label
+                    htmlFor="email"
+                    className="block text-xs md:text-sm font-medium text-gray-300 mb-1"
+                  >
                     Your Email
                   </label>
                   <input
@@ -868,14 +935,17 @@ const ContactForm = () => {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full bg-gray-800 border-gray-700 rounded-md px-4 py-3 text-white focus:ring-yellow-400 focus:border-yellow-400"
+                    className="w-full bg-gray-800 border border-gray-700 rounded-md px-3 md:px-4 py-2 md:py-3 text-sm md:text-base text-white focus:ring-yellow-400 focus:border-yellow-400"
                     placeholder="john@example.com"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-1">
+                <label
+                  htmlFor="company"
+                  className="block text-xs md:text-sm font-medium text-gray-300 mb-1"
+                >
                   Company Name
                 </label>
                 <input
@@ -883,47 +953,120 @@ const ContactForm = () => {
                   id="company"
                   value={formData.company}
                   onChange={handleChange}
-                  className="w-full bg-gray-800 border-gray-700 rounded-md px-4 py-3 text-white focus:ring-yellow-400 focus:border-yellow-400"
+                  className="w-full bg-gray-800 border border-gray-700 rounded-md px-3 md:px-4 py-2 md:py-3 text-sm md:text-base text-white focus:ring-yellow-400 focus:border-yellow-400"
                   placeholder="Your Company"
                 />
               </div>
 
               <div>
-                <label htmlFor="service" className="block text-sm font-medium text-gray-300 mb-1">
+                <label
+                  htmlFor="service"
+                  className="block text-xs md:text-sm font-medium text-gray-300 mb-1"
+                >
                   Service Interested In
                 </label>
-                <select
-                  id="service"
-                  value={formData.service}
-                  onChange={handleChange}
-                  className="w-full bg-gray-800 border-gray-700 rounded-md px-4 py-3 text-white focus:ring-yellow-400 focus:border-yellow-400"
-                >
-                  <option value="">Select a Service</option>
-                  <option value="seo">SEO</option>
-                  <option value="social">Social Media Ads</option>
-                  <option value="order">Order Management System</option>
-                  <option value="other">Other</option>
-                </select>
+
+                {/* 手机版：popout 选择器 */}
+                <div className="md:hidden">
+                  <button
+                    type="button"
+                    onClick={() => setIsServicePopoutOpen(true)}
+                    className="w-full bg-gray-800 border border-gray-700 rounded-md px-3 py-2 text-sm text-white flex items-center justify-between focus:ring-yellow-400 focus:border-yellow-400"
+                  >
+                    <span>
+                      {
+                        serviceOptions.find((opt) => opt.value === formData.service)?.label ||
+                        "Select a Service"
+                      }
+                    </span>
+                    <span className="text-gray-400 text-xs">Tap to choose</span>
+                  </button>
+
+                  {isServicePopoutOpen && (
+                    <div className="fixed inset-0 z-50 flex items-end justify-center">
+                      {/* 背景遮罩 */}
+                      <div
+                        className="absolute inset-0 bg-black/50"
+                        onClick={() => setIsServicePopoutOpen(false)}
+                      />
+
+                      {/* Bottom Sheet */}
+                      <div className="relative w-full max-w-md bg-gray-900 rounded-t-2xl p-4 pb-6 border-t border-gray-700">
+                        <div className="flex items-center justify-between mb-3">
+                          <h4 className="text-sm font-semibold text-gray-100">
+                            Select a Service
+                          </h4>
+                          <button
+                            type="button"
+                            onClick={() => setIsServicePopoutOpen(false)}
+                            className="text-gray-400 text-xs"
+                          >
+                            Close
+                          </button>
+                        </div>
+
+                        <div className="space-y-2 max-h-64 overflow-y-auto">
+                          {serviceOptions.map((opt) => (
+                            <button
+                              key={opt.value || "none"}
+                              type="button"
+                              onClick={() => {
+                                setFormData((prev) => ({ ...prev, service: opt.value }));
+                                setIsServicePopoutOpen(false);
+                              }}
+                              className={`w-full text-left px-3 py-2 rounded-md text-sm border ${formData.service === opt.value
+                                  ? "bg-yellow-400 text-black border-yellow-400"
+                                  : "bg-gray-800 text-gray-200 border-gray-700 hover:bg-gray-700"
+                                }`}
+                            >
+                              {opt.label}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* 桌面版：保留原本的 select */}
+                <div className="hidden md:block">
+                  <select
+                    id="service"
+                    value={formData.service}
+                    onChange={handleChange}
+                    className="w-full bg-gray-800 border border-gray-700 rounded-md px-4 py-3 text-sm md:text-base text-white focus:ring-yellow-400 focus:border-yellow-400"
+                  >
+                    {serviceOptions.map((opt) => (
+                      <option key={opt.value || "none"} value={opt.value}>
+                        {opt.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
 
+
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
+                <label
+                  htmlFor="message"
+                  className="block text-xs md:text-sm font-medium text-gray-300 mb-1"
+                >
                   Message
                 </label>
                 <textarea
                   id="message"
-                  rows={5}
+                  rows={4}
                   required
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full bg-gray-800 border-gray-700 rounded-md px-4 py-3 text-white focus:ring-yellow-400 focus:border-yellow-400"
+                  className="w-full bg-gray-800 border border-gray-700 rounded-md px-3 md:px-4 py-2 md:py-3 text-sm md:text-base text-white focus:ring-yellow-400 focus:border-yellow-400"
                   placeholder="Tell us about your project or inquiry..."
                 ></textarea>
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-yellow-400 text-black px-4 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors"
+                className="w-full bg-yellow-400 text-black px-4 py-2 md:py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors text-sm md:text-base"
               >
                 Send Message
               </button>
