@@ -4,6 +4,7 @@ import { Navbar } from "./Index";
 import { BarChart2, Target, TrendingUp, Users, Instagram, Facebook, Youtube, Megaphone } from "lucide-react";
 import Footer from "./Footer";
 import BlogSection from "@/components/BlogSection";
+import { Link } from "react-router-dom";
 
 const SocialMediaAds = () => {
   return (
@@ -13,7 +14,7 @@ const SocialMediaAds = () => {
       <Platforms />
       <CampaignTypes />
       <Process />
-      <BlogSection 
+      <BlogSection
         tags={['social media marketing', 'social media ads', 'facebook ads', 'instagram marketing', 'tiktok advertising', 'paid social']}
         title="Social Media Marketing Insights"
         subtitle="Discover proven strategies for social media advertising and organic growth"
@@ -29,7 +30,7 @@ const Hero = () => {
   return (
     <div className="pt-24 lg:pt-32 pb-16 lg:pb-24">
       <div className="container mx-auto px-4 md:px-6 flex flex-col lg:flex-row items-center">
-        <motion.div 
+        <motion.div
           className="lg:w-1/2 mb-8 lg:mb-0"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -41,27 +42,31 @@ const Hero = () => {
           <h2 className="text-2xl md:text-3xl font-bold mb-6">
             Social Media Ads That Generates Revenue
           </h2>
-          <p className="text-lg md:text-xl text-gray-300 mb-8">
+          <p className="text-md md:text-xl text-gray-300 mb-8">
             Our data-driven social media advertising strikes like a thunderbolt—launching hyper-targeted campaigns on Facebook, Instagram, and TikTok that turn scrolling audiences into paying customers. Get ready for conversions that crackle with energy and results that roar like thunder.
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <button className="bg-yellow-400 text-black px-6 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors">
-              Get a Free Ad Strategy
+              <Link to="/contact">
+
+                Get a Free Ad Strategy
+              </Link>
+
             </button>
             <button className="border border-white px-6 py-3 rounded-md font-medium hover:bg-white hover:text-black transition-colors">
               View Success Stories
             </button>
           </div>
         </motion.div>
-        <motion.div 
+        <motion.div
           className="lg:w-1/2"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <img 
+          <img
             src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
-            alt="Social Media Marketing" 
+            alt="Social Media Marketing"
             className="w-full rounded-lg shadow-lg"
           />
         </motion.div>
@@ -94,9 +99,9 @@ const Platforms = () => {
   ];
 
   return (
-    <div className="py-16 bg-gray-900">
+    <div className="py-10 bg-gray-900">
       <div className="container mx-auto px-4 md:px-6">
-        <motion.div 
+        <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -104,29 +109,55 @@ const Platforms = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Social Media Platforms</h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+          <p className="text-sm md:text-lg text-gray-300 max-w-3xl mx-auto">
             Facebook marketing service Malaysia across all major social platforms. Our Facebook marketing agency Malaysia expertise covers every major platform.
           </p>
         </motion.div>
-        
-        <div className="grid md:grid-cols-3 gap-8 mt-12">
+
+        <div className="grid grid-cols-3 md:grid-cols-3 gap-2 md:gap-6 mt-6 md:mt-12">
           {platforms.map((platform, index) => (
             <motion.div
               key={index}
-              className="bg-black p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-800 hover:border-yellow-400 transition-colors"
+              className="
+        bg-black 
+        p-2 sm:p-3 md:p-5 
+        rounded-xl 
+        shadow-lg hover:shadow-xl 
+        border border-gray-800 hover:border-yellow-400 
+        transition-shadow transition-colors
+        flex flex-col h-full
+      "
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ scale: 1.03 }}
+              whileHover={{ scale: 1.02 }}
               viewport={{ once: true }}
             >
-              <div className="mb-6 text-yellow-400 flex justify-center">{platform.icon}</div>
-              <h3 className="text-2xl font-bold mb-4 text-center">{platform.name}</h3>
-              <p className="text-gray-300 mb-6 text-center">{platform.description}</p>
-              <ul className="space-y-2">
+              {/* Icon */}
+              <div className="mb-2 md:mb-4 text-yellow-400 flex justify-center text-2xl md:text-3xl">
+                {platform.icon}
+              </div>
+
+              {/* 标题 */}
+              <h3 className="text-[9px] sm:text-xs md:text-lg font-bold mb-1 md:mb-3 text-center leading-snug">
+                {platform.name}
+              </h3>
+
+              {/* 描述 */}
+              <p className="text-[9px] text sm:text-xs md:text-sm text-gray-300 mb-2 md:mb-4 text-center">
+                {platform.description}
+              </p>
+
+              {/* 功能列表 */}
+              <ul className="space-y-1 md:space-y-2 mt-auto">
                 {platform.features.map((feature, i) => (
-                  <li key={i} className="flex items-center text-gray-300">
-                    <span className="text-yellow-400 mr-2">✓</span>
+                  <li
+                    key={i}
+                    className="flex items-start text-[9px] sm:text-xs md:text-sm text-gray-300"
+                  >
+                    <span className="text-yellow-400 mr-1 md:mr-2 text-xs md:text-sm">
+                      ✓
+                    </span>
                     <span>{feature}</span>
                   </li>
                 ))}
@@ -165,9 +196,9 @@ const CampaignTypes = () => {
   ];
 
   return (
-    <div className="py-16">
+    <div className="py-12">
       <div className="container mx-auto px-4 md:px-6">
-        <motion.div 
+        <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -179,8 +210,8 @@ const CampaignTypes = () => {
             We create campaigns based on your business goals -
           </p>
         </motion.div>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
           {campaigns.map((campaign, index) => (
             <motion.div
               key={index}
@@ -192,8 +223,8 @@ const CampaignTypes = () => {
               viewport={{ once: true }}
             >
               <div className="mb-4 text-yellow-400 flex justify-center">{campaign.icon}</div>
-              <h3 className="text-xl font-bold mb-3">{campaign.name}</h3>
-              <p className="text-gray-300">{campaign.description}</p>
+              <h3 className="text-xl md:text-xl font-bold mb-3">{campaign.name}</h3>
+              <p className="text-sm md:text-md text-gray-300">{campaign.description}</p>
             </motion.div>
           ))}
         </div>
@@ -228,22 +259,22 @@ const Process = () => {
   ];
 
   return (
-    <div className="py-16 lg:py-24">
+    <div className="py-10 lg:py-24">
       <div className="container mx-auto px-4 md:px-6">
-        <motion.div 
-          className="text-center mb-12"
+        <motion.div
+          className="text-center mb-8"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Ad Management Process</h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+          <p className="text-sm md:text-lg text-gray-300 max-w-3xl mx-auto">
             A strategic approach to creating, testing, and optimizing social media ad campaigns.
           </p>
         </motion.div>
-        
-        <motion.div 
+
+        <motion.div
           className="mt-12 grid md:grid-cols-5 gap-4"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -262,8 +293,8 @@ const Process = () => {
               <div className="bg-yellow-400 text-black w-10 h-10 rounded-full flex items-center justify-center font-bold absolute -top-5 left-1/2 transform -translate-x-1/2">
                 {index + 1}
               </div>
-              <h3 className="text-xl font-bold mb-3 mt-4 text-center">{step.title}</h3>
-              <p className="text-gray-300 text-center">{step.description}</p>
+              <h3 className="text-lg md:text-xl font-bold mb-3 mt-4 text-center">{step.title}</h3>
+              <p className="text-sm md:text-md text-gray-300 text-center">{step.description}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -275,17 +306,17 @@ const Process = () => {
 // Call to Action component
 const CallToAction = () => {
   return (
-    <div className="py-16 lg:py-24 bg-gray-900">
+    <div className="py-12 lg:py-24 bg-gray-900">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Get Your FREE Social Media Ads Consultation!</h2>
-            <p className="text-lg text-gray-300 mb-6">
+            <p className="text-md md:text-md text-gray-300 mb-6">
               Discover how our social media advertising can supercharge your business growth. Get a comprehensive strategy session delivered to your inbox.
             </p>
             <ul className="space-y-3 text-gray-300">
@@ -307,7 +338,7 @@ const CallToAction = () => {
               </li>
             </ul>
           </motion.div>
-          
+
           <motion.div
             className="bg-black p-8 rounded-xl border border-gray-800"
             initial={{ opacity: 0, x: 30 }}

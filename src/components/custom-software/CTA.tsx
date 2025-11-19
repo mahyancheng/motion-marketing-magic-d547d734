@@ -721,10 +721,10 @@ const CTASection = () => {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="text-2xl md:text-4xl font-bold mb-6">
               Ready to build custom software?
             </h2>
-            <p className="text-lg mb-8">
+            <p className="text-md md:text-lg mb-8">
               Talk to our team about your goals and get a tailored plan from a trusted software development company.
             </p>
 

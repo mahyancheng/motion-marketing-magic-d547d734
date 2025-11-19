@@ -241,17 +241,20 @@ export const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? "bg-black/90 py-2" : "py-4"}`}>
-      <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
-        {/* Logo */}
+    <nav
+      className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? "bg-black/90 py-2" : "py-4"
+        }`}
+    >
+      <div className="relative container mx-auto px-4 md:px-6 flex items-center justify-between">
+        {/* Logo - 左侧对齐 */}
         <div className="flex items-center">
           <Link to="/">
             <img src={Logo} alt="LeadZap Marketing" className="h-8 md:h-10" />
           </Link>
         </div>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center space-x-8">
+        {/* Desktop Nav - 居中 */}
+        <div className="hidden md:flex items-center space-x-8 absolute left-1/2 -translate-x-1/2">
           <Link to="/" className="hover:text-yellow-400 transition-colors">
             Home
           </Link>
@@ -280,18 +283,18 @@ export const Navbar = () => {
           <Link to="/contact" className="hover:text-yellow-400 transition-colors">
             Contact Us
           </Link>
+        </div>
 
-          {/* Desktop Get Started */}
-          {/* Desktop Get Started（md 以上才显示） */}
+        {/* Desktop Get Started - 右侧对齐 */}
+        <div className="hidden md:flex ml-auto">
           <Link to="/contact" onClick={toggleMenu}>
-            <button className="w-full bg-yellow-400 text-black px-4 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors">
+            <button className="bg-yellow-400 text-black px-4 py-2 rounded-md font-medium hover:bg-yellow-300 transition-colors">
               Get Started
             </button>
           </Link>
-
         </div>
 
-        {/* Mobile: Menu Button */}
+        {/* Mobile: Menu Button - 右边 */}
         <div className="md:hidden flex items-center gap-2">
           <button
             onClick={toggleMenu}
@@ -302,6 +305,7 @@ export const Navbar = () => {
           </button>
         </div>
       </div>
+
       {/* Mobile Side Menu */}
       <SideMenu isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} actions={actions} />
     </nav>
@@ -1015,8 +1019,8 @@ const ContactForm = () => {
                                 setIsServicePopoutOpen(false);
                               }}
                               className={`w-full text-left px-3 py-2 rounded-md text-sm border ${formData.service === opt.value
-                                  ? "bg-yellow-400 text-black border-yellow-400"
-                                  : "bg-gray-800 text-gray-200 border-gray-700 hover:bg-gray-700"
+                                ? "bg-yellow-400 text-black border-yellow-400"
+                                : "bg-gray-800 text-gray-200 border-gray-700 hover:bg-gray-700"
                                 }`}
                             >
                               {opt.label}

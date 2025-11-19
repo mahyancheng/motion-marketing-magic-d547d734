@@ -4,6 +4,7 @@ import { Navbar } from "./Index";
 import { BarChart2, Search, ArrowUpRight, Globe, TrendingUp, LineChart } from "lucide-react";
 import Footer from "./Footer";
 import BlogSection from "@/components/BlogSection";
+import { Link } from "react-router-dom";
 
 const SEM = () => {
   return (
@@ -15,7 +16,7 @@ const SEM = () => {
       <Process />
       <PPCFeatures />
       <PPCProcess />
-      <BlogSection 
+      <BlogSection
         tags={['SEM', 'SEO', 'search engine marketing', 'google ads', 'paid advertising', 'organic traffic']}
         title="SEM & SEO Insights"
         subtitle="Learn the latest strategies and tips for search engine marketing success"
@@ -29,41 +30,43 @@ const SEM = () => {
 // Hero component for SEM page
 const Hero = () => {
   return (
-    <div className="pt-24 lg:pt-32 pb-16 lg:pb-24">
+    <div className="pt-24 lg:pt-32 pb-12 lg:pb-24">
       <div className="container mx-auto px-4 md:px-6 flex flex-col lg:flex-row items-center">
-        <motion.div 
+        <motion.div
           className="lg:w-1/2 mb-8 lg:mb-0"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
             Search Engine <span className="text-yellow-400">Marketing (SEM)</span>
           </h1>
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">
+          <h2 className="text-xl md:text-3xl font-bold mb-6">
             Electrify Search Rankings with Leadzap's SEM
           </h2>
-          <p className="text-lg md:text-xl text-gray-300 mb-8">
+          <p className="text-md md:text-xl text-gray-300 mb-8">
             Our data-driven SEM strategies strike like thunder—combining SEO & GEO (Generative Engine Optimization) with technical optimization, powerhouse content, and high-voltage link building to spark sustainable organic growth across Kuala Lumpur and beyond.
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-            <button className="bg-yellow-400 text-black px-8 py-4 rounded-md font-medium hover:bg-yellow-300 transition-colors text-lg">
-              Get Your FREE SEM Audit
-            </button>
-            <button className="border border-white px-6 py-3 rounded-md font-medium hover:bg-white hover:text-black transition-colors">
+            <Link to="/contact">
+              <button className="bg-yellow-400 text-black px-8 py-4 rounded-md font-medium hover:bg-yellow-300 transition-colors text-md md:text-lg">
+                Get Your FREE SEM Audit
+              </button>
+            </Link>
+            {/* <button className="border border-white px-6 py-3 rounded-md font-medium hover:bg-white hover:text-black transition-colors">
               View SEM Case Studies
-            </button>
+            </button> */}
           </div>
         </motion.div>
-        <motion.div 
+        <motion.div
           className="lg:w-1/2"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <img 
+          <img
             src="https://images.unsplash.com/photo-1460925895917-afdab827c52f"
-            alt="SEM Data Analytics" 
+            alt="SEM Data Analytics"
             className="w-full rounded-lg shadow-lg"
           />
         </motion.div>
@@ -82,7 +85,7 @@ const Features = () => {
     },
     {
       icon: <Globe className="h-8 w-8 text-yellow-400" />,
-      title: "Google My Business Management", 
+      title: "Google My Business Management",
       description: "We optimise and maintain your GMB profile so you shine across all Google assets, driving more local clicks, calls, and foot traffic."
     },
     {
@@ -98,9 +101,9 @@ const Features = () => {
   ];
 
   return (
-    <div className="py-16 bg-gray-900">
-      <div className="container mx-auto px-4 md:px-6">
-        <motion.div 
+    <div className="py-12 bg-gray-900">
+      <div className="container mx-auto px-6 md:px-6">
+        <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -108,28 +111,32 @@ const Features = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our SEM Services</h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+          <p className="text-md md:text-lg text-gray-300 max-w-3xl mx-auto">
             What can you expect from our services?
           </p>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto mt-4">
+          <p className="text-sm md:text-lg text-gray-300 max-w-3xl mx-auto mt-4">
             Our SEM strategy doesn't stop at top search positions. We supercharge every corner of Google's ecosystem—Maps, My Business, Search, and more with both SEO & GEO optimization
           </p>
         </motion.div>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mt-8 md:mt-12">
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              className="bg-black p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-800 hover:border-yellow-400 transition-colors"
+              className="bg-black p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-800 hover:border-yellow-400 transition-colors"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.03 }}
               viewport={{ once: true }}
             >
-              <div className="mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-              <p className="text-gray-300">{feature.description}</p>
+              <div className="mb-3">{feature.icon}</div>
+              <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3">
+                {feature.title}
+              </h3>
+              <p className="text-sm md:text-base text-gray-300">
+                {feature.description}
+              </p>
             </motion.div>
           ))}
         </div>
@@ -141,9 +148,9 @@ const Features = () => {
 // GEO Explanation component
 const GEOExplanation = () => {
   return (
-    <div className="py-16 lg:py-24 bg-gradient-to-br from-gray-900 via-black to-gray-900">
+    <div className="py-12 lg:py-24 bg-gradient-to-br from-gray-900 via-black to-gray-900">
       <div className="container mx-auto px-4 md:px-6">
-        <motion.div 
+        <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -154,18 +161,18 @@ const GEOExplanation = () => {
             What is <span className="text-yellow-400">GEO</span> (Generative Engine Optimization)?
           </h2>
           <div className="bg-yellow-400/10 border border-yellow-400/30 rounded-lg p-6 mb-8 max-w-4xl mx-auto">
-            <p className="text-lg text-yellow-100 font-medium text-center">
+            <p className="text-md md:text-lg text-yellow-100 font-medium text-center">
               ⚠️ Not to be confused with Geographic SEO or Local SEO
             </p>
           </div>
-          <p className="text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            GEO is the cutting-edge practice of optimizing your content specifically for AI-powered search engines 
-            and generative AI tools like ChatGPT, Claude, Bard, Perplexity, and other AI assistants that generate 
+          <p className="text-md md:text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            GEO is the cutting-edge practice of optimizing your content specifically for AI-powered search engines
+            and generative AI tools like ChatGPT, Claude, Bard, Perplexity, and other AI assistants that generate
             answers from web content.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+        <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -224,17 +231,17 @@ const GEOExplanation = () => {
         >
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-4">Our SEO + GEO Advantage</h3>
-            <p className="text-lg text-gray-300 mb-6 max-w-3xl mx-auto">
-              We don't just do traditional SEO. Our dual approach ensures your business dominates both Google search results 
+            <p className="text-md md:text-lg text-gray-300 mb-6 max-w-3xl mx-auto">
+              We don't just do traditional SEO. Our dual approach ensures your business dominates both Google search results
               AND gets featured in AI-powered responses when customers ask questions about your industry in Malaysia.
             </p>
-            <div className="grid md:grid-cols-3 gap-6 mt-8">
+            <div className="grid md:grid-cols-3 gap-3 mt-8">
               <div className="text-center">
                 <div className="text-3xl font-bold text-yellow-400 mb-2">Traditional SEO</div>
                 <p className="text-gray-300">Google, Bing, Yahoo rankings</p>
               </div>
               <div className="text-center">
-                <div className="text-xl text-gray-400 mb-2">+</div>
+                <div className="text-xl text-gray-400">+</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-green-400 mb-2">GEO Optimization</div>
@@ -274,9 +281,9 @@ const Process = () => {
   ];
 
   return (
-    <div className="py-16 lg:py-24">
+    <div className="py-10 lg:py-24">
       <div className="container mx-auto px-4 md:px-6">
-        <motion.div 
+        <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -284,17 +291,17 @@ const Process = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our SEM Process</h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+          <p className="text-md md:text-lg text-gray-300 max-w-3xl mx-auto">
             A methodical approach to improving your search engine visibility and organic traffic through comprehensive SEM strategies.
           </p>
         </motion.div>
-        
+
         <div className="mt-12 relative">
           {/* Connecting line */}
           <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gray-700 transform -translate-x-1/2 hidden md:block"></div>
-          
+
           {/* Process steps */}
-          <div className="space-y-12 md:space-y-0">
+          <div className="space-y-12 md:space-y-0                                                                                                  ">
             {steps.map((step, index) => (
               <motion.div
                 key={index}
@@ -304,10 +311,10 @@ const Process = () => {
                 transition={{ duration: 0.5, delay: index * 0.2 }}
                 viewport={{ once: true }}
               >
-                <div className={`md:w-1/2 mb-8 md:mb-0 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
-                  <span className="block text-5xl font-bold text-yellow-400 mb-2">{step.number}</span>
-                  <h3 className="text-2xl font-bold mb-3">{step.title}</h3>
-                  <p className="text-gray-300">{step.description}</p>
+                <div className={`md:w-1/2 mb-4 md:mb-0 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
+                  <span className="block text-4xl md:text-5xl font-bold text-yellow-400 mb-2">{step.number}</span>
+                  <h3 className="text-xl md:text-2xl font-bold mb-3">{step.title}</h3>
+                  <p className="text-gray-300 text-md md:text-lg">{step.description}</p>
                 </div>
                 <div className="md:w-1/2 flex justify-center relative">
                 </div>
@@ -346,7 +353,7 @@ const PPCFeatures = () => {
   ];
 
   return (
-    <div className="py-16 bg-black">
+    <div className="py-12 bg-black">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           className="text-center mb-12"
@@ -355,26 +362,30 @@ const PPCFeatures = () => {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Pay Per Click (Google Ads) Management</h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+          <h2 className="text-2xl md:text-4xl font-bold mb-4">Pay Per Click (Google Ads) Management</h2>
+          <p className="text-md md:text-lg text-gray-300 max-w-3xl mx-auto">
             Want to pay your way up to the first page of Google? Our team crafts lightning-precise campaigns that strike with maximum impact and drive costs down.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              className="bg-gray-900/50 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-800 hover:border-yellow-400 transition-colors"
+              className="bg-gray-900/50 p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-800 hover:border-yellow-400 transition-colors"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.02 }}
               viewport={{ once: true }}
             >
-              <div className="mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-              <p className="text-gray-300">{feature.description}</p>
+              <div className="mb-3">{feature.icon}</div>
+              <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3">
+                {feature.title}
+              </h3>
+              <p className="text-sm md:text-base text-gray-300">
+                {feature.description}
+              </p>
             </motion.div>
           ))}
         </div>
@@ -392,7 +403,7 @@ const PPCProcess = () => {
       description: "We analyze your business goals and create a tailored Google Ads strategy."
     },
     {
-      number: "02", 
+      number: "02",
       title: "Keyword Research",
       description: "Identify high-converting keywords with the best cost-per-click ratios."
     },
@@ -414,36 +425,46 @@ const PPCProcess = () => {
   ];
 
   return (
-    <div className="py-16 bg-gray-900">
+    <div className="py-10 bg-gray-900">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Google Ads Process</h2>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">
+            Our Google Ads Process
+          </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {steps.map((step, index) => (
             <motion.div
               key={index}
-              className="bg-black p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors"
+              className="bg-black p-4 md:p-6 rounded-xl border border-gray-800 hover:border-yellow-400 transition-colors"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <div className="text-yellow-400 text-2xl font-bold mb-4">{step.number}</div>
-              <h3 className="text-xl font-bold mb-3">{step.title}</h3>
-              <p className="text-gray-300">{step.description}</p>
+              <div className="text-yellow-400 text-xl md:text-2xl font-bold mb-3 md:mb-4">
+                {step.number}
+              </div>
+              <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3">
+                {step.title}
+              </h3>
+              <p className="text-sm md:text-base text-gray-300">
+                {step.description}
+              </p>
             </motion.div>
           ))}
         </div>
       </div>
+
     </div>
+
   );
 };
 
@@ -453,7 +474,7 @@ const CallToAction = () => {
     <div className="py-16 lg:py-24 bg-black">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
@@ -486,7 +507,7 @@ const CallToAction = () => {
               </li>
             </ul>
           </motion.div>
-          
+
           <motion.div
             className="bg-gray-900 p-8 rounded-xl border border-gray-800"
             initial={{ opacity: 0, x: 30 }}

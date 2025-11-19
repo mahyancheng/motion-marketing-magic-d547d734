@@ -6,18 +6,18 @@ interface HeroProps {
 
 const CustomSoftwareHero = ({ subtitle }: HeroProps) => {
   return (
-    <header className="pt-24 lg:pt-32 pb-16 lg:pb-24">
+    <header className="pt-24 lg:pt-32 pb-10 lg:pb-24">
       <div className="container mx-auto px-4 md:px-6 flex flex-col lg:flex-row items-center">
         <motion.div
-          className="lg:w-3/5 mb-8 lg:mb-0"
+          className="lg:w-3/5 mb-4 lg:mb-0"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
             Custom Software Development Solutions in <span className="text-yellow-400">Malaysia</span>
           </h1>
-          <p className="text-lg md:text-xl text-gray-300 mb-8">
+          <p className="text-md md:text-xl text-gray-300 mb-8">
             We are a software development company in Malaysia delivering efficient custom software development services and custom business systems for cost optimization and growth.
           </p>
           {subtitle && (
@@ -30,7 +30,7 @@ const CustomSoftwareHero = ({ subtitle }: HeroProps) => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <div className="bg-black p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-800 hover:border-yellow-400 transition-colors m-10">
+          <div className="bg-black p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-800 hover:border-yellow-400 transition-colors m-6 md:m-10s">
             <h2 className="text-xl font-semibold mb-2 text-yellow-400">Why choose our software development company?</h2>
             <p className="text-gray-300">
               As a trusted software provider, we build scalable custom software and business automation software tailored to your workflows.
