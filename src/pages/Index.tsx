@@ -179,8 +179,8 @@ export const Navbar = () => {
           <Link to="/sem" className="w-full">
             <div className="mx-auto w-[95%] rounded-2xl py-3 px-3 transition duration-300 hover:bg-white/10">
               <div className="flex items-center gap-1">
-                <Megaphone className="size-6 text-yellow-400" />
-                <span className="font-bold text-white">Social Media Paid Ads</span>
+                <Search className="size-6 text-yellow-400" />
+                <span className="font-bold text-white">Search Engine Marketing</span>
               </div>
               <div className="mt-1 text-sm text-yellow-400">
                 Data-driven SEM that boosts visibility and leads through SEO, GEO, and Google Ads across traditional and
