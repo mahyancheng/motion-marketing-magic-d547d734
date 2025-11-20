@@ -27,25 +27,22 @@ const InventorySection = () => {
   return (
     <section
       id="section-2"
-      // 根字体在 12px~14px 之间随屏宽平滑变化
-      className="section-container py-8 text-[clamp(12px,0.9vw,14px)] leading-snug"
+      className="section-container py-2 md:py-12 text-[clamp(12px,0.9vw,14px)] leading-snug"
     >
       <div className="split-view gap-3 md:gap-4">
         {/* Salesperson View */}
         <div className="panel">
-          <h3 className="text-[0.95em] font-medium mb-2">Salesperson View</h3>
+          <h3 className="text-[0.95em] font-medium mb-2">Sales View</h3>
 
           <div className="guided-action text-[0.95em] py-2">
-            As a Salesperson, you always see accurate stock levels. This helps prevent selling items
-            that aren't available.
+            Sales see live stock levels to avoid overselling.
           </div>
 
           <Card>
             <CardHeader className="py-2">
-              <CardTitle className="text-[1em]">Available Products</CardTitle>
+              <CardTitle className="text-[1em]">Products</CardTitle>
             </CardHeader>
             <CardContent className="p-2">
-              {/* 列表高度：180px~38vh~360px 之间自适应 */}
               <div className="space-y-2 max-h-[clamp(180px,38vh,360px)] overflow-y-auto pr-1">
                 {products.map((product) => (
                   <div
@@ -64,8 +61,8 @@ const InventorySection = () => {
                         product.stock > 5
                           ? "bg-green-100 text-green-800"
                           : product.stock > 0
-                            ? "bg-yellow-100 text-yellow-800"
-                            : "bg-red-100 text-red-800",
+                          ? "bg-yellow-100 text-yellow-800"
+                          : "bg-red-100 text-red-800",
                       ].join(" ")}
                     >
                       {product.stock > 0 ? `${product.stock} in stock` : "Out of stock"}
@@ -82,19 +79,18 @@ const InventorySection = () => {
           <h3 className="text-[0.95em] font-medium mb-2">Admin View</h3>
 
           <div className="guided-action text-[0.95em] py-2">
-            As an Admin, you can adjust inventory levels. Click "Adjust Stock", select a product,
-            enter a quantity, and submit.
+            Adjust stock by product and quantity here.
           </div>
 
           <Card>
             <CardHeader className="py-2">
-              <CardTitle className="text-[1em]">Adjust Inventory</CardTitle>
+              <CardTitle className="text-[1em]">Inventory Control</CardTitle>
             </CardHeader>
             <CardContent className="p-2">
               <form onSubmit={handleSubmit} className="space-y-3">
                 <div className="space-y-1.5">
                   <label htmlFor="product" className="block text-[0.95em] font-medium">
-                    Select Product
+                    Product
                   </label>
                   <Select onValueChange={setSelectedProductId} value={selectedProductId}>
                     <SelectTrigger className="h-[clamp(32px,2.8vw,40px)] text-[clamp(12px,0.9vw,14px)]">
@@ -107,7 +103,7 @@ const InventorySection = () => {
                           value={product.id}
                           className="text-[clamp(12px,0.9vw,14px)]"
                         >
-                          {product.name} — Currently {product.stock} in stock
+                          {product.name} — {product.stock} in stock
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -116,7 +112,7 @@ const InventorySection = () => {
 
                 <div className="space-y-1.5">
                   <label htmlFor="adjust" className="block text-[0.95em] font-medium">
-                    Receive Stock (positive) / Remove Stock (negative)
+                    Adjust Qty (+ add / − remove)
                   </label>
                   <Input
                     id="adjust"
@@ -131,7 +127,7 @@ const InventorySection = () => {
                   type="submit"
                   className="w-full h-[clamp(32px,2.8vw,40px)] text-[clamp(12px,0.9vw,14px)] text-black bg-yellow-400 hover:bg-yellow-300"
                 >
-                  Update Inventory
+                  Update Stock
                 </Button>
               </form>
             </CardContent>
@@ -139,10 +135,9 @@ const InventorySection = () => {
 
           <Card className="mt-3">
             <CardHeader className="py-2">
-              <CardTitle className="text-[1em]">Current Inventory Levels</CardTitle>
+              <CardTitle className="text-[1em]">Current Inventory</CardTitle>
             </CardHeader>
             <CardContent className="p-2">
-              {/* 表格高度：200px~40vh~420px 之间自适应 */}
               <div className="max-h-[clamp(200px,40vh,420px)] overflow-auto pr-1">
                 <table className="w-full text-left text-[clamp(12px,0.9vw,14px)]">
                   <thead>
@@ -163,8 +158,8 @@ const InventorySection = () => {
                             product.stock > 5
                               ? "text-green-600"
                               : product.stock > 0
-                                ? "text-yellow-600"
-                                : "text-red-600",
+                              ? "text-yellow-600"
+                              : "text-red-600",
                           ].join(" ")}
                         >
                           {product.stock}

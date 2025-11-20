@@ -56,7 +56,7 @@ const OrderProcessingSection = () => {
           <Card>
             {/* 头部与内容 padding 缩小 */}
             <CardHeader className="py-1.5 md:py-2">
-              <CardTitle className="text-[13px] md:text-sm">Create New Order</CardTitle>
+              <CardTitle className="text-[12px] md:text-sm">Create New Order</CardTitle>
             </CardHeader>
             <CardContent className="p-2 md:p-2.5">
               {/* 表单间距更紧凑 */}
@@ -67,7 +67,7 @@ const OrderProcessingSection = () => {
                   </label>
                   <Select onValueChange={setProductId} value={productId}>
                     {/* 控件高度更低、字号更小 */}
-                    <SelectTrigger className="h-8 md:h-9 text-[11px] md:text-[12px]">
+                    <SelectTrigger className="h-8 md:h-9 text-[10px] md:text-[12px]">
                       <SelectValue placeholder="Choose a product" />
                     </SelectTrigger>
                     <SelectContent>

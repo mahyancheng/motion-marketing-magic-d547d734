@@ -279,13 +279,6 @@ const FulfillmentSection = () => {
                         </div>
 
                         {/* 操作按钮 */}
-                        {order.status === "confirmed" && (
-                          <div className="mt-2">
-                            <Button className="w-full h-8 md:h-9 text-[11px] md:text-[12px]">
-                              Begin Fulfillment
-                            </Button>
-                          </div>
-                        )}
                       </CardContent>
                     </Card>
                   ))}

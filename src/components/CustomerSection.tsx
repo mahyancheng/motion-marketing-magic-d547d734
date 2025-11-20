@@ -142,7 +142,7 @@ const CustomerSection = () => {
                         <div className="text-right shrink-0">
                           <p>${order.total.toFixed(2)}</p>
                           <span
-                            className={`inline-block mt-0.5 text-[8px] px-1 py-0.5 rounded status-badge ${
+                            className={`inline-block mt-0.5 text-[10px] px-1 py-0.5 rounded md:status-badge ${
                               order.status === "pending"
                                 ? "status-pending"
                                 : order.status === "confirmed"
