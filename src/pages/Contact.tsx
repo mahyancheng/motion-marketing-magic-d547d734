@@ -107,12 +107,10 @@ const Hero = () => (
         transition={{ duration: 0.5 }}
       >
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-          Get in Touch with <span className="text-yellow-400">Leadzap</span>
+          Contact <span className="text-yellow-400">Top Digital Marketing Agency Malaysia</span>
         </h1>
         <p className="text-lg md:text-xl text-gray-300 mb-8">
-          Have questions about our services? Ready to start your marketing
-          journey? Our team of experts is ready to help you achieve your
-          business goals.
+          Get free SEO analysis Malaysia, social media marketing Malaysia consultation, or Google Ads agency Malaysia pricing. Our digital marketing Kuala Lumpur experts are ready to help.
         </p>
       </motion.div>
     </div>

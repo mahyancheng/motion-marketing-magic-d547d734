@@ -856,73 +856,101 @@ const docToTestimonial = (snap: any): Testimonial => {
 };
 
 /** =======================
- *  Provider（Firestore 实时 + 可选首批导入）
+ *  Provider（Firestore 实时 + 本地 fallback）
  *  ======================= */
 export function ContentProvider({ children }: { children: ReactNode }) {
-  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  // Initialize with local data as fallback
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>(() => 
+    initialBlogPosts.map((post, index) => ({
+      ...post,
+      id: `local-${index}`,
+      publishedAt: post.publishedAt instanceof Date ? post.publishedAt : new Date(post.publishedAt),
+    }))
+  );
+  const [testimonials, setTestimonials] = useState<Testimonial[]>(() =>
+    initialTestimonials.map((t, index) => ({
+      ...t,
+      id: `local-${index}`,
+    }))
+  );
   const bootstrappedRef = useRef(false);
   const BOOTSTRAP = String(import.meta.env.VITE_FIREBASE_BOOTSTRAP || '').toLowerCase() === 'true';
 
-  // 订阅 BlogPosts
+  // 订阅 BlogPosts - use Firestore if available, otherwise keep local data
   useEffect(() => {
-    const q = query(collection(db, 'blogPosts'), orderBy('publishedAt', 'desc'));
-    const unsub = onSnapshot(q, async (snap) => {
-      const list = snap.docs.map(docToBlogPost);
-      setBlogPosts(list);
-
-      // 若允许导入且当前库为空，则导入本地初始数据（只做一次）
-      if (BOOTSTRAP && !bootstrappedRef.current && list.length === 0) {
-        bootstrappedRef.current = true;
-        try {
-          // 导入本地三篇文章
-          for (const item of initialBlogPosts) {
-            await addDoc(collection(db, 'blogPosts'), {
-              title: item.title,
-              content: item.content,
-              excerpt: item.excerpt,
-              author: item.author,
-              imageUrl: item.imageUrl || '',
-              tags: sanitizeTags(item.tags),
-              featured: !!item.featured,
-              // 保留你设定的历史日期，写入 Firestore 会自动转 Timestamp
-              publishedAt: item.publishedAt,
-            });
-          }
-        } catch (e) {
-          console.error('Bootstrap blogPosts failed:', e);
+    try {
+      const q = query(collection(db, 'blogPosts'), orderBy('publishedAt', 'desc'));
+      const unsub = onSnapshot(q, async (snap) => {
+        const list = snap.docs.map(docToBlogPost);
+        // Only update if we got data from Firestore
+        if (list.length > 0) {
+          setBlogPosts(list);
         }
-      }
-    });
-    return () => unsub();
+        // If Firestore is empty and BOOTSTRAP is enabled, import local data
+        if (BOOTSTRAP && !bootstrappedRef.current && list.length === 0) {
+          bootstrappedRef.current = true;
+          try {
+            for (const item of initialBlogPosts) {
+              await addDoc(collection(db, 'blogPosts'), {
+                title: item.title,
+                content: item.content,
+                excerpt: item.excerpt,
+                author: item.author,
+                imageUrl: item.imageUrl || '',
+                tags: sanitizeTags(item.tags),
+                featured: !!item.featured,
+                publishedAt: item.publishedAt,
+              });
+            }
+          } catch (e) {
+            console.error('Bootstrap blogPosts failed:', e);
+          }
+        }
+      }, (error) => {
+        console.warn('Firestore blogPosts subscription error, using local data:', error);
+        // Keep using local data on error
+      });
+      return () => unsub();
+    } catch (error) {
+      console.warn('Failed to connect to Firestore, using local data:', error);
+      // Keep using local data
+    }
   }, [BOOTSTRAP]);
 
-  // 订阅 Testimonials
+  // 订阅 Testimonials - use Firestore if available, otherwise keep local data
   useEffect(() => {
-    const q = query(collection(db, 'testimonials'));
-    const unsub = onSnapshot(q, async (snap) => {
-      const list = snap.docs.map(docToTestimonial);
-      setTestimonials(list);
-
-      if (BOOTSTRAP && !bootstrappedRef.current && list.length === 0) {
-        // 注意：上面 blog 的订阅也会设置 bootstrappedRef；这里再兜底一次
-        bootstrappedRef.current = true;
-        try {
-          for (const t of initialTestimonials) {
-            await addDoc(collection(db, 'testimonials'), {
-              name: t.name,
-              username: t.username,
-              body: t.body,
-              img: t.img,
-              country: t.country,
-            });
-          }
-        } catch (e) {
-          console.error('Bootstrap testimonials failed:', e);
+    try {
+      const q = query(collection(db, 'testimonials'));
+      const unsub = onSnapshot(q, async (snap) => {
+        const list = snap.docs.map(docToTestimonial);
+        // Only update if we got data from Firestore
+        if (list.length > 0) {
+          setTestimonials(list);
         }
-      }
-    });
-    return () => unsub();
+
+        if (BOOTSTRAP && !bootstrappedRef.current && list.length === 0) {
+          bootstrappedRef.current = true;
+          try {
+            for (const t of initialTestimonials) {
+              await addDoc(collection(db, 'testimonials'), {
+                name: t.name,
+                username: t.username,
+                body: t.body,
+                img: t.img,
+                country: t.country,
+              });
+            }
+          } catch (e) {
+            console.error('Bootstrap testimonials failed:', e);
+          }
+        }
+      }, (error) => {
+        console.warn('Firestore testimonials subscription error, using local data:', error);
+      });
+      return () => unsub();
+    } catch (error) {
+      console.warn('Failed to connect to Firestore for testimonials, using local data:', error);
+    }
   }, [BOOTSTRAP]);
 
   /** ===========
