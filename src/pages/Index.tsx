@@ -389,7 +389,7 @@ const Framework = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <img src={Push_Pull} alt="Push-Pull Marketing Framework" className="max-w-4xl w-full mx-auto" />
+          <img src={Push_Pull} alt="Push-Pull Marketing Framework" className="max-w-2xl w-[55%] mx-auto" />
         </motion.div>
 
         <div className="mt-16 grid grid-cols-2 gap-3 md:gap-6">
