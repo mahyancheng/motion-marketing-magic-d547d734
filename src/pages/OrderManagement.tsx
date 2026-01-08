@@ -29,10 +29,11 @@ const Hero = () => {
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            Streamline Your <span className="text-yellow-400">Order Fulfillment</span> Process
+            <span className="text-yellow-400">Custom Software Development</span> for Order Management
           </h1>
+          <h2 className="text-xl md:text-2xl font-bold mb-4">Business Automation Software Malaysia</h2>
           <p className="text-lg md:text-xl text-gray-300 mb-8">
-            Our comprehensive order management system helps e-commerce businesses automate workflows, reduce errors, and deliver exceptional customer experiences.
+            Custom business systems designed by a software development company in Malaysia. Automate order workflows with business automation software tailored for cost optimization.
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <button className="bg-yellow-400 text-black px-6 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors">
@@ -51,7 +52,7 @@ const Hero = () => {
         >
           <img 
             src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b"
-            alt="Order Management System Dashboard" 
+            alt="Custom Order Management Software Malaysia" 
             className="w-full rounded-lg shadow-lg"
           />
         </motion.div>

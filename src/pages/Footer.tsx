@@ -10,12 +10,14 @@ const Footer: React.FC = () => {
           <div>
             <img
               src={Logo}
-              alt="Leadzap Marketing logo"
+              alt="Leadzap Marketing - Top Digital Marketing Agency Malaysia"
               className="h-8 md:h-10 mb-3 md:mb-4"
             />
             <p className="mb-3 md:mb-4 text-sm md:text-base text-gray-300">
-              Leadzap Marketing helps businesses grow with SEO, social media
-              paid ads, and custom software solutions.
+              Leadzap is a top digital marketing agency Malaysia trusted for SEO services pricing Malaysia, social media marketing Malaysia, and Google Ads agency Malaysia solutions.
+            </p>
+            <p className="text-xs text-gray-400">
+              Digital marketing Kuala Lumpur • Malaysia SEO consultant • Free SEO analysis Malaysia
             </p>
           </div>
 
@@ -44,10 +46,10 @@ const Footer: React.FC = () => {
               <li className="font-medium mt-1">Services</li>
               <li className="ml-3">
                 <a
-                  href="/seo"
+                  href="/sem"
                   className="hover:text-yellow-400 hover:no-underline"
                 >
-                  SEO
+                  SEO Services Malaysia
                 </a>
               </li>
               <li className="ml-3">
@@ -55,15 +57,15 @@ const Footer: React.FC = () => {
                   href="/social-media-ads"
                   className="hover:text-yellow-400 hover:no-underline"
                 >
-                  Social Media Paid Ads
+                  Social Media Marketing Malaysia
                 </a>
               </li>
               <li className="ml-3">
                 <a
-                  href="/customer-software-demo"
+                  href="/custom-software"
                   className="hover:text-yellow-400 hover:no-underline"
                 >
-                  Custom Software Solution
+                  Custom Software Development
                 </a>
               </li>
               <li>
@@ -108,12 +110,16 @@ const Footer: React.FC = () => {
                 +60-111-1335119
               </a>
             </p>
+            
+            <p className="mt-4 text-xs text-gray-400">
+              Based in Kuala Lumpur, Malaysia. Serving clients nationwide.
+            </p>
           </div>
         </div>
 
         {/* Bottom copyright */}
         <div className="border-t border-white/40 mt-8 md:mt-12 pt-4 md:pt-6 text-xs md:text-sm text-center text-gray-300">
-          Copyright © 2025 | Powered by Leadzap Sdn Bhd
+          Copyright © 2025 | Powered by Leadzap Sdn Bhd | Top Digital Marketing Agency Malaysia
         </div>
       </div>
     </footer>
