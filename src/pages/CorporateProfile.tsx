@@ -58,11 +58,11 @@ const CompanyHeader = () => {
             <span className="text-yellow-400">Leadzap</span> Marketing Sdn Bhd
           </h1>
           <p className="text-md md:text-2xl text-gray-300 mb-8 leading-relaxed">
-            Malaysia's Premier Digital Marketing Agency & Software Development Company
+            Top Digital Marketing Agency Malaysia | Digital Marketing Kuala Lumpur
           </p>
           <div className="inline-flex items-center bg-yellow-400/10 border border-yellow-400/30 rounded-full px-6 py-2">
             <Globe className="h-5 w-5 text-yellow-400 mr-2" />
-            <span className="text-yellow-400 font-medium">Established in Malaysia • Serving Global Markets</span>
+            <span className="text-yellow-400 font-medium">Malaysia SEO Expert • Social Media Marketing Agency</span>
           </div>
         </motion.div>
       </div>
@@ -82,15 +82,12 @@ const CompanyOverview = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">About Leadzap Marketing Sdn Bhd</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Digital Marketing Kuala Lumpur Leader</h2>
             <p className="text-md md:text-lg text-gray-300 mb-6 leading-relaxed">
-              Leadzap Marketing Sdn Bhd is Malaysia's premier one-stop digital marketing solution provider, specializing in comprehensive, data-driven marketing strategies and custom software solutions that accelerate business growth across all digital channels.
+              Leadzap is the top digital marketing agency Malaysia businesses choose for results. As a leading social media marketing agency Malaysia, we deliver comprehensive SEO services pricing Malaysia and digital marketing Kuala Lumpur solutions.
             </p>
             <p className="text-md md:text-lg text-gray-300 mb-6 leading-relaxed">
-              As a total solution provider, we plan, build, launch, and optimize everything under one roof—from SEO and social media marketing to graphic design, web development, and business automation software.
-            </p>
-            <p className="text-md md:text-lg text-gray-300 mb-6 leading-relaxed">
-              With proven results of generating over 461K sessions and 75% growth for clients, we transform businesses through innovative strategies and cutting-edge technology.
+              Our Malaysia SEO consultant team provides free SEO analysis Malaysia, local SEO Malaysia optimization, and Google Ads agency Malaysia services—all under one roof.
             </p>
           </motion.div>
 
@@ -171,27 +168,27 @@ const CoreServices = () => {
   const services = [
     {
       icon: <Search className="h-8 w-8" />,
-      title: "Search Engine Marketing (SEM)",
-      description: "Advanced SEO & GEO optimization targeting both traditional search engines and AI-powered generative search platforms.",
-      features: ["SEO Audit Malaysia", "GEO for AI Search", "Technical SEO", "Content Marketing", "Keyword Research", "SERP Optimization"]
+      title: "SEO Services Malaysia",
+      description: "Free SEO analysis Malaysia, SEO packages Malaysia, and local SEO Malaysia by Malaysia SEO expert consultants.",
+      features: ["SEO Kuala Lumpur", "SEO Penang", "Google SEO Malaysia", "SEO Services Pricing Malaysia"]
     },
     {
       icon: <Megaphone className="h-8 w-8" />,
-      title: "Social Media Marketing",
-      description: "Multi-platform social media strategies with proven ROI across Facebook, Instagram, TikTok, and LinkedIn.",
-      features: ["Facebook Ads Malaysia", "Instagram Marketing", "TikTok Advertising", "LinkedIn B2B", "Influencer Partnerships", "Community Management"]
+      title: "Social Media Marketing Malaysia",
+      description: "Leading social media marketing agency Malaysia for Facebook marketing Malaysia and social media agency marketing.",
+      features: ["Facebook Marketing Malaysia", "Social Media Packages", "Instagram Marketing", "TikTok Ads"]
     },
     {
       icon: <BarChart2 className="h-8 w-8" />,
-      title: "Paid Advertising (PPC)",
-      description: "Data-driven pay-per-click campaigns with precision targeting and continuous optimization for maximum ROI.",
-      features: ["Google Ads Malaysia", "Facebook Ads", "Display Advertising", "Retargeting Campaigns", "Bid Management", "Conversion Tracking"]
+      title: "Google Ads Agency Malaysia",
+      description: "Expert Google Ads Malaysia management with proven ROI and transparent pricing.",
+      features: ["Google Ads Malaysia", "Google Product Listing Ads", "Google Shopping Ads", "PPC Management"]
     },
     {
       icon: <CodeXml className="h-8 w-8" />,
       title: "Custom Software Development",
-      description: "Tailored software solutions including CRM systems, business automation, and digital transformation tools.",
-      features: ["Business Automation", "CRM Integration", "Custom Applications", "API Development", "System Integration", "Digital Solutions"]
+      description: "Software development company Malaysia delivering business automation and custom solutions.",
+      features: ["CRM Systems", "ERP Solutions", "Business Automation", "Custom Applications"]
     }
   ];
 

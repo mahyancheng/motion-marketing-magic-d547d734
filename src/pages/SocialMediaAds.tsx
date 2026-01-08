@@ -37,13 +37,13 @@ const Hero = () => {
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            Maximize ROI with <span className="text-yellow-400">Strategic Social Ads</span>
+            <span className="text-yellow-400">Social Media Marketing Malaysia</span>
           </h1>
           <h2 className="text-2xl md:text-3xl font-bold mb-6">
-            Social Media Ads That Generates Revenue
+            Social Media Marketing Agency Malaysia | Facebook Marketing Malaysia
           </h2>
           <p className="text-md md:text-xl text-gray-300 mb-8">
-            Our data-driven social media advertising strikes like a thunderbolt—launching hyper-targeted campaigns on Facebook, Instagram, and TikTok that turn scrolling audiences into paying customers. Get ready for conversions that crackle with energy and results that roar like thunder.
+            Leading social media agency marketing in Malaysia. Our social media marketing agency delivers Facebook marketing Malaysia campaigns that convert audiences into customers.
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <button className="bg-yellow-400 text-black px-6 py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors">
@@ -108,9 +108,9 @@ const Platforms = () => {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Social Media Platforms</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Social Media Marketing Platforms</h2>
           <p className="text-sm md:text-lg text-gray-300 max-w-3xl mx-auto">
-            Facebook marketing service Malaysia across all major social platforms. Our Facebook marketing agency Malaysia expertise covers every major platform.
+            Social media marketing packages Malaysia covering Facebook, Instagram, TikTok and more. As a social media marketing agency Malaysia leader, we maximize your ROI.
           </p>
         </motion.div>
 

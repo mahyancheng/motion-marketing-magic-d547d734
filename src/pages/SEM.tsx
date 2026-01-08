@@ -39,13 +39,13 @@ const Hero = () => {
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            Search Engine <span className="text-yellow-400">Marketing (SEM)</span>
+            <span className="text-yellow-400">SEO Services Malaysia</span> & Google Ads
           </h1>
           <h2 className="text-xl md:text-3xl font-bold mb-6">
-            Electrify Search Rankings with Leadzap's SEM
+            Malaysia SEO Expert | SEO Kuala Lumpur | SEO Penang
           </h2>
           <p className="text-md md:text-xl text-gray-300 mb-8">
-            Our data-driven SEM strategies strike like thunder—combining SEO & GEO (Generative Engine Optimization) with technical optimization, powerhouse content, and high-voltage link building to spark sustainable organic growth across Kuala Lumpur and beyond.
+            Get free SEO analysis Malaysia from a trusted Malaysia SEO consultant. Our SEO packages Malaysia combine local SEO Malaysia with Google SEO Malaysia expertise for top rankings.
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <Link to="/contact">
@@ -80,23 +80,23 @@ const Features = () => {
   const features = [
     {
       icon: <Search className="h-8 w-8 text-yellow-400" />,
-      title: "Keyword Rankings",
-      description: "Dominate search results with data-driven strategies that boost visibility across traditional search engines and AI-powered platforms, putting your brand ahead of the competition."
+      title: "SEO Packages Malaysia",
+      description: "Affordable SEO services pricing Malaysia with transparent packages. From SEO Kuala Lumpur to SEO Penang coverage."
     },
     {
       icon: <Globe className="h-8 w-8 text-yellow-400" />,
-      title: "Google My Business Management",
-      description: "We optimise and maintain your GMB profile so you shine across all Google assets, driving more local clicks, calls, and foot traffic."
+      title: "Local SEO Malaysia",
+      description: "Local SEO Malaysia optimization for Google Maps and local search visibility across all Malaysian cities."
     },
     {
       icon: <BarChart2 className="h-8 w-8 text-yellow-400" />,
-      title: "Website Development",
-      description: "Fast, mobile-friendly sites built to convert, with technical SEO audit Malaysia standards baked in for maximum performance."
+      title: "Google Ads Malaysia",
+      description: "Google Ads agency Malaysia services with proven ROI. Expert Google Ads management and optimization."
     },
     {
       icon: <TrendingUp className="h-8 w-8 text-yellow-400" />,
-      title: "Content Creation",
-      description: "Engaging, keyword-rich content that sparks traffic, strengthens authority, and powers long-term rankings across Malaysia."
+      title: "Free SEO Analysis",
+      description: "Get free SEO analysis Malaysia from our Malaysia SEO specialist team with actionable recommendations."
     }
   ];
 

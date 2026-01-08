@@ -324,17 +324,11 @@ const Hero = () => {
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            Supercharge Your <span className="text-yellow-400">Digital Marketing</span> Strategy
+            Top <span className="text-yellow-400">Digital Marketing Agency Malaysia</span>
           </h1>
-          <h2 className="text-xl md:text-3xl font-bold mb-6">The Full Service Digital Marketing Agency You Need</h2>
+          <h2 className="text-xl md:text-3xl font-bold mb-6">Digital Marketing Kuala Lumpur & Beyond</h2>
           <p className="text-md md:text-xl text-gray-300 mb-6">
-            We help businesses grow through data-driven marketing strategies that deliver measurable results. We handle
-            everything about digital marketing and supercharge your company's growth.
-          </p>
-          <p className="text-md md:text-xl text-gray-300 mb-6">
-            Leadzap Marketing (Leadzap Sdn Bhd) is a Total marketing solution provider and software development company
-            based in Malaysia. We plan, build, launch, and optimize everything under one roof—helping businesses
-            accelerate growth through four core service pillars (include but not limited to):
+            Leadzap is the top digital marketing agency Malaysia businesses trust. From SEO services pricing Malaysia to social media marketing Malaysia, we deliver measurable ROI.
           </p>
 
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
@@ -488,28 +482,20 @@ const Vision = () => {
 const TotalDigitalSolutions = () => {
   const solutions = [
     {
-      title: "SEO Audit Malaysia",
-      description: "Comprehensive local SEO Malaysia services, free SEO analysis Malaysia, and SEO Kuala Lumpur optimization",
+      title: "SEO Services Malaysia",
+      description: "Free SEO analysis Malaysia, SEO Kuala Lumpur & SEO Penang optimization by Malaysia SEO experts",
     },
     {
       title: "Facebook Marketing Malaysia",
-      description: "Facebook marketing service Malaysia, Facebook ads agency Malaysia, and Facebook marketing agency Malaysia",
+      description: "Social media marketing agency Malaysia delivering ROI-focused Facebook marketing campaigns",
     },
     {
       title: "Google Ads Agency Malaysia",
-      description: "Pay per click Malaysia campaigns, SEM agency Malaysia services, and strategic PPC management",
+      description: "Google Ads Malaysia campaigns with precision targeting and cost optimization",
     },
     {
-      title: "Social Media Marketing Agency Malaysia",
-      description: "Full service digital marketing across Facebook, Instagram, TikTok with ROI-focused strategies",
-    },
-    {
-      title: "Custom Software Solutions",
-      description: "Healthcare software, ERP systems, customer help desk platforms, and business automation tools",
-    },
-    {
-      title: "Influencer Marketing",
-      description: "Creator partnerships, content amplification, whitelisting/Spark Ads, and performance tracking",
+      title: "Social Media Marketing Malaysia",
+      description: "Social media agency marketing across Facebook, Instagram, TikTok & LinkedIn",
     },
   ];
 
