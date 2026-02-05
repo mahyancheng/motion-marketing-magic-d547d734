@@ -70,7 +70,6 @@
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.179.1",
     "vaul": "^0.9.3",
-    "vite-plugin-prerender": "^1.0.8",
     "vite-ssg": "^28.3.0",
     "zod": "^3.23.8"
   },
