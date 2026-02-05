@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
-import vitePrerender from 'vite-plugin-prerender';
+import vitePrerender from "vite-plugin-prerender";
 
 // Routes to pre-render for SSG
 const routesToPrerender = [
@@ -47,18 +47,22 @@ export default defineConfig(({ mode }) => ({
     componentTagger(),
     mode === 'production' &&
     vitePrerender({
+      staticDir: path.join(__dirname, 'dist'),
       routes: routesToPrerender,
-      renderer: '@prerenderer/renderer-puppeteer',
-      rendererOptions: {
-        renderAfterDocumentEvent: 'render-event',
+      renderer: new vitePrerender.PuppeteerRenderer({
+        renderAfterTime: 3000,
         headless: true,
-      },
-      postProcess(renderedRoute) {
-        // Add meta tags or modify HTML if needed
-        renderedRoute.html = renderedRoute.html
-          .replace(/<script type="module"[^>]*><\/script>/g, '')
-          .replace('id="root">', 'id="root" data-server-rendered="true">');
+      }),
+      postProcess(renderedRoute: any) {
+        renderedRoute.route = renderedRoute.originalRoute;
         return renderedRoute;
+      },
+      minify: {
+        collapseBooleanAttributes: true,
+        collapseWhitespace: true,
+        decodeEntities: true,
+        keepClosingSlash: true,
+        sortAttributes: true,
       },
     }),
   ].filter(Boolean),
