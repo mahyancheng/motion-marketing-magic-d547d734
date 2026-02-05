@@ -735,7 +735,7 @@ const OutOfHomePortfolio = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-3 md:gap-8 md:mb-12 mb-16">
+        <div className="grid lg:grid-cols-3 gap-3 md:gap-8 md:mb-6 mb-16">
           {portfolioItems.map((item, index) => (
             <motion.div
               key={index}
@@ -758,60 +758,6 @@ const OutOfHomePortfolio = () => {
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          className="mt-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <div className="bg-gradient-to-r from-yellow-400/20 via-yellow-400/10 to-yellow-400/20 rounded-2xl p-6 md:p-8 border border-yellow-400/30">
-            <h3 className="text-xl md:text-2xl font-bold mb-6 text-center text-yellow-400">
-              DOOH Road Show & Booth Experience
-            </h3>
-
-            <div className="grid lg:grid-cols-2 gap-6 md:gap-8 items-center">
-              {/* 文案 */}
-              <div className="text-center lg:text-left">
-                <p className="text-sm md:text-lg text-gray-300 mb-4">
-                  Experience our cutting-edge Digital Out-of-Home advertising solutions that bring brands to life through:
-                </p>
-                <ul className="text-sm md:text-md space-y-4">
-                  {[
-                    "Interactive digital displays and touch screens",
-                    "Dynamic content that adapts to audience engagement",
-                    "Professional booth setups for events and roadshows",
-                    "Real-time analytics and audience insights",
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <span className="mt-1 w-1 md:w-3 h-1 md:h-3 bg-yellow-400 rounded-full flex-shrink-0"></span>
-                      <span className="text-gray-300 leading-relaxed">
-                        {item}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* 影片（手机自适应宽度，不会溢出） */}
-              <div className="flex justify-center">
-                <div className="inline-block w-full max-w-xs sm:max-w-sm md:max-w-md rounded-3xl overflow-hidden shadow-lg aspect-[5/4]">
-                  <video
-                    className="w-full h-full object-cover"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  >
-                    <source src={DoohRoadshowDemo} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
@@ -820,7 +766,7 @@ const OutOfHomePortfolio = () => {
 // Contact Information
 const ContactInformation = () => {
   return (
-    <section className="py-10 lg:py-24 bg-gray-900">
+    <section className="py-10 lg:py-2 bg-gray-900">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           className="text-center mb-8 md:mb-12"
@@ -877,7 +823,7 @@ const ContactInformation = () => {
         </div>
 
         <motion.div
-          className="text-center mt-12"
+          className="text-center mt-12 mb-5"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}

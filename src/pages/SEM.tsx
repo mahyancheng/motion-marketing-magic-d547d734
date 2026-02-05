@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Navbar } from "./Index";
-import { BarChart2, Search, ArrowUpRight, Globe, TrendingUp, LineChart } from "lucide-react";
+import { BarChart2, Search, ArrowUpRight, Globe, TrendingUp, LineChart, CheckCircle } from "lucide-react";
 import Footer from "./Footer";
 import BlogSection from "@/components/BlogSection";
 import { Link } from "react-router-dom";
@@ -29,6 +29,7 @@ const SEM = () => {
 
 // Hero component for SEM page
 const Hero = () => {
+
   return (
     <div className="pt-24 lg:pt-32 pb-12 lg:pb-24">
       <div className="container mx-auto px-4 md:px-6 flex flex-col lg:flex-row items-center">
@@ -396,6 +397,7 @@ const PPCFeatures = () => {
 
 // PPC Process component
 const PPCProcess = () => {
+
   const steps = [
     {
       number: "01",
@@ -470,6 +472,63 @@ const PPCProcess = () => {
 
 // Call to Action component
 const CallToAction = () => {
+  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    service: "",
+    message: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      await fetch(
+        "https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY0MDYzMzA0MzA1MjZmNTUzNTUxMzQi_pc",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      setSubmitted(true);
+      // 清空表单
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        service: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Error sending to Pabbly:", error);
+    }
+
+    // 3 秒后关闭成功提示
+    setTimeout(() => {
+      setSubmitted(false);
+    }, 3000);
+  };
+
+  const serviceOptions = [
+    { value: "", label: "Select a Service" },
+    { value: "seo", label: "SEO" },
+    { value: "social", label: "Social Media Ads" },
+    { value: "order", label: "Order Management System" },
+    { value: "other", label: "Other" },
+  ];
+
+  const [isServicePopoutOpen, setIsServicePopoutOpen] = useState(false);
   return (
     <div className="py-16 lg:py-24 bg-black">
       <div className="container mx-auto px-4 md:px-6">
@@ -508,7 +567,214 @@ const CallToAction = () => {
             </ul>
           </motion.div>
 
-          <motion.div
+
+          <div className="py-6 lg:py-0" id="contact">
+            <div className="container mx-auto px-4 md:px-6">
+              <motion.div
+                className="text-center"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+              </motion.div>
+
+              <motion.div
+                className="max-w-2xl mx-auto bg-black rounded-xl p-4 md:p-6 lg:p-8 shadow-xl"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                {submitted ? (
+                  <motion.div
+                    className="bg-green-800/30 border border-green-600 rounded-lg p-5 md:p-6 text-center"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <CheckCircle className="h-10 w-10 md:h-12 md:w-12 text-green-500 mx-auto mb-3 md:mb-4" />
+                    <h3 className="text-lg md:text-xl font-bold mb-2">
+                      Message Sent Successfully!
+                    </h3>
+                    <p className="text-sm md:text-base text-gray-300">
+                      Thank you for reaching out. Our team will get back to you shortly.
+                    </p>
+                  </motion.div>
+                ) : (
+                  <form className="space-y-5 md:space-y-6" onSubmit={handleSubmit}>
+                    <div className="grid md:grid-cols-2 gap-4 md:gap-6">
+                      <div>
+                        <label
+                          htmlFor="name"
+                          className="block text-xs md:text-sm font-medium text-gray-300 mb-1"
+                        >
+                          Your Name
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          required
+                          value={formData.name}
+                          onChange={handleChange}
+                          className="w-full bg-gray-800 border border-gray-700 rounded-md px-3 md:px-4 py-2 md:py-3 text-sm md:text-base text-white focus:ring-yellow-400 focus:border-yellow-400"
+                          placeholder="John Doe"
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="email"
+                          className="block text-xs md:text-sm font-medium text-gray-300 mb-1"
+                        >
+                          Your Email
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          required
+                          value={formData.email}
+                          onChange={handleChange}
+                          className="w-full bg-gray-800 border border-gray-700 rounded-md px-3 md:px-4 py-2 md:py-3 text-sm md:text-base text-white focus:ring-yellow-400 focus:border-yellow-400"
+                          placeholder="john@example.com"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="company"
+                        className="block text-xs md:text-sm font-medium text-gray-300 mb-1"
+                      >
+                        Company Name
+                      </label>
+                      <input
+                        type="text"
+                        id="company"
+                        value={formData.company}
+                        onChange={handleChange}
+                        className="w-full bg-gray-800 border border-gray-700 rounded-md px-3 md:px-4 py-2 md:py-3 text-sm md:text-base text-white focus:ring-yellow-400 focus:border-yellow-400"
+                        placeholder="Your Company"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="service"
+                        className="block text-xs md:text-sm font-medium text-gray-300 mb-1"
+                      >
+                        Service Interested In
+                      </label>
+
+                      {/* 手机版：popout 选择器 */}
+                      <div className="md:hidden">
+                        <button
+                          type="button"
+                          onClick={() => setIsServicePopoutOpen(true)}
+                          className="w-full bg-gray-800 border border-gray-700 rounded-md px-3 py-2 text-sm text-white flex items-center justify-between focus:ring-yellow-400 focus:border-yellow-400"
+                        >
+                          <span>
+                            {
+                              serviceOptions.find((opt) => opt.value === formData.service)?.label ||
+                              "Select a Service"
+                            }
+                          </span>
+                          <span className="text-gray-400 text-xs">Tap to choose</span>
+                        </button>
+
+                        {isServicePopoutOpen && (
+                          <div className="fixed inset-0 z-50 flex items-end justify-center">
+                            {/* 背景遮罩 */}
+                            <div
+                              className="absolute inset-0 bg-black/50"
+                              onClick={() => setIsServicePopoutOpen(false)}
+                            />
+
+                            {/* Bottom Sheet */}
+                            <div className="relative w-full max-w-md bg-gray-900 rounded-t-2xl p-4 pb-6 border-t border-gray-700">
+                              <div className="flex items-center justify-between mb-3">
+                                <h4 className="text-sm font-semibold text-gray-100">
+                                  Select a Service
+                                </h4>
+                                <button
+                                  type="button"
+                                  onClick={() => setIsServicePopoutOpen(false)}
+                                  className="text-gray-400 text-xs"
+                                >
+                                  Close
+                                </button>
+                              </div>
+
+                              <div className="space-y-2 max-h-64 overflow-y-auto">
+                                {serviceOptions.map((opt) => (
+                                  <button
+                                    key={opt.value || "none"}
+                                    type="button"
+                                    onClick={() => {
+                                      setFormData((prev) => ({ ...prev, service: opt.value }));
+                                      setIsServicePopoutOpen(false);
+                                    }}
+                                    className={`w-full text-left px-3 py-2 rounded-md text-sm border ${formData.service === opt.value
+                                      ? "bg-yellow-400 text-black border-yellow-400"
+                                      : "bg-gray-800 text-gray-200 border-gray-700 hover:bg-gray-700"
+                                      }`}
+                                  >
+                                    {opt.label}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* 桌面版：保留原本的 select */}
+                      <div className="hidden md:block">
+                        <select
+                          id="service"
+                          value={formData.service}
+                          onChange={handleChange}
+                          className="w-full bg-gray-800 border border-gray-700 rounded-md px-4 py-3 text-sm md:text-base text-white focus:ring-yellow-400 focus:border-yellow-400"
+                        >
+                          {serviceOptions.map((opt) => (
+                            <option key={opt.value || "none"} value={opt.value}>
+                              {opt.label}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+
+
+                    <div>
+                      <label
+                        htmlFor="message"
+                        className="block text-xs md:text-sm font-medium text-gray-300 mb-1"
+                      >
+                        Message
+                      </label>
+                      <textarea
+                        id="message"
+                        rows={4}
+                        required
+                        value={formData.message}
+                        onChange={handleChange}
+                        className="w-full bg-gray-800 border border-gray-700 rounded-md px-3 md:px-4 py-2 md:py-3 text-sm md:text-base text-white focus:ring-yellow-400 focus:border-yellow-400"
+                        placeholder="Tell us about your project or inquiry..."
+                      ></textarea>
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full bg-yellow-400 text-black px-4 py-2 md:py-3 rounded-md font-medium hover:bg-yellow-300 transition-colors text-sm md:text-base"
+                    >
+                      Send Message
+                    </button>
+                  </form>
+                )}
+              </motion.div>
+            </div>
+          </div>
+          {/* <motion.div
             className="bg-gray-900 p-8 rounded-xl border border-gray-800"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -562,7 +828,7 @@ const CallToAction = () => {
                 No spam. Detailed audit report delivered within 24 hours.
               </p>
             </form>
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
     </div>

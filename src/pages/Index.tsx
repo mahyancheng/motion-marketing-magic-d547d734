@@ -18,7 +18,6 @@ import Push_ADS from "@/image/Push-ADS.png"; // unused but keep if later used
 import Org_Traffic from "@/image/Org-Traffic.png"; // unused but keep if later used
 import Workconnect from "@/image/workconnect.png";
 import Tectone from "@/image/tectone.jpg";
-import AGKaizen from "@/image/agkaizen.jpg";
 import Puregen from "@/image/puregen.png";
 
 export const Index = () => {
@@ -31,7 +30,7 @@ export const Index = () => {
       <TotalDigitalSolutions />
       <WebsiteDesign />
       <Services />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <ContactForm />
       <Footer />
     </div>
@@ -550,12 +549,6 @@ const WebsiteDesign = () => {
       description: "Industrial steel solutions and construction services",
       url: "https://tectonesteel.com",
       image: Tectone,
-    },
-    {
-      name: "AG Kaizen",
-      description: "Business consulting and process improvement solutions",
-      url: "https://agkaizen.com",
-      image: AGKaizen,
     },
     {
       name: "Puregen",

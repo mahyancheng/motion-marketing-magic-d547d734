@@ -1,7 +1,18 @@
-
 import { useOrder } from '@/contexts/OrderContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+  Legend,
+} from 'recharts';
 import SectionNavigation from './SectionNavigation';
 
 const AnalyticsSection = () => {
@@ -17,9 +28,9 @@ const AnalyticsSection = () => {
     return acc;
   }, {} as Record<string, number>);
 
-  const statusData = Object.keys(statusCounts).map(status => ({
+  const statusData = Object.keys(statusCounts).map((status) => ({
     name: status.charAt(0).toUpperCase() + status.slice(1),
-    value: statusCounts[status]
+    value: statusCounts[status],
   }));
 
   // Product popularity data for bar chart
@@ -28,16 +39,16 @@ const AnalyticsSection = () => {
     return acc;
   }, {} as Record<string, number>);
 
-  const productData = Object.keys(productCounts).map(product => ({
+  const productData = Object.keys(productCounts).map((product) => ({
     name: product,
-    units: productCounts[product]
+    units: productCounts[product],
   }));
 
   // Find top product
   let topProduct = 'None';
   let maxQuantity = 0;
 
-  Object.keys(productCounts).forEach(product => {
+  Object.keys(productCounts).forEach((product) => {
     if (productCounts[product] > maxQuantity) {
       maxQuantity = productCounts[product];
       topProduct = product;
@@ -48,69 +59,86 @@ const AnalyticsSection = () => {
   const COLORS = ['#FFBB28', '#0088FE', '#8884d8', '#00C49F'];
 
   return (
-    <section id="section-5" className="section-container py-16">
-
-      <div className="guided-action">
-        Now, let's look at the bigger picture. Explore the dashboard to see how your business is performing.
-        Hover over chart elements to see details.
+    <section
+      id="section-5"
+      className="section-container py-4 md:py-6 text-[clamp(11px,0.8vw,13px)] leading-snug"
+    >
+      <div className="guided-action text-[0.9em] mb-4">
+        View key metrics at a glance. Hover charts for more details.
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      {/* KPI Row */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 mb-5">
         {/* Total Orders KPI */}
         <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-gray-500 uppercase">Total Orders Today</CardTitle>
+          <CardHeader className="pb-1.5 pt-2">
+            <CardTitle className="text-[0.8em] text-gray-500 uppercase">
+              Total Orders Today
+            </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold">{totalOrders}</div>
-            <p className="text-sm text-gray-500 mt-1">
-              {totalOrders > 0 ? '+' + totalOrders + ' from yesterday' : 'No change from yesterday'}
+          <CardContent className="pt-1 pb-2">
+            <div className="text-2xl md:text-3xl font-bold">{totalOrders}</div>
+            <p className="text-[0.8em] text-gray-500 mt-0.5">
+              {totalOrders > 0
+                ? `+${totalOrders} from yesterday`
+                : 'No change from yesterday'}
             </p>
           </CardContent>
         </Card>
 
         {/* Revenue KPI */}
         <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-gray-500 uppercase">Total Revenue</CardTitle>
+          <CardHeader className="pb-1.5 pt-2">
+            <CardTitle className="text-[0.8em] text-gray-500 uppercase">
+              Total Revenue
+            </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold">${totalRevenue.toFixed(2)}</div>
-            <p className="text-sm text-gray-500 mt-1">
-              {totalRevenue > 0 ? '+$' + totalRevenue.toFixed(2) + ' from yesterday' : 'No change from yesterday'}
+          <CardContent className="pt-1 pb-2">
+            <div className="text-2xl md:text-3xl font-bold">
+              ${totalRevenue.toFixed(2)}
+            </div>
+            <p className="text-[0.8em] text-gray-500 mt-0.5">
+              {totalRevenue > 0
+                ? `+$${totalRevenue.toFixed(2)} from yesterday`
+                : 'No change from yesterday'}
             </p>
           </CardContent>
         </Card>
 
         {/* Top Product KPI */}
         <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-gray-500 uppercase">Top Product</CardTitle>
+          <CardHeader className="pb-1.5 pt-2">
+            <CardTitle className="text-[0.8em] text-gray-500 uppercase">
+              Top Product
+            </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold">{topProduct}</div>
-            <p className="text-sm text-gray-500 mt-1">
+          <CardContent className="pt-1 pb-2">
+            <div className="text-lg md:text-2xl font-bold truncate">
+              {topProduct}
+            </div>
+            <p className="text-[0.8em] text-gray-500 mt-0.5">
               {maxQuantity > 0 ? `${maxQuantity} units sold` : 'No sales yet'}
             </p>
           </CardContent>
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {/* Charts Row */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-5">
         {/* Product Units Chart */}
         <Card className="lg:col-span-1">
-          <CardHeader>
-            <CardTitle>Product Popularity</CardTitle>
+          <CardHeader className="py-2">
+            <CardTitle className="text-[0.95em]">Product Popularity</CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="h-80">
+          <CardContent className="pt-1 pb-2">
+            <div className="h-56 md:h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart
                   data={productData.length > 0 ? productData : [{ name: 'No Data', units: 0 }]}
-                  margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
+                  margin={{ top: 10, right: 20, left: 10, bottom: 40 }}
                 >
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" angle={-45} textAnchor="end" height={60} />
+                  <XAxis dataKey="name" angle={-35} textAnchor="end" height={40} />
                   <YAxis />
                   <Tooltip />
                   <Bar dataKey="units" name="Units Sold" fill="#8B5CF6" />
@@ -122,29 +150,43 @@ const AnalyticsSection = () => {
 
         {/* Order Status Chart */}
         <Card className="lg:col-span-1">
-          <CardHeader>
-            <CardTitle>Order Status Breakdown</CardTitle>
+          <CardHeader className="py-2">
+            <CardTitle className="text-[0.95em]">Order Status Breakdown</CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="h-80">
+          <CardContent className="pt-1 pb-2">
+            <div className="h-56 md:h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
-                    data={statusData.length > 0 ? statusData : [{ name: 'No Data', value: 1 }]}
+                    data={
+                      statusData.length > 0
+                        ? statusData
+                        : [{ name: 'No Data', value: 1 }]
+                    }
                     cx="50%"
                     cy="50%"
                     labelLine={false}
-                    outerRadius={80}
+                    outerRadius={70}
                     fill="#8884d8"
                     dataKey="value"
-                    label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                    label={({ name, percent }) =>
+                      `${name}: ${(percent * 100).toFixed(0)}%`
+                    }
                   >
-                    {statusData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    ))}
+                    {statusData.length > 0
+                      ? statusData.map((entry, index) => (
+                          <Cell
+                            key={`cell-${index}`}
+                            fill={COLORS[index % COLORS.length]}
+                          />
+                        ))
+                      : null}
                   </Pie>
                   <Tooltip />
-                  <Legend />
+                  <Legend
+                    wrapperStyle={{ fontSize: '0.75rem' }}
+                    iconSize={10}
+                  />
                 </PieChart>
               </ResponsiveContainer>
             </div>
